@@ -1,4 +1,4 @@
-from Ai.replyTask import ReplyTask
+from Ai.ReplyTask import ReplyTask
 from Ai.chattask import ChatTask
 from Data.dataStorage import DataStorage
 class TaskProcessor:
@@ -55,6 +55,10 @@ class TaskProcessor:
                 responses.append((ReplyTask.graduatation, ""))
             elif task[0] == ChatTask.enroll:
                 responses.append((ReplyTask.enrollment, ""))
+            elif task[0] == ChatTask.askHelping:
+                responses.append((ReplyTask.askHelp, ""))
+            elif task[0] == ChatTask.askName:
+                    responses.append((ReplyTask.askNamee,data.fetchName(data.fetchValue(task[1]))))
             else:
                 responses.append((ReplyTask.UnknownTask,""))
 

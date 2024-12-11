@@ -8,7 +8,7 @@ from gevent.pywsgi import WSGIServer
 from Data.class_client import Client
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from Ai.recivingFunction import receive
+from Ai.RecivingFunction import receive
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 chat_bot = Flask(__name__)

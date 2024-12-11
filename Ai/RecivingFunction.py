@@ -1,9 +1,9 @@
 from Ai.TaskMapping import TaskMapper
-from Ai.reply_module import ReplyModule
-from Ai.taskProcessor import TaskProcessor
+from Ai.ReplyModule import ReplyModule
+from Ai.TaskProcessor import TaskProcessor
 from Data.dataStorage import DataStorage
 from Ai.Tokeniztion import Tokenizers
-from Ai.NewPreprocessing import Preprocessors
+from Ai.Preprocessing import Preprocessors
 
 def receive(message: str, storage: DataStorage) -> str:
     mapper=TaskMapper()
@@ -12,9 +12,8 @@ def receive(message: str, storage: DataStorage) -> str:
     t=Tokenizers()
     p=Preprocessors()
 
-    l= p.lowercase(message)
-    #pu=preprocessor.remove_punctuation(l)
 
+    l= p.lowercase(message)
     tokens = t.tokenize(l)
     pos = t.pos_tag(tokens)
     tokens  = p.preprocess(tokens, pos)

@@ -22,3 +22,5 @@ class ReplyTask(Enum):
     hour = 18
     graduatation =19
     enrollment =20
+    askHelp=21
+    askNamee=22

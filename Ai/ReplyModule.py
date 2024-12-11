@@ -1,4 +1,4 @@
-from Ai.replyTask import ReplyTask
+from Ai.ReplyTask import ReplyTask
 from random import choice
 from Ai.ResponsesData import ResponseData
 
@@ -25,6 +25,8 @@ class ReplyModule:
         self.graduation = ResponseData.grad
         self.enrollment = ResponseData.enroll
         self.unknow = ResponseData.Unknown
+        self.askhelp = ResponseData.askhelp
+        self.Askname = ResponseData.replay_name
 
     def generate_response(self, reply: list[tuple[ReplyTask,]]) -> str:
         s = ""
@@ -33,12 +35,12 @@ class ReplyModule:
                 s += "\n" + choice(self.Greeting).format(x=r[1])
             elif r[0] == ReplyTask.UnderstandingTask:
                 s += "\n" + choice(self.Understanding).format(x=r[2])
+            elif r[0] == ReplyTask.askNamee:
+                s += "\n" + choice(self.Askname).format(x=r[1])
             elif r[0] == ReplyTask.ContradactionTask:
                 s += "\n" + choice(self.Contradaction).format(y=r[2])
             elif r[0] == ReplyTask.CheckWellbeing:
                 s += "\n" + choice(self.CheckWellbeing)
-            elif r[0] == ReplyTask.Math:
-                s += "\n" + choice(self.Mathh)
             elif r[0] == ReplyTask.Thanks:
                 s += "\n" + choice(self.ThanksReplies)
             elif r[0] == ReplyTask.Help:
@@ -47,8 +49,13 @@ class ReplyModule:
                 s += "\n" + choice(self.Goodbyee)
             elif r[0] == ReplyTask.Confusion:
                 s += "\n" + choice(self.ConfusionReplies)
+            elif r[0] == ReplyTask.Help:
+                s += "\n" + choice(self.askHelping)
+             #end trivial   
             elif r[0] == ReplyTask.TypesOfPrograms:
                 s += "\n" + choice(self.programs)
+            elif r[0] == ReplyTask.Math:
+                s += "\n" + choice(self.Mathh)
             elif r[0] == ReplyTask.ExternalCourses:
                 s += "\n" + choice(self.courses)
             elif r[0] == ReplyTask.Difficulty:

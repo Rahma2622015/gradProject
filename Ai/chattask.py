@@ -22,3 +22,5 @@ class ChatTask(Enum):
     hours = 19
     graduate = 20
     enroll = 21
+    askHelping=22
+    askName=23

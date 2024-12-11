@@ -148,10 +148,6 @@ class TaskMapper:
                     if data[verbIndex] == "be":
                         if pos[i][verbIndex - 1].startswith("N") and (
                                 pos[i][verbIndex + 1].startswith("J") or pos[i][verbIndex + 1].startswith("N") or pos[i][verbIndex +1].endswith("N")):
-                            # if pos[i][verbIndex - 2] == "PRP$":
-                            #     res.append((ChatTask.StoreTask, data[verbIndex - 2] + data[verbIndex - 1],
-                            #                 data[verbIndex + 1]))
-                            # else:
                             res.append((ChatTask.StoreTask, data[verbIndex - 1], data[verbIndex + 1]))
                 else:
                     res.append((ChatTask.UnknownTask,))
