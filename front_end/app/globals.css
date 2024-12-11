@@ -1,0 +1,27 @@
+.cs-message-input__tools .cs-button--attachment{
+  display:none !important;
+}
+.dark {
+  background-color: #333;
+  color: white;
+}
+
+.light {
+  background-color: white;
+  color: black;
+}
+:root {
+  --background-light: #709cb4;
+  --background-dark: #2e4a5d;
+}
+.dark-mode {
+  --background-color: var(--background-dark);
+}
+.light-mode {
+  --background-color: var(--background-light);
+}
+a:-webkit-any-link {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}

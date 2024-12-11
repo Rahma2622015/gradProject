@@ -1,0 +1,142 @@
+import time
+import uuid
+
+store_client_data = {}
+store_data = {}
+
+
+class Client:
+
+    def __init__(self, token, session_id):
+        self.token = token
+        self.session_id = session_id
+        self.client_id = str(uuid.uuid4())
+        self.start_session_t = None
+        self.end_session_t = None
+        store_client_data[self.client_id] = {"session_id": self.session_id, "data": []}
+
+    def last_task(self, id):
+        if self.session_id == id:
+            print("get task from API")
+        else:
+            print("you have no tasks yet!")
+
+    def data_storage(self, data):
+        if self.client_id in store_client_data:
+            store_client_data[self.client_id]["data"].append(data)
+            print(f"Data stored for client {self.client_id}: {store_client_data[self.client_id]['data']}")
+        else:
+            print("Client not found!")
+
+    def start_session(self):
+        self.start_session_t = time.time()
+        self.end_session_t = self.start_session_t + 2
+        print(f"Session start for client {self.client_id} at --->{self.start_session_t}")
+
+    def check_session_end(self):
+        session_time = time.time()
+        if session_time >= self.end_session_t:
+            if self.client_id in store_client_data:
+                store_client_data[self.client_id]["data"].clear()
+                print(f"Client {self.client_id} session ended!")
+                print(f"Stored data for client {self.client_id} is now cleared.")
+                print(f"Stored data {store_client_data[self.client_id]['data']} is now cleared.")
+            else:
+                print("Client not found!")
+        else:
+            print(f"Client {self.client_id} session is still running.")
+
+    def __repr__(self):
+        return f"Client(token={self.token}, session_id={self.session_id}, client_id={self.client_id})"
+
+
+class Storing_data:
+
+    def __init__(self,task_name,question,answer):
+        self.question=question
+        self.answer=answer
+        self.task_name=task_name
+        if self.task_name not in store_data:
+            store_data[self.task_name] = {"question": [self.question], "answer": [self.answer]}
+        else:
+            store_data[self.task_name]["question"].append(self.question)
+            store_data[self.task_name]["answer"].append(self.answer)
+
+    def add_Data(self, task_name,question,answer):
+        if task_name in store_data:
+            store_data[task_name]["question"].append(question)
+            store_data[task_name]["answer"].append(answer)
+            return f'{store_data}'
+
+        else :
+            store_data[task_name] = {"question": [question], "answer": [answer]}
+            return f'{store_data}'
+
+
+    def find_Data(self,task_name):
+        if (task_name in store_data):
+            return f'{store_data[task_name]} was found!'
+        else:
+            return f'{store_data[task_name]} was not found!'
+
+    def fetch_Data(self):
+        return store_data
+
+    def update_Data(self,task_name,question,answer):
+        if task_name in store_data:
+            if question in store_data[task_name]["question"]:
+                index=store_data[task_name]["question"].index(question)
+                store_data[task_name]["answer"][index] = answer
+            return "Update is done!"
+        else:
+            store_data[task_name]["question"].append(question)
+            store_data[task_name]["answer"].append(answer)
+
+    def delete_Data(self,task_name):
+        if(task_name in store_data):
+            del store_data[task_name]
+            return f' Data was Deleted!'
+
+        else:
+            return f'Data is not found!'
+
+    def __repr__(self):
+        return f"Data(question={self.question},answer={self.answer})"
+
+
+
+
+client1 = Client(token="Hi", session_id="1111")
+print(client1)
+client1.start_session()
+client1.data_storage("hello")
+time.sleep(2)
+client1.check_session_end()
+print("-----------------------------------------------------")
+client2 = Client(token="Hello", session_id="2222")
+print(client2)
+client2.start_session()
+client2.data_storage("world")
+time.sleep(2)
+client2.check_session_end()
+
+
+
+print("-----------------------------------------------------")
+print("-----------------------------------------------------")
+print("-----------------------------------------------------")
+
+s = Storing_data("A","what is your name?","my name is lazez.")
+print("Add Data......................")
+print(s.add_Data("A","How are you?","I am ok."))
+print(s.add_Data("B","can you help me?","of course i can help you, just tell me what is your problem?"))
+print("Delete Data...................")
+print(s.delete_Data("B"))
+print("Fetch Data....................")
+print(s.fetch_Data())
+print("Update Data....................")
+print(s.update_Data("A","How are you?","I am fine."))
+print("Fetch Data.....................")
+print(s.fetch_Data())
+print("Find Data...................")
+print(s.find_Data("A"))

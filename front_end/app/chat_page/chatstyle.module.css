@@ -1,0 +1,126 @@
+.container {
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 25px;
+  left: 640px;
+}
+
+.dropdown_btn {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--background-color);
+    width:30px;
+    height:30px;
+}
+
+.menu {
+    background-color: var(--background-color);
+    height: 40px;
+    width: 100%;
+    display: flex;
+    padding: 0 1%;
+    position: fixed; /* أو absolute حسب التصميم */
+    top: 0; /* أو أي قيمة مناسبة */
+    left: 0;
+    z-index: 1000;
+}
+
+.dropdown_list {
+    display: block;
+    position: absolute;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: hsla(0, 0%, 100%, 0.505);
+    border: none;
+    width: 150px;
+    top: 100%;
+    z-index: 1000;
+}
+
+.dropdown-list li {
+    padding: 10px;
+    text-align: right;
+}
+
+.dropdown-list li:hover {
+    background-color: #e5e5e5;
+}
+
+.ChatContainer {
+      height: 660px;
+      width: 700px;
+      margin-top:60px;
+      margin-bottom:0px;
+      margin-right:0px;
+      margin-left:0px;
+}
+.hiddendiv{
+    display:none;
+}
+.image {
+        width:30px;
+        height:30px;
+    }
+@media (min-width:1000px){
+    .ChatContainer {
+         margin-bottom:10px;
+         height: 660px;
+          width: 700px;
+    }
+}
+@media (max-width:500px){
+    .ChatContainer {
+         margin-bottom:10px;
+         height: 600px;
+          width: 360px;
+    }
+    .image {
+        width:25px;
+        height:25px;
+    }
+}
+/*@media (min-height:700px) and (max-height:850px){
+    .ChatContainer {
+         margin-bottom:10px;
+         height: 780px;
+          width: 360px;
+          margin-right:6px;
+    }
+    .image {
+        width:25px;
+        height:25px;
+    }
+}*/
+@media (min-height:840px) and (max-height:900px){
+    .ChatContainer {
+         margin-top:70px;
+         margin-bottom:10px;
+         height: 670px;
+          width: 340px;
+          margin-right:15px;
+    }
+    .image {
+        width:25px;
+        height:25px;
+    }
+}
+@media (min-height:901px) and (max-height:950px){
+    .ChatContainer {
+         margin-top:70px;
+         margin-bottom:10px;
+         height: 670px;
+          width: 340px;
+          margin-right:50px;
+          margin-left:9px;
+    }
+    .image {
+        width:25px;
+        height:25px;
+    }
+}
