@@ -1,48 +1,41 @@
 "use client";
 
 import Image from "next/image";
-// توفر المكتبة تصاميم جاهزة لعناصر الدردشة مثل الرسائل، قائمة المحادثات، شريط الإدخال، ومؤشرات الكتابة
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
-//مكونات للchat
 import {MainContainer,ChatContainer, MessageList, Message, MessageInput,} from "@chatscope/chat-ui-kit-react";
 import styles from "./chatstyle.module.css";
 import Link from "next/link";
-//hooks
 import React, { useEffect, useState } from 'react';
 import { useTheme } from "../context/ThemeContext";
 function ChatPage(){
    const { isDarkMode } = useTheme();
    useEffect(() => {
-        // بشوف هل عملت reload و لا لا
          const entries = performance.getEntriesByType("navigation");
         if (entries.length > 0 && (entries[0] as PerformanceNavigationTiming).type === "reload") {
-          // بشوف هل انا في ال home اصلا و لا لا
           if (window.location.pathname !== "/") {
             window.location.href = "/";
           }
         }
      }, []);
 
-    //علشان اغير ال title بتاع الصفحة
     useEffect(()=> {
       document.title='Chatpage';
     });
-    //بشيل تنسيقات ال html
     const stripHtmlTags = (html: string): string => {
       const doc = new DOMParser().parseFromString(html, "text/html");
       return doc.body.textContent || "";
     };
     const handlePaste = (event: React.ClipboardEvent<HTMLDivElement>): void => {
       event.preventDefault();
-      const text = stripHtmlTags(event.clipboardData.getData("text/html")); // اشيل التنسيقات
-      const cleanedText = text.replace(/\n+/g, " ").trim(); // اشيل ال new line
-      document.execCommand("insertText", false, cleanedText); // لما اعمل past اعمل من غير التنسيقات
+      const text = stripHtmlTags(event.clipboardData.getData("text/html"));
+      const cleanedText = text.replace(/\n+/g, " ").trim();
+      document.execCommand("insertText", false, cleanedText);
     };
 
     const [sessionMessage, setSessionMessage] = useState<string>("");
     const [isLoading, setISLoading] = useState<boolean>(false);
     const closeSession = async () => {
-        const id = localStorage.getItem("client_id"); // الحصول على ID من التخزين
+        const id = localStorage.getItem("client_id");
         if (!id) {
           console.error(" ID is missing");
           setSessionMessage(" ID is missing.");
@@ -80,7 +73,6 @@ function ChatPage(){
         }
       };
 
-  //و متغير state يحتوي على الرسائل التي سيتم عرضها في الدردشة
   const [messages, setMessages] = useState([//array
     {
        message: "Hello, I'm Lazez! Ask me !",
@@ -89,7 +81,6 @@ function ChatPage(){
     }
   ]);
 
-  //بتضيف الرسايل الجديده
   const handleSend=async(message:string) =>
     {
     const cleanedMessage = stripHtmlTags(message);
@@ -102,10 +93,7 @@ function ChatPage(){
     const newMessages = [...messages, newMessage];
     setMessages(newMessages);
     try {
-      //علشان اعرض الرسالة الي بتتبعت
       console.log('Sending message:', message);
-      // إرسال الرسالة إلى server عبر POST
-      //في ال fetch المفروض احط لينك ال server
       const token=localStorage.getItem("client_id");
       console.log(JSON.stringify({ userMessage:message,id:token}))
       const response = await fetch('http://192.168.1.4:3001/messages', {
@@ -113,11 +101,9 @@ function ChatPage(){
          headers: {
              "Content-Type": "application/json",
           },
-        //بتحول الكود ل jason
         body: JSON.stringify({ userMessage: cleanedMessage,id: token}),
       });
         console.log("Payload sent to server:", JSON.stringify({ userMessage: message, id: token }));
-      //عرض الرد
       console.log('Received response:', response);
       if (response.ok) {
          const data = await response.json();
@@ -132,7 +118,7 @@ function ChatPage(){
           }
           console.log(data);
           const replyMessage = {
-            message:data.reply, // الرد من server
+            message:data.reply,
             direction: "incoming",
             sender: "Lazez",
           };
@@ -153,11 +139,9 @@ function ChatPage(){
     setList(!isShowlist);
   };
 
-  //بمسح كل الشات معادا الرسالة التعريفية للشات
   const deletchat=()=>{
     setMessages([messages[0]]);
   };
-  //width=1520px
 
     return(
        <main className={styles.container}
@@ -216,7 +200,6 @@ function ChatPage(){
                 <ChatContainer>
                   <MessageList scrollBehavior="auto" >
                   {
-                    // بتكرار كل رسالة موجودة في ال array messages
                       messages.map((message, i) => {
                         const direction = message.direction === "incoming" || message.direction === "outgoing" ? message.direction : "incoming";
                         //const cleanedMessage = message.message.trim();
