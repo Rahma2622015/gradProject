@@ -35,7 +35,8 @@ class ResponseData:
         "You're very welcome! Glad I could assist.",
         "My pleasure! Is there anything else I can do for you?",
         "Always here to help!",
-        "No worries, glad to be of service!"
+        "No worries, glad to be of service!",
+        "You're welcome! If you need anything else, feel free to ask. 😊"
     ]
     ConfusionReplies = [
         "I'm here to help! Could you clarify what you need?",
@@ -55,12 +56,13 @@ class ResponseData:
         "Goodbye! Have a great day", "See you later!", "Take care! Goodbye!",
         "Goodbye! Stay safe!", "Farewell! Hope to talk to you again soon.",
         "It was nice talking to you! Goodbye!", "Bye for now! Take care!",
-        "Goodbye! Have a wonderful rest of your day!"
+        "Goodbye! Have a wonderful rest of your day!",
+        "If you ever need help in the future, don't hesitate to reach out. Take care! 😊"
     ]
     askhelp = [
         "Of course! Let me know what you need help with, "
         "and I'll do my best to assist you! 😊",
-        "Just ask your question, and I’ll be here to help you step by step. 👍",
+        "Just ask your question, and I’ll be here to help you step by step. 😄",
         "Anyone who needs a bit of help or guidance—how can I assist you?",
         "Absolutely! Share your problem, and I’ll do my best to find a solution.🥰",
         "Yes, I can help with various tasks! Just let me know what you're working on."
