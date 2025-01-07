@@ -29,7 +29,7 @@ class Client:
     def startSession(self,id):
         self.timeStart = time.time()
         self.id=id
-        self.timeEnd= self.timeStart + 1000
+        self.timeEnd= self.timeStart + 60000
         if time.time() >= self.timeEnd:
             return False
         return True

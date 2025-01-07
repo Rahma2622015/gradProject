@@ -10,8 +10,8 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const options = {
-  key: fs.readFileSync('E:/Graduation Project/private.key'), // ملف الشهادة الخاصة
-  cert: fs.readFileSync('E:/Graduation Project/cert.crt'),    // ملف الشهادة
+  key: fs.readFileSync('F:/gitProject/gradProject/private.key'), // ملف الشهادة الخاصة
+  cert: fs.readFileSync('F:/gitProject/gradProject/cert.crt'),    // ملف الشهادة
 };
 
 app.prepare().then(() => {

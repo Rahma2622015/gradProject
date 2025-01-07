@@ -1,7 +1,6 @@
 class ResponseData:
     Greeting = [
-        "Hi {x}!", "Hello {x}!", "Hey there {x}!", "I'm here to assist you {x}."
-    ]
+        "Hi {x}!", "Hello {x}!", "Hey there {x}!"]
     Understanding = ["I understand that you are {x}."]
     Contradaction = ["I already know that you are {y}."]
     Unknown = [
@@ -75,11 +74,20 @@ class ResponseData:
         "Absolutely! Your name is {x}, isn't it? ✨",
         "Yes, you're {x}! Great to chat with you again. 😄"
     ]
+    askhelp = [
+        "Of course! Let me know what you need help with, "
+        "and I'll do my best to assist you! 😊",
+        "Just ask your question, and I’ll be here to help you step by step. 😄",
+        "Anyone who needs a bit of help or guidance—how can I assist you?",
+        "Absolutely! Share your problem, and I’ll do my best to find a solution.🥰",
+        "Yes, I can help with various tasks! Just let me know what you're working on."
+
+    ]
     #end trivial
     Matht = ["Don’t worry, you will take and review it in college.😊"
         ,"No worries, you’ll study and review it at college",
                 "Don’t fret, you’ll go over this again in college."]
-    Programs=["There are 6 programs: CS, CS & Mathematics, CS & Statistics"
+    Programs=["There are 6 programs: CS, CS & Mathematics, CS & Statistics,"
               " Pure Statistics, Pure & Applied Mathematics,"
               " and Pure Mathematics & Statistics."]
     ExternalCourses=["Some people say it’s better to start after graduation,"

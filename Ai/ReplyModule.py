@@ -44,13 +44,11 @@ class ReplyModule:
             elif r[0] == ReplyTask.Thanks:
                 s += "\n" + choice(self.ThanksReplies)
             elif r[0] == ReplyTask.Help:
-                s += "\n" + choice(self.askHelping)
+                s += "\n" + choice(self.askhelp)
             elif r[0] == ReplyTask.Goodbye:
                 s += "\n" + choice(self.Goodbyee)
             elif r[0] == ReplyTask.Confusion:
                 s += "\n" + choice(self.ConfusionReplies)
-            elif r[0] == ReplyTask.Help:
-                s += "\n" + choice(self.askHelping)
              #end trivial   
             elif r[0] == ReplyTask.TypesOfPrograms:
                 s += "\n" + choice(self.programs)

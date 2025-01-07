@@ -19,7 +19,7 @@ export default function Home() {
   const startSession = async () => {
     try{
       setISLoading(true);
-      const response = await fetch('https://192.168.1.4:5000/start-session', {
+      const response = await fetch('https://192.168.1.4:3001/start-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

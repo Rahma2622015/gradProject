@@ -108,10 +108,10 @@ def messages():
 if __name__ == '__main__':
 
     http_server = WSGIServer(
-        ('0.0.0.0', 5000),
+        ('0.0.0.0', 3001),
         chat_bot,
-        keyfile='E:/Graduation Project/private.key',
-        certfile='E:/Graduation Project/cert.crt'
+        keyfile='F:/gitProject/gradProject/private.key',
+        certfile='F:/gitProject/gradProject/cert.crt'
     )
     try:
         print("Starting server...")

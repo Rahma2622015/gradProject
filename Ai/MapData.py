@@ -15,6 +15,12 @@ class TaskDefinitions:
                 "SubjectKeywords": ["you","my"],
                 "ObjectKeywords": ["name"]
             },
+            ChatTask.askHelping: {
+                "QuestionKeywords": ["can", "could", "would"],
+                "VerbKeywords": ["help", "assist", "aid", "ask"],
+                "SubjectKeywords": ["you", "me"],
+                "ObjectKeywords": ["with", "this", "question", "task"]
+            },
             #end trivial
             ChatTask.MathTask: {
                 "QuestionKeywords": ["do","how","be","will"],
@@ -34,9 +40,9 @@ class TaskDefinitions:
                                "math", "mathematics", "branches","collage"]
         },
             ChatTask.ExternalCoursesTask:{
-                "QuestionKeywords": ["when","which","be","what"],
+                "QuestionKeywords": ["when","which","what"],
                 "VerbKeywords": ["be","suppose","advise","take","should","prefer"
-                                 ,"would"],
+                                 ,"would","recommend","focus","suggest","do"],
                 "SubjectKeywords": ["you","i","we"],
                 "ObjectKeywords": ["there", "external","courses","recommend"
                                    ,"specific","year","certain","focus","skill"
@@ -60,7 +66,7 @@ class TaskDefinitions:
             },
             ChatTask.HighGpaTask: {
                 "QuestionKeywords": ["what", "be", "can", "how"],
-                "VerbKeywords": ["be", "achieve", "get", "earn", "receive"],
+                "VerbKeywords": ["be", "achieve", "get", "earn", "receive","have"],
                 "SubjectKeywords": ["i", "me", "student", "it"],
                 "ObjectKeywords": ["GPA", "high", "gpa", "strong", "computer",
                                    "science", "program", "cs","degree","record"]
@@ -85,7 +91,7 @@ class TaskDefinitions:
             },
             ChatTask.classification: {
                 "QuestionKeywords": ["what", "be", "can", "do", "when"],
-                "VerbKeywords": ["exist", "possible", "provide", "offer"],
+                "VerbKeywords": ["exist", "possible", "provide", "offer","be"],
                 "SubjectKeywords": ["college", "students", "year", "any"],
                 "ObjectKeywords": ["possible", "students", "focus", "one", "field"
                     , "feasible", "topic", "artificial", "only",
@@ -102,21 +108,20 @@ class TaskDefinitions:
                 "SubjectKeywords": ["hours", "hour", "credit",
                                     "duration", "study", "you"],
                 "ObjectKeywords": ["program", "credit", "computer", "science", "cs",
-                                   "consist", "overall", "enroll",
-                                   "studying", "allotted",
-                                   "minimum", "number", "single",
-                                   "me", "required", "single","duration",
-                                   "total", "include", "term", "workload"]
+                                   "consist", "overall", "enroll","studying", "allotted",
+                                   "minimum", "number", "single","me", "required",
+                                   "single","duration","total", "include",
+                                   "term", "workload"]
             },
             ChatTask.graduate: {
                 "QuestionKeywords": ["how", "what", "do", "be"],
-                "VerbKeywords": ["will", "take", "can", "complete", "many"],
-                "SubjectKeywords": ["years", "time", "it"],
+                "VerbKeywords": ["will", "take", "can", "complete", "many","be"],
+                "SubjectKeywords": ["year", "time", "it"],
                 "ObjectKeywords": ["finish", "single", "special", "cs", "program"
                     , "curriculum", "entirely", "computer", "science", "alone"
                     , "complete", "graduate", "degree", "take", "complete"
                     , "focus", "computers", "require", "typically", "duration"
-                    , "need", "possible", "number", "timeframe"]
+                    , "need", "possible", "number", "timeframe","minimum"]
             },
             ChatTask.enroll: {
                 "QuestionKeywords": ["how", "what", "do"],

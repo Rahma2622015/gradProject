@@ -56,7 +56,7 @@ class TaskProcessor:
             elif task[0] == ChatTask.enroll:
                 responses.append((ReplyTask.enrollment, ""))
             elif task[0] == ChatTask.askHelping:
-                responses.append((ReplyTask.askHelp, ""))
+                responses.append((ReplyTask.Help, ""))
             elif task[0] == ChatTask.askName:
                     responses.append((ReplyTask.askNamee,data.fetchName(data.fetchValue(task[1]))))
             else:

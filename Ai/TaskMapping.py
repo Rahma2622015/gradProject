@@ -32,6 +32,8 @@ class TaskMapper:
         if question_pos == -1:
             question_pos = self.getPOS("MD", temp_position)
         if question_pos == -1:
+            question_pos = self.getPOS("WDT", temp_position)
+        if question_pos == -1:
             question_pos = self.getPOS("V", temp_position)
         question = temp_tokens[question_pos] if question_pos != -1 else None
         question_found = False
@@ -94,13 +96,6 @@ class TaskMapper:
             return True
         return False
 
-    def ishelpingTool(self, token: str) -> bool:
-        helping_words = [
-             "ask", "want", "some",
-             "question", "help","wanna"
-        ]
-        return any(h in token for h in helping_words)
-
     def isGoodbyeTool(self, token: str) -> bool:
         keywords = ["goodbye", "bye", "later", "see you", "take care", "later",
                     "catch", "later", " again", "have a good one",
@@ -136,8 +131,6 @@ class TaskMapper:
                 res.append((ChatTask.GreetingTask, "name"))
             elif self.isThanksTool(data):
                 res.append((ChatTask.ThanksTask, ""))
-            elif self.ishelpingTool(data):
-                res.append((ChatTask.HelpTask, ""))
             elif self.isGoodbyeTool(data):
                 res.append((ChatTask.GoodbyeTask, ""))
             elif self.isConfusionTool(data):
