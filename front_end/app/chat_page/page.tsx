@@ -43,7 +43,7 @@ function ChatPage(){
         }
       try{
         setISLoading(true);
-        const response = await fetch('https://192.168.1.4:3001/close-session', {
+        const response = await fetch('https://192.168.1.6:3001/close-session', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ function ChatPage(){
       console.log('Sending message:', message);
       const token=localStorage.getItem("client_id");
       console.log(JSON.stringify({ userMessage:message,id:token}))
-      const response = await fetch('https://192.168.1.4:3001/messages', {
+      const response = await fetch('https://192.168.1.6:3001/messages', {
         method: "POST",
          headers: {
              "Content-Type": "application/json",
@@ -144,12 +144,7 @@ function ChatPage(){
   };
 
     return(
-       <main className={styles.container}
-          style={{
-            backgroundColor: isDarkMode ? "#2e4a5d" : "#709cb4",
-            color: isDarkMode ? "#fff" : "#000",
-          }}
-        >
+       <main className={styles.container}>
         <div className={styles.hiddendiv}>
             {isLoading ? (
               <p>Loading...</p>

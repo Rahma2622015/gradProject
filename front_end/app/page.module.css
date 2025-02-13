@@ -60,6 +60,53 @@
 .hiddendiv{
     display:none;
 }
+.dropdown_btn {
+    padding: 25px 35px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--background-color);
+    width:46px;
+    height:46px;
+}
+
+.menu {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    padding: 10 20;
+    position: fixed; /* أو absolute حسب التصميم */
+    top: 0; /* أو أي قيمة مناسبة */
+    left: 0;
+    z-index: 9999;
+}
+
+.dropdown_list {
+    display: flex;
+    flex-wrap:wrap;
+    gap: 10px; /* المسافة بين الصفوف */
+    position: absolute;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100px;
+    top: 170%;
+    left:1.3%;
+    z-index: 1000;
+}
+
+.dropdown-list li {
+    width: 70px; /* لضبط عرض كل لون */
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
 @media (max-width:1000px){
     .modebutton{
         top: 10px;
