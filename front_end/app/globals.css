@@ -1,6 +1,17 @@
 .cs-message-input__tools .cs-button--attachment {
   display: none !important;
 }
+:root {
+  --message-text-light: #000;
+  --message-text-dark: #000;
+}
+.message {
+  color: var(--message-text-light);
+}
+
+.dark-mode .message {
+  color: var(--message-text-dark);
+}
 
 html, body {
   background-color: var(--background-color);
