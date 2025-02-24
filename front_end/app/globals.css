@@ -1,27 +1,114 @@
-.cs-message-input__tools .cs-button--attachment{
-  display:none !important;
-}
-.dark {
-  background-color: #333;
-  color: white;
-}
-
-.light {
-  background-color: white;
-  color: black;
+.cs-message-input__tools .cs-button--attachment {
+  display: none !important;
 }
 :root {
-  --background-light: #709cb4;
-  --background-dark: #2e4a5d;
+  --message-text-light: #000;
+  --message-text-dark: #000;
 }
-.dark-mode {
-  --background-color: var(--background-dark);
+.message {
+  color: var(--message-text-light);
 }
+
+.dark-mode .message {
+  color: var(--message-text-dark);
+}
+
+html, body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.container, main {
+  background-color: inherit; /* يستخدم لون الخلفية من الـ body */
+}
+
+/* الوضع الفاتح */
 .light-mode {
   --background-color: var(--background-light);
+  --text-color: black;
 }
+
+/* الوضع الداكن */
+.dark-mode {
+  --background-color: var(--background-dark);
+  --text-color: white;
+}
+
+/* ألوان الثيمات */
+:root {
+  --background-light: white; /* لون الوضع الفاتح */
+  --background-dark: #000000; /* لون الوضع الداكن */
+  /* تعريف ألوان لكل وضع */
+  --mov-light: #CDC1FF;
+  --mov-dark: #A294F9;
+
+  --blue-light: #0282D3;
+  --blue-dark: #0258BE;
+
+  --bage-light: #D7D3BF;
+  --bage-dark: #A59D84;
+
+   --babygreen-light: #709cb4;
+  --babygreen-dark: #2e4a5d;
+
+  --white-light: white;
+  --white-dark: #000000;
+
+  --bink-light: #C890A7;
+  --bink-dark: #A35C7A;
+}
+
+/* لون الثيم: موف */
+.theme-mov.light-mode {
+  --background-color: var(--mov-light);
+}
+.theme-mov.dark-mode {
+  --background-color: var(--mov-dark);
+}
+
+/* لون الثيم: لبني */
+.theme-blue.light-mode {
+  --background-color: var(--blue-light);
+}
+.theme-blue.dark-mode {
+  --background-color: var(--blue-dark);
+}
+
+/* لون الثيم: بيج */
+.theme-bage.light-mode {
+  --background-color: var(--bage-light);
+}
+.theme-bage.dark-mode {
+  --background-color: var(--bage-dark);
+}
+/* لون الثيم: اخضر */
+.theme-babygreen.light-mode {
+  --background-color: var(--babygreen-light);
+}
+.theme-babygreen.dark-mode {
+  --background-color: var(--babygreen-dark);
+}
+/* لون الثيم: بينك */
+.theme-bink.light-mode {
+  --background-color: var(--bink-light);
+}
+.theme-bink.dark-mode {
+  --background-color: var(--bink-dark);
+}
+
+/* روابط */
 a:-webkit-any-link {
-    color: white;
-    cursor: pointer;
-    text-decoration: none;
+  color: var(--text-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* تطبيق الألوان على body */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
