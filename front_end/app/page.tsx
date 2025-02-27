@@ -57,7 +57,7 @@ export default function Home() {
       const data = await response.json();
       if (data.message === 'Session started') {
         if (data.client_id) {
-          localStorage.setItem('client_id', data.client_id);
+          sessionStorage.setItem('client_id', data.client_id);
           setSessionMessage(`Session started successfully. Session ID: ${data.client_id}`);
           console.log(`Session started successfully. Session ID:${data.client_id}`);
         } else {

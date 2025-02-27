@@ -8,6 +8,7 @@ import Link from "next/link";
 import React, { useEffect, useState ,useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 
 // تحميل مكتبة الإيموجي بطريقة ديناميكية لتجنب مشاكل SSR
 const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
@@ -116,33 +117,35 @@ function ChatPage() {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]); // التمرير عند كل تحديث للمحادثة
     // تحقق إذا كان الـ ID موجود في localStorage
-  useEffect(() => {
-    const clientId = localStorage.getItem("client_id");
+    const router = useRouter();
+    const [isClient, setIsClient] = useState(false);
+    useEffect(() => {
+      setIsClient(true); // تأكيد تحميل المكون على العميل
+    }, []);
 
+   useEffect(() => {
+    if (!isClient) return; // تأكد من عدم تشغيل التوجيه أثناء تحميل الصفحة
+    const clientId = sessionStorage.getItem("client_id");
     if (!clientId) {
-      setSessionMessage("Please start a session first.");
-      window.location.href = "/";  // إعادة توجيه المستخدم إلى الصفحة الرئيسية
+      router.push("/");  // إعادة توجيه المستخدم إلى الصفحة الرئيسية
     }
+    }, [isClient, router]);
+    const handleSend = async (message: string = inputValue) => {
+      if (!inputValue.trim()) return; // منع إرسال رسالة فارغة
 
-    document.title = 'Chatpage';
-  }, []);
-  const handleSend = async (message: string = inputValue) => {
-  if (!inputValue.trim()) return; // منع إرسال رسالة فارغة
-
-    const messageWithoutEmojis = removeEmojis(inputValue); // حذف الإيموجي عند الإرسال فقط
-  const newMessage = {
-    message: inputValue,
-    direction: "outgoing",
-    sender: "user",
-  };
-
+        const messageWithoutEmojis = removeEmojis(inputValue); // حذف الإيموجي عند الإرسال فقط
+      const newMessage = {
+        message: inputValue,
+        direction: "outgoing",
+        sender: "user",
+     };
 
     const newMessages = [...messages, newMessage];
     setMessages(newMessages);
     setInputValue(""); // تفريغ الإدخال بعد الإرسال
     try {
       console.log('Sending message:', message);
-      const token=localStorage.getItem("client_id");
+      const token=sessionStorage.getItem("client_id");
       //console.log(JSON.stringify({ userMessage:message,id:token}))
       const response = await fetch('https://192.168.1.6:3001/messages', {
         method: "POST",
