@@ -122,7 +122,11 @@
   padding: 10px;
   z-index: 100; /* تأكد إنه فوق العناصر الأخرى */
 }
-
+.toggleButton{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
 
 @media (min-width:1000px){
     .ChatContainer {

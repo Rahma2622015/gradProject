@@ -115,6 +115,17 @@ function ChatPage() {
     useEffect(() => {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]); // التمرير عند كل تحديث للمحادثة
+    // تحقق إذا كان الـ ID موجود في localStorage
+  useEffect(() => {
+    const clientId = localStorage.getItem("client_id");
+
+    if (!clientId) {
+      setSessionMessage("Please start a session first.");
+      window.location.href = "/";  // إعادة توجيه المستخدم إلى الصفحة الرئيسية
+    }
+
+    document.title = 'Chatpage';
+  }, []);
   const handleSend = async (message: string = inputValue) => {
   if (!inputValue.trim()) return; // منع إرسال رسالة فارغة
 

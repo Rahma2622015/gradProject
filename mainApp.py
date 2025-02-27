@@ -1,4 +1,4 @@
-#cd "D:\Graduation Project\front_end"
+#cd "D:\Chatbot\front_end"
 #netstat -ano | findstr :3000
 #taskkill /PID    /F
 import random
@@ -17,9 +17,9 @@ chat_bot = Flask(__name__)
 #context.use_certificate_file('SSL/server.cert')
 #context.use_privatekey_file('SSL/server.key')
 
-CORS(chat_bot, resources={r"/messages": {"origins": "https://192.168.1.4:3000", "methods": ["POST", "GET"]}})
-CORS(chat_bot, resources={r"/start-session": {"origins": "https://192.168.1.4:3000", "methods": ["POST"]}})
-CORS(chat_bot, resources={r"/close-session": {"origins": "https://192.168.1.4:3000", "methods": ["POST"]}})
+CORS(chat_bot, resources={r"/messages": {"origins": "https://192.168.1.6:3000", "methods": ["POST", "GET"]}})
+CORS(chat_bot, resources={r"/start-session": {"origins": "https://192.168.1.6:3000", "methods": ["POST"]}})
+CORS(chat_bot, resources={r"/close-session": {"origins": "https://192.168.1.6:3000", "methods": ["POST"]}})
 
 
 client_list: list[Client] = []
@@ -110,12 +110,12 @@ if __name__ == '__main__':
     http_server = WSGIServer(
         ('0.0.0.0', 3001),
         chat_bot,
-        keyfile='F:/gitProject/gradProject/private.key',
-        certfile='F:/gitProject/gradProject/cert.crt'
+        keyfile='D:/Chatbot/private.key',
+        certfile='D:/Chatbot/cert.crt'
     )
     try:
         print("Starting server...")
         http_server.serve_forever()
 
     except Exception as e:
-            print(f"Error starting the server: {str(e)}")
+        print(f"Error starting the server:{str(e)}")
