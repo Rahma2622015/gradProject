@@ -47,7 +47,6 @@ def remove_data(client_id):
     except Exception as e:
         print(f"Error removing data item: {e}")
 
-
 def generateClientId():
     new_id = random.randint(1, 999999)
     client_data = load_data()
@@ -157,7 +156,6 @@ if __name__ == '__main__':
 
     http_server = WSGIServer(('0.0.0.0', 3001), chat_bot, keyfile='D:/Downloads/gradProject/ssl11/private.key',
                              certfile='D:/Downloads/gradProject/ssl11/certificate.crt')
-
     try:
         print("Starting server...")
         http_server.serve_forever()

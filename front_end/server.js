@@ -10,8 +10,8 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const options = {
-  key: fs.readFileSync('D:/chatbot-graduationproject/gradProject/private.key'), // ملف الشهادة الخاصة
-  cert: fs.readFileSync('D:/chatbot-graduationproject/gradProject/cert.crt'),    // ملف الشهادة
+  key: fs.readFileSync('D:/Chatbot/private.key'), // ملف الشهادة الخاصة
+  cert: fs.readFileSync('D:/Chatbot/cert.crt'),    // ملف الشهادة
 };
 
 app.prepare().then(() => {
