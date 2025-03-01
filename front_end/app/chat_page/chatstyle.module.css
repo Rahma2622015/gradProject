@@ -90,7 +90,7 @@
 .buttonsContainer {
   display: flex;
   align-items: center;
-  gap: 10px; /* مسافة بين الزرين */
+  gap: 20px; /* مسافة بين الزرين */
 }
 .customInput {
   flex: 1;
@@ -99,8 +99,8 @@
   border-radius: 5px;
   font-size: 16px;
   outline: none;
+  min-width: 90%;
 }
-
 .sendButton {
   padding: 10px 15px;
   background-color: white;
@@ -122,12 +122,20 @@
   padding: 10px;
   z-index: 100; /* تأكد إنه فوق العناصر الأخرى */
 }
-.toggleButton{
+.dropdown_change{
     background-color: white;
     border: none;
     cursor: pointer;
 }
-
+.dropdownToggle{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    color: grey;
+}
+.dropdownContainer{
+   cursor: pointer;
+}
 @media (min-width:1000px){
     .ChatContainer {
          margin-bottom:10px;
