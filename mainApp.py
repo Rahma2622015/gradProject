@@ -9,7 +9,8 @@ from gevent.pywsgi import WSGIServer
 from OpenSSL import SSL
 
 chat_bot = Flask(__name__)
-
+data_file='session_data.json'
+client_list=[]
 chat_bot.secret_key = os.urandom(24)
 
 CORS(chat_bot, resources={r"/messages": {"origins": "https://192.168.1.6:3000", "methods": ["POST", "GET"]}})
