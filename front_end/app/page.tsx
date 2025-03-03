@@ -6,11 +6,17 @@ import Link from "next/link";
 import React, { useEffect, useState, useRef } from 'react';
 import { useTheme as useThemeMode } from "./context/ThemeContext";
 import { useTheme as useThemeColor } from "./context/ThemeColor";
+import { motion } from "framer-motion";
 
 export default function Home() {
   useEffect(() => {
     document.title = 'Chatbot | Home';
   }, []);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(!isClicked); // تغيير النص عند كل ضغطة
+  };
 
   const [isShowlist, setList] = useState(false);
   const dropdownRef = useRef(null);
@@ -119,8 +125,20 @@ export default function Home() {
               </ul>
             )}
           </div>
+
+      {/* الصورة مع الأنميشن */}
+      <motion.div
+        animate={{
+            y: [0, -25, 0], // حركة قفز مستمرة
+            rotate: isClicked ? [0, 10, -10, 10, -10, 0] : 0, // دوران عند الضغط
+          }}
+         transition={{
+            y: { repeat: Infinity, repeatType: "reverse", duration: 1 }, // القفز يستمر للأبد
+            rotate: { duration: 0.5 }, // حركة الدوران تحدث عند الضغط فقط
+          }}
+        onClick={handleClick}
+      >
         <Image
-          className={styles.image}
           src="/robot.png"
           alt="Robot image"
           width={500}
@@ -128,11 +146,35 @@ export default function Home() {
           priority
           unoptimized
         />
-        <div className={styles.description}>
-          <h2>Hello</h2>
-          <h3>I am Lazez</h3>
-          <h4>How can I help you?</h4>
-        </div>
+      </motion.div>
+
+      {/* النصوص التي تتغير عند الضغط */}
+      <div className={styles.description}>
+        {isClicked ? (
+          <motion.h3
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div>My name is Lazeez Chatbot,</div>
+           <div> and I am here to help new students at the Faculty of Science</div>
+            <div> who need information about the Computer Science program</div>
+            <div>and dual degree programs in Computer Science,</div>
+           <div> and who have some questions and inquiries.</div>
+
+          </motion.h3>
+        ) : (
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: isClicked ? 0 : 1 }} // يخفي النص الأصلي عند الضغط
+            transition={{ duration: 0.5 }}
+          >
+            <h2>Hello</h2>
+            <h3>I am Lazeez</h3>
+            <h4>How can I help you?</h4>
+          </motion.div>
+        )}
+      </div>
         <button onClick={startSession} disabled={isLoading} className={styles.nextbutton}>
           <Link href="/chat_page">
             I want to Know!
