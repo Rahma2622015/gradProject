@@ -18,9 +18,6 @@ def receive(message: str, storage: DataStorage) -> str:
     pos = t.pos_tag(tokens)
     tokens  = p.preprocess(tokens, pos)
     tasks=mapper.mapToken(tokens,pos)
-    print(f"[DEBUG] Identified Tasks before processing: {tasks}")  # Add this
     pre = proces.process(tasks, storage)
-    print(f"Task identified: {tasks}")  # تحقق من المهام التي تم التعرف عليها
-    print(f"Processed Task Output: {pre}")  # تحقق من نتيجة TaskProcessor
     s=reply.generate_response(pre)
     return s

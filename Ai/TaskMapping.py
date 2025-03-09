@@ -19,7 +19,7 @@ class TaskMapper:
 
     def convert_to_enum(self, task_name: str) -> ChatTask:
         try:
-            return ChatTask[task_name]  # استخدام Enum مباشرة
+            return ChatTask[task_name]
         except KeyError:
             print(f"Warning: Task '{task_name}' not found in ChatTask!")
             return ChatTask.UnknownTask
