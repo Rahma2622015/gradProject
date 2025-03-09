@@ -20,12 +20,7 @@ class ReplyModule:
 
     def generate_response(self, reply: list[tuple[ReplyTask, ...]]) -> str:
         if not reply:
-            print("[WARNING] No task received for generating a response.")
-            return "Sorry, I didn't understand your request."
-
-        print(f"[DEBUG] Received tasks: {reply}")
-
-        response_text = ""
+            response_text = ""
 
         response_mapping = {
             ReplyTask.Greeting.name: self.data.get("Greeting", []),
