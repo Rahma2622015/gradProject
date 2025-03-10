@@ -1,6 +1,6 @@
-from Ai.chattask import ChatTask
+from Ai.EnglishAi.chattask import ChatTask
 from nltk.corpus import wordnet
-from Ai.MapData import TaskDefinitions
+from Ai.EnglishAi.MapData import TaskDefinitions
 
 class TaskMapper:
     def __init__(self):

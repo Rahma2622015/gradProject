@@ -1,4 +1,4 @@
-from Ai.chattask import ChatTask
+from Ai.EnglishAi.chattask import ChatTask
 
 class TaskDefinitions:
     def __init__(self):

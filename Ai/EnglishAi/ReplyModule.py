@@ -1,6 +1,6 @@
-from Ai.ReplyTask import ReplyTask
+from Ai.EnglishAi.ReplyTask import ReplyTask
 from random import choice
-from Ai.ResponsesData import ResponseData
+from Ai.EnglishAi.ResponsesData import ResponseData
 
 class ReplyModule:
     def __init__(self):
