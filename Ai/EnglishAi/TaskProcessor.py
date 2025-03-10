@@ -1,5 +1,5 @@
-from Ai.ReplyTask import ReplyTask
-from Ai.chattask import ChatTask
+from Ai.EnglishAi.ReplyTask import ReplyTask
+from Ai.EnglishAi.chattask import ChatTask
 from Data.dataStorage import DataStorage
 class TaskProcessor:
 
