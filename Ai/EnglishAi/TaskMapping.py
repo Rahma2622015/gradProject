@@ -1,10 +1,28 @@
-from Ai.EnglishAi.chattask import ChatTask
+import json
+from Ai.chattask import ChatTask
 from nltk.corpus import wordnet
-from Ai.EnglishAi.MapData import TaskDefinitions
 
 class TaskMapper:
-    def __init__(self):
-        self.task_definitions = TaskDefinitions().get_definitions()
+    def __init__(self, json_path=r"F:/gradProject/Ai/map.json"):
+        self.task_definitions = self.load_definitions(json_path)
+
+    def load_definitions(self, json_path: str) -> dict:
+        try:
+            with open(json_path, "r", encoding="utf-8") as file:
+                return json.load(file)
+        except FileNotFoundError:
+            print(f"Error: File {json_path} not found.")
+            return {}
+        except json.JSONDecodeError:
+            print(f"Error: Failed to parse JSON from {json_path}.")
+            return {}
+
+    def convert_to_enum(self, task_name: str) -> ChatTask:
+        try:
+            return ChatTask[task_name]
+        except KeyError:
+            print(f"Warning: Task '{task_name}' not found in ChatTask!")
+            return ChatTask.UnknownTask
 
 
     def match_for_pos(self, task: ChatTask, item_type: str, token: str) -> bool:
@@ -18,8 +36,6 @@ class TaskMapper:
                 for lemma_name in synset.lemma_names():
                     if lemma_name.lower() == x.lower():
                         return True
-
-
         return False
 
     def MaxMatches(self, task: ChatTask, position: list, tokens: list) -> float:
@@ -114,7 +130,7 @@ class TaskMapper:
             return [(ChatTask.UnknownTask, "Invalid input")]
         for i, data in enumerate(tokens):
             if self.isQuestion(data):
-                best_task = ChatTask.UnknownTask
+                best_task = "UnknownTask"
                 max_score = 0
                 for task in self.task_definitions.keys():
                     score = self.MaxMatches(task, pos[i], data)
@@ -122,9 +138,9 @@ class TaskMapper:
                     if score > max_score:
                         max_score = score
                         best_task = task
-                if best_task != ChatTask.UnknownTask:
-                 if max_score >=1.5:
-                    res.append((best_task, data))
+                        best_task_enum = self.convert_to_enum(best_task)
+                if best_task_enum != ChatTask.UnknownTask and max_score >= 1.5:
+                    res.append((best_task_enum, data))
                 else:
                     res.append((ChatTask.UnknownTask,))
             elif self.isGreetingTool(data):

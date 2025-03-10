@@ -1,25 +1,51 @@
-"use client"
+"use client";
 import './globals.css';
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import React, { useEffect, useState} from 'react';
-import { useTheme} from "./context/ThemeContext";
-export default function Home() {
-  //علشان اغير ال title بتاع الصفحة
-  useEffect(()=> {
-    document.title='Chatbot | Home';
-  },[]);
+import React, { useEffect, useState, useRef } from 'react';
+import { useTheme as useThemeMode } from "./context/ThemeContext";
+import { useTheme as useThemeColor } from "./context/ThemeColor";
 
-  const { isDarkMode, toggleDarkMode } = useTheme();
-  const[sessionMessage,setSessionMessage]=useState("");
-  //علشان اعرف التحميل بتاع لصفحة
-  const[isLoading,setISLoading]=useState(false);
+export default function Home() {
+  useEffect(() => {
+    document.title = 'Chatbot | Home';
+  }, []);
+
+  const [isShowlist, setList] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const dropList = () => {
+    setList(!isShowlist);
+  };
+
+  const handleClickOutside = (event) => {
+    if (!dropdownRef.current || dropdownRef.current.contains(event.target)) {
+      return;
+    }
+    setList(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const { isDarkMode, toggleDarkMode } = useThemeMode();
+  const { themeColor, changeTheme } = useThemeColor();
+  const [sessionMessage, setSessionMessage] = useState("");
+  const [isLoading, setISLoading] = useState(false);
+
+  useEffect(() => {
+    document.body.className = `theme-${themeColor} ${isDarkMode ? 'dark-mode' : 'light-mode'}`;
+  }, [themeColor, isDarkMode]);
 
   const startSession = async () => {
-    try{
+    try {
       setISLoading(true);
-      const response = await fetch('https://192.168.1.4:3001/start-session', {
+      const response = await fetch('https://192.168.1.3:3001/start-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,63 +54,86 @@ export default function Home() {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data=await response.json();
-    if(data.message === 'Session started'){
-          if (data.client_id) {
-            localStorage.setItem('client_id', data.client_id);
-            setSessionMessage(`Session started successfully. Session ID: ${data.client_id}`);
-            console.log(`Session started successfully. Session ID:${data.client_id}`);
-          } else {
-            setSessionMessage('Session started successfully, but no session ID was received.');
-            console.log('Session started successfully, but no session ID was received.');
-          }
-
-      }
-      else {
+      const data = await response.json();
+      if (data.message === 'Session started') {
+        if (data.client_id) {
+          localStorage.setItem('client_id', data.client_id);
+          setSessionMessage(`Session started successfully. Session ID: ${data.client_id}`);
+          console.log(`Session started successfully. Session ID:${data.client_id}`);
+        } else {
+          setSessionMessage('Session started successfully, but no session ID was received.');
+          console.log('Session started successfully, but no session ID was received.');
+        }
+      } else {
         setSessionMessage('Failed to start the session: ' + data.message);
       }
-
+    } catch (error) {
+      console.error('Error starting session:', error);
+    } finally {
+      setISLoading(false);
     }
-    catch(error){
-        console.error('Error starting session:', error);
-      }
-      finally{
-        setISLoading(false);
-      }
-    };
+  };
+
   return (
-   <div className={` ${isDarkMode ? styles.dark : styles.light}`}>
-     <main className={styles.container}>
-      <div>
-         <a
-          onClick={toggleDarkMode}
-           className={styles.modebutton}
-          >
-            <img
-              src={isDarkMode ? "/night-mode.png" : "/brightness.png"}
-              alt="mode image"
-              width={30}
-              height={30}
-          />
-         </a>
-        </div>
-        <div className={styles.hiddendiv}>{sessionMessage}</div>
+    <div className={` ${isDarkMode ? styles.dark : styles.light}`}>
+      <main className={styles.container}>
+          <div>
+            <a onClick={toggleDarkMode} className={styles.modebutton}>
+              <img
+                src={isDarkMode ? "/night-mode.png" : "/brightness.png"}
+                alt="mode image"
+                width={46}
+                height={46}
+              />
+            </a>
+          </div>
+          <div ref={dropdownRef} className={styles.menu}>
+            <button className={styles.dropdown_btn} onClick={dropList}>
+              <Image
+                src="/color-wheel.png"
+                alt="list"
+                width={46}
+                height={46}
+              />
+            </button>
+            {isShowlist && (
+              <ul className={styles.dropdown_list}>
+                <li onClick={() => changeTheme("mov")}>
+                  <Image src={isDarkMode ? "/Ellipse_4-removebg-preview.png" : "/Ellipse_4.png"} alt="color1" width={30} height={30} />
+                </li>
+                <li onClick={() => changeTheme("blue")}>
+                  <Image src={isDarkMode ? "/Ellipse_5-removebg-preview.png" : "/Ellipse_5.png"} alt="color2" width={30} height={30} />
+                </li>
+                <li onClick={() => changeTheme("bage")}>
+                  <Image src={isDarkMode ? "/Ellipse_6-removebg-preview.png" : "/Ellipse_6.png"} alt="color3" width={30} height={30} />
+                </li>
+                 <li onClick={() => changeTheme("babygreen")}>
+                  <Image src={isDarkMode ? "/Ellipse_8-removebg-preview.png" : "/Ellipse_7-removebg-preview.png"} alt="color4" width={30} height={30} />
+                </li>
+                 <li onClick={() => changeTheme("white")}>
+                  <Image src={isDarkMode ? "/Ellipse_9-removebg-preview.png" : "/Ellipse_8__2_-removebg-preview.png"} alt="color5" width={30} height={30} />
+                </li>
+                 <li onClick={() => changeTheme("bink")}>
+                  <Image src={isDarkMode ? "/Ellipse_3d-removebg-preview.png" : "/Ellipse_3-removebg-preview.png"} alt="color5" width={30} height={30} />
+                </li>
+              </ul>
+            )}
+          </div>
         <Image
-           className={styles.image}
-           src="/output.png"
-           alt="Robot image"
-           width={500}
-           height={400}
-           /* بتضمن تحميل الصوره بشكل اسرع*/
-           priority
-           unoptimized // تعطيل التحسين التلقائي
+          className={styles.image}
+          src="/robot.png"
+          alt="Robot image"
+          width={500}
+          height={400}
+          priority
+          unoptimized
         />
         <div className={styles.description}>
-        <h2>Hello</h2>
-        <h3>I am Lazez</h3>
-        <h4>How can I help you?</h4>
+          <h2>Hello</h2>
+          <h3>I am Lazez</h3>
+          <h4>How can I help you?</h4>
         </div>
-        <button onClick={startSession} disabled={isLoading} className={styles.nextbutton} >
+        <button onClick={startSession} disabled={isLoading} className={styles.nextbutton}>
           <Link href="/chat_page">
             I want to Know!
             &nbsp;&nbsp;&nbsp;
@@ -96,7 +145,7 @@ export default function Home() {
               height={25}
             />
           </Link>
-        </button>
+       </button>
       </main>
     </div>
   );

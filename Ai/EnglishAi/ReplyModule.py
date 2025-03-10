@@ -1,80 +1,70 @@
-from Ai.EnglishAi.ReplyTask import ReplyTask
+import json
 from random import choice
-from Ai.EnglishAi.ResponsesData import ResponseData
+from Ai.ReplyTask import ReplyTask
 
 class ReplyModule:
-    def __init__(self):
-        self.Greeting = ResponseData.Greeting
-        self.Understanding = ResponseData.Understanding
-        self.Contradaction = ResponseData.Contradaction
-        self.CheckWellbeing = ResponseData.CheckWellbeing
-        self.Mathh = ResponseData.Matht
-        self.ThanksReplies = ResponseData.ThanksReplies
-        self.ConfusionReplies = ResponseData.ConfusionReplies
-        self.askHelping = ResponseData.askHelping
-        self.Goodbyee = ResponseData.Goodbyee
-        self.programs=ResponseData.Programs
-        self.courses=ResponseData.ExternalCourses
-        self.Difficult=ResponseData.Difficulty
-        self.Highgpa=ResponseData.HighGpa
-        self.Materiatype=ResponseData.MaterialType
-        self.chooseDepartment = ResponseData.chooseD
-        self.academic = ResponseData.acad
-        self.classification = ResponseData.classfy
-        self.hours = ResponseData.hou
-        self.graduation = ResponseData.grad
-        self.enrollment = ResponseData.enroll
-        self.unknow = ResponseData.Unknown
-        self.askhelp = ResponseData.askhelp
-        self.Askname = ResponseData.replay_name
+    def __init__(self, json_path="response.json"):
+        self.load_responses(json_path)
 
-    def generate_response(self, reply: list[tuple[ReplyTask,]]) -> str:
+    def load_responses(self, json_path):
+        try:
+            with open(json_path, "r", encoding="utf-8") as file:
+                self.data = json.load(file)
+            print(f"[INFO] Response file loaded successfully: {json_path}")
+        except FileNotFoundError:
+            print(f"[ERROR] Response file not found: {json_path}")
+            self.data = {}
+        except json.JSONDecodeError:
+            print(f"[ERROR] Invalid JSON format in: {json_path}")
+            self.data = {}
+
+    def generate_response(self, reply: list[tuple[ReplyTask, ...]]) -> str:
         s = ""
         for r in reply:
             if r[0] == ReplyTask.Greeting:
-                s += "\n" + choice(self.Greeting).format(x=r[1])
+                s += "\n" + choice(self.data.get("Greeting", [])).format(x=r[1])
             elif r[0] == ReplyTask.UnderstandingTask:
-                s += "\n" + choice(self.Understanding).format(x=r[2])
-            elif r[0] == ReplyTask.askNamee:
-                s += "\n" + choice(self.Askname).format(x=r[1])
-            elif r[0] == ReplyTask.ContradactionTask:
-                s += "\n" + choice(self.Contradaction).format(y=r[2])
+                s += "\n" + choice(self.data.get("Understanding", [])).format(x=r[2])
+            elif r[0] == ReplyTask.AskName:
+                s += "\n" + choice(self.data.get("replay_name", [])).format(x=r[1])
+            elif r[0] == ReplyTask.ContradictionTask:
+                s += "\n" + choice(self.data.get("Contradiction", [])).format(y=r[2])
             elif r[0] == ReplyTask.CheckWellbeing:
-                s += "\n" + choice(self.CheckWellbeing)
+                s += "\n" + choice(self.data.get("CheckWellbeing", []))
             elif r[0] == ReplyTask.Thanks:
-                s += "\n" + choice(self.ThanksReplies)
+                s += "\n" + choice(self.data.get("ThanksReplies", []))
             elif r[0] == ReplyTask.Help:
-                s += "\n" + choice(self.askhelp)
+                s += "\n" + choice(self.data.get("askhelp", []))
             elif r[0] == ReplyTask.Goodbye:
-                s += "\n" + choice(self.Goodbyee)
+                s += "\n" + choice(self.data.get("Goodbye", []))
             elif r[0] == ReplyTask.Confusion:
-                s += "\n" + choice(self.ConfusionReplies)
-             #end trivial   
+                s += "\n" + choice(self.data.get("ConfusionReplies", []))
+            # end trivial
             elif r[0] == ReplyTask.TypesOfPrograms:
-                s += "\n" + choice(self.programs)
+                s += "\n" + choice(self.data.get("Programs", []))
             elif r[0] == ReplyTask.Math:
-                s += "\n" + choice(self.Mathh)
+                s += "\n" + choice(self.data.get("Math", []))
             elif r[0] == ReplyTask.ExternalCourses:
-                s += "\n" + choice(self.courses)
+                s += "\n" + choice(self.data.get("ExternalCourses", []))
             elif r[0] == ReplyTask.Difficulty:
-                s += "\n" + choice(self.Difficult)
+                s += "\n" + choice(self.data.get("Difficulty", []))
             elif r[0] == ReplyTask.HighGpa:
-                s += "\n" + choice(self.Highgpa)
+                s += "\n" + choice(self.data.get("HighGpa", []))
             elif r[0] == ReplyTask.MaterialsType:
-                s += "\n" + choice(self.Materiatype)
-            elif r[0] == ReplyTask.chooseDep:
-                s += "\n" + choice(self.chooseDepartment)
-            elif r[0] == ReplyTask.academingTask:
-                s += "\n" + choice(self.academic)
-            elif r[0] == ReplyTask.Classification:
-                s += "\n" + choice(self.classification)
-            elif r[0] == ReplyTask.hour:
-                s += "\n" + choice(self.hours)
-            elif r[0] == ReplyTask.graduatation:
-                s += "\n" + choice(self.graduation)
-            elif r[0] == ReplyTask.enrollment:
-                s += "\n" + choice(self.enrollment)
+                s += "\n" + choice(self.data.get("MaterialType", []))
+            elif r[0] == ReplyTask.ChooseDepartment:
+                s += "\n" + choice(self.data.get("chooseDepartment", []))
+            elif r[0] == ReplyTask.AcademicAdvisorTask:
+                s += "\n" + choice(self.data.get("AcademicAdvisorTask", []))
+            elif r[0] == ReplyTask.ClassificationTask:
+                s += "\n" + choice(self.data.get("Classification", []))
+            elif r[0] == ReplyTask.CreditHours:
+                s += "\n" + choice(self.data.get("CreditHours", []))
+            elif r[0] == ReplyTask.Graduation:
+                s += "\n" + choice(self.data.get("Graduation", []))
+            elif r[0] == ReplyTask.Enrollment:
+                s += "\n" + choice(self.data.get("Enrollment", []))
             else:
-                s += "\n" + choice(self.unknow)
+                s += "\n" + choice(self.data.get("Unknown", []))
 
-        return s
+        return s.strip()

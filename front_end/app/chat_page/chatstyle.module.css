@@ -6,6 +6,7 @@
   position: sticky;
   top: 25px;
   left: 640px;
+   height: 100vh;
 }
 
 .dropdown_btn {
@@ -53,12 +54,17 @@
 }
 
 .ChatContainer {
-      height: 660px;
-      width: 700px;
-      margin-top:60px;
-      margin-bottom:0px;
-      margin-right:0px;
-      margin-left:0px;
+    flex-grow: 1; /* يجعل المكون يتمدد تلقائيًا */
+    width: 700px;
+    margin-top: 60px;
+    padding-bottom: 60px; /* لضمان عدم تغطية المدخل */
+    overflow-y: auto; /* السماح بالتمرير عند امتلاء الرسائل */
+     max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.9);
 }
 .hiddendiv{
     display:none;
@@ -67,6 +73,57 @@
         width:30px;
         height:30px;
     }
+
+.inputContainer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 680px;
+  padding: 10px;
+  background-color: white;
+  border-top: 1px solid #ccc;
+  border-radius:15px;
+}
+
+.buttonsContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* مسافة بين الزرين */
+}
+.customInput {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.sendButton {
+  padding: 10px 15px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+.emojiButton{
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+.emojiPicker {
+  position: absolute;
+  bottom: 100%; /* يظهر القائمة فوق الإدخال */
+  right: 0;
+  background: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 100; /* تأكد إنه فوق العناصر الأخرى */
+}
+
+
 @media (min-width:1000px){
     .ChatContainer {
          margin-bottom:10px;
