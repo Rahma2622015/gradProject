@@ -8,8 +8,8 @@ from Ai.EnglishAi.AutoCorrect import AutoCorrector
 
 
 def receive(message: str, storage: DataStorage) -> str:
-    mapper = TaskMapper(r"F:\gradProject\Ai\map.json")
-    reply = ReplyModule(r"F:\gradProject\Ai\response.json")
+    mapper = TaskMapper(r"/Ai/EnglishAi/map.json")
+    reply = ReplyModule(r"/Ai/EnglishAi/response.json")
     proces=TaskProcessor()
     t=Tokenizers()
     p=Preprocessors()

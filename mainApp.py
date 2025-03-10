@@ -11,16 +11,9 @@ from OpenSSL import SSL
 chat_bot = Flask(__name__)
 
 chat_bot.secret_key = os.urandom(24)
-
-<<<<<<< HEAD
-CORS(chat_bot, resources={r"/messages": {"origins": "https://192.168.1.5:3000", "methods": ["POST", "GET"]}})
-CORS(chat_bot, resources={r"/start-session": {"origins": "https://192.168.1.5:3000", "methods": ["POST"]}})
-CORS(chat_bot, resources={r"/close-session": {"origins": "https://192.168.1.5:3000", "methods": ["POST"]}})
-=======
 CORS(chat_bot, resources={r"/messages": {"origins": "https://192.168.1.3", "methods": ["POST", "GET"]}})
 CORS(chat_bot, resources={r"/start-session": {"origins": "https://192.168.1.3", "methods": ["POST"]}})
 CORS(chat_bot, resources={r"/close-session": {"origins": "https://192.168.1.3", "methods": ["POST"]}})
->>>>>>> origin/main
 
 data_file = 'session_data.json'
 client_list = []
@@ -156,22 +149,11 @@ def messages():
 
 
 if __name__ == '__main__':
-
     context = SSL.Context(SSL.TLSv1_2_METHOD)
-<<<<<<< HEAD
-    context.use_privatekey_file('E:/gradProject/private.key')
-    context.use_certificate_file('E:/gradProject/cert.crt')
-
-    http_server = WSGIServer(('0.0.0.0', 3001), chat_bot, keyfile='E:/gradProject/private.key',
-                             certfile='E:/gradProject/cert.crt')
-=======
     context.use_privatekey_file('F:/gradProject/private.key')
     context.use_certificate_file('F:/gradProject/cert.crt')
-
     http_server = WSGIServer(('0.0.0.0', 3001), chat_bot, keyfile='F:/gradProject/private.key',
                              certfile='F:/gradProject/cert.crt')
->>>>>>> origin/main
-
     try:
         print("Starting server...")
         http_server.serve_forever()

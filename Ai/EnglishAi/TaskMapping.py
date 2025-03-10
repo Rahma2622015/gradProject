@@ -1,5 +1,5 @@
 import json
-from Ai.chattask import ChatTask
+from Ai.EnglishAi.chattask import ChatTask
 from nltk.corpus import wordnet
 
 class TaskMapper:

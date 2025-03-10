@@ -1,6 +1,6 @@
 import json
 from random import choice
-from Ai.ReplyTask import ReplyTask
+from Ai.EnglishAi.ReplyTask import ReplyTask
 
 class ReplyModule:
     def __init__(self, json_path="response.json"):
