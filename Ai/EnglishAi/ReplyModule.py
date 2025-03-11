@@ -3,7 +3,7 @@ from random import choice
 from Ai.EnglishAi.ReplyTask import ReplyTask
 
 class ReplyModule:
-    def __init__(self, json_path="response.json"):
+    def __init__(self, json_path = "F:/gradProject/Ai/EnglishAi/response.json"):
         self.load_responses(json_path)
 
     def load_responses(self, json_path):
