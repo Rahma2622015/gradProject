@@ -1,5 +1,5 @@
-.cs-message-input__tools .cs-button--attachment {
-  display: none !important;
+.rce-container-input {
+    min-width: 90% !important;
 }
 :root {
   --message-text-light: #000;
