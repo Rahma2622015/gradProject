@@ -68,7 +68,7 @@ html, body {
   --purple-dark: #6A1B9A;
 }
 
-/* لون الثيم: موف */
+/* لون الثيم: لافندر */
 .theme-mov.light-mode {
   --background-color: var(--mov-light);
 }

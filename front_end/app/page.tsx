@@ -146,7 +146,7 @@ export default function Home() {
       >
         <Image
           src="/robot1.png"
-          alt="Robot image"
+          alt="Robot "
           className={styles.image}
           width={400}
           height={300}
