@@ -1,11 +1,11 @@
 
-from .chattask import ChatTask
-from .Tokeniztion import Tokenizers
-from .Tokeniztion import Tokenizers
-from .Preprocessing import Preprocessors
-from .ReplyTask import ReplyTask
-from .TaskProcessor import TaskProcessor
+from Ai.EnglishAi.chattask import ChatTask
+from Ai.EnglishAi.Tokeniztion import Tokenizers
+from Ai.EnglishAi.Tokeniztion import Tokenizers
+from Ai.EnglishAi.Preprocessing import Preprocessors
+from Ai.EnglishAi.ReplyTask import ReplyTask
+from Ai.EnglishAi.TaskProcessor import TaskProcessor
 
 from .RecivingFunction import receive
-from .TaskMapping import TaskMapper
-from .ReplyModule import ReplyModule
+from Ai.EnglishAi.TaskMapping import TaskMapper
+from Ai.EnglishAi.ReplyModule import ReplyModule
