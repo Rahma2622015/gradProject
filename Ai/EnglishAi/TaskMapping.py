@@ -3,18 +3,19 @@ from Ai.EnglishAi.chattask import ChatTask
 from nltk.corpus import wordnet
 
 class TaskMapper:
-    def __init__(self, json_path=r"F:/gradProject/Ai/map.json"):
+    def __init__(self,json_path = "F:/gradProject/Ai/EnglishAi/map.json"):
         self.task_definitions = self.load_definitions(json_path)
 
     def load_definitions(self, json_path: str) -> dict:
         try:
             with open(json_path, "r", encoding="utf-8") as file:
                 return json.load(file)
+            print(f"[INFO] Response file loaded successfully: {json_path}")
         except FileNotFoundError:
-            print(f"Error: File {json_path} not found.")
+            print(f"[ERROR] Response file not found: {json_path}")
             return {}
         except json.JSONDecodeError:
-            print(f"Error: Failed to parse JSON from {json_path}.")
+            print(f"[ERROR] Invalid JSON format in: {json_path}")
             return {}
 
     def convert_to_enum(self, task_name: str) -> ChatTask:
@@ -132,12 +133,12 @@ class TaskMapper:
             if self.isQuestion(data):
                 best_task = "UnknownTask"
                 max_score = 0
+                best_task_enum = ChatTask.UnknownTask
                 for task in self.task_definitions.keys():
                     score = self.MaxMatches(task, pos[i], data)
                     print(f"{score} : {task}")
                     if score > max_score:
                         max_score = score
-                        best_task = task
                         best_task_enum = self.convert_to_enum(best_task)
                 if best_task_enum != ChatTask.UnknownTask and max_score >= 1.5:
                     res.append((best_task_enum, data))
