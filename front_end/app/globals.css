@@ -58,8 +58,14 @@ html, body {
   --white-light: white;
   --white-dark: #000000;
 
-  --bink-light: #C890A7;
-  --bink-dark: #A35C7A;
+  --green-light: #DCF8C6 ;
+  --green-dark: #075E54;
+
+  --red-light: #F8BBD0;
+  --red-dark: #B71C1C;
+
+  --purple-light: #9C27B0;
+  --purple-dark: #6A1B9A;
 }
 
 /* لون الثيم: موف */
@@ -93,11 +99,25 @@ html, body {
   --background-color: var(--babygreen-dark);
 }
 /* لون الثيم: بينك */
-.theme-bink.light-mode {
-  --background-color: var(--bink-light);
+.theme-green.light-mode {
+  --background-color: var(--green-light);
 }
-.theme-bink.dark-mode {
-  --background-color: var(--bink-dark);
+.theme-green.dark-mode {
+  --background-color: var(--green-dark);
+}
+/* لون الثيم: احمر */
+.theme-red.light-mode {
+  --background-color: var(--red-light);
+}
+.theme-red.dark-mode {
+  --background-color: var(--red-dark);
+}
+/* لون الثيم: بنفسجي */
+.theme-purple.light-mode {
+  --background-color: var(--purple-light);
+}
+.theme-purple.dark-mode {
+  --background-color: var(--purple-dark);
 }
 
 /* روابط */

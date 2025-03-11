@@ -119,8 +119,14 @@ export default function Home() {
                  <li onClick={() => changeTheme("white")}>
                   <Image src={isDarkMode ? "/Ellipse_9-removebg-preview.png" : "/Ellipse_8__2_-removebg-preview.png"} alt="color5" width={30} height={30} />
                 </li>
-                 <li onClick={() => changeTheme("bink")}>
-                  <Image src={isDarkMode ? "/Ellipse_3d-removebg-preview.png" : "/Ellipse_3-removebg-preview.png"} alt="color5" width={30} height={30} />
+                 <li onClick={() => changeTheme("green")}>
+                  <Image src={isDarkMode ? "/Ellipse 8.png" : "/Ellipse 13.png"} alt="color5" width={30} height={30} />
+                </li>
+                 <li onClick={() => changeTheme("red")}>
+                  <Image src={isDarkMode ? "/Ellipse 9.png" : "/Ellipse 14.png"} alt="color5" width={30} height={30} />
+                </li>
+                 <li onClick={() => changeTheme("purple")}>
+                  <Image src={isDarkMode ? "/Ellipse 11.png" : "/Ellipse 12.png"} alt="color5" width={30} height={30} />
                 </li>
               </ul>
             )}
@@ -139,10 +145,11 @@ export default function Home() {
         onClick={handleClick}
       >
         <Image
-          src="/robot.png"
+          src="/robot1.png"
           alt="Robot image"
-          width={500}
-          height={400}
+          className={styles.image}
+          width={400}
+          height={300}
           priority
           unoptimized
         />
@@ -156,7 +163,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div>My name is Lazeez Chatbot,</div>
+            <div>My name is Lazeez ,</div>
            <div> and I am here to help new students at the Faculty of Science</div>
             <div> who need information about the Computer Science program</div>
             <div>and dual degree programs in Computer Science,</div>
@@ -178,14 +185,6 @@ export default function Home() {
         <button onClick={startSession} disabled={isLoading} className={styles.nextbutton}>
           <Link href="/chat_page">
             I want to Know!
-            &nbsp;&nbsp;&nbsp;
-            <Image
-              className={styles.logo}
-              src="/next.png"
-              alt="next page"
-              width={25}
-              height={25}
-            />
           </Link>
        </button>
       </main>
