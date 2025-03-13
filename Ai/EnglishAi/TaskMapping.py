@@ -3,27 +3,23 @@ from Ai.EnglishAi.chattask import ChatTask
 from nltk.corpus import wordnet
 
 class TaskMapper:
-    def __init__(self,json_path = "F:\\gradProject\\Ai\\EnglishAi\\map.json"):
+    def __init__(self, json_path="F:\\gradProject\\Ai\\EnglishAi\\map.json"):
         self.task_definitions = self.load_definitions(json_path)
 
     def load_definitions(self, json_path: str) -> dict:
         try:
             with open(json_path, "r", encoding="utf-8") as file:
+                print(f"[INFO] map file loaded successfully: {json_path}")
                 return json.load(file)
-            print(f"[INFO] map file loaded successfully: {json_path}")
         except FileNotFoundError:
-            print(f"[ERROR] Response file not found: {json_path}")
+            print(f"[ERROR] map file not found: {json_path}")
             return {}
         except json.JSONDecodeError:
             print(f"[ERROR] Invalid JSON format in: {json_path}")
             return {}
 
     def convert_to_enum(self, task_name: str) -> ChatTask:
-        try:
-            return ChatTask[task_name]  # استخدام Enum مباشرة
-        except KeyError:
-            print(f"Warning: Task '{task_name}' not found in ChatTask!")
-            return ChatTask.UnknownTask
+        return ChatTask[task_name] if task_name in ChatTask.__members__ else ChatTask.UnknownTask
 
     def match_for_pos(self, task: ChatTask, item_type: str, token: str) -> bool:
         item_list = self.task_definitions[task][item_type]
@@ -37,7 +33,6 @@ class TaskMapper:
                     if lemma_name.lower() == x.lower():
                         return True
         return False
-
     def MaxMatches(self, task: ChatTask, position: list, tokens: list) -> float:
         max_matches = 0
         temp_position = position[:]
@@ -84,25 +79,6 @@ class TaskMapper:
     def isQuestionTool(self, token: str) -> bool:
         return token in ["what", "where", "when", "who", "whose", "which", "why", "how"]
 
-    def isGreetingTool(self, token: str) -> bool:
-        greetings = [
-            "hi", "hola", "hello", "hey",
-            "morning", "evening", "afternoon",
-            "greetings", "howdy"
-        ]
-        return any(greet in token for greet in greetings)
-
-    def isThanksTool(self, token: str) -> bool:
-        thanks_words = [
-            "thanks", "thank", "thank ", "thx", "ty"
-            , "appreciate ", "cheers", "grateful", "thanks a lot", "thanks so mush", "thanks for help"
-        ]
-        return any(thank in token for thank in thanks_words)
-
-    def isConfusionTool(self, token: str) -> bool:
-        confusion = ["huh", "confuse", "explain"]
-        return any(confused in token for confused in confusion)
-
     def isQuestion(self, tokens: list[str]) -> bool:
         if not len(tokens):
             return False
@@ -112,19 +88,11 @@ class TaskMapper:
             return True
         return False
 
-    def isGoodbyeTool(self, token: str) -> bool:
-        keywords = ["goodbye", "bye", "later", "see you", "take care", "later",
-                    "catch", "later", " again", "have a good one",
-                    "peace", "until", "next", "time", "adieu", "godspeed", "again",
-                    "night", " nice day", "best", "safe"]
-        return any(g in token for g in keywords)
-
     def getPOS(self, tag: str, pos: list[str]) -> int:
         for i, x in enumerate(pos):
             if x.startswith(tag):
                 return i
         return -1
-
     def mapToken(self, tokens: list[list[str]], pos: list[list[str]]) -> list[tuple[ChatTask,]]:
         res = list()
         if not tokens or not pos or len(tokens) != len(pos):
@@ -144,14 +112,6 @@ class TaskMapper:
                     res.append((best_task_enum, data))
                 else:
                     res.append((ChatTask.UnknownTask,))
-            elif self.isGreetingTool(data):
-                res.append((ChatTask.GreetingTask, "name"))
-            elif self.isThanksTool(data):
-                res.append((ChatTask.ThanksTask, ""))
-            elif self.isGoodbyeTool(data):
-                res.append((ChatTask.GoodbyeTask, ""))
-            elif self.isConfusionTool(data):
-                res.append((ChatTask.ConfusionTask, ""))
             else:
                 verbIndex = self.getPOS("VB", pos[i])
                 if verbIndex != -1:
