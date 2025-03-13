@@ -6,3 +6,4 @@ from Ai.EnglishAi.TaskProcessor import TaskProcessor
 from Ai.RecivingFunction import receive
 from Ai.EnglishAi.TaskMapping import TaskMapper
 from Ai.EnglishAi.ReplyModule import ReplyModule
+from Ai.EnglishAi.MappingTrivialTasks import MappingTrivial
