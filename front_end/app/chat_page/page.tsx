@@ -78,7 +78,7 @@ function ChatPage() {
         }
       try{
         setISLoading(true);
-        const response = await fetch('https://192.168.43.198:3001/close-session', {
+        const response = await fetch('https://192.168.1.6:3001/close-session', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ function ChatPage() {
       console.log('Sending message:', message);
       const token=sessionStorage.getItem("client_id");
       //console.log(JSON.stringify({ userMessage:message,id:token}))
-      const response = await fetch('https://192.168.43.198:3001/messages', {
+      const response = await fetch('https://192.168.1.6:3001/messages', {
         method: "POST",
          headers: {
              "Content-Type": "application/json",

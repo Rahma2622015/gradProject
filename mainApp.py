@@ -1,6 +1,7 @@
 import os
 import json
 import random
+
 from Data.class_client import Client
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
@@ -12,13 +13,9 @@ chat_bot = Flask(__name__)
 data_file='session_data.json'
 client_list=[]
 chat_bot.secret_key = os.urandom(24)
-CORS(chat_bot, resources={r"/messages": {"origins": "https://192.168.43.198", "methods": ["POST", "GET"]}})
-CORS(chat_bot, resources={r"/start-session": {"origins": "https://192.168.43.198", "methods": ["POST"]}})
-CORS(chat_bot, resources={r"/close-session": {"origins": "https://192.168.43.198", "methods": ["POST"]}})
-
-CORS(chat_bot, resources={r"/messages": {"origins": "https://192.168.1.6:3000", "methods": ["POST", "GET"]}})
-CORS(chat_bot, resources={r"/start-session": {"origins": "https://192.168.1.6:3000", "methods": ["POST"]}})
-CORS(chat_bot, resources={r"/close-session": {"origins": "https://192.168.1.6:3000", "methods": ["POST"]}})
+CORS(chat_bot, resources={r"/messages": {"origins": "https://192.168.1.6", "methods": ["POST", "GET"]}})
+CORS(chat_bot, resources={r"/start-session": {"origins": "https://192.168.1.6", "methods": ["POST"]}})
+CORS(chat_bot, resources={r"/close-session": {"origins": "https://192.168.1.6", "methods": ["POST"]}})
 
 
 def load_data():
@@ -155,8 +152,8 @@ if __name__ == '__main__':
     http_server = WSGIServer(
         ('0.0.0.0', 3001),
         chat_bot,
-        keyfile='D:/Chatbot/private.key',
-        certfile='D:/Chatbot/cert.crt'
+        keyfile='F:/gradProject/private.key',
+        certfile='F:/gradProject/cert.crt'
     )
     try:
         print("Starting server...")
