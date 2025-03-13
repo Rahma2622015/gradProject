@@ -3,14 +3,14 @@ from Ai.EnglishAi.chattask import ChatTask
 from nltk.corpus import wordnet
 
 class TaskMapper:
-    def __init__(self,json_path = "F:/gradProject/Ai/EnglishAi/map.json"):
+    def __init__(self,json_path = "F:\\gradProject\\Ai\\EnglishAi\\map.json"):
         self.task_definitions = self.load_definitions(json_path)
 
     def load_definitions(self, json_path: str) -> dict:
         try:
             with open(json_path, "r", encoding="utf-8") as file:
                 return json.load(file)
-            print(f"[INFO] Response file loaded successfully: {json_path}")
+            print(f"[INFO] map file loaded successfully: {json_path}")
         except FileNotFoundError:
             print(f"[ERROR] Response file not found: {json_path}")
             return {}
@@ -20,11 +20,10 @@ class TaskMapper:
 
     def convert_to_enum(self, task_name: str) -> ChatTask:
         try:
-            return ChatTask[task_name]
+            return ChatTask[task_name]  # استخدام Enum مباشرة
         except KeyError:
             print(f"Warning: Task '{task_name}' not found in ChatTask!")
             return ChatTask.UnknownTask
-
 
     def match_for_pos(self, task: ChatTask, item_type: str, token: str) -> bool:
         item_list = self.task_definitions[task][item_type]
@@ -67,8 +66,8 @@ class TaskMapper:
                 temp_tokens.pop(verb_pos)
                 temp_position.pop(verb_pos)
         prp_pos = self.getPOS("PRP", temp_position)
-        if prp_pos==-1:
-            prp_pos =self.getPOS("NNS",temp_position)
+        if prp_pos == -1:
+            prp_pos = self.getPOS("NNS", temp_position)
         prp = temp_tokens[prp_pos] if prp_pos != -1 else None
         if prp and self.match_for_pos(task, "SubjectKeywords", prp):
             max_matches += 1
@@ -80,7 +79,7 @@ class TaskMapper:
         return max_matches
 
     def isModalVerb(self, token: str) -> bool:
-        return token in ["be", "do", "have","will","can", "could", "shall", "should", "may", "might", "must"]
+        return token in ["be", "do", "have", "will", "can", "could", "shall", "should", "may", "might", "must"]
 
     def isQuestionTool(self, token: str) -> bool:
         return token in ["what", "where", "when", "who", "whose", "which", "why", "how"]
@@ -96,12 +95,12 @@ class TaskMapper:
     def isThanksTool(self, token: str) -> bool:
         thanks_words = [
             "thanks", "thank", "thank ", "thx", "ty"
-            , "appreciate ", "cheers", "grateful","thanks a lot","thanks so mush","thanks for help"
+            , "appreciate ", "cheers", "grateful", "thanks a lot", "thanks so mush", "thanks for help"
         ]
         return any(thank in token for thank in thanks_words)
 
     def isConfusionTool(self, token: str) -> bool:
-        confusion = [ "huh", "confuse", "explain"]
+        confusion = ["huh", "confuse", "explain"]
         return any(confused in token for confused in confusion)
 
     def isQuestion(self, tokens: list[str]) -> bool:
@@ -116,9 +115,10 @@ class TaskMapper:
     def isGoodbyeTool(self, token: str) -> bool:
         keywords = ["goodbye", "bye", "later", "see you", "take care", "later",
                     "catch", "later", " again", "have a good one",
-                   "peace", "until", "next" ,"time", "adieu", "godspeed", "again",
+                    "peace", "until", "next", "time", "adieu", "godspeed", "again",
                     "night", " nice day", "best", "safe"]
         return any(g in token for g in keywords)
+
     def getPOS(self, tag: str, pos: list[str]) -> int:
         for i, x in enumerate(pos):
             if x.startswith(tag):
@@ -133,12 +133,12 @@ class TaskMapper:
             if self.isQuestion(data):
                 best_task = "UnknownTask"
                 max_score = 0
-                best_task_enum = ChatTask.UnknownTask
                 for task in self.task_definitions.keys():
                     score = self.MaxMatches(task, pos[i], data)
                     print(f"{score} : {task}")
                     if score > max_score:
                         max_score = score
+                        best_task = task
                         best_task_enum = self.convert_to_enum(best_task)
                 if best_task_enum != ChatTask.UnknownTask and max_score >= 1.5:
                     res.append((best_task_enum, data))
@@ -157,7 +157,8 @@ class TaskMapper:
                 if verbIndex != -1:
                     if data[verbIndex] == "be":
                         if pos[i][verbIndex - 1].startswith("N") and (
-                                pos[i][verbIndex + 1].startswith("J") or pos[i][verbIndex + 1].startswith("N") or pos[i][verbIndex +1].endswith("N")):
+                                pos[i][verbIndex + 1].startswith("J") or pos[i][verbIndex + 1].startswith("N") or
+                                pos[i][verbIndex + 1].endswith("N")):
                             res.append((ChatTask.StoreTask, data[verbIndex - 1], data[verbIndex + 1]))
                 else:
                     res.append((ChatTask.UnknownTask,))

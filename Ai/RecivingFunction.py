@@ -8,8 +8,8 @@ from Ai.EnglishAi.AutoCorrect import AutoCorrector
 
 
 def receive(message: str, storage: DataStorage) -> str:
-    mapper = TaskMapper(r"/Ai/EnglishAi/map.json")
-    reply = ReplyModule(r"/Ai/EnglishAi/response.json")
+    mapper = TaskMapper()
+    reply = ReplyModule()
     proces=TaskProcessor()
     t=Tokenizers()
     p=Preprocessors()
@@ -23,6 +23,9 @@ def receive(message: str, storage: DataStorage) -> str:
     pos = t.pos_tag(tokens)
     tokens  = p.preprocess(tokens, pos)
     tasks=mapper.mapToken(tokens,pos)
+    print(f"[DEBUG] Identified Tasks before processing: {tasks}")  # Add this
     pre = proces.process(tasks, storage)
+    print(f"Task identified: {tasks}")  # تحقق من المهام التي تم التعرف عليها
+    print(f"Processed Task Output: {pre}")
     s=reply.generate_response(pre)
     return s
