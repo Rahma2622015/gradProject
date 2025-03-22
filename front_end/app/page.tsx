@@ -51,7 +51,7 @@ export default function Home() {
   const startSession = async () => {
     try {
       setISLoading(true);
-      const response = await fetch('https://192.168.1.6:3001/start-session', {
+      const response = await fetch('https://192.168.1.9:3001/start-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -185,6 +185,16 @@ export default function Home() {
         <button onClick={startSession} disabled={isLoading} className={styles.nextbutton}>
           <Link href="/chat_page">
             I want to Know!
+          </Link>
+       </button>
+       <button  className={styles.floating_button} disabled={isLoading}>
+          <Link href="/panel">
+            <Image
+                src="/information.png"
+                alt="configuration panel"
+                width={38}
+                height={38}
+              />
           </Link>
        </button>
       </main>
