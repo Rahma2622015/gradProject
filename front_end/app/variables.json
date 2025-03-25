@@ -1,0 +1,7 @@
+{
+  "ip_close-session": "https://192.168.1.9:3001/close-session",
+  "ip_messages": "https://192.168.1.9:3001/messages",
+  "start_session": "https://192.168.1.9:3001/start-session",
+  "cert_loc": "D:/gradProject/cert.crt",
+  "key_loc": "D:/gradProject/private.key"
+}

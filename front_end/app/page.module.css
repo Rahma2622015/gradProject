@@ -180,6 +180,17 @@
     margin-right:37px;
     cursor: pointer;
 }
+.floating_button{
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  background-color:rgba(50, 50, 50, 0);
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
 @media (max-width:1000px){
     .modebutton{
         top: 10px;

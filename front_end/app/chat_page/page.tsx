@@ -9,12 +9,21 @@ import React, { useEffect, useState ,useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
+<<<<<<< Updated upstream
 
+=======
+import { toast } from "react-toastify";
+import variables from "../variables.json";
+>>>>>>> Stashed changes
 // تحميل مكتبة الإيموجي بطريقة ديناميكية لتجنب مشاكل SSR
 const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
 function ChatPage() {
   const { isDarkMode } = useTheme();
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   useEffect(() => {
          const entries = performance.getEntriesByType("navigation");
         if (entries.length > 0 && (entries[0] as PerformanceNavigationTiming).type === "reload") {
@@ -78,7 +87,11 @@ function ChatPage() {
         }
       try{
         setISLoading(true);
+<<<<<<< Updated upstream
         const response = await fetch('https://192.168.43.198:3001/close-session', {
+=======
+        const response = await fetch(variables.ip_close-session, {
+>>>>>>> Stashed changes
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -162,7 +175,11 @@ function ChatPage() {
       console.log('Sending message:', message);
       const token=sessionStorage.getItem("client_id");
       //console.log(JSON.stringify({ userMessage:message,id:token}))
+<<<<<<< Updated upstream
       const response = await fetch('https://192.168.43.198:3001/messages', {
+=======
+      const response = await fetch(variables.ip_messages, {
+>>>>>>> Stashed changes
         method: "POST",
          headers: {
              "Content-Type": "application/json",
@@ -188,6 +205,15 @@ function ChatPage() {
             sender: "Lazez",
           };
           setMessages((prevMessages) => [...prevMessages, replyMessage]);
+<<<<<<< Updated upstream
+=======
+          if (data.list && data.list.length > 0) {
+            setExampleQuestions(data.list);
+            setInputVisible(false);
+          } else {
+            setInputVisible(true);
+          }
+>>>>>>> Stashed changes
 
      }
      else {
@@ -308,6 +334,7 @@ function ChatPage() {
       />
        ) : (
             <div className={styles.dropdownContainer}>
+<<<<<<< Updated upstream
               <button onClick={() => setDropdownVisible(!isDropdownVisible)} className={styles.dropdownToggle}>
                 Select a Question
               </button>
@@ -319,6 +346,16 @@ function ChatPage() {
                     </li>
                   ))}
                 </ul>
+=======
+              { exampleQuestions.length > 0 && (
+                  <ul className={styles.dropdownList}>
+                    {exampleQuestions.map((question, index) => (
+                      <li key={index} onClick={() => handleQuestionClick(question)}>
+                        {question}
+                      </li>
+                    ))}
+                  </ul>
+>>>>>>> Stashed changes
               )}
             </div>
           )}

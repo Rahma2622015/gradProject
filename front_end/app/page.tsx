@@ -7,6 +7,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useTheme as useThemeMode } from "./context/ThemeContext";
 import { useTheme as useThemeColor } from "./context/ThemeColor";
 import { motion } from "framer-motion";
+import variables from "./variables.json";
 
 export default function Home() {
   useEffect(() => {
@@ -51,7 +52,11 @@ export default function Home() {
   const startSession = async () => {
     try {
       setISLoading(true);
+<<<<<<< Updated upstream
       const response = await fetch('https://192.168.43.198:3001/start-session', {
+=======
+      const response = await fetch(variables.start_session, {
+>>>>>>> Stashed changes
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -182,11 +187,21 @@ export default function Home() {
           </motion.div>
         )}
       </div>
-        <button onClick={startSession} disabled={isLoading} className={styles.nextbutton}>
-          <Link href="/chat_page">
+       <Link href="/chat_page">
+         <button onClick={startSession} disabled={isLoading} className={styles.nextbutton}>
             I want to Know!
-          </Link>
-       </button>
+         </button>
+       </Link>
+       <Link href="/panel">
+          <button  className={styles.floating_button} disabled={isLoading}>
+            <Image
+                src="/information.png"
+                alt="configuration panel"
+                width={38}
+                height={38}
+              />
+          </button>
+       </Link>
       </main>
     </div>
   );
