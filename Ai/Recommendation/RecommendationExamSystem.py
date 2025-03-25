@@ -3,7 +3,7 @@ from Data.dataStorage import DataStorage
 import variables
 
 class Recommendation:
-    def __init__(self, json_path=variables.MapDataLocationRE,
+    def _init_(self, json_path=variables.MapDataLocationRE,
                  json_path2=variables.ResponseDataLocationRE):
         self.task_definitionsR = self.load_definitions(json_path)
         self.responses = self.load_responses(json_path2)
@@ -65,12 +65,62 @@ class Recommendation:
         if "semester" not in prev_data:
             self.storage.save_data(user_id, "semester",  user_input.strip().lower())
             prev_data = self.storage.get_prev_data(user_id)
-            return "What is the subject name?", ["Subject A", "Subject B", "Subject C"]
+            if (prev_data["year"].strip() == "Sophomore" and
+                    prev_data["semester"].strip() == "one"):
+                return "What is the subject name?", ["algorithm", "computability", "oop","database"
+                    ,"linear algebra","english"]
+            elif (prev_data["year"].strip() == "Sophomore" and
+                    prev_data["semester"].strip() == "two"):
+                return "What is the subject name?", ["data structure", "network", "web programming"
+                    ,"automata","graph","ordinary differential equation"]
+            elif (prev_data["year"].strip() == "Junior" and
+                    prev_data["semester"].strip() == "one"):
+                return "What is the subject name?", ["java", "syntax", "complexity"
+                    , "operating system", "abstract algebra", "multimedia","scientific thinking"]
+            elif (prev_data["year"].strip() == "Junior" and
+                  prev_data["semester"].strip() == "two"):
+                return "What is the subject name?", ["scientific research ethics"
+                    , "combinatorics", "compiler"
+                    , "graphics", "android", "advanced data base","crybto"]
+            elif (prev_data["year"].strip() == "senior" and
+                  prev_data["semester"].strip() == "one"):
+                return "What is the subject name?", ["skills", "artificial intelligence", "parallel"
+                    , "project", "image processing", "cyber security","Computational geometry"]
+            elif (prev_data["year"].strip() == "senior" and
+                  prev_data["semester"].strip() == "two"):
+                return "What is the subject name?", ["bioinformatics", "software engineering"
+                    , "project", "advanced artificial intelligence", "data mining"]
 
         if "subject" not in prev_data:
             self.storage.save_data(user_id, "subject",  user_input.strip().lower())
             prev_data = self.storage.get_prev_data(user_id)
-            return "Who is the professor?", ["Professor X", "Professor Y"]
+            if (prev_data["year"].strip() == "Sophomore" and
+                    prev_data["semester"].strip() == "one"):
+                    return "Who is the professor?", ["dr niveen", "dr dowlt","dr niveen , dr dowlt"
+                        ,"dr ghada","dr wael","dr manar", "dr ahmed","dr manar,dr ahmed","dr abdelrahman"]
+            elif (prev_data["year"].strip() == "Sophomore" and
+                          prev_data["semester"].strip() == "two"):
+                    return "Who is the professor?", ["dr wael", "dr ghada","dr wael , dr ghada"
+                        , "dr hussein", "dr mohamed", "dr nashwa" ,"dr mohamed , dr nashwa","dr azaa"
+                        ,"dr neveen","dr hany", "dr samir","dr hany & dr samir"]
+            elif (prev_data["year"].strip() == "Junior" and
+                  prev_data["semester"].strip() == "one"):
+                return "Who is the professor?", ["dr nashwa",  "dr azza","dr neveen"
+                    ,"dr mohamed","dr mohamed & dr neveen"
+                    , "dr ahmed", "dr hussein", "dr abdelrahman"]
+            elif (prev_data["year"].strip() == "Junior" and
+                  prev_data["semester"].strip() == "two"):
+                return "Who is the professor?", ["dr abdelrahman", "dr neveen", "dr wael"
+                    , "dr hussein", "dr deiaa"]
+            elif (prev_data["year"].strip() == "senior" and
+                  prev_data["semester"].strip() == "one"):
+                return "Who is the professor?", ["dr mohamed", "dr azza", "dr mohamed fakhry"
+                    ,"dr hewayda","dr deiaa", "dr ghada"]
+            elif (prev_data["year"].strip() == "senior" and
+                  prev_data["semester"].strip() == "two"):
+                return "Who is the professor?", ["dr mohamed hashim","dr mohamed fakhry"
+                    ,"dr mohamed hashim ,dr mohamed fakhry", "dr hussein"
+                    , "dr azza","dr hewayda","dr hewayda , dr azza", "dr dowlt"]
 
         exam_system_result = self.get_exam_system(prev_data, user_id)
         if isinstance(exam_system_result, str):

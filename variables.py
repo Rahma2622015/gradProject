@@ -10,7 +10,7 @@ MapDataLocationEn=r"F:\\gradProject\\Ai\\EnglishAi\\map.json"
 ResponseDataLocationEn=r"F:\\gradProject\\Ai\\EnglishAi\\response.json"
 
 MapDataLocationRE=r"F:\\gradProject\\Ai\\Recommendation\\mapR.json"
-ResponseDataLocationRE=r"F:\\gradProject\\Ai\\Recommendation\\responseReco.json"
+ResponseDataLocationRE=r"F:\\gradProject\\Ai\\Recommendation\\responseExamReco.json"
 
 NamesinCorrectEnglish=r"F:\gradProject\Ai\EnglishAi\Names.txt"
 NamesinCorrectArabic=r"F:\gradProject\Ai\ArabicAi\arabic_names.txt"
