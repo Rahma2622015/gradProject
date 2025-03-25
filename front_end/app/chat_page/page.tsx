@@ -9,7 +9,8 @@ import React, { useEffect, useState ,useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-
+import { toast } from "react-toastify";
+import variables from "../variables.json";
 // تحميل مكتبة الإيموجي بطريقة ديناميكية لتجنب مشاكل SSR
 const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
@@ -79,7 +80,7 @@ function ChatPage() {
         }
       try{
         setISLoading(true);
-        const response = await fetch('https://192.168.1.6:3001/close-session', {
+        const response = await fetch(variables.ip_close-session, {
           method: 'POST',
           credentials: "include",
           headers: {
@@ -164,7 +165,8 @@ function ChatPage() {
       console.log('Sending message:', message);
       const token=sessionStorage.getItem("client_id");
       //console.log(JSON.stringify({ userMessage:message,id:token}))
-      const response = await fetch('https://192.168.1.6:3001/messages', {
+
+      const response = await fetch(variables.ip_messages, {
         method: "POST",
          headers: {
              "Content-Type": "application/json",
@@ -190,7 +192,6 @@ function ChatPage() {
             sender: "Lazez",
           };
           setMessages((prevMessages) => [...prevMessages, replyMessage]);
-
           if (data.list && data.list.length > 0) {
             setExampleQuestions(data.list);
             setInputVisible(false);
@@ -302,27 +303,22 @@ function ChatPage() {
         }
       />
        ) : (
-            <div className={styles.dropdownContainer}>
-              <button onClick={() => setDropdownVisible(!isDropdownVisible)} className={styles.dropdownToggle}>
-                Select a Question
-              </button>
-              {isDropdownVisible && exampleQuestions.length > 0 && (
-                  <ul className={styles.dropdownList}>
-                    {exampleQuestions.map((question, index) => (
-                      <li key={index} onClick={() => handleQuestionClick(question)}>
-                        {question}
-                      </li>
-                    ))}
-                  </ul>
-              )}
-            </div>
+        <div className={styles.dropdownContainer}>
+          { exampleQuestions.length > 0 && (
+              <ul className={styles.dropdownList}>
+                {exampleQuestions.map((question, index) => (
+                  <li key={index} onClick={() => handleQuestionClick(question)}>
+                    {question}
+                  </li>
+                ))}
+              </ul>
           )}
-    </div>
-    </div>
-    </main>
-  );
+        </div>
+      )}
+</div>
+</div>
+</main>
+);
 }
-
-
 
 export default ChatPage;
