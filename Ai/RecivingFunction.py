@@ -128,4 +128,6 @@ def receive(message: str, storage: DataStorage, user_id: str):
             return ARreply.generate_response(ARpre),None,None
         except Exception as e:
             return f"حدث خطأ أثناء معالجة العربية: {str(e)}"
+
+
     return "Sorry, I can't recognize this language.",None,None
