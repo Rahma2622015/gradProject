@@ -1,0 +1,126 @@
+{
+  "exam_data": [
+    {
+      "department": ["cs"],
+      "level": ["sophomore", "2", "two"],
+      "semester": ["one", "1"],
+      "subject": ["algorithm", "comp 201"],
+      "instructor": ["dr niveen", "dr dowlt"],
+      "exam_format": {
+        "Midterm": ["MCQ + Coding + Complete"],
+        "Final": ["MCQ + Theory + Solve Problem + Short Answers"]
+      }
+    },
+    {
+      "department": ["cs"],
+      "semester": ["one", "1"],
+      "level": ["sophomore", "2", "two"],
+      "subject": ["computability", "comp 203"],
+      "instructor": ["dr ghada"],
+      "exam_format": {
+        "Midterm": ["MCQ+Short Answers"],
+        "Final": ["MCQ+Theory+Solve Problem+Short Answers"]
+      }
+    },
+    {
+      "department": ["cs"],
+      "level": ["sophomore", "2", "two"],
+      "semester": ["one", "1"],
+      "subject": ["oop", "object oriented programming", "comp 205"],
+      "instructor": ["dr dowlt"],
+      "exam_format": {
+        "Midterm": ["Give a problem and apply operations on it"],
+        "Final": ["Full Written Exam"]
+      }
+    },
+    {
+      "department": ["cs"],
+      "level": ["sophomore", "2", "two"],
+      "semester": ["one", "1"],
+      "subject": ["database", "comp 207"],
+      "instructor": ["dr wael"],
+      "exam_format": {
+        "Midterm": ["MCQ+Coding+Complete"],
+        "Final": ["MCQ+Theory+Solve Problem+Short Answers"],
+        "Project": ["Do a project based on your study"]
+      }
+    },
+    {
+      "department": ["cs"],
+      "level": ["sophomore", "2", "two"],
+      "semester": ["one", "1"],
+      "subject": ["linear algebra", "math 203"],
+      "instructor": ["dr manar", "dr ahmed"],
+      "exam_format": {
+        "Midterm": ["MCQ+Solve Mathematical Problems"],
+        "Final": ["MCQ+Solve Mathematical Problems"]
+      }
+    },
+    {
+      "department": ["cs"],
+      "level": ["sophomore", "2", "two"],
+      "semester": ["two", "2"],
+      "subject": ["data structure", "comp 202"],
+      "instructor": ["dr wael", "dr ghada"],
+      "exam_format": {
+        "Midterm": ["MCQ+Written Questions"],
+        "Final": ["MCQ+Written Questions+Solve Problem"]
+      }
+    },
+    {
+      "department": ["cs"],
+      "level": ["sophomore", "2", "two"],
+      "semester": ["two", "2"],
+      "subject": ["network", "comp 204"],
+      "instructor": ["dr hussein"],
+      "exam_format": {
+        "Midterm": ["MCQ+Written Questions"],
+        "Final": ["MCQ"]
+      }
+    },
+    {
+      "department": ["cs"],
+      "level": ["sophomore", "2", "two"],
+      "semester": ["two", "2"],
+      "subject": ["web", "comp 206"],
+      "instructor": ["dr mohamed", "dr nashwa"],
+      "exam_format": {
+        "Midterm": ["MCQ+Written Questions"],
+        "Final": ["MCQ+Written Questions+Solve Problem+Particular Part"]
+      }
+    },
+    {
+      "department": ["cs"],
+      "level": ["sophomore", "2", "two"],
+      "semester": ["two", "2"],
+      "subject": ["automata", "comp 208"],
+      "instructor": ["dr azaa"],
+      "exam_format": {
+        "Midterm": ["MCQ+Written Questions"],
+        "Final": ["MCQ+Written Questions+Solve Problem"]
+      }
+    },
+    {
+      "department": ["cs"],
+      "level": ["sophomore", "2", "two"],
+      "semester": ["two", "2"],
+      "subject": ["graph", "comp 210"],
+      "instructor": ["dr niveen"],
+      "exam_format": {
+        "Midterm": ["MCQ+Written Questions"],
+        "Final": ["MCQ+Written Questions+Solve Problem"]
+      }
+    },
+    {
+      "department": ["cs"],
+      "level": ["sophomore", "2", "two"],
+      "semester": ["two", "2"],
+      "subject": ["ordinary differential equation", "math 202", "math"],
+      "instructor": ["dr hany", "dr samir","dr hany & dr samir"],
+      "exam_format": {
+        "Midterm": ["MCQ+Written Questions"],
+        "Final": ["MCQ+Solve Mathematical Problem"]
+      }
+    }
+  ]
+}

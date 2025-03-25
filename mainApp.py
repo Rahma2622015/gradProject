@@ -1,22 +1,25 @@
 import os
 import json
 import random
-
 from Data.class_client import Client
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 from Ai.RecivingFunction import receive
 from gevent.pywsgi import WSGIServer
 from OpenSSL import SSL
-
+import variables
 chat_bot = Flask(__name__)
-data_file='session_data.json'
-client_list=[]
-chat_bot.secret_key = os.urandom(24)
-CORS(chat_bot, resources={r"/messages": {"origins": "https://192.168.1.6", "methods": ["POST", "GET"]}})
-CORS(chat_bot, resources={r"/start-session": {"origins": "https://192.168.1.6", "methods": ["POST"]}})
-CORS(chat_bot, resources={r"/close-session": {"origins": "https://192.168.1.6", "methods": ["POST"]}})
 
+chat_bot.secret_key = os.urandom(24)
+
+
+CORS(chat_bot, resources={r"/messages": {"origins": variables.ip, "methods": ["POST", "GET"]}})
+CORS(chat_bot, resources={r"/start-session": {"origins": variables.ip, "methods": ["POST"]}})
+CORS(chat_bot, resources={r"/close-session": {"origins":variables.ip, "methods": ["POST"]}})
+
+
+data_file = 'session_data.json'
+client_list = []
 
 def load_data():
     if not os.path.exists(data_file):
@@ -123,37 +126,34 @@ def messages():
 
         if not client:
             return jsonify({"error": "Please start new session!"}), 404  # Not Found
-
         if not user_message:
             return jsonify({"error": "Message is required"}), 400  # Bad Request
-
         if not client_id:
             return jsonify({"error": "Client ID is required"}), 400  # Bad Request
 
         try:
-            reply = f"{receive(user_message, client.data)}"
+            reply_text, reply_list, _ = receive(user_message, client.data, client_id)
 
             for c in client_list:
                 if c.endSession():
                     client_list.remove(c)
                     remove_data(c.id)
 
-            return jsonify({"reply": reply})
+            return jsonify({"reply": reply_text, "list": reply_list})
 
         except Exception as ex:
-            return jsonify({"error": f"Error in receiving reply: {str(ex)}"}), 500  # Internal Server Error
+            return jsonify({"error": f"Error in receiving reply: {str(ex)}"})
+
 
     except Exception as e:
-        return jsonify({"error": f"Internal Server Error: {str(e)}"}), 500
-
-
+        return jsonify({"error":f"Error in send :{str(e)}"})
 if __name__ == '__main__':
 
     http_server = WSGIServer(
         ('0.0.0.0', 3001),
         chat_bot,
-        keyfile='F:/gradProject/private.key',
-        certfile='F:/gradProject/cert.crt'
+        keyfile=variables.key_loc,
+        certfile=variables.cert_loc
     )
     try:
         print("Starting server...")

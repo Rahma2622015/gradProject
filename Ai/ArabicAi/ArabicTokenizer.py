@@ -1,10 +1,14 @@
 import re
 import stanza
 nlp = stanza.Pipeline(lang="ar", processors="tokenize,pos,lemma", download_method=None)
+import variables
+
 class ArabicTokenizers:
     def __init__(self):
         self.nlp = nlp
         self.pronouns = {"أنا", "أنت", "هو", "هي", "نحن", "أنتم", "أنهن", "هم", "هن"}
+        with open(variables.NamesinCorrectArabic, "r", encoding="utf-8") as f:
+            self.known_names = set(f.read().splitlines())
 
     def SentenceTokenize(self, text: str) -> list[str]:
             old_sentences = re.split(r"(?<=[.؟!])\s*", text)
@@ -63,10 +67,14 @@ class ArabicTokenizers:
 
             for i, sent in enumerate(s.sentences):
                 for j, word in enumerate(sent.words):
-                    words.append(word.text)
+                    original_word = word.text
+                    words.append(original_word)
                     prev_word = words[j - 1] if j > 0 else None
                     prev_pos = tags[j - 1] if j > 0 else None
-                    pos = word.upos if word.upos != "X" else self.guess_pos(word.text, prev_word, prev_pos)
+                    if original_word in self.known_names:
+                        pos = "<NAME>"
+                    else:
+                        pos = word.upos if word.upos != "X" else self.guess_pos(original_word, prev_word, prev_pos)
                     tags.append(pos)
 
             pos_tags.append(tags)

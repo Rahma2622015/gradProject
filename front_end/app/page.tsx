@@ -163,10 +163,10 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div>My name is Lazeez ,</div>
-           <div> and I am here to help new students at the Faculty of Science</div>
+            <div>My name is Laziz ,</div>
+           <div> I'm here to help students in the college of Science</div>
             <div> who need information about the Computer Science program</div>
-            <div>and dual degree programs in Computer Science,</div>
+            <div>,dual degree programs in Computer Science</div>
            <div> and who have some questions and inquiries.</div>
 
           </motion.h3>
@@ -177,7 +177,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <h2>Hello</h2>
-            <h3>I am Lazeez</h3>
+            <h3>I am Laziz</h3>
             <h4>How can I help you?</h4>
           </motion.div>
         )}

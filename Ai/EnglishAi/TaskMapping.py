@@ -1,9 +1,10 @@
 import json
 from Ai.EnglishAi.chattask import ChatTask
 from nltk.corpus import wordnet
+import variables
 
 class TaskMapper:
-    def __init__(self, json_path="F:\\gradProject\\Ai\\EnglishAi\\map.json"):
+    def __init__(self, json_path=variables.MapDataLocationEn):
         self.task_definitions = self.load_definitions(json_path)
 
     def load_definitions(self, json_path: str) -> dict:

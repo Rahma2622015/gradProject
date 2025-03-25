@@ -28,6 +28,7 @@ function ChatPage() {
   }, []);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [exampleQuestions, setExampleQuestions] = useState<string[]>([]);
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isInputVisible, setInputVisible] = useState(true);
   const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null);
@@ -80,6 +81,7 @@ function ChatPage() {
         setISLoading(true);
         const response = await fetch('https://192.168.1.6:3001/close-session', {
           method: 'POST',
+          credentials: "include",
           headers: {
             'Content-Type': 'application/json',
           },
@@ -189,6 +191,13 @@ function ChatPage() {
           };
           setMessages((prevMessages) => [...prevMessages, replyMessage]);
 
+          if (data.list && data.list.length > 0) {
+            setExampleQuestions(data.list);
+            setInputVisible(false);
+          } else {
+            setInputVisible(true);
+          }
+
      }
      else {
           console.error("Failed to send message to server");
@@ -199,7 +208,6 @@ function ChatPage() {
     }
 
     };
-
   const[isShowlist,setList]=useState(false);
   const dropList = () => {
     setList(!isShowlist);
@@ -208,20 +216,7 @@ function ChatPage() {
   const deletchat=()=>{
     setMessages([messages[0]]);
   };
-  const exampleQuestions =
-     ["Do I have to be good at mathematics in high school?",
-      "What is the programs of mathematics?",
-       "Which year would you recommend for me to focus on improving my skills, and why?",
-       "Is studying computer science perceived as more difficult than other academic areas?",
-       "What types of materials are typically included in the study?",
-       "Am I capable of achieving a good GPA in computer science?",
-       "How can I determine the best program to join among the six programs?",
-       "Who is assigned as the academic advisor?",
-       "Are there any specialized fields available in the college from a certain year?",
-       "What’s the total workload in hours for computer science program?",
-       "What’s the usual timeframe for completing computer science program?",
-       "What’s the best way to choose the subjects to register for this semester?",
-       ];
+
   return (
     <main className={styles.container} onClick={() => setShowEmojiPicker(false)} >
        <div className={styles.hiddendiv}>
@@ -311,14 +306,14 @@ function ChatPage() {
               <button onClick={() => setDropdownVisible(!isDropdownVisible)} className={styles.dropdownToggle}>
                 Select a Question
               </button>
-              {isDropdownVisible && (
-                <ul className={styles.dropdownList}>
-                  {exampleQuestions.map((question, index) => (
-                    <li key={index} onClick={() => handleQuestionClick(question)}>
-                      {question}
-                    </li>
-                  ))}
-                </ul>
+              {isDropdownVisible && exampleQuestions.length > 0 && (
+                  <ul className={styles.dropdownList}>
+                    {exampleQuestions.map((question, index) => (
+                      <li key={index} onClick={() => handleQuestionClick(question)}>
+                        {question}
+                      </li>
+                    ))}
+                  </ul>
               )}
             </div>
           )}
