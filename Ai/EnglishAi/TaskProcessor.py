@@ -23,6 +23,8 @@ class TaskProcessor:
                       responses.append((ReplyTask.Greeting, data.fetchValue(task[1])))
                   else:
                       responses.append((ReplyTask.Greeting,""))
+            elif task_enum == ChatTask.AskNameTask:
+                    responses.append((ReplyTask.AskName,data.fetchValue("name")))
             elif task_enum==ChatTask.CheckWellbeingTask:
                 responses.append((ReplyTask.CheckWellbeing,""))
             elif task_enum==ChatTask.MathTask:
@@ -61,8 +63,6 @@ class TaskProcessor:
                 responses.append((ReplyTask.Enrollment, ""))
             elif task_enum == ChatTask.AskHelpingTask:
                 responses.append((ReplyTask.AskHelp, ""))
-            elif task_enum == ChatTask.AskNameTask:
-                    responses.append((ReplyTask.AskName,data.fetchName(data.fetchValue(task[1]))))
             else:
                 responses.append((ReplyTask.UnknownTask,""))
 

@@ -1,8 +1,9 @@
 import json
 from Ai.EnglishAi.chattask import ChatTask
+import variables
 
 class MappingTrivial:
-    def __init__(self, json_path="F:\\gradProject\\Ai\\EnglishAi\\map.json"):
+    def __init__(self, json_path=variables.MapDataLocationEn):
         self.taskDefinitions = self.load_definitions(json_path)
 
     def load_definitions(self, json_path: str) -> dict:

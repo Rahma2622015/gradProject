@@ -1,5 +1,5 @@
 from spellchecker import SpellChecker
-dict="E:/gradProject/Ai/ArabicAi/arabic_words.txt"
+
 class ArabicSpellChecker:
     def __init__(self, dictionary_path):
         self.spell = SpellChecker(language=None)

@@ -1,9 +1,10 @@
 import json
 from random import choice
 from Ai.EnglishAi.ReplyTask import ReplyTask
+import variables
 
 class ReplyModule:
-    def __init__(self, json_path = "F:\\gradProject\\Ai\\EnglishAi\\response.json"):
+    def __init__(self, json_path =variables.ResponseDataLocationEn):
         self.load_responses(json_path)
 
     def load_responses(self, json_path):
