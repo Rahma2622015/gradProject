@@ -136,12 +136,12 @@ export default function Home() {
       {/* الصورة مع الأنميشن */}
       <motion.div
         animate={{
-            y: [0, -25, 0], 
-            rotate: isClicked ? [0, 10, -10, 10, -10, 0] : 0, 
+            y: [0, -25, 0], // حركة قفز مستمرة
+            rotate: isClicked ? [0, 10, -10, 10, -10, 0] : 0, // دوران عند الضغط
           }}
          transition={{
-            y: { repeat: Infinity, repeatType: "reverse", duration: 1 },
-            rotate: { duration: 0.5 }, 
+            y: { repeat: Infinity, repeatType: "reverse", duration: 1 }, // القفز يستمر للأبد
+            rotate: { duration: 0.5 }, // حركة الدوران تحدث عند الضغط فقط
           }}
         onClick={handleClick}
       >
@@ -164,10 +164,10 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div>My name is Laziz ,</div>
-           <div> I'm here to help students in the college of Science</div>
+            <div>My name is Lazeez ,</div>
+           <div> and I am here to help new students at the Faculty of Science</div>
             <div> who need information about the Computer Science program</div>
-            <div>,dual degree programs in Computer Science</div>
+            <div>and dual degree programs in Computer Science,</div>
            <div> and who have some questions and inquiries.</div>
 
           </motion.h3>
@@ -178,7 +178,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <h2>Hello</h2>
-            <h3>I am Laziz</h3>
+            <h3>I am Lazeez</h3>
             <h4>How can I help you?</h4>
           </motion.div>
         )}
@@ -191,7 +191,7 @@ export default function Home() {
        <Link href="/panel">
           <button  className={styles.floating_button} disabled={isLoading}>
             <Image
-                src="/information.png"
+                src="/control-panel.png"
                 alt="configuration panel"
                 width={38}
                 height={38}

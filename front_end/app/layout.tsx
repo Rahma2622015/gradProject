@@ -1,4 +1,6 @@
 "use client";
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 import "./chat_page/chatstyle.module.css";
 import "./page.module.css";
@@ -18,6 +20,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
+      <ToastContainer theme='colored' position='top-center'/>
         <ModeProvider>  {/* للتحكم في الـ Mode */}
           <ColorProvider>  {/* للتحكم في الألوان */}
             {children}
