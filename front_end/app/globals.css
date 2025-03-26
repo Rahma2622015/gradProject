@@ -1,6 +1,22 @@
 .rce-container-input {
     min-width: 90% !important;
 }
+.rce-mbox-body{
+    background-color: var(--background-color) !important;
+}
+.rce-mbox{
+     background-color: var(--background-color) !important;
+}
+.rce-mbox-left-notch{
+    fill: var(--background-color) !important;
+}
+.rce-mbox-right-notch{
+     fill: var(--background-color) !important;
+}
+.rce-mbox-title{
+    color:black !important;
+}
+
 :root {
   --message-text-light: #000;
   --message-text-dark: #000;

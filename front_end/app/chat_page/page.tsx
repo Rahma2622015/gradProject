@@ -55,8 +55,9 @@ function ChatPage() {
       setInputValue((prevInput) => prevInput + emojiObject.emoji);
     };
     const removeEmojis = (text) => {
-        return text.replace(/[\p{Emoji}\u200d]+/gu, ""); // إزالة الإيموجي فقط
+      return text.replace(/[\p{Extended_Pictographic}]+/gu, "");
     };
+
 
     const stripHtmlTags = (html: string): string => {
       const doc = new DOMParser().parseFromString(html, "text/html");
@@ -148,8 +149,10 @@ function ChatPage() {
     }, [isClient, router]);
     const handleSend = async (message: string = inputValue) => {
      const finalMessage = message || inputValue;
-     if (typeof finalMessage !== "string" || !finalMessage.trim()) return;
-
+     if (typeof finalMessage !== "string" || !removeEmojis(finalMessage).trim()) {
+          toast.warn("Message is empty, please enter some text!");
+          return;
+     }
 
        const messageWithoutEmojis = removeEmojis(finalMessage); // حذف الإيموجي عند الإرسال فقط
       const newMessage = {
@@ -165,7 +168,6 @@ function ChatPage() {
       console.log('Sending message:', message);
       const token=sessionStorage.getItem("client_id");
       //console.log(JSON.stringify({ userMessage:message,id:token}))
-
       const response = await fetch(variables.ip_messages, {
         method: "POST",
          headers: {
@@ -177,9 +179,11 @@ function ChatPage() {
       if (response.ok) {
          const data = await response.json();
           if (data.message === "The time is up!") {
-              alert("The time is up!");
-              window.location.reload();
-              return;
+             toast.warn("The time is up!");
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+            return;
           }
          if (data === undefined || !data.reply) {
             console.log("Error in data: No reply found");
@@ -256,8 +260,7 @@ function ChatPage() {
             position: message.direction === "incoming" ? "left" : "right",
             type: "text",
             text: message.message,
-            title: message.sender,
-            className: "message",
+            title: message.sender === "user" ? "You" : message.sender,
           }))}
        />
     {/* عنصر غير مرئي لمتابعة التمرير */}
@@ -303,22 +306,24 @@ function ChatPage() {
         }
       />
        ) : (
-        <div className={styles.dropdownContainer}>
-          { exampleQuestions.length > 0 && (
-              <ul className={styles.dropdownList}>
-                {exampleQuestions.map((question, index) => (
-                  <li key={index} onClick={() => handleQuestionClick(question)}>
-                    {question}
-                  </li>
-                ))}
-              </ul>
+            <div className={styles.dropdownContainer}>
+              { exampleQuestions.length > 0 && (
+                  <ul className={styles.dropdownList}>
+                    {exampleQuestions.map((question, index) => (
+                      <li key={index} onClick={() => handleQuestionClick(question)}>
+                        {question}
+                      </li>
+                    ))}
+                  </ul>
+              )}
+            </div>
           )}
-        </div>
-      )}
-</div>
-</div>
-</main>
-);
+    </div>
+    </div>
+    </main>
+  );
 }
+
+
 
 export default ChatPage;
