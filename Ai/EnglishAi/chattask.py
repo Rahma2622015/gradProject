@@ -25,3 +25,4 @@ class ChatTask(Enum):
     EnrollmentTask = 21
     AskHelpingTask = 22
     AskNameTask = 23
+    ExamSystem=24

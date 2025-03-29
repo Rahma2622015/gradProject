@@ -125,5 +125,13 @@
                     , "term", "enroll", "standards", "courses", "enroll"
                     , "choose", "based", "which", "select", "semester", "way", "take"
                     , "use", "decide", "make", "choices", "suitable"]
-    }
+    },
+  "ExamSystem": {
+    "QuestionKeywords": ["how", "what", "be"],
+    "VerbKeywords": ["be", "do", "work", "like", "design"],
+    "SubjectKeywords": ["exam", "system", "structure", "examination", "pattern"],
+    "ObjectKeywords": ["difficult", "different", "levels", "all", "be", "hard",
+      "vary", "very", "difficulty", "same", "come", "challenging", "equally",
+      "differ", "function", "test", "tough", "follow", "categories","cs"]
+  }
 }

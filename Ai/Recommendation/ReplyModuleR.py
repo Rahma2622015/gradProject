@@ -1,7 +1,7 @@
 import json
 from random import choice
 from Ai.Recommendation.RecommendationExamSystem import Recommendation
-from Ai.Recommendation.ReplyTaskR import ReplyTaskR
+from Ai.EnglishAi.ReplyTask import ReplyTask
 import variables
 class ReplyModuleRe:
     def __init__(self, json_path=variables.ResponseDataLocationRE):
@@ -23,8 +23,7 @@ class ReplyModuleRe:
 
         for r in reply:
             if isinstance(r, tuple) and len(r) > 0:
-                if r[0] == ReplyTaskR.ExamSystem:
-                    print("[DEBUG] Handling Recommendation Task")
+                if r[0] == ReplyTask.ExamSystem:
                     response = self.recommender.handle_exam_recommendation(user_input, user_id)
 
                     if isinstance(response, tuple) and len(response) == 2:
@@ -37,7 +36,7 @@ class ReplyModuleRe:
                         s = "Error processing recommendation."
                         options = []
 
-                elif r[0] == ReplyTaskR.UnknownTask:
+                elif r[0] == ReplyTask.UnknownTask:
                     s = choice(self.data.get("Unknown", ["I'm not sure how to respond to that."]))
                     options = []
 

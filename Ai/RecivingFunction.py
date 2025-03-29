@@ -6,17 +6,14 @@ from Ai.EnglishAi.Preprocessing import Preprocessors
 from Ai.EnglishAi.AutoCorrect import AutoCorrector
 from Ai.EnglishAi.MappingTrivialTasks import MappingTrivial
 from Data.dataStorage import DataStorage
-from Ai.Recommendation.MappingR import TaskMapperR
-from Ai.Recommendation.TaskProcessorR import TaskProcessorRe
 from Ai.Recommendation.ReplyModuleR import ReplyModuleRe
-from Ai.Recommendation.chatTaskR import ChatTaskR
 from Ai.EnglishAi.BigramModel import BigramModel
 from Ai.ArabicAi.ArabicTokenizer import ArabicTokenizers
 from Ai.ArabicAi.Mapping import mapping
 from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 from Ai.ArabicAi.ReplyModule import replyModule
-from Ai.ArabicAi.Autocorrect import ArabicSpellChecker
 from Ai.ArabicAi.TaskProcessor import taskProcessor
+from Ai.EnglishAi.chattask import ChatTask
 import re
 import variables
 
@@ -27,8 +24,6 @@ proces = TaskProcessor()
 t = Tokenizers()
 p = Preprocessors()
 a = AutoCorrector()
-recommendation_mapper = TaskMapperR()
-recom_processor = TaskProcessorRe()
 recom_reply = ReplyModuleRe()
 bigram_model = BigramModel(variables.Bigrams)
 ARmapper = mapping()
@@ -53,11 +48,11 @@ def is_trivial_task(tokens, trivial_mapper) -> bool:
                 return True
     return False
 
-def is_recommendation_task(tokens, pos, recommendation_mapper, allowed_tasks=None) -> bool:
-    mapped_tasks = recommendation_mapper.mapTokenR(tokens, pos)
-    if allowed_tasks is None:
-        allowed_tasks = [ChatTaskR.ExamSystem]
-    return any(task[0] in allowed_tasks for task in mapped_tasks)
+# def is_recommendation_task(tokens, pos, mapper, allowed_tasks=None) -> bool:
+#     mapped_tasks = mapper.mapToken(tokens, pos)
+#     if allowed_tasks is None:
+#         allowed_tasks = [ChatTaskR.ExamSystem]
+#     return any(task[0] in allowed_tasks for task in mapped_tasks)
 
 def receive(message: str, storage: DataStorage, user_id: str):
     languag = detect_language(message)
@@ -78,20 +73,7 @@ def receive(message: str, storage: DataStorage, user_id: str):
                 if not options:
                     storage.clear_data(user_id)
                 return s, options, True
-            if is_recommendation_task(tokens, pos, recommendation_mapper):
-                print("[DEBUG] Mapping using Recommendation Mapping")
-                tasks = recommendation_mapper.mapTokenR(tokens, pos)
-                print(f"[DEBUG] Identified Recommendation tasks: {tasks}, type: {type(tasks)}")
-                if all(task[0] == ChatTaskR.UnknownTask for task in tasks):
-                    print("[DEBUG] No valid recommendation task found, skipping recommendation.")
-                    return "I'm not sure how to answer that.", [], False
-                else:
-                    if any(task[0] == ChatTaskR.ExamSystem for task in tasks):
-                        print("[DEBUG] Handling Exam Recommendation Task")
-                        storage.set_current_task(user_id, "ExamSystem")
-                        s, options = recom_reply.recommender.handle_exam_recommendation("", user_id)
-                        print(f"[DEBUG] First question in Exam Recommendation: {s}, options: {options}")
-                        return s, options, True
+
             else:
                 if is_trivial_task(tokens, trivial_mapper):
                     bigram_model.sentence_probability(tokens)
@@ -102,6 +84,16 @@ def receive(message: str, storage: DataStorage, user_id: str):
                     print("[DEBUG] Mapping using TaskMapper")
                     tasks = mapper.mapToken(tokens, pos)
                 print(f"[DEBUG] Identified tasks: {tasks}, type: {type(tasks)}")
+                if all(task[0] == ChatTask.UnknownTask for task in tasks):
+                    print("[DEBUG] No valid recommendation task found, skipping recommendation.")
+                    return "I'm not sure how to answer that.", [], False
+                else:
+                    if any(task[0] == ChatTask.ExamSystem for task in tasks):
+                        print("[DEBUG] Handling Exam Recommendation Task")
+                        storage.set_current_task(user_id, "ExamSystem")
+                        s, options = recom_reply.recommender.handle_exam_recommendation("", user_id)
+                        print(f"[DEBUG] First question in Exam Recommendation: {s}, options: {options}")
+                        return s, options, True
                 processed_tasks = proces.process(tasks, storage)
                 print(f"[DEBUG] Processed tasks output: {processed_tasks}, type: {type(processed_tasks)}")
                 response = reply.generate_response(processed_tasks)
