@@ -63,6 +63,9 @@ class TaskProcessor:
                 responses.append((ReplyTask.Enrollment, ""))
             elif task_enum == ChatTask.AskHelpingTask:
                 responses.append((ReplyTask.AskHelp, ""))
+            elif task_enum == ChatTask.ExamSystem:
+                responses.append((ReplyTask.ExamSystem, ""))
+                print(f"[DEBUG] Task {task_enum} added to responses.")
             else:
                 responses.append((ReplyTask.UnknownTask,""))
 

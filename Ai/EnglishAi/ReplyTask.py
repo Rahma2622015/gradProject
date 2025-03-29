@@ -24,3 +24,4 @@ class ReplyTask(Enum):
     Enrollment = 20
     AskHelp = 21
     AskName = 22
+    ExamSystem=23

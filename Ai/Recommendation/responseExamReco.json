@@ -50,7 +50,7 @@
       "level": ["sophomore", "2", "two"],
       "semester": ["one", "1"],
       "subject": ["linear algebra", "math 203"],
-      "instructor": ["dr manar", "dr ahmed","dr manar,dr ahmed"],
+      "instructor": ["dr manar", "dr ahmed","dr manar , dr ahmed"],
       "exam_format": {
         "Midterm": ["MCQ + Solve Mathematical Problems"],
         "Final": ["MCQ + Solve Mathematical Problems"]
@@ -383,7 +383,7 @@
       "level": ["senior", "4", "four"],
       "semester": ["two", "2"],
       "subject": ["bioinformatics", "comp 402"],
-      "instructor": ["dr mohamed hashim","dr mohamed fakhry","dr mohamed hashim ,dr mohamed fakhry"],
+      "instructor": ["dr mohamed hashim","dr mohamed fakhry","dr mohamed hashim , dr mohamed fakhry"],
       "exam_format": {
         "Midterm": ["MCQ + more Written Questions"],
         "Final": ["MCQ + Written Questions"]

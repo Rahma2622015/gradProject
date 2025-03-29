@@ -3,7 +3,7 @@ from Data.dataStorage import DataStorage
 import variables
 
 class Recommendation:
-    def __init__(self, json_path=variables.MapDataLocationRE,
+    def __init__(self, json_path=variables.MapDataLocationEn,
                  json_path2=variables.ResponseDataLocationRE):
         self.task_definitionsR = self.load_definitions(json_path)
         self.responses = self.load_responses(json_path2)
@@ -65,23 +65,37 @@ class Recommendation:
 
     def get_subject_options(self, prev_data):
         subjects = {
-            ("sophomore", "one"): ["algorithm", "computability", "oop", "database", "linear algebra", "english"],
-            ("sophomore", "two"): ["data structure", "network", "web programming", "automata", "graph", "ordinary differential equation"],
-            ("junior", "one"): ["java", "syntax", "complexity", "operating system", "abstract algebra", "multimedia", "scientific thinking"],
-            ("junior", "two"): ["scientific research ethics", "combinatorics", "compiler", "graphics", "android", "advanced data base", "crypto"],
-            ("senior", "one"): ["skills", "artificial intelligence", "parallel", "project", "image processing", "cyber security", "Computational geometry"],
-            ("senior", "two"): ["bioinformatics", "software engineering", "project", "advanced artificial intelligence", "data mining"]
+            ("sophomore", "one"): ["algorithm", "computability", "oop", "database"
+                , "linear algebra", "english"],
+            ("sophomore", "two"): ["data structure", "network", "web programming"
+                , "automata", "graph", "ordinary differential equation"],
+            ("junior", "one"): ["java", "syntax", "complexity", "operating system"
+                , "abstract algebra", "multimedia", "scientific thinking"],
+            ("junior", "two"): ["scientific research ethics", "combinatorics", "compiler"
+                , "graphics", "android", "advanced data base", "crypto"],
+            ("senior", "one"): ["skills", "artificial intelligence", "parallel", "project"
+                , "image processing", "cyber security", "Computational geometry"],
+            ("senior", "two"): ["bioinformatics", "software engineering", "project"
+                , "advanced artificial intelligence", "data mining"]
         }
         return subjects.get((prev_data.get("year"), prev_data.get("semester")), [])
 
     def get_professor_options(self, prev_data):
         professors = {
-            ("sophomore", "one"): ["dr niveen", "dr dowlt", "dr ghada", "dr wael", "dr manar", "dr ahmed"],
-            ("sophomore", "two"): ["dr wael", "dr ghada", "dr hussein", "dr mohamed", "dr nashwa", "dr azaa"],
-            ("junior", "one"): ["dr nashwa", "dr azza", "dr neveen", "dr mohamed", "dr ahmed", "dr hussein"],
-            ("junior", "two"): ["dr abdelrahman", "dr neveen", "dr wael", "dr hussein", "dr deiaa"],
-            ("senior", "one"): ["dr mohamed", "dr azza", "dr mohamed fakhry", "dr hewayda", "dr deiaa", "dr ghada"],
-            ("senior", "two"): ["dr mohamed hashim", "dr mohamed fakhry", "dr hussein", "dr azza", "dr hewayda", "dr dowlt"]
+            ("sophomore", "one"): ["dr niveen", "dr dowlt", "dr ghada", "dr wael", "dr manar"
+                , "dr ahmed","dr niveen , dr dowlt","dr manar , dr ahmed"],
+            ("sophomore", "two"): ["dr wael", "dr ghada", "dr hussein", "dr mohamed"
+                , "dr nashwa", "dr azaa","dr wael , dr ghada" ,"dr mohamed , dr nashwa"
+                ,"dr hany & dr samir"],
+            ("junior", "one"): ["dr nashwa", "dr azza", "dr neveen", "dr mohamed"
+                , "dr ahmed", "dr hussein","dr mohamed & dr neveen"],
+            ("junior", "two"): ["dr abdelrahman", "dr neveen", "dr wael", "dr hussein"
+                , "dr deiaa"],
+            ("senior", "one"): ["dr mohamed", "dr azza", "dr mohamed fakhry", "dr hewayda"
+                , "dr deiaa", "dr ghada"],
+            ("senior", "two"): ["dr mohamed hashim", "dr mohamed fakhry"
+                , "dr hussein", "dr azza", "dr hewayda", "dr dowlt"
+                ,"dr mohamed hashim , dr mohamed fakhry","dr hewayda , dr azza"]
         }
         return professors.get((prev_data.get("year"), prev_data.get("semester")), [])
 
