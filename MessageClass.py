@@ -1,8 +1,6 @@
-from Sender import sender
 
 class Message:
-    def __init__(self, sender: sender, encrypted_content: str, signature: str, receiver_username: str = ""):
-        self.sender = s
+    def __init__(self, encrypted_content: str, signature: str, receiver_username: str = ""):
         self.encrypted_content = encrypted_content
         self.signature = signature
         self.receiver_username = receiver_username
