@@ -1,8 +1,7 @@
-
+from cryptoManager import RSAEncryptor
 class user:
-    def __init__(self, username):
-        self.username = username
+    def __init__(self, encryptor:RSAEncryptor):
+        self.publicKey=encryptor.public_key
 
-    def getUsername(self):
-        return self.username
-
+    def getPublicKey(self):
+        return self.publicKey
