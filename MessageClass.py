@@ -1,9 +1,9 @@
 
 class Message:
     def __init__(self, encrypted_content: str, signature: str, receiver_username: str = ""):
-        self.encrypted_content = encrypted_content
-        self.signature = signature
-        self.receiver_username = receiver_username
+        self.__encrypted_content = encrypted_content
+        self.__signature = signature
+        self.__receiver_username = receiver_username
 
     def get_encrypted_content(self) -> str:
         return self.encrypted_content
