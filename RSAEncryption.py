@@ -7,8 +7,6 @@ class RSAEncryptor(EncryptionInterface):
         self.private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
         self.public_key = self.private_key.public_key()
 
-    def getPublicKey(self):
-        return self.public_key
 
     def encrypt(self, data: str) -> bytes:
         return self.public_key.encrypt(
@@ -37,3 +35,18 @@ class RSAEncryptor(EncryptionInterface):
             padding.PKCS1v15(),
             hashes.SHA256()
         )
+
+
+    def verifySignature(self, data: str, signature: bytes, public_key: rsa.RSAPublicKey) -> bool:
+        try:
+            public_key.verify(
+                signature,
+                data.encode(),
+                padding.PKCS1v15(),
+                hashes.SHA256()
+            )
+            return True
+        except Exception as e:
+            return False
+
+
