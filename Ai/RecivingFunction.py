@@ -14,6 +14,7 @@ from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 from Ai.ArabicAi.ReplyModule import replyModule
 from Ai.ArabicAi.TaskProcessor import taskProcessor
 from Ai.EnglishAi.chattask import ChatTask
+from Ai.Recommendation.RecomCourses import CourseRecommendation
 import re
 import variables
 
@@ -48,12 +49,6 @@ def is_trivial_task(tokens, trivial_mapper) -> bool:
                 return True
     return False
 
-# def is_recommendation_task(tokens, pos, mapper, allowed_tasks=None) -> bool:
-#     mapped_tasks = mapper.mapToken(tokens, pos)
-#     if allowed_tasks is None:
-#         allowed_tasks = [ChatTaskR.ExamSystem]
-#     return any(task[0] in allowed_tasks for task in mapped_tasks)
-
 def receive(message: str, storage: DataStorage, user_id: str):
     languag = detect_language(message)
     if languag == "English":
@@ -66,6 +61,7 @@ def receive(message: str, storage: DataStorage, user_id: str):
             prev_data = storage.get_prev_data(user_id)
             print(f"[DEBUG] Current task before processing: {storage.get_current_task(user_id)}")
             s, options = "", []
+
             if storage.get_current_task(user_id) == "ExamSystem":
                 print("[DEBUG] Continuing Exam Recommendation Flow")
                 s, options = recom_reply.recommender.handle_exam_recommendation(message, user_id)
@@ -73,7 +69,13 @@ def receive(message: str, storage: DataStorage, user_id: str):
                 if not options:
                     storage.clear_data(user_id)
                 return s, options, True
-
+            elif storage.get_current_task(user_id) == "CourseSystem":
+                print("[DEBUG] Continuing Course Recommendation Flow")
+                s, options = recom_reply.course_recommender.handle_course_recommendation(message, user_id)
+                print(f"[DEBUG] Updated prev_data after response: {storage.get_prev_data(user_id)}")
+                if not options:
+                    storage.clear_data(user_id)
+                return s, options, True
             else:
                 if is_trivial_task(tokens, trivial_mapper):
                     bigram_model.sentence_probability(tokens)
@@ -89,11 +91,17 @@ def receive(message: str, storage: DataStorage, user_id: str):
                     return "I'm not sure how to answer that.", [], False
                 else:
                     if any(task[0] == ChatTask.ExamSystem for task in tasks):
-                        print("[DEBUG] Handling Exam Recommendation Task")
-                        storage.set_current_task(user_id, "ExamSystem")
-                        s, options = recom_reply.recommender.handle_exam_recommendation("", user_id)
-                        print(f"[DEBUG] First question in Exam Recommendation: {s}, options: {options}")
-                        return s, options, True
+                            print("[DEBUG] Handling Exam Recommendation Task")
+                            storage.set_current_task(user_id, "ExamSystem")
+                            s, options = recom_reply.recommender.handle_exam_recommendation("", user_id)
+                            print(f"[DEBUG] First question in Exam Recommendation: {s}, options: {options}")
+                            return s, options, True
+                    elif any(task[0] == ChatTask.CourseSystem for task in tasks):
+                            print("[DEBUG] Handling Course Recommendation Task")
+                            storage.set_current_task(user_id, "CourseSystem")
+                            s, options = recom_reply.course_recommender.handle_course_recommendation("", user_id)
+                            print(f"[DEBUG] First question in course Recommendation: {s}, options: {options}")
+                            return s, options, True
                 processed_tasks = proces.process(tasks, storage)
                 print(f"[DEBUG] Processed tasks output: {processed_tasks}, type: {type(processed_tasks)}")
                 response = reply.generate_response(processed_tasks)
@@ -102,13 +110,13 @@ def receive(message: str, storage: DataStorage, user_id: str):
                     s, options = response if len(response) == 2 else (response[0], [])
                 else:
                     s, options = response, []
-            if not s:
-                s = "I'm sorry, I couldn't process your request."
+                if not s:
+                    s = "I'm sorry, I couldn't process your request."
             if not options:
                 options = []
             return s, options, False
         except Exception as e:
-            return f"Error in English processing: {str(e)}"
+            return f"Error in English processing: {str(e)}", [], False
     elif languag == "Arabic":
         try:
             ARtokens = ARt.tokenize(message)
@@ -117,8 +125,8 @@ def receive(message: str, storage: DataStorage, user_id: str):
             ARtasks = ARmapper.mapToken(ARtokens, ARpos)
             ARpre = ARproces.process(ARtasks, storage)
             print(ARtokens)
-            return ARreply.generate_response(ARpre),None,None
+            return ARreply.generate_response(ARpre), None, None
         except Exception as e:
-            return f"حدث خطأ أثناء معالجة العربية: {str(e)}"
+            return f"حدث خطأ أثناء معالجة العربية: {str(e)}", None, None
 
-    return "Sorry, I can't recognize this language.",None,None
+    return "Sorry, I can't recognize this language.", None, None

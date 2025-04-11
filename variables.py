@@ -1,4 +1,4 @@
-ip="192.168.1.6:3000"
+ip="172.16.20.37:3000"
 cert_loc='F:/gradProject/cert.crt'
 key_loc='F:/gradProject/private.key'
 
@@ -10,6 +10,8 @@ MapDataLocationEn=r"F:\\gradProject\\Ai\\EnglishAi\\map.json"
 ResponseDataLocationEn=r"F:\\gradProject\\Ai\\EnglishAi\\response.json"
 
 ResponseDataLocationRE=r"F:\\gradProject\\Ai\\Recommendation\\responseExamReco.json"
+
+RecomLocation=r"F:\\gradProject\\Ai\\Recommendation\\courses.json"
 
 NamesinCorrectEnglish=r"F:\gradProject\Ai\EnglishAi\Names.txt"
 NamesinCorrectArabic=r"F:\gradProject\Ai\ArabicAi\arabic_names.txt"

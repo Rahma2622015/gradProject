@@ -3,6 +3,9 @@
     filter: invert();
   }
 }
+.hiddendiv{
+    display:none;
+}
 .modebutton {
   /* بيخلي العنصر ثابتً في مكانه بالنسبة لباقي الصفحة و مش  يتحرك  لما بعمل scroll. */
   position: fixed;

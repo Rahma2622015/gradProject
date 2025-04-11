@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import styles from "./panel.module.css";
+import styles from "./login.module.css";
 import Link from "next/link";
 import {useState,useEffect} from 'react'
 import {toast}from 'react-toastify'
@@ -36,7 +36,7 @@ function login() {
 
         if (validUser) {
           toast.success("Login successful!");
-          router.push("/GeneralSettings");
+          router.push("/config-panel/Bar");
         } else {
           toast.error("Invalid email or password!");
         }

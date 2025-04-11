@@ -1,0 +1,71 @@
+.container {
+  max-width: 1800px;
+  margin: 20px;
+  padding: 30px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.label {
+  min-width: 120px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.input {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-right: 5px;
+  padding: 8px;
+  width: 200px;
+}
+
+.addEntry {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top:20px;
+}
+
+.addButton, .downloadButton {
+  padding: 10px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top:10px;
+}
+
+.addButton:hover, .downloadButton:hover {
+  background-color: #005bb5;
+}
+
+.nestedObject {
+  margin-left: 20px;
+  border-left: 2px dashed #ccc;
+  padding-left: 10px;
+  margin-top: 8px;
+}

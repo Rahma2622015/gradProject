@@ -1,0 +1,995 @@
+{
+    "first": {
+        "one": {
+            "calculus & integration": {
+                "questions": {
+                    "do you enjoy solving math in high school?": {
+                        "yes, a lot": 10,
+                        "sometimes": 5,
+                        "no, not really": 0
+                    },
+                    "do you love math in general?": {
+                        "yes, very much": 10,
+                        "it's okay": 5,
+                        "not at all": 0
+                    },
+                    "do you love solving with overthinking?": {
+                        "yes, I enjoy challenges": 10,
+                        "it depends on the problem": 5,
+                        "no, I prefer easy solutions": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "physics": {
+                "questions": {
+                    "do you enjoy solving physics problems related to mechanics?": {
+                        "yes, I love it": 10,
+                        "i understand it but not my favorite": 5,
+                        "no, I don't like it": 0
+                    },
+                    "are you comfortable with understanding concepts like force, motion, and energy?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "not comfortable at all": 0
+                    },
+                    "do you have experience with physics simulations or experiments?": {
+                        "yes, I have solid experience": 10,
+                        "i have basic experience": 5,
+                        "no experience at all": 0
+                    },
+                    "do you enjoy working with mathematical models in physics?": {
+                        "yes, I enjoy it": 10,
+                        "i can do it but not my favorite": 5,
+                        "no, I prefer other approaches": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "chemistry": {
+                "questions": {
+                    "do you enjoy experimenting in the lab?": {
+                        "yes, I love it": 10,
+                        "sometimes": 5,
+                        "no, I don't enjoy it": 0
+                    },
+                    "do you like learning about chemical reactions?": {
+                        "yes, very much": 10,
+                        "a little bit": 5,
+                        "not at all": 0
+                    },
+                    "are you comfortable with balancing chemical equations?": {
+                        "yes, I can do it easily": 10,
+                        "i struggle sometimes": 5,
+                        "no, I find it difficult": 0
+                    },
+                    "do you like solving problems related to chemistry?": {
+                        "yes, I find it interesting": 10,
+                        "sometimes": 5,
+                        "no, I don't enjoy it": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "statistics": {
+                "questions": {
+                    "do you enjoy analyzing data?": {
+                        "yes, I love it": 10,
+                        "sometimes": 5,
+                        "no, I don't like it": 0
+                    },
+                    "are you comfortable with probability concepts?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "not comfortable at all": 0
+                    },
+                    "do you have experience with statistical tools like Excel, R, or Python?": {
+                        "yes, I have solid experience": 10,
+                        "i have basic experience": 5,
+                        "no experience at all": 0
+                    },
+                    "do you enjoy working with large datasets?": {
+                        "yes, I enjoy it": 10,
+                        "i can do it but not my favorite": 5,
+                        "no, I prefer smaller datasets": 0
+                    }
+                },
+                "pass_threshold": 70
+            }
+        },
+        "two": {
+            "c++": {
+                "questions": {
+                    "do you have experience writing programs in c++?": {
+                        "yes, i have solid experience": 10,
+                        "i have basic experience": 5,
+                        "no experience at all": 0
+                    },
+                    "are you comfortable working with pointers and memory management?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "not comfortable at all": 0
+                    },
+                    "do you understand concepts like classes and object-oriented programming in c++?": {
+                        "yes, very well": 10,
+                        "i know the basics": 5,
+                        "no, i struggle with it": 0
+                    },
+                    "do you enjoy solving problems using c++?": {
+                        "yes, i love it": 10,
+                        "sometimes": 5,
+                        "no, i prefer other languages": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "html & css": {
+                "questions": {
+                    "do you enjoy building websites using html and css?": {
+                        "yes, i love it": 10,
+                        "i can do it but not my favorite": 5,
+                        "no, i don’t like it": 0
+                    },
+                    "are you comfortable styling websites using css and frameworks like bootstrap?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "not comfortable at all": 0
+                    },
+                    "do you like making websites responsive for different screen sizes?": {
+                        "yes, i enjoy it": 10,
+                        "i can do it but it's tricky": 5,
+                        "no, i don’t like it": 0
+                    },
+                    "do you enjoy creating animations and effects using css?": {
+                        "yes, it's fun": 10,
+                        "sometimes": 5,
+                        "no, i find it difficult": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "logic design": {
+                "questions": {
+                    "do you enjoy working with digital circuits and logic gates?": {
+                        "yes, i love it": 10,
+                        "i understand the basics": 5,
+                        "no, i don’t like it": 0
+                    },
+                    "are you comfortable designing combinational circuits?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "not comfortable at all": 0
+                    },
+                    "do you have experience with sequential circuits like flip-flops and counters?": {
+                        "yes, i understand them well": 10,
+                        "i know the basics": 5,
+                        "no, i struggle with them": 0
+                    },
+                    "do you enjoy working with boolean algebra and karnaugh maps?": {
+                        "yes, i find them interesting": 10,
+                        "they are okay": 5,
+                        "no, i don’t like them": 0
+                    }
+                },
+                "pass_threshold": 70
+            }
+        }},
+    "second": {
+        "one": {
+            "database": {
+                "questions": {
+                    "are you comfortable with writing sql queries?": {
+                        "yes, i write sql queries regularly": 10,
+                        "i know the basics": 5,
+                        "no, i haven't used sql much": 0
+                    },
+                    "do you like understanding how data is stored and retrieved efficiently?": {
+                        "yes, i enjoy optimizing databases": 10,
+                        "i have some interest": 5,
+                        "no, i don’t care about it": 0
+                    },
+                    "are you interested in database security and optimization?": {
+                        "yes, very interested": 10,
+                        "somewhat interested": 5,
+                        "not interested at all": 0
+                    },
+                    "do you have experience working with nosql databases like mongodb?": {
+                        "yes, i have used them": 10,
+                        "i have basic knowledge": 5,
+                        "no, i haven't worked with them": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "algorithm": {
+                "questions": {
+                    "do you enjoy thinking about how to solve specific problems?": {
+                        "yes, i love problem-solving": 10,
+                        "sometimes, if it's interesting": 5,
+                        "no, i find it difficult": 0
+                    },
+                    "are you comfortable analyzing the time and space complexity of algorithms?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "not comfortable at all": 0
+                    },
+                    "do you enjoy implementing algorithms like sorting and searching?": {
+                        "yes, i find it exciting": 10,
+                        "i can do it but not my favorite": 5,
+                        "no, i struggle with it": 0
+                    },
+                    "do you like solving competitive programming challenges?": {
+                        "yes, i participate regularly": 10,
+                        "i try sometimes": 5,
+                        "no, i don't enjoy it": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "computability": {
+                "questions": {
+                    "do you enjoy studying automata theory and formal languages?": {
+                        "yes, it's very interesting": 10,
+                        "i understand the basics": 5,
+                        "no, i don't like it": 0
+                    },
+                    "are you comfortable with concepts like turing machines and decidability?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "not comfortable at all": 0
+                    },
+                    "do you like proving theorems related to computational complexity?": {
+                        "yes, i enjoy mathematical proofs": 10,
+                        "sometimes, if it's not too complex": 5,
+                        "no, i find it boring": 0
+                    },
+                    "do you enjoy understanding the limits of what computers can compute?": {
+                        "yes, it's fascinating": 10,
+                        "i have some interest": 5,
+                        "no, i don't care about it": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "oop": {
+                "questions": {
+                    "do you enjoy working with object-oriented programming?": {
+                        "yes, i love it": 10,
+                        "i understand the basics": 5,
+                        "no, i prefer other paradigms": 0
+                    },
+                    "are you comfortable with concepts like inheritance and polymorphism?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "not comfortable at all": 0
+                    },
+                    "do you have experience with java or c++?": {
+                        "yes, i have solid experience": 10,
+                        "i have basic knowledge": 5,
+                        "no, i haven't used them": 0
+                    },
+                    "do you like designing software using reusable components?": {
+                        "yes, it's efficient": 10,
+                        "sometimes": 5,
+                        "no, i find it complex": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "linear algebra": {
+                "questions": {
+                    "do you enjoy working with matrices and vectors?": {
+                        "yes, i love it": 10,
+                        "i understand the basics": 5,
+                        "no, i don't like it": 0
+                    },
+                    "are you comfortable with solving linear equations?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "not comfortable at all": 0
+                    },
+                    "do you like working with eigenvalues and eigenvectors?": {
+                        "yes, it's interesting": 10,
+                        "i understand them a little": 5,
+                        "no, i find them difficult": 0
+                    },
+                    "do you see applications of linear algebra in computer science (e.g., graphics, ai, ml)?": {
+                        "yes, i find it useful": 10,
+                        "i know some applications": 5,
+                        "no, i don’t see its relevance": 0
+                    }
+                },
+                "pass_threshold": 70
+            }
+        },
+        "two": {
+            "data structure": {
+                "questions": {
+                    "do you like working with different types of data structures like stacks and queues?": {
+                        "yes, i enjoy them a lot": 10,
+                        "i find them somewhat useful": 5,
+                        "no, i don’t like them": 0
+                    },
+                    "are you comfortable analyzing the efficiency of algorithms?": {
+                        "yes, i’m very comfortable": 10,
+                        "i’m somewhat comfortable": 5,
+                        "no, i struggle with this": 0
+                    },
+                    "do you have a solid understanding of recursion?": {
+                        "yes, i understand recursion well": 10,
+                        "i understand the basics of recursion": 5,
+                        "no, i don’t understand recursion": 0
+                    },
+                    "do you enjoy solving problems using trees and graphs?": {
+                        "yes, i enjoy working with trees and graphs": 10,
+                        "i find them interesting but challenging": 5,
+                        "no, i don't like working with them": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "network": {
+                "questions": {
+                    "do you enjoy studying network protocols and their implementation?": {
+                        "yes, i find it fascinating": 10,
+                        "i understand the basics but not very interested": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you familiar with concepts like ip addressing and subnetting?": {
+                        "yes, i’m very comfortable with it": 10,
+                        "i understand it but need more practice": 5,
+                        "no, i don’t understand it well": 0
+                    },
+                    "do you enjoy working with network security protocols such as ssl/tls?": {
+                        "yes, i enjoy learning about network security": 10,
+                        "i find it interesting but challenging": 5,
+                        "no, i don't like network security": 0
+                    },
+                    "are you comfortable working with routing and switching concepts?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable, but still learning": 5,
+                        "no, i find it difficult": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "web programming": {
+                "questions": {
+                    "do you enjoy working with html, css, and javascript for building websites?": {
+                        "yes, i love web development": 10,
+                        "i have some experience but not very interested": 5,
+                        "no, i don’t enjoy web development": 0
+                    },
+                    "are you familiar with backend development using frameworks like django or node.js?": {
+                        "yes, i’m very interested in backend development": 10,
+                        "i’m somewhat interested but prefer frontend": 5,
+                        "no, i’m not interested in backend development": 0
+                    },
+                    "do you like creating responsive and interactive user interfaces?": {
+                        "yes, i enjoy it": 10,
+                        "i find it interesting but challenging": 5,
+                        "no, i don’t like it": 0
+                    },
+                    "are you comfortable working with databases and apis in web development?": {
+                        "yes, i’m very comfortable": 10,
+                        "i need more experience but i'm learning": 5,
+                        "no, i find it difficult": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "automata": {
+                "questions": {
+                    "do you enjoy studying automata theory and formal languages?": {
+                        "yes, it's fascinating": 10,
+                        "i understand the basics but need more practice": 5,
+                        "no, i don't enjoy it": 0
+                    },
+                    "are you comfortable with concepts like finite automata and regular expressions?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "no, i find them difficult": 0
+                    },
+                    "do you like proving theorems related to automata and formal languages?": {
+                        "yes, i enjoy mathematical proofs": 10,
+                        "i sometimes find it interesting but difficult": 5,
+                        "no, i find it boring": 0
+                    },
+                    "are you familiar with the chomsky hierarchy and its significance?": {
+                        "yes, very familiar": 10,
+                        "i have some understanding of it": 5,
+                        "no, i’m not familiar with it": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "graph": {
+                "questions": {
+                    "do you enjoy studying graph algorithms and their applications?": {
+                        "yes, it's very interesting": 10,
+                        "i understand the basics but find it challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with concepts like graph traversal and shortest path algorithms?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "no, i find them difficult": 0
+                    },
+                    "do you like solving problems using graph-based structures such as trees and networks?": {
+                        "yes, i enjoy solving these problems": 10,
+                        "i find it interesting but complex": 5,
+                        "no, i don’t enjoy graph problems": 0
+                    },
+                    "are you familiar with graph theory applications in computer networks and ai?": {
+                        "yes, very familiar": 10,
+                        "i have some knowledge but need more study": 5,
+                        "no, i’m not familiar with these applications": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "ordinary differential equation": {
+                "questions": {
+                    "do you enjoy solving ordinary differential equations?": {
+                        "yes, it's interesting": 10,
+                        "i understand the basics but find it challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with methods like separation of variables and integrating factors?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "no, i find them difficult": 0
+                    },
+                    "do you like applying differential equations to real-world problems?": {
+                        "yes, i find it fascinating": 10,
+                        "i understand the concept but it's challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you familiar with techniques like laplace transforms in solving odes?": {
+                        "yes, very familiar": 10,
+                        "i have some knowledge but need more practice": 5,
+                        "no, i’m not familiar with it": 0
+                    }
+                },
+                "pass_threshold": 70
+            }
+        }
+    },
+    "third": {
+        "one": {
+            "java": {
+                "questions": {
+                    "are you interested in understanding how operating systems work?": {
+                        "yes, very interested": 10,
+                        "somewhat interested": 5,
+                        "no, not interested": 0
+                    },
+                    "do you enjoy managing memory and processes?": {
+                        "yes, i find it fascinating": 10,
+                        "i find it a bit challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with linux and command-line interfaces?": {
+                        "yes, i’m very comfortable": 10,
+                        "i’m somewhat comfortable": 5,
+                        "no, i’m not comfortable": 0
+                    },
+                    "do you like studying file systems and scheduling algorithms?": {
+                        "yes, i enjoy them": 10,
+                        "i find them somewhat interesting": 5,
+                        "no, i don’t like them": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "syntax": {
+                "questions": {
+                    "do you enjoy working with images, videos, and sound processing?": {
+                        "yes, i love working with multimedia": 10,
+                        "i find it interesting but challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you interested in learning about compression techniques?": {
+                        "yes, i find them fascinating": 10,
+                        "i know a little but would like to learn more": 5,
+                        "no, i’m not interested": 0
+                    },
+                    "do you like implementing multimedia algorithms in programming?": {
+                        "yes, i love implementing algorithms": 10,
+                        "i find them challenging but rewarding": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "do you have a creative approach to problem-solving?": {
+                        "yes, i love finding creative solutions": 10,
+                        "i try to be creative, but sometimes struggle": 5,
+                        "no, i prefer following predefined methods": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "complexity": {
+                "questions": {
+                    "do you enjoy working with images, videos, and sound processing?": {
+                        "yes, i love working with multimedia": 10,
+                        "i find it interesting but challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you interested in learning about compression techniques?": {
+                        "yes, i find them fascinating": 10,
+                        "i know a little but would like to learn more": 5,
+                        "no, i’m not interested": 0
+                    },
+                    "do you like implementing multimedia algorithms in programming?": {
+                        "yes, i love implementing algorithms": 10,
+                        "i find them challenging but rewarding": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "do you have a creative approach to problem-solving?": {
+                        "yes, i love finding creative solutions": 10,
+                        "i try to be creative, but sometimes struggle": 5,
+                        "no, i prefer following predefined methods": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "operating system": {
+                "questions": {
+                    "do you enjoy working with images, videos, and sound processing?": {
+                        "yes, i love working with multimedia": 10,
+                        "i find it interesting but challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you interested in learning about compression techniques?": {
+                        "yes, i find them fascinating": 10,
+                        "i know a little but would like to learn more": 5,
+                        "no, i’m not interested": 0
+                    },
+                    "do you like implementing multimedia algorithms in programming?": {
+                        "yes, i love implementing algorithms": 10,
+                        "i find them challenging but rewarding": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "do you have a creative approach to problem-solving?": {
+                        "yes, i love finding creative solutions": 10,
+                        "i try to be creative, but sometimes struggle": 5,
+                        "no, i prefer following predefined methods": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "abstract algebra": {
+                "questions": {
+                    "do you enjoy working with abstract mathematical structures such as groups, rings, and fields?": {
+                        "yes, i find them fascinating": 10,
+                        "i find them interesting but challenging": 5,
+                        "no, i don’t enjoy them": 0
+                    },
+                    "are you comfortable with proof-based mathematics?": {
+                        "yes, i enjoy proving theorems": 10,
+                        "i find it a bit challenging but manageable": 5,
+                        "no, i don’t enjoy proofs": 0
+                    },
+                    "do you like solving algebraic equations and manipulating variables?": {
+                        "yes, i love it": 10,
+                        "i find it challenging but rewarding": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you interested in learning about homomorphisms and isomorphisms?": {
+                        "yes, they sound fascinating": 10,
+                        "i’m interested but haven’t explored much yet": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "multimedia": {
+                "questions": {
+                    "do you enjoy working with digital images, videos, and audio data?": {
+                        "yes, i love working with multimedia": 10,
+                        "i find it interesting but challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you interested in learning about various multimedia compression techniques?": {
+                        "yes, i find them fascinating": 10,
+                        "i know a little but would like to learn more": 5,
+                        "no, i’m not interested": 0
+                    },
+                    "do you enjoy writing algorithms for multimedia processing tasks?": {
+                        "yes, i love implementing algorithms": 10,
+                        "i find them challenging but rewarding": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you interested in exploring multimedia encryption or security techniques?": {
+                        "yes, i’d love to explore them": 10,
+                        "i’m somewhat interested but not yet familiar with them": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            }
+        },
+        "two": {
+            "combinatorics": {
+                "questions": {
+                    "do you enjoy working with permutations and combinations?": {
+                        "yes, i find them fascinating": 10,
+                        "i find them interesting but challenging": 5,
+                        "no, i don’t enjoy them": 0
+                    },
+                    "are you comfortable with graph theory and its applications?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "no, not comfortable at all": 0
+                    },
+                    "do you like solving counting problems in combinatorics?": {
+                        "yes, i enjoy them": 10,
+                        "i find them interesting but difficult": 5,
+                        "no, i don’t enjoy them": 0
+                    },
+                    "do you have strong problem-solving skills in combinatorics?": {
+                        "yes, i am confident in my skills": 10,
+                        "i have some skills but need more practice": 5,
+                        "no, i struggle with these concepts": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "compiler": {
+                "questions": {
+                    "do you enjoy understanding how compilers translate high-level code to machine code?": {
+                        "yes, i find it very interesting": 10,
+                        "i’m somewhat interested": 5,
+                        "no, i don’t find it interesting": 0
+                    },
+                    "are you interested in the concepts of lexical analysis and syntax parsing?": {
+                        "yes, i find it exciting": 10,
+                        "i’m interested but it’s challenging": 5,
+                        "no, i’m not interested": 0
+                    },
+                    "do you have experience with writing or understanding compilers and their optimization?": {
+                        "yes, i have experience": 10,
+                        "i have some experience but need more practice": 5,
+                        "no, i don’t have experience": 0
+                    },
+                    "do you like studying the optimization techniques used in compilers?": {
+                        "yes, i enjoy it": 10,
+                        "i find it interesting but complex": 5,
+                        "no, i don’t enjoy it": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "graphics": {
+                "questions": {
+                    "do you enjoy working with 2d and 3d computer graphics?": {
+                        "yes, i find it fascinating": 10,
+                        "i enjoy it but find it challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with using graphics libraries like opengl or directx?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "no, not comfortable at all": 0
+                    },
+                    "do you like working on rendering algorithms and shaders?": {
+                        "yes, i love it": 10,
+                        "i find it interesting but difficult": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "do you have strong mathematical skills for transformations, lighting, and shading?": {
+                        "yes, i’m confident in my skills": 10,
+                        "i have some skills but need more practice": 5,
+                        "no, i struggle with these concepts": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "android": {
+                "questions": {
+                    "do you enjoy developing mobile applications for android?": {
+                        "yes, i find it exciting": 10,
+                        "i find it interesting but challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with android sdk and java/kotlin programming?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "no, not comfortable at all": 0
+                    },
+                    "do you like implementing android ui and handling user interactions?": {
+                        "yes, i enjoy it": 10,
+                        "i find it challenging but rewarding": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you interested in learning about mobile app performance optimization?": {
+                        "yes, i find it fascinating": 10,
+                        "i’m somewhat interested but need more experience": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "advanced database": {
+                "questions": {
+                    "do you enjoy working with database management systems (dbms) and query languages?": {
+                        "yes, i find them fascinating": 10,
+                        "i find them interesting but challenging": 5,
+                        "no, i don’t enjoy them": 0
+                    },
+                    "are you comfortable with advanced sql and database design concepts?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "no, not comfortable at all": 0
+                    },
+                    "do you like learning about database optimization and performance tuning?": {
+                        "yes, i enjoy it": 10,
+                        "i find it interesting but complex": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you interested in distributed databases and data consistency techniques?": {
+                        "yes, i find them fascinating": 10,
+                        "i’m somewhat interested but haven’t explored much yet": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "crypto": {
+                "questions": {
+                    "do you enjoy working with encryption and cryptographic algorithms?": {
+                        "yes, i find them fascinating": 10,
+                        "i find them interesting but challenging": 5,
+                        "no, i don’t enjoy them": 0
+                    },
+                    "are you comfortable with public key cryptography and key exchange protocols?": {
+                        "yes, very comfortable": 10,
+                        "somewhat comfortable": 5,
+                        "no, not comfortable at all": 0
+                    },
+                    "do you like exploring cryptographic attack techniques and their countermeasures?": {
+                        "yes, i enjoy it": 10,
+                        "i find it interesting but complex": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you interested in blockchain technology and its applications?": {
+                        "yes, i find it fascinating": 10,
+                        "i’m somewhat interested but don’t know much about it": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            }
+        }
+    },
+    "fourth": {
+        "one": {
+            "artificial intelligence": {
+                "questions": {
+                    "do you enjoy finding and fixing security vulnerabilities in ai systems?": {
+                        "yes, i enjoy it": 10,
+                        "i find it challenging but interesting": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you interested in ai ethics and its implications?": {
+                        "yes, i find it fascinating": 10,
+                        "i have some interest but not much knowledge": 5,
+                        "no, i’m not interested": 0
+                    },
+                    "do you have strong machine learning skills for ai model development?": {
+                        "yes, i am confident in my skills": 10,
+                        "i have basic skills but need more practice": 5,
+                        "no, i lack these skills": 0
+                    },
+                    "are you interested in the applications of ai in fields like healthcare and robotics?": {
+                        "yes, i’m very interested": 10,
+                        "i’m somewhat interested but not knowledgeable": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "parallel": {
+                "questions": {
+                    "do you enjoy working with parallel computing and distributed systems?": {
+                        "yes, i find it exciting": 10,
+                        "i am interested but find it complex": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with parallel programming languages and tools like mpi or openmp?": {
+                        "yes, i’m very comfortable": 10,
+                        "i’m somewhat comfortable but need more practice": 5,
+                        "no, i’m not comfortable at all": 0
+                    },
+                    "do you have a strong background in algorithm design and optimization for parallel systems?": {
+                        "yes, i’m confident in these areas": 10,
+                        "i have some knowledge but need more experience": 5,
+                        "no, i don’t have a strong background": 0
+                    },
+                    "are you interested in ai applications like parallel neural networks and distributed deep learning?": {
+                        "yes, i’m very interested": 10,
+                        "i’m somewhat interested but not knowledgeable": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "image processing": {
+                "questions": {
+                    "do you enjoy working with image data and transformations?": {
+                        "yes, i find it exciting": 10,
+                        "i am interested but find it complex": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with image processing libraries like opencv or pillow?": {
+                        "yes, i’m very comfortable": 10,
+                        "i’m somewhat comfortable but need more practice": 5,
+                        "no, i’m not comfortable": 0
+                    },
+                    "do you have experience with machine learning for image classification?": {
+                        "yes, i have experience": 10,
+                        "i have some experience but need more practice": 5,
+                        "no, i don’t have experience": 0
+                    },
+                    "are you interested in computer vision applications like object detection?": {
+                        "yes, i’m very interested": 10,
+                        "i’m somewhat interested but not knowledgeable": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "cyber security": {
+                "questions": {
+                    "do you enjoy learning about network security and protocols?": {
+                        "yes, i find it fascinating": 10,
+                        "i am interested but find it challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with cryptography and encryption techniques?": {
+                        "yes, i’m very comfortable": 10,
+                        "i’m somewhat comfortable but need more practice": 5,
+                        "no, i’m not comfortable": 0
+                    },
+                    "do you have experience in ethical hacking or penetration testing?": {
+                        "yes, i have experience": 10,
+                        "i have some experience but need more practice": 5,
+                        "no, i don’t have experience": 0
+                    },
+                    "are you interested in learning about malware analysis?": {
+                        "yes, i find it very interesting": 10,
+                        "i’m somewhat interested but don’t know much": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "computational geometry": {
+                "questions": {
+                    "do you enjoy solving geometric problems with algorithms?": {
+                        "yes, i find it exciting": 10,
+                        "i’m interested but find it complex": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with computational geometry algorithms like convex hull and voronoi diagrams?": {
+                        "yes, i’m very comfortable": 10,
+                        "i’m somewhat comfortable but need more practice": 5,
+                        "no, i’m not comfortable": 0
+                    },
+                    "do you have experience with geometric data structures like kd-trees?": {
+                        "yes, i have experience": 10,
+                        "i have some experience but need more practice": 5,
+                        "no, i don’t have experience": 0
+                    },
+                    "are you interested in applying computational geometry in areas like computer graphics or robotics?": {
+                        "yes, i’m very interested": 10,
+                        "i’m somewhat interested but not knowledgeable": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            }
+        },
+        "two": {
+            "bioinformatics": {
+                "questions": {
+                    "do you enjoy working with biological data and genomic sequences?": {
+                        "yes, i find it exciting": 10,
+                        "i am interested but find it complex": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable using bioinformatics tools like blast or genome browsers?": {
+                        "yes, i’m very comfortable": 10,
+                        "i’m somewhat comfortable but need more practice": 5,
+                        "no, i’m not comfortable": 0
+                    },
+                    "do you have experience with data analysis techniques in genomics?": {
+                        "yes, i have experience": 10,
+                        "i have some experience but need more practice": 5,
+                        "no, i don’t have experience": 0
+                    },
+                    "are you interested in applying bioinformatics in personalized medicine or drug development?": {
+                        "yes, i’m very interested": 10,
+                        "i’m somewhat interested but not knowledgeable": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "software engineering": {
+                "questions": {
+                    "do you enjoy designing and implementing software architectures?": {
+                        "yes, i find it exciting": 10,
+                        "i’m interested but find it challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with software design patterns like singleton or factory?": {
+                        "yes, i’m very comfortable": 10,
+                        "i’m somewhat comfortable but need more practice": 5,
+                        "no, i’m not comfortable": 0
+                    },
+                    "do you have experience with debugging and optimizing software systems?": {
+                        "yes, i have experience": 10,
+                        "i have some experience but need more practice": 5,
+                        "no, i don’t have experience": 0
+                    },
+                    "are you interested in working with devops tools and ci/cd pipelines?": {
+                        "yes, i’m very interested": 10,
+                        "i’m somewhat interested but not knowledgeable": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "advanced artificial intelligence": {
+                "questions": {
+                    "do you enjoy working with deep learning and neural networks?": {
+                        "yes, i find it exciting": 10,
+                        "i’m interested but find it challenging": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable with frameworks like tensorflow or pytorch for ai model development?": {
+                        "yes, i’m very comfortable": 10,
+                        "i’m somewhat comfortable but need more practice": 5,
+                        "no, i’m not comfortable": 0
+                    },
+                    "do you have experience with reinforcement learning or other advanced ai techniques?": {
+                        "yes, i have experience": 10,
+                        "i have some experience but need more practice": 5,
+                        "no, i don’t have experience": 0
+                    },
+                    "are you interested in applying ai to fields like robotics or autonomous systems?": {
+                        "yes, i’m very interested": 10,
+                        "i’m somewhat interested but not knowledgeable": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            },
+            "data mining": {
+                "questions": {
+                    "do you enjoy analyzing large datasets to extract meaningful insights?": {
+                        "yes, i find it exciting": 10,
+                        "i’m interested but find it complex": 5,
+                        "no, i don’t enjoy it": 0
+                    },
+                    "are you comfortable using tools like weka or scikit-learn for data mining?": {
+                        "yes, i’m very comfortable": 10,
+                        "i’m somewhat comfortable but need more practice": 5,
+                        "no, i’m not comfortable": 0
+                    },
+                    "do you have experience with clustering or classification techniques?": {
+                        "yes, i have experience": 10,
+                        "i have some experience but need more practice": 5,
+                        "no, i don’t have experience": 0
+                    },
+                    "are you interested in applying data mining techniques to predictive analytics?": {
+                        "yes, i’m very interested": 10,
+                        "i’m somewhat interested but not knowledgeable": 5,
+                        "no, i’m not interested": 0
+                    }
+                },
+                "pass_threshold": 70
+            }
+        }
+    }
+}

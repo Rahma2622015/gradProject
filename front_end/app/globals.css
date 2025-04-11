@@ -4,6 +4,9 @@
 .rce-mbox-body{
     background-color: var(--background-color) !important;
 }
+.rce-mlist{
+     padding-top: 15px !important;
+}
 .rce-mbox{
      background-color: var(--background-color) !important;
 }
@@ -16,7 +19,18 @@
 .rce-mbox-title{
     color:black !important;
 }
-
+rce-mbox-text.right {
+    max-width: 60% !important;
+}
+.rce-mbox.rce-mbox-right {
+    max-width: 60% !important;
+}
+rce-mbox-text.left {
+    max-width: 60% !important;
+}
+.rce-mbox.rce-mbox-left {
+    max-width: 60% !important;
+}
 :root {
   --message-text-light: #000;
   --message-text-dark: #000;

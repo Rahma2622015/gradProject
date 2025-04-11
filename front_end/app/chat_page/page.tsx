@@ -2,11 +2,10 @@
 
 import Image from "next/image";
 import "react-chat-elements/dist/main.css";
-import { MessageBox, MessageList, Input, Button ,Message } from "react-chat-elements";
+import { MessageList, Input } from "react-chat-elements";
 import styles from "./chatstyle.module.css";
 import Link from "next/link";
 import React, { useEffect, useState ,useRef } from "react";
-import { useTheme } from "../context/ThemeContext";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -15,7 +14,6 @@ import variables from "../variables.json";
 const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
 function ChatPage() {
-  const { isDarkMode } = useTheme();
   useEffect(() => {
          const entries = performance.getEntriesByType("navigation");
         if (entries.length > 0 && (entries[0] as PerformanceNavigationTiming).type === "reload") {
@@ -33,15 +31,18 @@ function ChatPage() {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isInputVisible, setInputVisible] = useState(true);
   const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null);
-  const emojiPickerRef = useRef(null);
+  const emojiPickerRef = useRef<HTMLDivElement | null>(null);
+  const messageListRef = useRef(null);
+
     // عند تحميل الصفحة، نضيف مستمع للأحداث لغلق القائمة عند الضغط خارجها
     useEffect(() => {
-      const handleClickOutside = (event) => {
-        if (
+      const handleClickOutside = (event: Event) => {
+       if (
           emojiPickerRef.current &&
-          !emojiPickerRef.current.contains(event.target) &&
-          !event.target.closest(".emojiButton")
-        ) {
+          event.target instanceof Node &&
+          !emojiPickerRef.current.contains(event.target)
+        )
+         {
           setShowEmojiPicker(false);
         }
       };
@@ -54,7 +55,7 @@ function ChatPage() {
    const addEmoji = (emojiObject: { emoji: string }) => {
       setInputValue((prevInput) => prevInput + emojiObject.emoji);
     };
-    const removeEmojis = (text) => {
+    const removeEmojis = (text: string): string => {
       return text.replace(/[\p{Extended_Pictographic}]+/gu, "");
     };
 
@@ -63,17 +64,10 @@ function ChatPage() {
       const doc = new DOMParser().parseFromString(html, "text/html");
       return doc.body.textContent || "";
     };
-    const handlePaste = (event: React.ClipboardEvent<HTMLDivElement>): void => {
-      event.preventDefault();
-      const text = stripHtmlTags(event.clipboardData.getData("text/html"));
-      const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, "").trim();
-      document.execCommand("insertText", false, cleanedText);
-    };
-
     const [sessionMessage, setSessionMessage] = useState<string>("");
     const [isLoading, setISLoading] = useState<boolean>(false);
     const closeSession = async () => {
-        const id = localStorage.getItem("client_id");
+        const id = sessionStorage.getItem("client_id");
         if (!id) {
           console.error(" ID is missing");
           setSessionMessage(" ID is missing.");
@@ -81,9 +75,8 @@ function ChatPage() {
         }
       try{
         setISLoading(true);
-        const response = await fetch(variables.ip_close-session, {
+        const response = await fetch(variables.close_session, {
           method: 'POST',
-          credentials: "include",
           headers: {
             'Content-Type': 'application/json',
           },
@@ -125,15 +118,15 @@ function ChatPage() {
     setDropdownVisible(false); // إغلاق أي قائمة أخرى عند التبديل
   };
 
-  const handleQuestionClick = (question: string) => {
-    setSelectedQuestion(question);
-    setDropdownVisible(false); // إغلاق القائمة بعد الاختيار
-    handleSend(question); // إرسال السؤال مباشرةً
-  };
+    const handleQuestionClick = (question: string) => {
+      setSelectedQuestion(question);
+      setDropdownVisible(false);
+      handleSend(question);
+    };
+
     useEffect(() => {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]); // التمرير عند كل تحديث للمحادثة
-    // تحقق إذا كان الـ ID موجود في localStorage
+    }, [messages]);
     const router = useRouter();
     const [isClient, setIsClient] = useState(false);
     useEffect(() => {
@@ -141,20 +134,20 @@ function ChatPage() {
     }, []);
 
    useEffect(() => {
-    if (!isClient) return; // تأكد من عدم تشغيل التوجيه أثناء تحميل الصفحة
+    if (!isClient) return;
     const clientId = sessionStorage.getItem("client_id");
     if (!clientId) {
-      router.push("/");  // إعادة توجيه المستخدم إلى الصفحة الرئيسية
+      router.push("/");
     }
     }, [isClient, router]);
-    const handleSend = async (message: string = inputValue) => {
-     const finalMessage = message || inputValue;
+    const handleSend = async (message: string =selectedQuestion || inputValue) => {
+     const finalMessage =stripHtmlTags(message) || inputValue;
      if (typeof finalMessage !== "string" || !removeEmojis(finalMessage).trim()) {
           toast.warn("Message is empty, please enter some text!");
           return;
      }
 
-       const messageWithoutEmojis = removeEmojis(finalMessage); // حذف الإيموجي عند الإرسال فقط
+      const messageWithoutEmojis = removeEmojis(finalMessage); // حذف الإيموجي عند الإرسال فقط
       const newMessage = {
         message: finalMessage,
         direction: "outgoing",
@@ -163,7 +156,7 @@ function ChatPage() {
 
     const newMessages = [...messages, newMessage];
     setMessages(newMessages);
-    setInputValue(""); // تفريغ الإدخال بعد الإرسال
+    setInputValue("");
     try {
       console.log('Sending message:', message);
       const token=sessionStorage.getItem("client_id");
@@ -223,14 +216,14 @@ function ChatPage() {
   };
 
   return (
-    <main className={styles.container} onClick={() => setShowEmojiPicker(false)} >
+    <main className={styles.container} onClick={() => setShowEmojiPicker(false)}  >
        <div className={styles.hiddendiv}>
-            {isLoading ? (
-              <p>Loading...</p>
-            ) : (
-              <p>{sessionMessage}</p>
-            )}
-        </div>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <p>{sessionMessage}</p>
+          )}
+      </div>
       <div className={styles.menu}>
         <button className={styles.dropdown_btn} onClick={dropList}>
           <Image className={styles.image} src="/list.png" alt="list" width={30} height={30} />
@@ -238,7 +231,7 @@ function ChatPage() {
         {isShowlist && (
           <ul className={styles.dropdown_list}>
             <li>
-              <Link href="/">
+              <Link href="/" onClick={closeSession}>
                 <Image className={styles.image} src="/arrow.png" alt="back button" width={30} height={30} />
               </Link>
             </li>
@@ -252,6 +245,7 @@ function ChatPage() {
       </div>
       <div className={styles.ChatContainer}>
        <MessageList
+          referance={messageListRef}
           className="message-list"
           lockable={true}
           toBottomHeight={"100%"}
@@ -261,8 +255,19 @@ function ChatPage() {
             type: "text",
             text: message.message,
             title: message.sender === "user" ? "You" : message.sender,
-          }))}
+            focus: false,
+            date: new Date(),
+            titleColor: "#000",
+            forwarded: false,
+            replyButton: false,
+            removeButton: fetch,
+            status: "sent",
+            notch: true,
+            retracted: false,
+            onClick: () => console.log("Message clicked"),
+           }))}
        />
+
     {/* عنصر غير مرئي لمتابعة التمرير */}
     <div ref={messagesEndRef} />
     <div className={styles.inputContainer}>
@@ -278,14 +283,15 @@ function ChatPage() {
          <Input
           placeholder="Enter Your Question"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyPress={(e) => {
+           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
+           onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
             if (e.key === "Enter") {
               handleSend();
               e.preventDefault(); // لمنع حدوث كسر سطر جديد
             }
           }}
-          multiline={false}
+          multiline={true}
+           maxHeight={100}
           rightButtons={
             <div className={styles.buttonsContainer}>
               <button
@@ -307,7 +313,7 @@ function ChatPage() {
       />
        ) : (
             <div className={styles.dropdownContainer}>
-              { exampleQuestions.length > 0 && (
+              {exampleQuestions.length > 0 && (
                   <ul className={styles.dropdownList}>
                     {exampleQuestions.map((question, index) => (
                       <li key={index} onClick={() => handleQuestionClick(question)}>
@@ -315,7 +321,7 @@ function ChatPage() {
                       </li>
                     ))}
                   </ul>
-              )}
+                )}
             </div>
           )}
     </div>
