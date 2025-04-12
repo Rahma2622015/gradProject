@@ -93,9 +93,7 @@
   "chooseDepartment": [
     "Choose based on your material preferences and areas of interest."
   ],
- "AcademicAdvisorTask": [
-    "An academic advisor helps with course selection and career guidance. They have your academic record and assist in making study-related decisions."
-],
+
   "Classification": [
     "The college does not specialize in one field. After graduating, students identify their passion and develop in it, focusing on computer science."
   ],
@@ -107,5 +105,19 @@
   ],
   "Enrollment": [
     "Refer to the student handbook for registration. If you're struggling, consult your academic advisor for course selection based on your GPA."
-  ]
+  ],
+  "AcademicAdvisorTask": [
+       "An academic advisor helps with course selection and career guidance. They have your academic record and assist in making study-related decisions."
+    ],
+    "ProfessorQueryTask": [
+    "{x} is a professor specializing in {y}.",
+    "Professor {x} teaches in the {y} department.",
+    "Dr. {x} is an expert in {y}."
+],
+"CourseQueryTask": [
+    "{x} is a course about {y}.",
+    "The subject {x} covers {y}.",
+    "{x} focuses on {y} topics."
+]
+
 }

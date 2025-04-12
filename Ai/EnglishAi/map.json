@@ -73,11 +73,10 @@
                                    "make", "informed", "decision"]
     },
     "AcademicAdvisorTask": {
-        "QuestionKeywords": ["what", "who", "can"],
-                "VerbKeywords": ["be", "tell", "responsible", "take",
-                                 "let", "provide", "act"],
-                "SubjectKeywords": ["we", "you"],
-                "ObjectKeywords": ["me", "meant", "academic", "advisor", "function"
+      "QuestionKeywords": ["what", "who", "can"],
+      "VerbKeywords": ["be", "tell", "responsible", "take", "let", "provide", "act"],
+      "SubjectKeywords": ["we", "you"],
+      "ObjectKeywords": ["me", "meant", "academic", "advisor", "function"
                     , "opinion", "serve", "meaning", "mean", "advising", "role"
                     , "charge", "guidance", "student"]
     },
@@ -126,6 +125,18 @@
                     , "choose", "based", "which", "select", "semester", "way", "take"
                     , "use", "decide", "make", "choices", "suitable"]
     },
+"ProfessorQueryTask": {
+    "QuestionKeywords": ["who"],
+    "VerbKeywords": ["be"],
+    "SubjectKeywords": [],
+    "ObjectKeywords": ["professor", "teacher", "advisor", "person","dr","dr."]
+},
+"CourseQueryTask": {
+    "QuestionKeywords": ["what"],
+    "VerbKeywords": ["be"],
+    "SubjectKeywords": [],
+    "ObjectKeywords": ["course", "subject", "lesson", "module"]
+},
   "ExamSystem": {
     "QuestionKeywords": ["how", "what", "be"],
     "VerbKeywords": ["be", "do", "work", "like", "design"],
