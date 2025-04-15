@@ -35,7 +35,7 @@ class CourseQuestion(Base):
     course_id = Column(Integer, ForeignKey('courses.id'))
 
     course = relationship("Course", back_populates="questions")
-    answers = relationship("Answers", back_populates="question")  # << ده الجديد
+    answers = relationship("Answers", back_populates="question")
 
 
 class Answers(Base):
@@ -54,8 +54,8 @@ class Professor(Base):
     __tablename__ = 'professors'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True, nullable=False)  # اسم الأستاذ
-    description = Column(String, nullable=False)  # وصف الأستاذ
+    name = Column(String, unique=True, nullable=False)
+    description = Column(String, nullable=False)
 
     courses = relationship("Course", secondary=course_professor, back_populates="professors")
 

@@ -3,7 +3,6 @@ from Ai.EnglishAi.chattask import ChatTask
 from Ai.EnglishAi.Tokeniztion import Tokenizers
 from Ai.EnglishAi.Tokeniztion import Tokenizers
 from Ai.EnglishAi.Preprocessing import Preprocessors
-from Ai.EnglishAi.ReplyTask import ReplyTask
 from Ai.EnglishAi.TaskProcessor import TaskProcessor
 
 from .RecivingFunction import receive

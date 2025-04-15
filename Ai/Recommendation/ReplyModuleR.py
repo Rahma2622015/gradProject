@@ -1,12 +1,19 @@
 import json
 from random import choice
 from Ai.Recommendation.RecommendationExamSystem import Recommendation
-from Ai.EnglishAi.ReplyTask import ReplyTask
+from Ai.EnglishAi.chattask import ChatTask
+from Ai.Recommendation.RecomCourseSystem import RecommendationSystem
+from Ai.EnglishAi.Tokeniztion import Tokenizers
+from Ai.EnglishAi.Datastorage_DB import Data_Storage
+from Data import DataStorage
+
 import variables
 class ReplyModuleRe:
     def __init__(self, json_path=variables.ResponseDataLocationRE):
         self.load_responses(json_path)
         self.recommender = Recommendation()
+        self.course_dynamic_recommender = RecommendationSystem(Data_Storage(), DataStorage())
+        self.tokenizer = Tokenizers()
 
     def load_responses(self, json_path):
         try:
@@ -23,7 +30,7 @@ class ReplyModuleRe:
 
         for r in reply:
             if isinstance(r, tuple) and len(r) > 0:
-                if r[0] == ReplyTask.ExamSystem:
+                if r[0] == ChatTask.ExamSystem:
                     response = self.recommender.handle_exam_recommendation(user_input, user_id)
 
                     if isinstance(response, tuple) and len(response) == 2:
@@ -35,8 +42,24 @@ class ReplyModuleRe:
                         print(f"[ERROR] Unexpected response format: {response}")
                         s = "Error processing recommendation."
                         options = []
-
-                elif r[0] == ReplyTask.UnknownTask:
+                elif r[0] == ChatTask.CourseSystem:
+                        # هنفترض إن course_name تم استخراجه من user_input مسبقًا
+                        course_name = self.tokenizer.extract_course_name(user_input)
+                        course_name = self.tokenizer.extract_course_name(user_input)
+                        print(f"[INFO] Detected course name: {course_name}")  # فقط لأغراض التتبع
+                        if course_name:
+                            response = self.course_dynamic_recommender.start_recommendation(user_id, course_name)
+                            if isinstance(response, str):
+                                s = response
+                                options = []  # ممكن تضيف options لو الأسئلة عندك في اختيارات
+                            else:
+                                print(f"[ERROR] Unexpected course recommendation format: {response}")
+                                s = "Error processing course recommendation."
+                                options = []
+                        else:
+                            s = "Sorry, I couldn't detect the course name from your question."
+                            options = []
+                elif r[0] == ChatTask.UnknownTask:
                     s = choice(self.data.get("Unknown", ["I'm not sure how to respond to that."]))
                     options = []
 

@@ -30,3 +30,4 @@ class ChatTask(Enum):
     ExamSystem = 26
     UnderstandingTask =27
     ContradictionTask = 28
+    CourseSystem=29
