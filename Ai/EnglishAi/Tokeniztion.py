@@ -2,9 +2,9 @@ from flair.data import Sentence
 from flair.splitter import SegtokSentenceSplitter
 from flair.models import SequenceTagger
 import re
+import string
 
-
-def load_course_names(file_path=r"E:\gradProject\Ai\EnglishAi\courses.txt"):
+def load_course_names(file_path=r"F:\gradProject\Ai\EnglishAi\courses.txt"):
     try:
         with open(file_path, "r", encoding="utf-8") as file:
             courses = {line.strip().lower() for line in file if line.strip()}
@@ -12,9 +12,7 @@ def load_course_names(file_path=r"E:\gradProject\Ai\EnglishAi\courses.txt"):
     except FileNotFoundError:
         return {"skill 401", "comp301", "math 101", "comp 202", "religion and safety"}
 
-
 COURSE_NAMES = load_course_names()
-
 
 class Tokenizers:
     def __init__(self):
@@ -64,9 +62,20 @@ class Tokenizers:
         return tokenized_words
 
     def is_course(self, word):
-        if word.lower() in {c.replace(" ", "") for c in COURSE_NAMES}:
-            return True
-        return word.lower() in COURSE_NAMES
+        word = word.lower()
+        word_no_space = word.replace(" ", "")
+        return word in COURSE_NAMES or word_no_space in COURSE_NAMES
+
+    def extract_course_name(self, text: str) -> str | None:
+        preprocessed_text = self.preprocess_text(text)
+        words = preprocessed_text.split()
+
+        for word in words:
+            cleaned_word = word.strip(string.punctuation).lower()
+            if self.is_course(cleaned_word):
+                return cleaned_word
+
+        return None
 
     def pos_tag(self, sents: list[list[str]]) -> list[list[str]]:
         pos_tags = []

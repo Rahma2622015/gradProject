@@ -22,7 +22,8 @@ class Data_Storage:
     def get_course_questions(self, course_name: str) -> list:
         course = self.session.query(Course).filter(
             Course.name.ilike(f"%{course_name}%") |
-            (Course.short_names.ilike(f"%{course_name}%"))
+            (Course.short_name.ilike(f"%{course_name}%")) |
+            (Course.code.ilike(f"%{course_name}%"))
         ).first()
 
         return course.questions if course else "Questions not found."

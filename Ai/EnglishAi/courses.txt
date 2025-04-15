@@ -69,6 +69,7 @@ comp207
 comp 207
 database systems
 databasesystems
+database
 engl201
 engl 201
 math203
@@ -190,7 +191,33 @@ comp408
 comp 408
 advancedai
 advanced ai
+ai
 comp416
 comp 416 
 data mining
 datamining
+automata
+logic
+algorithm
+oop
+web
+graph
+java
+html&css
+cpp
+network
+combinatorics
+syntax
+compiler
+graphics
+complexity
+os
+crypto
+multimedia
+android
+bio
+parallel
+image
+software
+cyber
+geometry
