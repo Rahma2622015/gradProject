@@ -6,14 +6,19 @@ from Ai.Recommendation.RecomCourseSystem import RecommendationSystem
 from Ai.EnglishAi.Tokeniztion import Tokenizers
 from Ai.EnglishAi.Datastorage_DB import Data_Storage
 from Data import DataStorage
-
+from Ai.Recommendation.CoursesSystem import CourseSelectionRecommendationSystem
 import variables
+
+
 class ReplyModuleRe:
     def __init__(self, json_path=variables.ResponseDataLocationRE):
         self.load_responses(json_path)
         self.recommender = Recommendation()
         self.course_dynamic_recommender = RecommendationSystem(Data_Storage(), DataStorage())
         self.tokenizer = Tokenizers()
+        self.course_selection_recommender = CourseSelectionRecommendationSystem(
+            Data_Storage(), DataStorage(), RecommendationSystem(Data_Storage(), DataStorage()), Tokenizers()
+        )
 
     def load_responses(self, json_path):
         try:
@@ -43,15 +48,13 @@ class ReplyModuleRe:
                         s = "Error processing recommendation."
                         options = []
                 elif r[0] == ChatTask.CourseSystem:
-                        # هنفترض إن course_name تم استخراجه من user_input مسبقًا
                         course_name = self.tokenizer.extract_course_name(user_input)
-                        course_name = self.tokenizer.extract_course_name(user_input)
-                        print(f"[INFO] Detected course name: {course_name}")  # فقط لأغراض التتبع
+                        print(f"[INFO] Detected course name: {course_name}")
                         if course_name:
                             response = self.course_dynamic_recommender.start_recommendation(user_id, course_name)
                             if isinstance(response, str):
                                 s = response
-                                options = []  # ممكن تضيف options لو الأسئلة عندك في اختيارات
+                                options = []
                             else:
                                 print(f"[ERROR] Unexpected course recommendation format: {response}")
                                 s = "Error processing course recommendation."
@@ -59,6 +62,16 @@ class ReplyModuleRe:
                         else:
                             s = "Sorry, I couldn't detect the course name from your question."
                             options = []
+                elif r[0] == ChatTask.MultiCourseRecommendationTask:
+                            stage = self.course_selection_recommender.memory.get_prev_data(user_id).get("current_stage","")
+                            if stage == "":
+                                s, options = self.course_selection_recommender.start(user_id, user_input)
+                            elif stage == "ask_gpa":
+                                s, options = self.course_selection_recommender.receive_gpa(user_id, user_input)
+                            else:
+                                s, options = self.course_selection_recommender.receive_course_answer(user_id,
+                                                                                                     user_input)
+
                 elif r[0] == ChatTask.UnknownTask:
                     s = choice(self.data.get("Unknown", ["I'm not sure how to respond to that."]))
                     options = []

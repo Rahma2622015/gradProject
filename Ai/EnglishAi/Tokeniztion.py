@@ -77,6 +77,18 @@ class Tokenizers:
 
         return None
 
+    def extract_all_course_names(self, text: str) -> list[str]:
+        preprocessed_text = self.preprocess_text(text)
+        words = preprocessed_text.split()
+        course_names = []
+
+        for word in words:
+            cleaned = word.strip(string.punctuation).lower()
+            if self.is_course(cleaned):
+                course_names.append(cleaned)
+
+        return list(set(course_names))
+
     def pos_tag(self, sents: list[list[str]]) -> list[list[str]]:
         pos_tags = []
 

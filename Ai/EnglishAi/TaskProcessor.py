@@ -63,9 +63,10 @@ class TaskProcessor:
                 responses.append((ChatTask.AskHelpingTask, ""))
             elif task_enum == ChatTask.AskNameTask:
                 responses.append((ChatTask.AskNameTask,data.fetchName(data.fetchValue(task[1]))))
-
             elif task_enum == ChatTask.ExamSystem:
                 responses.append((ChatTask.ExamSystem, ""))
+            elif task_enum == ChatTask.MultiCourseRecommendationTask:
+                responses.append((ChatTask.MultiCourseRecommendationTask, ""))
 
             elif task_enum == ChatTask.ProfessorQueryTask:
                 professor_name = None

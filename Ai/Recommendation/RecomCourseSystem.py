@@ -41,15 +41,15 @@ class RecommendationSystem:
 
         if not answers:
             return "There was an error processing your answer. Please try again.", []
-            normalized_input = user_answer.strip().lower()
+        normalized_input = user_answer.strip().lower()
         matched_answer = next(
             (ans for ans in answers if ans["answer"].strip().lower() == normalized_input),
             None
         )
-
         if not matched_answer:
             question_index = prev_data.get("question_index")
-            question_text = self.data_storage.get_question_with_answers(prev_data["question_ids"][question_index])["question"]
+            question_text = self.data_storage.get_question_with_answers(prev_data["question_ids"][question_index])[
+                "question"]
             options = [ans["answer"] for ans in answers]
             return (
                 f"Invalid answer. Please choose one of the options exactly as shown.\n\n"

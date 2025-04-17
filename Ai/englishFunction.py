@@ -12,6 +12,7 @@ from Data.dataStorage import DataStorage
 from Ai.EnglishAi.Datastorage_DB import Data_Storage
 import variables
 from Ai.Recommendation.RecomCourseSystem import RecommendationSystem
+from Ai.Recommendation.CoursesSystem import CourseSelectionRecommendationSystem
 
 mapper = TaskMapper()
 trivial_mapper = MappingTrivial()
@@ -25,6 +26,7 @@ bigram_model = BigramModel(variables.Bigrams)
 data_storage=Data_Storage()
 memory=DataStorage()
 course_recommender = RecommendationSystem(data_storage, memory)
+courses=CourseSelectionRecommendationSystem(data_storage, memory,course_recommender,t)
 
 def is_trivial_task(tokens, trivial_mapper) -> bool:
     for sentence in tokens:
@@ -63,6 +65,16 @@ def langEnglish(message, storage, user_id):
             if not options:
                 storage.clear_data(user_id)
             return s, options, True
+
+        # ---------------------- Multi Course Recommendation Flow ----------------------
+        elif storage.get_current_task(user_id) == "MultiCourseRecommendationTask":
+            print("[DEBUG] Continuing multi Course Recommendation Flow")
+            course_recommender_instance = courses
+            s, options = course_recommender_instance.receive_course_answer(user_id, message.strip())
+            if not options:
+                storage.clear_data(user_id)
+            return s, options, True
+
         # ---------------------- Start New Task ----------------------
         else:
             if is_trivial_task(tokens, trivial_mapper):
@@ -94,6 +106,16 @@ def langEnglish(message, storage, user_id):
                     print("===> " + course_name)
                     if course_name:
                         s, options = course_recommender.start_recommendation(user_id, course_name)
+                    else:
+                        s = "Please mention a valid course name so I can recommend suitable subjects."
+                    return s, options, True
+
+                if any(task[0] == ChatTask.MultiCourseRecommendationTask for task in tasks):
+                    print("[DEBUG] Handling multi Course Recommendation Task")
+                    storage.set_current_task(user_id, "MultiCourseRecommendationTask")
+                    course_name = t.extract_all_course_names(corrected_message)
+                    if course_name:
+                        s, options = courses.start(user_id, corrected_message)
                     else:
                         s = "Please mention a valid course name so I can recommend suitable subjects."
                     return s, options, True
