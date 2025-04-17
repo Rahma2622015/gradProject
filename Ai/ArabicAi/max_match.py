@@ -21,7 +21,7 @@ class match:
 
     def convert_to_enum(self, task_name: str) -> ChatTask:
         try:
-            task_enum_name = task_name.replace("ChatTask.", "")  # إزالة البادئة
+            task_enum_name = task_name.replace("ChatTask.", "")
             return ChatTask[task_enum_name] if task_enum_name in ChatTask.__members__ else ChatTask.UnknownTask
         except KeyError:
             print(f"Warning: Task '{task_name}' not found in ChatTask!")

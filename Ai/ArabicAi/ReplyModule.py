@@ -23,18 +23,26 @@ class replyModule:
         s = ""
         for r in reply:
             if r[0] == ChatTask.GreetingTask:
-                s += "\n" + choice(self.data.get("Greeting", [])).format(x=r[1])
+                if r[1]:
+                    s += "\n" + choice(self.data.get("GreetingWithName", [])).format(x=r[1])
+                else:
+                    s += "\n" + choice(self.data.get("Greeting", []))
+
             elif r[0] == ChatTask.UnderstandingTask:
                 s += "\n" + choice(self.data.get("Understanding", [])).format(x=r[2])
             elif r[0] == ChatTask.askNameTask:
-                s += "\n" + choice(self.data.get("replay_name", [])).format(x=r[1])
+                if r[1]:
+                    s += "\n" + choice(self.data.get("reply_name", [])).format(x=r[1])
+                else:
+                    s += "\n" + choice(self.data.get("reply", [])).format(x=r[1])
+
             elif r[0] == ChatTask.ContradactionTask:
                 s += "\n" + choice(self.data.get("Contradiction", [])).format(y=r[2])
             elif r[0] == ChatTask.CheckWellbeingTask:
                 s += "\n" + choice(self.data.get("CheckWellbeing", []))
             elif r[0] == ChatTask.ThanksTask:
                 s += "\n" + choice(self.data.get("ThanksReplies", []))
-            elif r[0] == ChatTask.HelpTask:
+            elif r[0] == ChatTask.askHelpingTask:
                 s += "\n" + choice(self.data.get("askhelp", []))
             elif r[0] == ChatTask.GoodbyeTask:
                 s += "\n" + choice(self.data.get("Goodbye", []))
@@ -65,6 +73,14 @@ class replyModule:
                 s += "\n" + choice(self.data.get("Graduation", []))
             elif r[0] == ChatTask.EnrollmentTask:
                 s += "\n" + choice(self.data.get("Enrollment", []))
+            elif r[0] == ChatTask.ProfessorQueryTask:
+                professor_name = r[1] if len(r) > 1 and r[1] else "اسم الدكتور ليس متوفر"
+                professor_info = r[2] if len(r) > 2 and r[2] else "لا يوجد معلومات كافية"
+                s += "\n" + choice(self.data.get("ProfessorQueryTask", [])).format(x=professor_name, y=professor_info)
+
+            elif r[0] == ChatTask.CourseQueryTask:
+                s += "\n" + choice(self.data.get("CourseQueryTask", [])).format(x=r[1], y=r[2])
+
             else:
                 s += "\n" + choice(self.data.get("Unknown", []))
 

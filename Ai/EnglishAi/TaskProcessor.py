@@ -1,5 +1,5 @@
 from Ai.EnglishAi.chattask import ChatTask
-from Ai.EnglishAi.Datastorage_DB import Data_Storage
+from Database.Datastorage_DB import Data_Storage
 from Data import DataStorage
 
 class TaskProcessor:
@@ -61,19 +61,57 @@ class TaskProcessor:
                 responses.append(( ChatTask.EnrollmentTask, ""))
             elif task_enum == ChatTask.AskHelpingTask:
                 responses.append((ChatTask.AskHelpingTask, ""))
-            elif task_enum == ChatTask.AskNameTask:
-                responses.append((ChatTask.AskNameTask,data.fetchName(data.fetchValue(task[1]))))
+            elif task[0] == ChatTask.AskNameTask:
+                name = data.fetchValue("name")
+                if name:
+                    responses.append((ChatTask.AskNameTask, name))
+                else:
+                    responses.append((ChatTask.AskNameTask, "I can't remember your name, could you tell me it? "))
 
             elif task_enum == ChatTask.ExamSystem:
                 responses.append((ChatTask.ExamSystem, ""))
 
+            elif task_enum == ChatTask.PrerequisitesTask:
+                course_name = ""
+                task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task
+                pos_tags = task[2] if isinstance(task, tuple) and len(task) > 2 else []
+                print(task_words)
+                print("p:",pos_tags)
+                for i, tag in enumerate(pos_tags):
+                    if tag == "<CourseName>":
+                        course_name = task_words[i]
+                        print("🔍 Extracted cname from POS tag:", course_name)
+                        break
+
+                if not course_name:
+                    keywords = [ "subject", "lesson", "course"]
+                    for i, word in enumerate(task_words):
+                        if word in keywords and i + 1 < len(task_words):
+                            course_name = " ".join(task_words[i + 2:])
+                            print("🔍 Extracted cname from keywords:", course_name)
+                            break
+
+                try:
+                    course_req = D.get_course_prerequisite(course_name)
+                    if course_req is None:
+                        course_req = f"Sorry, the course '{course_name}' is not found in our database."
+
+                    elif not course_req:  # كورس موجود لكن مفيش متطلبات
+                        course_req = f"The course '{course_name}' has no prerequisites."
+
+                except Exception as e:
+                    print("❌ Error while getting course info:", str(e))
+                    course_req = "There was an error while fetching the course prerequisites."
+
+                responses.append((ChatTask.PrerequisitesTask, course_name, course_req))
+
             elif task_enum == ChatTask.ProfessorQueryTask:
                 professor_name = None
-                keywords = ["professor", "dr."]
+                keywords = ["professor", "dr.","doctor"]
                 task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task
                 for i, word in enumerate(task_words):
                     if word.lower().strip() in keywords and i + 1 < len(task_words):
-                        professor_name = task_words[i + 1] + " " + task_words[i + 2]
+                        professor_name =" ".join( task_words[i + 1:])
                         print("🔍 Extracted name:", professor_name)
                         break
                 if professor_name :
@@ -94,13 +132,10 @@ class TaskProcessor:
                         course_name = " ".join(task_words[i + 1:])
                         print("🔍 Extracted cname:", course_name)
                         break
-
                 try:
-                    print("1")
-                    course_info = D.get_course_description(course_name)
-                    if not course_info or course_info.strip() == "Course not found.":
-                        print("2")
-                        course_info = f"Sorry, the course '{course_name}' is not found in our database."
+                        course_info = D.get_course_description(course_name)
+                        if not course_info or course_info.strip() == "Course not found.":
+                            course_info = f"Sorry, the course '{course_name}' is not found in our database."
                 except Exception as e:
                     print("❌ Error while getting course info:", str(e))
                     course_info = "There was an error while fetching the course description."

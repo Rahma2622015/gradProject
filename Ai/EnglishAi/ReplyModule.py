@@ -65,6 +65,14 @@ class ReplyModule:
                 s += "\n" + choice(self.data.get("Graduation", []))
             elif r[0] == ChatTask.EnrollmentTask:
                 s += "\n" + choice(self.data.get("Enrollment", []))
+            elif r[0] == ChatTask.PrerequisitesTask:
+                if isinstance(r[2], str):
+                    s += "\n" + r[2]
+                else:
+                    prereq_list = r[2]
+                    prereq_names = prereq_list[0] if len(prereq_list) == 1 else ", ".join(prereq_list)
+                    s += "\n" + choice(self.data.get("PrerequisitesTask", [])).format(x=prereq_names, y=r[1])
+
             elif r[0] == ChatTask.ProfessorQueryTask:
                 professor_name = r[1] if len(r) > 1 and r[1] else "Professor name not provided"
                 professor_info = r[2] if len(r) > 2 and r[2] else "No Information Available"

@@ -3,8 +3,9 @@ from flair.splitter import SegtokSentenceSplitter
 from flair.models import SequenceTagger
 import re
 import string
+import variables
 
-def load_course_names(file_path=r"F:\gradProject\Ai\EnglishAi\courses.txt"):
+def load_course_names(file_path=variables.courseLocation):
     try:
         with open(file_path, "r", encoding="utf-8") as file:
             courses = {line.strip().lower() for line in file if line.strip()}

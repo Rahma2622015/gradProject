@@ -118,6 +118,17 @@
     "{x} is a course about {y}.",
     "The subject {x} covers {y}.",
     "{x} focuses on {y} topics."
+],
+"PrerequisitesTask": [
+  "{x} a prerequisite for {y}.",
+  "you need to take {x} before {y}.",
+  "{y} require for {x}.",
+  " {x} needed for {y}.",
+  "You must complete {x} before enrolling in {y}.",
+  "{x} is a requirement for {y}.",
+  "Students need to finish {x} prior to {y}.",
+  "Before taking {y}, you need to pass {x}."
 ]
+
 
 }

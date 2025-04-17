@@ -145,6 +145,14 @@
       "vary", "very", "difficulty", "same", "come", "challenging", "equally",
       "differ", "function", "test", "tough", "follow", "categories","cs"]
   },
+
+"PrerequisitesTask": {
+  "QuestionKeywords": ["which", "what", "can", "show", "do", "does", "is", "are"],
+  "VerbKeywords": ["be", "do", "must", "require", "need", "take", "complete", "finish","before"],
+  "SubjectKeywords": ["i", "student", "course", "courses","for"],
+  "ObjectKeywords": ["prerequisite", "prerequisites", "requirement", "requirements", "needed", "required", "depend", "depend on"]
+},
+
 "CourseSystem": {
     "QuestionKeywords": [
       "be",

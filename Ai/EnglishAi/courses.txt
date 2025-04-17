@@ -7,6 +7,17 @@ statistics
 safs101
 safs 101
 religion and safety
+os
+html & css
+html&css
+cpp
+oop
+web
+java
+ai
+crypto
+bio
+cyber
 religionandSafety
 chem101
 chem 101

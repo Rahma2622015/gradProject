@@ -1,5 +1,5 @@
 from Ai.ArabicAi.chattask import ChatTask
-from Ai.ArabicAi.functions import func
+from Ai.ArabicAi.functionsForTasks import func
 from Ai.ArabicAi.max_match import match
 
 fun = func()
@@ -14,9 +14,24 @@ class mapping:
             return [(ChatTask.UnknownTask, "Invalid input")]
 
         for i, sentence in enumerate(tokens):
-
             if any(fun.isGreetingTool(word) for word in sentence):
-                res.append((ChatTask.GreetingTask, "اسم"))
+                name_value = ""
+                for j, word in enumerate(sentence):
+                    if word == "اسم":
+                        if j + 1 < len(sentence):
+                            name_value = sentence[j + 1]
+                        break
+                    elif word in ["أنا", "انا"]:
+                        if j + 1 < len(sentence) and sentence[j + 1] != "اسم":
+                            name_value = sentence[j + 1]
+                        elif j + 2 < len(sentence) and sentence[j + 1] == "اسم":
+                            name_value = sentence[j + 2]
+                        break
+                res.append((ChatTask.GreetingTask, name_value))
+                print(name_value, "اسمي ")
+                if name_value:
+                    res.append((ChatTask.StoreTask, "اسم", name_value))
+
             elif any(fun.isThanksTool(word) for word in sentence):
                 res.append((ChatTask.ThanksTask, ""))
             elif any(fun.isGoodbyeTool(word) for word in sentence):
@@ -40,12 +55,10 @@ class mapping:
             else:
                 verbIndex = ma.getPOS("NOUN", pos[i])
                 if verbIndex != -1:
-                    if verbIndex < len(pos[i]) - 1 and pos[i][verbIndex].startswith("NOUN") and pos[i][verbIndex + 1].startswith("NOUN"):
+                    if verbIndex < len(pos[i]) - 1 and pos[i][verbIndex].startswith("NOUN") and pos[i][verbIndex + 1].startswith("<NAME>"):
                         res.append((ChatTask.StoreTask, sentence[verbIndex], sentence[verbIndex + 1]))
-                        print("llll", (ChatTask.StoreTask, sentence[verbIndex], sentence[verbIndex + 1]))
                 else:
                     res.append((ChatTask.UnknownTask,))
-        print(f"🔍 عدد المطابقات لـ ChatTask.askHelpingTask: {score}")
         print(f"📌 المهمة النهائية المختارة: {res}")
 
         return res if res else [(ChatTask.UnknownTask,)]
