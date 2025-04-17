@@ -73,11 +73,10 @@
                                    "make", "informed", "decision"]
     },
     "AcademicAdvisorTask": {
-        "QuestionKeywords": ["what", "who", "can"],
-                "VerbKeywords": ["be", "tell", "responsible", "take",
-                                 "let", "provide", "act"],
-                "SubjectKeywords": ["we", "you"],
-                "ObjectKeywords": ["me", "meant", "academic", "advisor", "function"
+      "QuestionKeywords": ["what", "who", "can"],
+      "VerbKeywords": ["be", "tell", "responsible", "take", "let", "provide", "act"],
+      "SubjectKeywords": ["we", "you"],
+      "ObjectKeywords": ["me", "meant", "academic", "advisor", "function"
                     , "opinion", "serve", "meaning", "mean", "advising", "role"
                     , "charge", "guidance", "student"]
     },
@@ -126,6 +125,18 @@
                     , "choose", "based", "which", "select", "semester", "way", "take"
                     , "use", "decide", "make", "choices", "suitable"]
     },
+"ProfessorQueryTask": {
+    "QuestionKeywords": ["who"],
+    "VerbKeywords": ["be"],
+    "SubjectKeywords": [],
+    "ObjectKeywords": ["professor", "teacher", "advisor", "person","dr","dr."]
+},
+"CourseQueryTask": {
+    "QuestionKeywords": ["what"],
+    "VerbKeywords": ["be"],
+    "SubjectKeywords": [],
+    "ObjectKeywords": ["course", "subject", "lesson", "module"]
+},
   "ExamSystem": {
     "QuestionKeywords": ["how", "what", "be"],
     "VerbKeywords": ["be", "do", "work", "like", "design"],
@@ -133,5 +144,96 @@
     "ObjectKeywords": ["difficult", "different", "levels", "all", "be", "hard",
       "vary", "very", "difficulty", "same", "come", "challenging", "equally",
       "differ", "function", "test", "tough", "follow", "categories","cs"]
+  },
+
+"PrerequisitesTask": {
+  "QuestionKeywords": ["which", "what", "can", "show", "do", "does", "is", "are"],
+  "VerbKeywords": ["be", "do", "must", "require", "need", "take", "complete", "finish","before"],
+  "SubjectKeywords": ["i", "student", "course", "courses","for"],
+  "ObjectKeywords": ["prerequisite", "prerequisites", "requirement", "requirements", "needed", "required", "depend", "depend on"]
+},
+
+"CourseSystem": {
+    "QuestionKeywords": [
+      "be",
+      "do",
+      "will",
+      "should",
+      "can"
+    ],
+    "VerbKeywords": [
+      "suit",
+      "match",
+      "align",
+      "help",
+      "benefit",
+      "fit",
+      "consider",
+      "choose",
+      "improve",
+      "enroll",
+      "find"
+    ],
+    "SubjectKeywords": [
+      "i",
+      "course",
+      "algorithm",
+      "computability",
+      "oop",
+      "database",
+      "linear",
+      "algebra",
+      "english",
+      "data",
+      "structure",
+      "network",
+      "web",
+      "programming",
+      "automata",
+      "graph",
+      "ordinary",
+      "differential",
+      "equation",
+      "java",
+      "syntax",
+      "complexity",
+      "os",
+      "abstract",
+      "algebra",
+      "multimedia",
+      "combinatorics",
+      "compiler",
+      "graphics",
+      "android",
+      "advanced",
+      "crypto",
+      "skills",
+      "ai",
+      "parallel",
+      "image",
+      "processing",
+      "cyber",
+      "security",
+      "geometry",
+      "bioinformatics",
+      "software",
+      "engineering",
+      "mining"
+    ],
+    "ObjectKeywords": [
+      "right",
+      "appropriate",
+      "useful",
+      "beneficial",
+      "good",
+      "helpful",
+      "best",
+      "suitable",
+      "worth",
+      "decision",
+      "choice",
+      "option",
+      "me"
+    ]
   }
 }

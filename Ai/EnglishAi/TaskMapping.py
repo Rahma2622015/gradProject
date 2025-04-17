@@ -72,6 +72,10 @@ class TaskMapper:
         for token in temp_tokens:
             if self.match_for_pos(task, "ObjectKeywords", token):
                 max_matches += 0.2
+        extra_keywords = ["require", "requires", "prerequisite", "prerequisites", "complete", "needed"]
+        for token in tokens:
+            if token.lower() in extra_keywords:
+                max_matches += 0.5
         return max_matches
 
     def isModalVerb(self, token: str) -> bool:
@@ -110,7 +114,7 @@ class TaskMapper:
                         best_task = task
                         best_task_enum = self.convert_to_enum(best_task)
                 if best_task_enum != ChatTask.UnknownTask and max_score >= 1.5:
-                    res.append((best_task_enum, data))
+                    res.append((best_task_enum, data,pos[i]))
                 else:
                     res.append((ChatTask.UnknownTask,))
             else:

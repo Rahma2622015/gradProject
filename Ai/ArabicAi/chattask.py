@@ -27,3 +27,5 @@ class ChatTask(Enum):
     UnknownTask = 23
     UnderstandingTask = 24
     ContradactionTask = 25
+    CourseQueryTask = 26
+    ProfessorQueryTask = 27
