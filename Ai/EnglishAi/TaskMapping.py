@@ -1,124 +1,33 @@
-import json
 from Ai.EnglishAi.chattask import ChatTask
-from nltk.corpus import wordnet
-import variables
+from Ai.EnglishAi.functionsForMapping import functions
+from Ai.EnglishAi.max_match import match
+
+m=match()
+fun=functions()
 
 class TaskMapper:
-    def __init__(self, json_path=variables.MapDataLocationEn):
-        self.task_definitions = self.load_definitions(json_path)
 
-    def load_definitions(self, json_path: str) -> dict:
-        try:
-            with open(json_path, "r", encoding="utf-8") as file:
-                print(f"[INFO] map file loaded successfully: {json_path}")
-                return json.load(file)
-        except FileNotFoundError:
-            print(f"[ERROR] map file not found: {json_path}")
-            return {}
-        except json.JSONDecodeError:
-            print(f"[ERROR] Invalid JSON format in: {json_path}")
-            return {}
-
-    def convert_to_enum(self, task_name: str) -> ChatTask:
-        return ChatTask[task_name] if task_name in ChatTask.__members__ else ChatTask.UnknownTask
-
-    def match_for_pos(self, task: ChatTask, item_type: str, token: str) -> bool:
-        item_list = self.task_definitions[task][item_type]
-
-        for x in item_list:
-            if x == token:
-                return True
-        for x in item_list:
-            for synset in wordnet.synsets(token):
-                for lemma_name in synset.lemma_names():
-                    if lemma_name.lower() == x.lower():
-                        return True
-        return False
-    def MaxMatches(self, task: ChatTask, position: list, tokens: list) -> float:
-        max_matches = 0
-        temp_position = position[:]
-        temp_tokens = tokens[:]
-        question_pos = self.getPOS("WP", temp_position)
-        if question_pos == -1:
-            question_pos = self.getPOS("WRB", temp_position)
-        if question_pos == -1:
-            question_pos = self.getPOS("MD", temp_position)
-        if question_pos == -1:
-            question_pos = self.getPOS("WDT", temp_position)
-        if question_pos == -1:
-            question_pos = self.getPOS("V", temp_position)
-        question = temp_tokens[question_pos] if question_pos != -1 else None
-        question_found = False
-        if question and self.match_for_pos(task, "QuestionKeywords", question):
-            max_matches += 1
-            question_found = True
-            temp_tokens.pop(question_pos)
-            temp_position.pop(question_pos)
-        if question_found:
-            verb_pos = self.getPOS("V", temp_position)
-            verb = temp_tokens[verb_pos] if verb_pos != -1 else None
-            if verb and self.match_for_pos(task, "VerbKeywords", verb):
-                max_matches += 2
-                temp_tokens.pop(verb_pos)
-                temp_position.pop(verb_pos)
-        prp_pos = self.getPOS("PRP", temp_position)
-        if prp_pos == -1:
-            prp_pos = self.getPOS("NNS", temp_position)
-        prp = temp_tokens[prp_pos] if prp_pos != -1 else None
-        if prp and self.match_for_pos(task, "SubjectKeywords", prp):
-            max_matches += 1
-            temp_tokens.pop(prp_pos)
-            temp_position.pop(prp_pos)
-        for token in temp_tokens:
-            if self.match_for_pos(task, "ObjectKeywords", token):
-                max_matches += 0.2
-        extra_keywords = ["require", "requires", "prerequisite", "prerequisites", "complete", "needed"]
-        for token in tokens:
-            if token.lower() in extra_keywords:
-                max_matches += 0.5
-        return max_matches
-
-    def isModalVerb(self, token: str) -> bool:
-        return token in ["be", "do", "have", "will", "can", "could", "shall", "should", "may", "might", "must"]
-
-    def isQuestionTool(self, token: str) -> bool:
-        return token in ["what", "where", "when", "who", "whose", "which", "why", "how"]
-
-    def isQuestion(self, tokens: list[str]) -> bool:
-        if not len(tokens):
-            return False
-        if self.isQuestionTool(tokens[0]) or self.isQuestionTool(tokens[-1]):
-            return True
-        elif self.isModalVerb(tokens[0]):
-            return True
-        return False
-
-    def getPOS(self, tag: str, pos: list[str]) -> int:
-        for i, x in enumerate(pos):
-            if x.startswith(tag):
-                return i
-        return -1
     def mapToken(self, tokens: list[list[str]], pos: list[list[str]]) -> list[tuple[ChatTask,]]:
         res = list()
         if not tokens or not pos or len(tokens) != len(pos):
             return [(ChatTask.UnknownTask, "Invalid input")]
         for i, data in enumerate(tokens):
-            if self.isQuestion(data):
+            if fun.isQuestion(data):
                 best_task = "UnknownTask"
                 max_score = 0
-                for task in self.task_definitions.keys():
-                    score = self.MaxMatches(task, pos[i], data)
+                for task in m.task_definitions.keys():
+                    score = m.MaxMatches(task, pos[i], data)
                     print(f"{score} : {task}")
                     if score > max_score:
                         max_score = score
                         best_task = task
-                        best_task_enum = self.convert_to_enum(best_task)
+                        best_task_enum = fun.convert_to_enum(best_task)
                 if best_task_enum != ChatTask.UnknownTask and max_score >= 1.5:
                     res.append((best_task_enum, data,pos[i]))
                 else:
                     res.append((ChatTask.UnknownTask,))
             else:
-                verbIndex = self.getPOS("VB", pos[i])
+                verbIndex = fun.getPOS("VB", pos[i])
                 if verbIndex != -1:
                     if data[verbIndex] == "be":
                         if pos[i][verbIndex - 1].startswith("N") and (
