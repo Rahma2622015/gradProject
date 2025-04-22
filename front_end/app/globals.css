@@ -8,6 +8,9 @@
      padding-top: 15px !important;
 }
 .rce-mbox{
+    max-width:60% !important;
+}
+.rce-mbox{
      background-color: var(--background-color) !important;
 }
 .rce-mbox-left-notch{
@@ -25,7 +28,7 @@ rce-mbox-text.right {
 .rce-mbox.rce-mbox-right {
     max-width: 60% !important;
 }
-rce-mbox-text.left {
+.rce-mbox-text left {
     max-width: 60% !important;
 }
 .rce-mbox.rce-mbox-left {
