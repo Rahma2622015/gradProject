@@ -109,14 +109,14 @@ def start_session():
     except Exception as e:
         return jsonify({"error": f"Internal Server Error: {str(e)}"}), 500
 
-
 @chat_bot.route('/close-session', methods=['POST'])
 def close_session():
     try:
-        client_id = session.get('client_id')
+        data = request.get_json()
+        client_id = data.get('client_id')
 
         if not client_id:
-            return jsonify({"error": "No active session!"}), 400  # Bad Request
+            return jsonify({"error": "Client ID is missing!"}), 400
 
         client_to_remove = get_client_by_id(client_id)
 
@@ -125,7 +125,8 @@ def close_session():
             client_list.remove(client_to_remove)
             return jsonify({"message": "Session closed", "client_id": client_id})
         else:
-            return jsonify({"error": "Client ID not found!"}), 404  # Not Found
+            return jsonify({"error": "Client ID not found!"}), 404
+
     except Exception as e:
         return jsonify({"error": f"Internal Server Error: {str(e)}"}), 500
 

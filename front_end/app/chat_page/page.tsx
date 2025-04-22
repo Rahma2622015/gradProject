@@ -220,119 +220,125 @@ function ChatPage() {
     setMessages([messages[0]]);
   };
 
-  return (
-    <main className={styles.container} onClick={() => setShowEmojiPicker(false)}  >
-       <div className={styles.hiddendiv}>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : (
-            <p>{sessionMessage}</p>
-          )}
-      </div>
-      <div className={styles.menu}>
-        <button className={styles.dropdown_btn} onClick={dropList}>
-          <Image className={styles.image} src="/list.png" alt="list" width={30} height={30} />
-        </button>
-        {isShowlist && (
-          <ul className={styles.dropdown_list}>
-            <li>
-              <Link href="/" onClick={closeSession}>
-                <Image className={styles.image} src="/arrow.png" alt="back button" width={30} height={30} />
-              </Link>
-            </li>
-            <li>
-              <button onClick={deletchat}>
-                <Image className={styles.image} src="/bin.png" alt="Delete button" width={30} height={30} />
-              </button>
-            </li>
-          </ul>
-        )}
-      </div>
-      <div className={styles.ChatContainer}>
-       <MessageList
-          referance={messageListRef}
-          className="message-list"
-          lockable={true}
-          toBottomHeight={"100%"}
-          dataSource={messages.map((message, i) => ({
-            id: i,
-            position: message.direction === "incoming" ? "left" : "right",
-            type: "text",
-            text: message.message,
-            title: message.sender === "user" ? "You" : message.sender,
-            focus: false,
-            date: new Date(),
-            titleColor: "#000",
-            forwarded: false,
-            replyButton: false,
-            removeButton: fetch,
-            status: "sent",
-            notch: true,
-            retracted: false,
-            onClick: () => console.log("Message clicked"),
-           }))}
-       />
+ return (
+  <main className={styles.container} onClick={() => setShowEmojiPicker(false)}>
+    <div className={styles.hiddendiv}>
+      {isLoading ? <p>Loading...</p> : <p>{sessionMessage}</p>}
+    </div>
 
-    {/* عنصر غير مرئي لمتابعة التمرير */}
-    <div ref={messagesEndRef} />
-    <div className={styles.inputContainer}>
-       <button className={styles.dropdown_change} onClick={toggleInputMethod}>
+    <div className={styles.menu}>
+      <button className={styles.dropdown_btn} onClick={dropList}>
+        <Image className={styles.image} src="/list.png" alt="list" width={56} height={56} />
+      </button>
+      {isShowlist && (
+        <ul className={styles.dropdown_list}>
+          <li>
+            <Link href="/" onClick={closeSession}>
+              <Image className={styles.image} src="/arrow.png" alt="back button" width={30} height={30} />
+            </Link>
+          </li>
+          <li>
+            <button onClick={deletchat}>
+              <Image className={styles.image} src="/bin.png" alt="Delete button" width={30} height={30} />
+            </button>
+          </li>
+        </ul>
+      )}
+    </div>
+
+    <div className={styles.ChatContainer}>
+      <MessageList
+        referance={messageListRef}
+        className="message-list"
+        lockable={true}
+        toBottomHeight="100%"
+        dataSource={messages.map((message, i) => ({
+          id: i,
+          position: message.direction === "incoming" ? "left" : "right",
+          type: "text",
+          text: message.message,
+          title: message.sender === "user" ? "You" : message.sender,
+          focus: false,
+          date: new Date(),
+          titleColor: "#000",
+          forwarded: false,
+          replyButton: false,
+          removeButton: fetch,
+          status: "sent",
+          notch: true,
+          retracted: false,
+          onClick: () => console.log("Message clicked"),
+        }))}
+      />
+
+      <div ref={messagesEndRef} />
+
+      <div className={styles.inputContainer}>
+        <button className={styles.dropdown_change} onClick={toggleInputMethod}>
           <Image src="/exchange.png" alt="Switch Input" width={35} height={35} />
         </button>
-      {showEmojiPicker && (
-          <div ref={emojiPickerRef} className={styles.emojiPicker} onClick={(e) => e.stopPropagation()}>
+        {showEmojiPicker && (
+          <div
+            ref={emojiPickerRef}
+            className={styles.emojiPicker}
+            onClick={(e) => e.stopPropagation()}
+          >
             <Picker onEmojiClick={addEmoji} />
           </div>
-      )}
-        {isInputVisible ? (
-         <Input
-          placeholder="Enter Your Question"
-          value={inputValue}
-           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
-           onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
-            if (e.key === "Enter") {
-              handleSend();
-              e.preventDefault(); // لمنع حدوث كسر سطر جديد
-            }
-          }}
-          multiline={true}
-           maxHeight={100}
-          rightButtons={
-            <div className={styles.buttonsContainer}>
-              <button
-                className={styles.emojiButton}
-                onClick={(e) => {
-                  e.stopPropagation(); // لمنع غلق الإيموجي عند الضغط عليه
-                  setShowEmojiPicker(!showEmojiPicker);
+        )}
+
+        <div className={styles.chatInputSection}>
+          {isInputVisible ? (
+            <div className={styles.textareaContainer}>
+              <textarea
+                placeholder="Enter Your Question"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend(inputValue);
+                  }
                 }}
-            >
-              <Image src="/smile-plus.png" alt="EmojiButton" width={30} height={30} />
-            </button>
+                rows={2}
+                style={{ maxHeight: "100px", resize: "none" }}
+                className={styles.textarea}
+              />
 
-            <button onClick={() => handleSend(inputValue)} className={styles.sendButton}>
-              <Image src="/send.png" alt="Send" width={25} height={25} />
-            </button>
+              <div className={styles.buttonsContainer}>
+                <button
+                  className={styles.emojiButton}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowEmojiPicker(!showEmojiPicker);
+                  }}
+                >
+                  <Image src="/smile-plus.png" alt="EmojiButton" width={30} height={30} />
+                </button>
 
-          </div>
-        }
-      />
-       ) : (
+                <button onClick={() => handleSend(inputValue)} className={styles.sendButton}>
+                  <Image src="/send.png" alt="Send" width={25} height={25} />
+                </button>
+              </div>
+            </div>
+          ) : (
             <div className={styles.dropdownContainer}>
               {exampleQuestions.length > 0 && (
-                  <ul className={styles.dropdownList}>
-                    {exampleQuestions.map((question, index) => (
-                      <li key={index} onClick={() => handleQuestionClick(question)}>
-                        {question}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <ul className={styles.dropdownList}>
+                  {exampleQuestions.map((question, index) => (
+                    <li key={index} onClick={() => handleQuestionClick(question)}>
+                      {question}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
+        </div>
+      </div>
     </div>
-    </div>
-    </main>
-  );
+  </main>
+);
 }
 
 
