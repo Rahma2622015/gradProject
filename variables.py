@@ -1,4 +1,4 @@
-ip="172.16.20.37:3000"
+ip=" 192.168.1.5:3000"
 cert_loc='F:/gradProject/cert.crt'
 key_loc='F:/gradProject/private.key'
 

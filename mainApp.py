@@ -13,10 +13,10 @@ chat_bot = Flask(__name__)
 chat_bot.secret_key = os.urandom(24)
 
 
-# CORS(chat_bot, resources={r"/messages": {"origins": variables.ip, "methods": ["POST", "GET"]}})
-# CORS(chat_bot, resources={r"/start-session": {"origins": variables.ip, "methods": ["POST"]}})
-# CORS(chat_bot, resources={r"/close-session": {"origins":variables.ip, "methods": ["POST"]}})
-CORS(chat_bot)
+CORS(chat_bot, resources={r"/messages": {"origins": variables.ip, "methods": ["POST", "GET"]}})
+CORS(chat_bot, resources={r"/start-session": {"origins": variables.ip, "methods": ["POST"]}})
+CORS(chat_bot, resources={r"/close-session": {"origins":variables.ip, "methods": ["POST"]}})
+
 
 data_file = 'session_data.json'
 client_list = []
