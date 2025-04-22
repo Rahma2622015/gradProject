@@ -1,5 +1,7 @@
 from Ai.EnglishAi.chattask import ChatTask
+
 from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
+
 from Data import DataStorage
 
 class TaskProcessor:
@@ -59,6 +61,16 @@ class TaskProcessor:
                 responses.append(( ChatTask.GraduationTask, ""))
             elif task_enum == ChatTask.EnrollmentTask:
                 responses.append(( ChatTask.EnrollmentTask, ""))
+            elif task_enum == ChatTask.AssessGraduation:
+                responses.append(( ChatTask.AssessGraduation, ""))
+            elif task_enum == ChatTask.ReasonsGraduation:
+                responses.append(( ChatTask.ReasonsGraduation, ""))
+            elif task_enum == ChatTask.PreventDelays:
+                responses.append((ChatTask.PreventDelays, ""))
+            elif task_enum == ChatTask.UnderstandRules:
+                responses.append((ChatTask.UnderstandRules, ""))
+            elif task_enum == ChatTask.ScheduleTask:
+                responses.append((ChatTask.ScheduleTask, ""))
             elif task_enum == ChatTask.AskHelpingTask:
                 responses.append((ChatTask.AskHelpingTask, ""))
             elif task[0] == ChatTask.AskNameTask:

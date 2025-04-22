@@ -2,6 +2,7 @@ from Ai.ArabicAi.chattask import ChatTask
 from Data.dataStorage import DataStorage
 from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
 
+
 class taskProcessor:
 
     def process(self, tasks:list[tuple[ChatTask,]], data:DatabaseStorage)->list[tuple[ChatTask,]]:
@@ -52,8 +53,8 @@ class taskProcessor:
                 responses.append((ChatTask.UnderstandingTask,""))
             elif task[0] ==  ChatTask.ThanksTask:
                 responses.append((ChatTask.ThanksTask,""))
-            elif task[0] ==  ChatTask.HelpTask:
-                responses.append((ChatTask.HelpTask,""))
+            elif task[0] ==  ChatTask.askHelpingTask:
+                responses.append((ChatTask.askHelpingTask,""))
             elif task[0] ==  ChatTask.GoodbyeTask:
                 responses.append(( ChatTask.GoodbyeTask,""))
             elif task[0] == ChatTask.ConfusionTask:
@@ -86,8 +87,7 @@ class taskProcessor:
                 responses.append((ChatTask.ExamRecom, ""))
             elif task[0] == ChatTask.ProfessorQueryTask:
                 professor_name = None
-                keywords = ["استاذ", "الدكتورة", "الدكتوره", "دكتور", "دكتوره", "دكتورة", "الاستاذ", "استاذه", "استاذة",
-                            " الاستاذة", "الاستاذه"]
+                keywords = ["استاذ", "دكتور"]
                 task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task
                 for i, word in enumerate(task_words):
                     if word.lower().strip() in keywords:
@@ -120,6 +120,27 @@ class taskProcessor:
                         course_info = f"Sorry, the course '{course_name}' is not found in our database."
                 except Exception as e:
                     print("❌ Error while getting course info:", str(e))
+                    course_info = "There was an error while fetching the course description."
+
+                responses.append((ChatTask.CourseQueryTask, course_name, course_info))
+
+            elif task[0] == ChatTask.PrerequisiteQueryTask:
+                course_name = ""
+                keywords = ["مادة", "موضوع", "درس", "مقرر","متطلب", "متطلبات", "شرط", "شروط", "مطلوب", "ضروري", "معتمد", "معتمده" ,"معتمدة"]
+                task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task
+
+                for i, word in enumerate(task_words):
+                    if word in keywords:
+                        course_name = " ".join(task_words[i + 1:])
+                        print("🔍 Extracted pname:", course_name)
+                        break
+
+                try:
+                    course_info = D.get_course_prerequisite_arabic(course_name)
+                    if not course_info or course_info.strip() == "Course not found.":
+                        course_info = f"Sorry, the course '{course_name}' is not found in our database."
+                except Exception as e:
+                    print("❌ Error while getting course pre:", str(e))
                     course_info = "There was an error while fetching the course description."
 
                 responses.append((ChatTask.CourseQueryTask, course_name, course_info))

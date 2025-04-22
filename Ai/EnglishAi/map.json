@@ -83,13 +83,13 @@
 
     "GraduationTask": {
     "QuestionKeywords": ["how", "what", "do", "be"],
-                "VerbKeywords": ["will", "take", "can", "complete", "many","be"],
-                "SubjectKeywords": ["year", "time", "it"],
-                "ObjectKeywords": ["finish", "single", "special", "cs", "program"
+      "VerbKeywords": ["will", "take", "can", "complete", "many","be"],
+      "SubjectKeywords": ["year", "time"],
+      "ObjectKeywords": ["finish", "single", "special", "cs", "program"
                     , "curriculum", "entirely", "computer", "science", "alone"
                     , "complete", "graduate", "degree", "take", "complete"
                     , "focus", "computers", "require", "typically", "duration"
-                    , "need", "possible", "number", "timeframe","minimum"]
+                    , "need", "number", "timeframe","minimum"]
     },
     "EnrollmentTask": {
        "QuestionKeywords": ["how", "what", "do"],
@@ -122,6 +122,44 @@
       "vary", "very", "difficulty", "same", "come", "challenging", "equally",
       "differ", "function", "test", "tough", "follow", "categories","cs"]
   },
+
+"PrerequisitesTask": {
+  "QuestionKeywords": ["which", "what", "can", "show", "do", "does", "is", "are"],
+  "VerbKeywords": ["be", "do", "must", "require", "need", "take", "complete", "finish","before"],
+  "SubjectKeywords": ["student", "course", "courses","for"],
+  "ObjectKeywords": ["prerequisite", "prerequisites", "requirement", "requirements", "needed", "required", "depend", "depend on"]
+},
+  "AssessGraduation": {
+    "QuestionKeywords":["what","haw","in"],
+    "VerbKeywords": ["be","does","play","can"],
+    "SubjectKeywords": ["selection","influence","my","way"],
+    "ObjectKeywords": ["graduation","course","role","plan","timeline","schedule","process"]
+  },
+    "ReasonsGraduation":{
+      "QuestionKeywords":["what"],
+    "VerbKeywords": ["be","can","must","take"],
+    "SubjectKeywords": ["condition","factor","criteria","met","step"],
+    "ObjectKeywords": ["requirements","graduate"]
+    },
+  "PreventDelays":{
+        "QuestionKeywords":["what","which","be"],
+    "VerbKeywords": ["need","should","must","take"],
+    "SubjectKeywords": ["delay","stay","stage","prevent"],
+    "ObjectKeywords": ["track","graduation","course"]
+  },
+  "UnderstandRules":{
+    "QuestionKeywords":["what","when","how","can"],
+    "VerbKeywords": ["be","you","tell"],
+    "SubjectKeywords": ["add","drop","period"],
+    "ObjectKeywords": ["registration","deadline"]
+  },
+  "ScheduleTask": {
+    "QuestionKeywords":["be"],
+    "VerbKeywords": ["it","my"],
+    "SubjectKeywords": ["possible","change","schedule","update"],
+    "ObjectKeywords": ["registration","after","complete"]
+  },
+
 "CourseSystem": {
     "QuestionKeywords": [
       "be", "do", "will", "should"

@@ -42,7 +42,7 @@ class replyModule:
                 s += "\n" + choice(self.data.get("CheckWellbeing", []))
             elif r[0] == ChatTask.ThanksTask:
                 s += "\n" + choice(self.data.get("ThanksReplies", []))
-            elif r[0] == ChatTask.HelpTask:
+            elif r[0] == ChatTask.askHelpingTask:
                 s += "\n" + choice(self.data.get("askhelp", []))
             elif r[0] == ChatTask.GoodbyeTask:
                 s += "\n" + choice(self.data.get("Goodbye", []))
@@ -80,6 +80,9 @@ class replyModule:
 
             elif r[0] == ChatTask.CourseQueryTask:
                 s += "\n" + choice(self.data.get("CourseQueryTask", [])).format(x=r[1], y=r[2])
+
+            elif r[0] == ChatTask.PrerequisiteQueryTask:
+                s += "\n" + choice(self.data.get("PrerequisiteQueryTask", [])).format(x=r[1], y=r[2])
 
             else:
                 s += "\n" + choice(self.data.get("Unknown", []))

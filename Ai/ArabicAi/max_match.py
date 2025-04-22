@@ -68,7 +68,6 @@ class match:
             temp_position.pop(question_pos)
 
         if question_found:
-            # البحث عن الفعل (VERB)
             verb_pos = self.getPOS(["VERB", "AUX"], temp_position)
             if verb_pos != -1:
                 verb = temp_tokens[verb_pos]
@@ -86,9 +85,17 @@ class match:
                 temp_tokens.pop(prp_pos)
                 temp_position.pop(prp_pos)
 
+        keywords = ["مقرر", "مادة", "درس", "ماده", "وحدة", "وحده", "موضوع""استاذ", "الدكتورة", "الدكتوره",
+                    "دكتور", "دكتوره", "دكتورة", "الاستاذ", "استاذه",  "استاذة","استاذ","معلم","شخص","د","د",
+                    " الاستاذة", "الاستاذه","متطلب", "متطلبات", "شرط", "شروط", "مطلوب", "ضروري", "معتمد", "معتمده" ,"معتمدة"]
+
         for token in temp_tokens:
             if self.match_for_pos(task, "مفعول", token):
-                max_matches += 0.2
+                if token in keywords:
+                    max_matches += 2
+                else:
+                    max_matches += 0.2
+
         return max_matches
 
     def classify_task(self, tokens: list[str]) -> ChatTask:
@@ -97,6 +104,7 @@ class match:
             for item_type, keywords in task_data.items():
                 for token in tokens:
                     if any(word == token for word in keywords):
+                        print(self.convert_to_enum(clean_task_name))
                         return self.convert_to_enum(clean_task_name)
 
         return ChatTask.UnknownTask

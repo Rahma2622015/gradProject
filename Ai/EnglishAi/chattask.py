@@ -32,4 +32,9 @@ class ChatTask(Enum):
     ContradictionTask = 28
     CourseSystem=29
     PrerequisitesTask=30
-    MultiCourseRecommendationTask = 31
+    AssessGraduation=31
+    ReasonsGraduation=32
+    PreventDelays=33
+    UnderstandRules=34
+    ScheduleTask=35
+ MultiCourseRecommendationTask = 36
