@@ -59,7 +59,7 @@ class mapping:
                         res.append((ChatTask.StoreTask, sentence[verbIndex], sentence[verbIndex + 1]))
                 else:
                     res.append((ChatTask.UnknownTask,))
-        print(f"📌 المهمة النهائية المختارة: {res}")
+        print(f" المهمة النهائية المختارة: {res}")
 
         return res if res else [(ChatTask.UnknownTask,)]
 

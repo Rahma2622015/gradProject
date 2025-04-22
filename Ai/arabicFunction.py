@@ -3,7 +3,6 @@ from Ai.ArabicAi.Mapping import mapping
 from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 from Ai.ArabicAi.ReplyModule import replyModule
 from Ai.ArabicAi.TaskProcessor import taskProcessor
-
 ARmapper = mapping()
 ARreply = replyModule()
 ARproces = taskProcessor()

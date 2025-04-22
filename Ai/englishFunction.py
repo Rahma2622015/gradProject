@@ -12,7 +12,10 @@ from Data.dataStorage import DataStorage
 from Ai.EnglishAi.Datastorage_DB import Data_Storage
 import variables
 from Ai.Recommendation.RecomCourseSystem import RecommendationSystem
-
+from Ai.EnglishAi.SemanticTaskMapper import SemanticTaskMapper
+from Ai.EnglishAi.GrammerChecker import EnglishGrammarChecker
+grammer=EnglishGrammarChecker()
+m=SemanticTaskMapper()
 mapper = TaskMapper()
 trivial_mapper = MappingTrivial()
 reply = ReplyModule()
@@ -73,6 +76,8 @@ def langEnglish(message, storage, user_id):
                 tasks = trivial_mapper.mapToken(tokens, pos)
             else:
                 bigram_model.sentence_probability(tokens)
+                grammer.is_correct(tokens)
+                grammer.get_errors(tokens)
                 print("[DEBUG] Mapping using TaskMapper")
                 tasks = mapper.mapToken(tokens, pos)
 

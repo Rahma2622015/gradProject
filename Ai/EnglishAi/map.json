@@ -3,7 +3,7 @@
         "QuestionKeywords": ["how", "what"],
         "VerbKeywords": ["be"],
         "SubjectKeywords": ["you"],
-        "ObjectKeywords": ["health", "mood", "day", "doing","feel"]
+        "ObjectKeywords": ["health", "mood", "day", "do","feel","go","on"]
     },
     "AskNameTask": {
         "QuestionKeywords": ["what", "do"],
