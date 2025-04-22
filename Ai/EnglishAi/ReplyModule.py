@@ -34,7 +34,7 @@ class ReplyModule:
                 s += "\n" + choice(self.data.get("CheckWellbeing", []))
             elif r[0] == ChatTask.ThanksTask:
                 s += "\n" + choice(self.data.get("ThanksReplies", []))
-            elif r[0] == ChatTask.HelpTask:
+            elif r[0] == ChatTask.AskHelpingTask:
                 s += "\n" + choice(self.data.get("askhelp", []))
             elif r[0] == ChatTask.GoodbyeTask:
                 s += "\n" + choice(self.data.get("Goodbye", []))
