@@ -20,14 +20,14 @@ export default function Home() {
   };
 
   const [isShowlist, setList] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const dropList = () => {
     setList(!isShowlist);
   };
 
-  const handleClickOutside = (event) => {
-    if (!dropdownRef.current || dropdownRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (!dropdownRef.current || dropdownRef.current.contains(event.target as Node)) {
       return;
     }
     setList(false);
@@ -84,9 +84,16 @@ export default function Home() {
   return (
     <div className={` ${isDarkMode ? styles.dark : styles.light}`}>
       <main className={styles.container}>
+          <div className={styles.hiddendiv}>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <p>{sessionMessage}</p>
+          )}
+      </div>
           <div>
             <a onClick={toggleDarkMode} className={styles.modebutton}>
-              <img
+              <Image
                 src={isDarkMode ? "/night-mode.png" : "/brightness.png"}
                 alt="mode image"
                 width={46}
@@ -187,16 +194,6 @@ export default function Home() {
          <button onClick={startSession} disabled={isLoading} className={styles.nextbutton}>
             I want to Know!
          </button>
-       </Link>
-       <Link href="/panel">
-          <button  className={styles.floating_button} disabled={isLoading}>
-            <Image
-                src="/control-panel.png"
-                alt="configuration panel"
-                width={38}
-                height={38}
-              />
-          </button>
        </Link>
       </main>
     </div>
