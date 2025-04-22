@@ -32,3 +32,4 @@ class ChatTask(Enum):
     ContradictionTask = 28
     CourseSystem=29
     PrerequisitesTask=30
+    MultiCourseRecommendationTask = 31

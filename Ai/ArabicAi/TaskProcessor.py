@@ -1,11 +1,11 @@
 from Ai.ArabicAi.chattask import ChatTask
 from Data.dataStorage import DataStorage
-from Ai.EnglishAi.Datastorage_DB import Data_Storage
+from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
 
 class taskProcessor:
 
-    def process(self, tasks:list[tuple[ChatTask,]],data:DataStorage)->list[tuple[ChatTask,]]:
-        D = Data_Storage()
+    def process(self, tasks:list[tuple[ChatTask,]], data:DatabaseStorage)->list[tuple[ChatTask,]]:
+        D = DatabaseStorage()
         responses = []
         name_from_greeting = None
         skip_store_response = False
@@ -82,6 +82,8 @@ class taskProcessor:
                 responses.append(( ChatTask.EnrollmentTask, ""))
             elif task[0] == ChatTask.askHelpingTask:
                 responses.append((ChatTask.askHelpingTask, ""))
+            elif task[0] == ChatTask.ExamRecom:
+                responses.append((ChatTask.ExamRecom, ""))
             elif task[0] == ChatTask.ProfessorQueryTask:
                 professor_name = None
                 keywords = ["استاذ", "الدكتورة", "الدكتوره", "دكتور", "دكتوره", "دكتورة", "الاستاذ", "استاذه", "استاذة",

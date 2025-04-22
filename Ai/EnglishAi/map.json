@@ -11,12 +11,6 @@
         "SubjectKeywords": ["you", "my"],
         "ObjectKeywords": ["name"]
     },
-    "AskHelpingTask": {
-        "QuestionKeywords": ["can", "could", "would"],
-        "VerbKeywords": ["help", "assist", "aid", "support","ask"],
-        "SubjectKeywords": ["you", "me"],
-        "ObjectKeywords": ["question", "task", "issue","this","with"]
-    },
     "MathTask": {
         "QuestionKeywords": ["do", "how", "be", "will"],
         "VerbKeywords": ["affect","be","should","need","could","have","require","might"],
@@ -72,14 +66,7 @@
                                    "suitable", "consider", "select", "which", "pick",
                                    "make", "informed", "decision"]
     },
-    "AcademicAdvisorTask": {
-      "QuestionKeywords": ["what", "who", "can"],
-      "VerbKeywords": ["be", "tell", "responsible", "take", "let", "provide", "act"],
-      "SubjectKeywords": ["we", "you"],
-      "ObjectKeywords": ["me", "meant", "academic", "advisor", "function"
-                    , "opinion", "serve", "meaning", "mean", "advising", "role"
-                    , "charge", "guidance", "student"]
-    },
+
     "ClassificationTask": {
     "QuestionKeywords": ["what", "be", "can", "do", "when"],
                 "VerbKeywords": ["exist", "possible", "provide", "offer","be"],
@@ -93,17 +80,7 @@
                                    "college", "certain"
                     , "options", "stage"]
     },
-    "CreditHoursTask": {
-      "QuestionKeywords": ["how", "what", "do", "can"],
-                "VerbKeywords": ["be", "many", "long", "tell"],
-                "SubjectKeywords": ["hours", "hour", "credit",
-                                    "duration", "study", "you"],
-                "ObjectKeywords": ["program", "credit", "computer", "science", "cs",
-                                   "consist", "overall", "enroll","studying", "allotted",
-                                   "minimum", "number", "single","me", "required",
-                                   "single","duration","total", "include",
-                                   "term", "workload"]
-    },
+
     "GraduationTask": {
     "QuestionKeywords": ["how", "what", "do", "be"],
                 "VerbKeywords": ["will", "take", "can", "complete", "many","be"],
@@ -145,95 +122,67 @@
       "vary", "very", "difficulty", "same", "come", "challenging", "equally",
       "differ", "function", "test", "tough", "follow", "categories","cs"]
   },
-
-"PrerequisitesTask": {
-  "QuestionKeywords": ["which", "what", "can", "show", "do", "does", "is", "are"],
-  "VerbKeywords": ["be", "do", "must", "require", "need", "take", "complete", "finish","before"],
-  "SubjectKeywords": ["i", "student", "course", "courses","for"],
-  "ObjectKeywords": ["prerequisite", "prerequisites", "requirement", "requirements", "needed", "required", "depend", "depend on"]
-},
-
 "CourseSystem": {
     "QuestionKeywords": [
-      "be",
-      "do",
-      "will",
-      "should",
-      "can"
+      "be", "do", "will", "should"
     ],
-    "VerbKeywords": [
-      "suit",
-      "match",
-      "align",
-      "help",
-      "benefit",
-      "fit",
-      "consider",
-      "choose",
-      "improve",
-      "enroll",
-      "find"
+    "VerbKeywords": ["suit", "match", "align",
+      "benefit", "fit", "consider", "choose", "improve", "enroll", "find"
     ],
     "SubjectKeywords": [
-      "i",
-      "course",
-      "algorithm",
-      "computability",
-      "oop",
-      "database",
-      "linear",
-      "algebra",
-      "english",
-      "data",
-      "structure",
-      "network",
-      "web",
-      "programming",
-      "automata",
-      "graph",
-      "ordinary",
-      "differential",
-      "equation",
-      "java",
-      "syntax",
-      "complexity",
-      "os",
-      "abstract",
-      "algebra",
-      "multimedia",
-      "combinatorics",
-      "compiler",
-      "graphics",
-      "android",
-      "advanced",
-      "crypto",
-      "skills",
-      "ai",
-      "parallel",
-      "image",
-      "processing",
-      "cyber",
-      "security",
-      "geometry",
-      "bioinformatics",
-      "software",
-      "engineering",
-      "mining"
+      "i", "course", "algorithm",
+      "computability", "oop", "database", "linear", "algebra", "english",
+      "data", "structure", "network", "web", "programming", "automata",
+      "graph", "ordinary", "differential", "equation", "java", "syntax",
+      "complexity", "os", "abstract", "algebra", "multimedia", "combinatorics",
+      "compiler", "graphics", "android", "advanced", "crypto", "skills", "ai",
+      "parallel", "image", "processing", "cyber", "security", "geometry", "bioinformatics",
+      "software", "engineering", "mining"
     ],
     "ObjectKeywords": [
-      "right",
-      "appropriate",
-      "useful",
-      "beneficial",
-      "good",
-      "helpful",
-      "best",
-      "suitable",
-      "worth",
-      "decision",
-      "choice",
-      "option",
-      "me"
+      "right", "appropriate", "useful", "beneficial", "good", "helpful", "best",
+      "suitable", "worth", "decision", "choice", "option", "me"
     ]
-  }
+  },
+  "CreditHoursTask": {
+      "QuestionKeywords": ["how", "what", "do", "can"],
+                "VerbKeywords": ["be", "many", "long", "tell"],
+                "SubjectKeywords": ["hours", "hour", "credit",
+                                    "duration", "study", "you"],
+                "ObjectKeywords": ["program", "credit", "computer", "science", "cs",
+                                   "consist", "overall", "enroll","studying", "allotted",
+                                   "minimum", "number", "single","me", "required",
+                                   "single","duration","total", "include",
+                                   "term", "workload"]
+    },
+  "AcademicAdvisorTask": {
+      "QuestionKeywords": ["what", "who", "can"],
+      "VerbKeywords": ["be", "tell", "responsible", "take", "let", "provide", "act"],
+      "SubjectKeywords": ["we", "you"],
+      "ObjectKeywords": ["me", "meant", "academic", "advisor", "function"
+                    , "opinion", "serve", "meaning", "mean", "advising", "role"
+                    , "charge", "guidance", "student"]
+    },
+  "AskHelpingTask": {
+        "QuestionKeywords": ["can", "could", "would"],
+        "VerbKeywords": ["help", "assist", "aid", "support","ask"],
+        "SubjectKeywords": ["you", "me"],
+        "ObjectKeywords": ["question", "task", "issue","this","with"]
+    },
+ "MultiCourseRecommendationTask": {
+  "QuestionKeywords": ["can", "would", "help", "recommend", "please"],
+  "VerbKeywords": ["choose", "select", "pick", "register", "take", "enroll", "recommend", "need", "want", "thinking"],
+  "SubjectKeywords": ["i", "me", "student", "subject", "material", "module", "course"],
+  "ObjectKeywords": [
+    "algorithm", "computability", "oop", "database", "linear",
+    "algebra", "english", "data", "structure", "network", "web", "programming",
+    "automata", "graph", "ordinary", "differential", "equation", "java",
+    "syntax", "complexity", "os", "abstract", "algebra", "multimedia", "combinatorics",
+    "compiler", "graphics", "android", "advanced", "crypto", "skills", "ai", "parallel",
+    "image", "processing", "cyber", "security", "geometry", "bioinformatics",
+    "software", "engineering", "mining", "recommended", "best", "appropriate", "suitable",
+    "gpa", "grade", "performance", "score", "track", "term", "semester",
+    "only", "just", "among", "from", "out of", "list", "options", "these", "those"
+  ]
+}
 }

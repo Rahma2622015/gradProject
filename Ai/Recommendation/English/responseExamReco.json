@@ -428,7 +428,7 @@
       "subject": ["data mining", "comp 416"],
       "instructor": ["dr dowlt"],
       "exam_format": {
-        "Midterm": ["give you a speech and you apply some operations on it"],
+        "Midterm": ["Solve problems like those explained + definitions + drawings"],
         "Final": ["full writeen exam"]
       }
     }

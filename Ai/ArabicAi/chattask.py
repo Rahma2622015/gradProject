@@ -29,3 +29,4 @@ class ChatTask(Enum):
     ContradactionTask = 25
     CourseQueryTask = 26
     ProfessorQueryTask = 27
+    ExamRecom=28

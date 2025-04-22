@@ -1,6 +1,6 @@
 from Ai.EnglishAi.database import SessionLocal, Course, Professor,CourseQuestion,Answers
 
-class Data_Storage:
+class DatabaseStorage:
     def __init__(self):
         self.session = SessionLocal()
 
