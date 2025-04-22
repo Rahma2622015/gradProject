@@ -1,11 +1,13 @@
 from Ai.EnglishAi.chattask import ChatTask
-from Database.Datastorage_DB import Data_Storage
+
+from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
+
 from Data import DataStorage
 
 class TaskProcessor:
     def process(self, tasks:list[tuple[ChatTask,]],data:DataStorage)->list[tuple[ChatTask,]]:
         responses = []
-        D=Data_Storage()
+        D=DatabaseStorage()
         for task in tasks:
             task_enum = task[0]
             if isinstance(task_enum, ChatTask):
@@ -80,6 +82,8 @@ class TaskProcessor:
 
             elif task_enum == ChatTask.ExamSystem:
                 responses.append((ChatTask.ExamSystem, ""))
+            elif task_enum == ChatTask.MultiCourseRecommendationTask:
+                responses.append((ChatTask.MultiCourseRecommendationTask, ""))
 
             elif task_enum == ChatTask.PrerequisitesTask:
                 course_name = ""

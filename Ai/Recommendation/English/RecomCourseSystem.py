@@ -1,8 +1,8 @@
-from Ai.EnglishAi.Datastorage_DB import Data_Storage
+from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
 from Data.dataStorage import DataStorage
 
 class RecommendationSystem:
-    def __init__(self, data_storage: Data_Storage, memory: DataStorage):
+    def __init__(self, data_storage: DatabaseStorage, memory: DataStorage):
         self.data_storage = data_storage
         self.memory = memory
 
@@ -41,14 +41,11 @@ class RecommendationSystem:
 
         if not answers:
             return "There was an error processing your answer. Please try again.", []
-
         normalized_input = user_answer.strip().lower()
-
         matched_answer = next(
             (ans for ans in answers if ans["answer"].strip().lower() == normalized_input),
             None
         )
-
         if not matched_answer:
             question_index = prev_data.get("question_index")
             question_text = self.data_storage.get_question_with_answers(prev_data["question_ids"][question_index])[
@@ -68,7 +65,6 @@ class RecommendationSystem:
         self.memory.save_data(user_id, "question_index", prev_data.get("question_index") + 1)
 
         return self.ask_next_question(user_id)
-
 
     def generate_result(self, user_id):
         prev_data = self.memory.get_prev_data(user_id)

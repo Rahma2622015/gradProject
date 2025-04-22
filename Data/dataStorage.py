@@ -3,6 +3,31 @@ class DataStorage:
     def __init__(self):
         self.data = {}
         self.session_data = {}
+        self.course_scores = {}
+
+    def get_value(self, user_id, key):
+        user_data = self.session_data.get(user_id, {})
+        return user_data.get(key, None)
+
+    def set_value(self, user_id, key, value):
+        if user_id not in self.data:
+            self.data[user_id] = {}
+        self.data[user_id][key] = value
+
+    def save_course_score(self, course_name, score):
+        self.course_scores[course_name] = score
+
+    def get_course_score(self, course_name):
+        return self.course_scores.get(course_name, None)
+
+    def get_all_course_scores(self):
+        return self.course_scores
+
+    def get_top_courses(self, top_n=None):
+        sorted_courses = sorted(self.course_scores.items(), key=lambda item: item[1], reverse=True)
+        if top_n is not None:
+            sorted_courses = sorted_courses[:top_n]
+        return sorted_courses
 
     def addData(self, name, value):
         if name not in self.data:
@@ -43,6 +68,7 @@ class DataStorage:
 
     def get_prev_data(self, user_id):
         data = self.session_data.get(user_id, {})
+        print(f"[DEBUG] get_prev_data for {user_id}: {data}")
         return data
 
     def save_data(self, user_id, key, value):

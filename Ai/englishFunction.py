@@ -5,15 +5,17 @@ from Ai.EnglishAi.Tokeniztion import Tokenizers
 from Ai.EnglishAi.Preprocessing import Preprocessors
 from Ai.EnglishAi.AutoCorrect import AutoCorrector
 from Ai.EnglishAi.MappingTrivialTasks import MappingTrivial
-from Ai.Recommendation.ReplyModuleR import ReplyModuleRe
+from Ai.Recommendation.English.ReplyModuleR import ReplyModuleRe
 from Ai.EnglishAi.BigramModel import BigramModel
 from Ai.EnglishAi.chattask import ChatTask
 from Data.dataStorage import DataStorage
-from Ai.EnglishAi.Datastorage_DB import Data_Storage
+from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
+from Ai.Recommendation.English.RecomCourseSystem import RecommendationSystem
 import variables
 from Ai.Recommendation.RecomCourseSystem import RecommendationSystem
 from Ai.EnglishAi.SemanticTaskMapper import SemanticTaskMapper
 from Ai.EnglishAi.GrammerChecker import EnglishGrammarChecker
+
 grammer=EnglishGrammarChecker()
 m=SemanticTaskMapper()
 mapper = TaskMapper()
@@ -25,7 +27,7 @@ p = Preprocessors()
 a = AutoCorrector()
 recom_reply = ReplyModuleRe()
 bigram_model = BigramModel(variables.Bigrams)
-data_storage=Data_Storage()
+data_storage=DatabaseStorage()
 memory=DataStorage()
 course_recommender = RecommendationSystem(data_storage, memory)
 
@@ -43,9 +45,7 @@ def langEnglish(message, storage, user_id):
         message_lower = p.lowercase(message)
         corrected_message = a.correct_text(message_lower)
         tokens = t.tokenize(corrected_message)
-        print("tokens: ",tokens)
         pos = t.pos_tag(tokens)
-        print("pos: ",pos)
         tokens = p.preprocess(tokens, pos)
         prev_data = storage.get_prev_data(user_id)
 
@@ -68,6 +68,26 @@ def langEnglish(message, storage, user_id):
             if not options:
                 storage.clear_data(user_id)
             return s, options, True
+
+        # ---------------------- MultiCourse Recommendation System ----------------------
+        elif storage.get_current_task(user_id) == "MultiCourseSystem":
+            print("[DEBUG] Continuing Multi-Course Recommendation Flow")
+
+            if not storage.get_prev_data(user_id).get("all_courses"):
+                course_names = t.extract_all_course_names(message)
+                print(f"[INFO] Detected course names: {course_names}")
+                if course_names:
+                    response, options = recom_reply.course_selection_recommender.start(user_id, course_names)
+                    if isinstance(response, str):
+                        s = response
+                    else:
+                        s = "Error processing multi-course recommendation."
+                else:
+                    s = "Sorry, I couldn't detect the course names from your question."
+            else:
+                s, options = recom_reply.course_selection_recommender.ask_next_question(user_id)
+
+            return s, options, True
         # ---------------------- Start New Task ----------------------
         else:
             if is_trivial_task(tokens, trivial_mapper):
@@ -80,7 +100,6 @@ def langEnglish(message, storage, user_id):
                 grammer.get_errors(tokens)
                 print("[DEBUG] Mapping using TaskMapper")
                 tasks = mapper.mapToken(tokens, pos)
-
             print(f"[DEBUG] Identified tasks: {tasks}, type: {type(tasks)}")
 
             if all(task[0] == ChatTask.UnknownTask for task in tasks):
@@ -103,6 +122,22 @@ def langEnglish(message, storage, user_id):
                         s, options = course_recommender.start_recommendation(user_id, course_name)
                     else:
                         s = "Please mention a valid course name so I can recommend suitable subjects."
+                    return s, options, True
+
+                if any(task[0] == ChatTask.MultiCourseRecommendationTask for task in tasks):
+                    print("[DEBUG] Handling Multi-Course Recommendation Task")
+                    storage.set_current_task(user_id, "MultiCourseSystem")
+                    course_names = t.extract_all_course_names(corrected_message)
+                    storage.save_data(user_id, "all_courses", course_names)
+                    print(f"[INFO] Detected course names: {course_names}")
+                    if course_names:
+                        response, options = recom_reply.course_selection_recommender.start(user_id, course_names)
+                        if isinstance(response, str):  # If response is a string
+                            s = response
+                        else:
+                            s = "Error processing multi-course recommendation."
+                    else:
+                        s = "Sorry, I couldn't detect the course names from your question."
                     return s, options, True
 
             processed_tasks = proces.process(tasks, storage)
