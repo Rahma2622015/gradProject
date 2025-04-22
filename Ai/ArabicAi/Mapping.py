@@ -1,5 +1,5 @@
 from Ai.ArabicAi.chattask import ChatTask
-from Ai.ArabicAi.functionsForTrivialTasks import func
+from Ai.ArabicAi.functionsForTasks import func
 from Ai.ArabicAi.max_match import match
 
 fun = func()
@@ -12,6 +12,9 @@ class mapping:
         score=0
         if not tokens or not pos or len(tokens) != len(pos):
             return [(ChatTask.UnknownTask, "Invalid input")]
+
+
+        print(f"المفاتيح المتاحة في task_definitions: {ma.task_definitions.keys()}")
 
         for i, sentence in enumerate(tokens):
             if any(fun.isGreetingTool(word) for word in sentence):
@@ -48,7 +51,7 @@ class mapping:
                         max_score = score
                         best_task = ma.convert_to_enum(task)
 
-                if best_task != ChatTask.UnknownTask or max_score >= 1.5:
+                if best_task != ChatTask.UnknownTask or max_score >= 1:
                     res.append((best_task, sentence))
                 else:
                     res.append((ChatTask.UnknownTask, ""))
@@ -59,7 +62,7 @@ class mapping:
                         res.append((ChatTask.StoreTask, sentence[verbIndex], sentence[verbIndex + 1]))
                 else:
                     res.append((ChatTask.UnknownTask,))
-        print(f" المهمة النهائية المختارة: {res}")
+        print(f"📌 المهمة النهائية المختارة: {res}")
 
         return res if res else [(ChatTask.UnknownTask,)]
 

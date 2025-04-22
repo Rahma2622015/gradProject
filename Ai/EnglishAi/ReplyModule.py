@@ -34,7 +34,7 @@ class ReplyModule:
                 s += "\n" + choice(self.data.get("CheckWellbeing", []))
             elif r[0] == ChatTask.ThanksTask:
                 s += "\n" + choice(self.data.get("ThanksReplies", []))
-            elif r[0] == ChatTask.AskHelpingTask:
+            elif r[0] == ChatTask.HelpTask:
                 s += "\n" + choice(self.data.get("askhelp", []))
             elif r[0] == ChatTask.GoodbyeTask:
                 s += "\n" + choice(self.data.get("Goodbye", []))
@@ -65,6 +65,16 @@ class ReplyModule:
                 s += "\n" + choice(self.data.get("Graduation", []))
             elif r[0] == ChatTask.EnrollmentTask:
                 s += "\n" + choice(self.data.get("Enrollment", []))
+            elif r[0] == ChatTask.AssessGraduation:
+                s += "\n" + choice(( ChatTask.AssessGraduation, ""))
+            elif r[0] == ChatTask.ReasonsGraduation:
+                s += "\n" + choice((ChatTask.ReasonsGraduation, ""))
+            elif r[0] == ChatTask.PreventDelays:
+                s += "\n" + choice((ChatTask.PreventDelays, ""))
+            elif r[0] == ChatTask.UnderstandRules:
+                s += "\n" + choice((ChatTask.UnderstandRules, ""))
+            elif r[0] == ChatTask.ScheduleTask:
+                s += "\n" + choice((ChatTask.ScheduleTask, ""))
             elif r[0] == ChatTask.PrerequisitesTask:
                 if isinstance(r[2], str):
                     s += "\n" + r[2]

@@ -110,9 +110,9 @@
        "An academic advisor helps with course selection and career guidance. They have your academic record and assist in making study-related decisions."
     ],
     "ProfessorQueryTask": [
-    "{x} is a professor specializing in {y}.",
-    "Professor {x} teaches in the {y} department.",
-    "Dr. {x} is an expert in {y}."
+    "{x} is a {y}.",
+    "Professor {x} is a {y} ",
+    "Dr. {x} is a {y}."
 ],
 "CourseQueryTask": [
     "{x} is a course about {y}.",
@@ -128,7 +128,15 @@
   "{x} is a requirement for {y}.",
   "Students need to finish {x} prior to {y}.",
   "Before taking {y}, you need to pass {x}."
-]
+],
+
+
+
+  "AssessGraduation": ["If your GPA is below 2.0, you will not be able to register for morethan12credithours per semester. If your GPA continues to decline and remains below2.0forfour semesters,you may be dismissed from the college. Each semesterwithaGPA below 2.0 will be considered a probationary period, whichmayimpactyourlength of college studies."],
+  "ReasonsGraduation":["You are permitted to register for a course outside its regular semester and have it countedasa graduation course,  but subject to specific conditions:There must be an open semester for other courses in addition to this course. This course must be the only one registered under the graduation course. Registration for graduation courses is not permitted during the summer semester."],
+  "PreventDelays":["Based on your ability, it is preferable to register for the number of hours specified inthe studenthandbook for each semester."],
+  "UnderstandRules":["Simply put, to register for courses at the beginning of the semester, you need to followthedatessetby the college and consult your academic advisor to make sure you're registering for the right courses.If you're late by more than a week, your registration won’t be final until you get approval fromthedepartment. If there are any disagreements between departments, you can still register until thesecond week, but you will have to pay a late fee. Also, during the first two weeks, you can add or drop any course, as long as your academicadvisorapproves and there are available spots on the course. After that, your schedule is finalized. After the two-week period, no more course additions or drops are allowed.”"],
+  "ScheduleTask": ["The schedule cannot be modified after course registration. The schedule is determinedcentrallyaccording to criteria set by the college."]
 
 
 }
