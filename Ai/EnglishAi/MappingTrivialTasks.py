@@ -36,13 +36,14 @@ class MappingTrivial:
                 res.append((ChatTask.GoodbyeTask, ""))
             elif any(f.isConfusionTool(word) for word in sentence):
                 res.append((ChatTask.ConfusionTask, ""))
+            # else:
+            #     verbIndex = f.getPOS("VB", pos[i])
+            #     if verbIndex != -1 and sentence[verbIndex] == "be":
+            #         if pos[i][verbIndex - 1].startswith("N") and (
+            #                 pos[i][verbIndex + 1].startswith("J") or pos[i][verbIndex + 1].startswith("N")):
+            #             res.append((ChatTask.StoreTask, sentence[verbIndex - 1], sentence[verbIndex + 1]))
+            #
             else:
-                verbIndex = f.getPOS("VB", pos[i])
-                if verbIndex != -1 and sentence[verbIndex] == "be":
-                    if pos[i][verbIndex - 1].startswith("N") and (
-                            pos[i][verbIndex + 1].startswith("J") or pos[i][verbIndex + 1].startswith("N")):
-                        res.append((ChatTask.StoreTask, sentence[verbIndex - 1], sentence[verbIndex + 1]))
-                else:
-                    res.append((ChatTask.UnknownTask,))
+                res.append((ChatTask.UnknownTask,))
 
         return res if res else [(ChatTask.UnknownTask,)]
