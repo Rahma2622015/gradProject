@@ -5,7 +5,7 @@ from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
 
 class taskProcessor:
 
-    def process(self, tasks:list[tuple[ChatTask,]], data:DatabaseStorage)->list[tuple[ChatTask,]]:
+    def process(self, tasks:list[tuple[ChatTask,]], data:DataStorage)->list[tuple[ChatTask,]]:
         D = DatabaseStorage()
         responses = []
         name_from_greeting = None

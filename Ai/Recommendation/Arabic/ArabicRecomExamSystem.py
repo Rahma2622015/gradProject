@@ -12,10 +12,12 @@ class ArRecommendation:
     def load_definitions(self, json_path: str) -> dict:
         try:
             with open(json_path, "r", encoding="utf-8") as file:
-                print(f"[INFO] arabic mapR file loaded successfully: {json_path}")
                 return json.load(file)
-        except (FileNotFoundError, json.JSONDecodeError) as e:
-            print(f"[ERROR] Unable to load arabic mapR file: {e}")
+        except FileNotFoundError:
+            print(f"Error: File {json_path} not found.")
+            return {}
+        except json.JSONDecodeError:
+            print(f"Error: Failed to parse JSONRe from {json_path}.")
             return {}
 
     def load_responses(self, json_path):

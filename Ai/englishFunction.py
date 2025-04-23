@@ -12,11 +12,11 @@ from Data.dataStorage import DataStorage
 from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
 from Ai.Recommendation.English.RecomCourseSystem import RecommendationSystem
 import variables
-from Ai.Recommendation.RecomCourseSystem import RecommendationSystem
 from Ai.EnglishAi.SemanticTaskMapper import SemanticTaskMapper
 from Ai.EnglishAi.GrammerChecker import EnglishGrammarChecker
+from Ai.EnglishAi.functionsForMapping import functions
 
-grammer=EnglishGrammarChecker()
+#grammer=EnglishGrammarChecker()
 m=SemanticTaskMapper()
 mapper = TaskMapper()
 trivial_mapper = MappingTrivial()
@@ -25,17 +25,18 @@ proces = TaskProcessor()
 t = Tokenizers()
 p = Preprocessors()
 a = AutoCorrector()
+f=functions()
 recom_reply = ReplyModuleRe()
 bigram_model = BigramModel(variables.Bigrams)
 data_storage=DatabaseStorage()
 memory=DataStorage()
 course_recommender = RecommendationSystem(data_storage, memory)
 
-def is_trivial_task(tokens, trivial_mapper) -> bool:
+def is_trivial_task(tokens, f) -> bool:
     for sentence in tokens:
         for token in sentence:
-            if (trivial_mapper.isGreetingTool(token) or trivial_mapper.isGoodbyeTool(token) or
-                    trivial_mapper.isThanksTool(token) or trivial_mapper.isConfusionTool(token)):
+            if (f.isGreetingTool(token) or f.isGoodbyeTool(token) or
+                    f.isThanksTool(token) or f.isConfusionTool(token)):
                 return True
     return False
 
@@ -90,16 +91,16 @@ def langEnglish(message, storage, user_id):
             return s, options, True
         # ---------------------- Start New Task ----------------------
         else:
-            if is_trivial_task(tokens, trivial_mapper):
+            if is_trivial_task(tokens, f):
                 bigram_model.sentence_probability(tokens)
                 print("[DEBUG] Mapping using TrivialMapper")
                 tasks = trivial_mapper.mapToken(tokens, pos)
             else:
                 bigram_model.sentence_probability(tokens)
-                grammer.is_correct(tokens)
-                grammer.get_errors(tokens)
+             #   grammer.is_correct(tokens)
+             #   grammer.get_errors(tokens)
                 print("[DEBUG] Mapping using TaskMapper")
-                tasks = mapper.mapToken(tokens, pos)
+                tasks = m.mapToken(tokens, pos)
             print(f"[DEBUG] Identified tasks: {tasks}, type: {type(tasks)}")
 
             if all(task[0] == ChatTask.UnknownTask for task in tasks):

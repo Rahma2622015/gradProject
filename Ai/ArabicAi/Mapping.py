@@ -1,5 +1,5 @@
 from Ai.ArabicAi.chattask import ChatTask
-from Ai.ArabicAi.functionsForTasks import func
+from Ai.ArabicAi.functionsForTrivialTasks import func
 from Ai.ArabicAi.max_match import match
 
 fun = func()
