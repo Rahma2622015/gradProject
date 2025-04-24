@@ -10,12 +10,14 @@ from Ai.EnglishAi.BigramModel import BigramModel
 from Ai.EnglishAi.chattask import ChatTask
 from Data.dataStorage import DataStorage
 from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
-from Ai.Recommendation.English.RecomCourseSystem import RecommendationSystem
 import variables
+from Ai.Recommendation.English.RecomCourseSystem import RecommendationSystem
 from Ai.EnglishAi.SemanticTaskMapper import SemanticTaskMapper
 from Ai.EnglishAi.GrammerChecker import EnglishGrammarChecker
 from Ai.EnglishAi.functionsForMapping import functions
 
+
+f=functions()
 #grammer=EnglishGrammarChecker()
 m=SemanticTaskMapper()
 mapper = TaskMapper()

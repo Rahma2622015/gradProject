@@ -28,7 +28,8 @@ class Course(Base):
     description = Column(String, nullable=False)
     short_name = Column(String)
     code = Column(String, unique=True, nullable=False)
-
+    course_hours=Column(Integer, nullable=True)
+    course_degree=Column(Integer, nullable=True)
     name_arabic = Column(String, nullable=True)
     description_arabic = Column(String, nullable=True)
 

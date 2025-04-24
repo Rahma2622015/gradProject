@@ -38,3 +38,5 @@ class ChatTask(Enum):
     UnderstandRules=34
     ScheduleTask=35
     MultiCourseRecommendationTask = 36
+    CourseHours=37
+

@@ -1,23 +1,35 @@
-ip="192.168.1.5:3000"
-cert_loc=r'E:\gradProject\cert.crt'
-key_loc=r'E:\gradProject\private.key'
+ip="https://192.168.1.11:3000"
 
-MapDataLocationAr=r"E:\gradProject\Ai\ArabicAi\MapData.json"
-arabic_word=r"E:\gradProject\Ai\ArabicAi\arabic_words.txt"
-ResponseDataLocationAr=r"E:\gradProject\Ai\ArabicAi\response.json"
+base_ssl=r"D:/gradProject/ssl11"
 
-MapDataLocationEn=r"E:\gradProject\Ai\EnglishAi\map.json"
-MapData2LocationEn=r"E:\gradProject\Ai\EnglishAi\Newmap.json"
-ResponseDataLocationEn=r"E:\gradProject\Ai\EnglishAi\response.json"
+cert_loc=fr"{base_ssl}/certificate.crt"
+key_loc=fr"{base_ssl}/private.key"
 
 
-ResponseDataLocationRE=r"E:\gradProject\Ai\Recommendation\responseExamReco.json"
+base_arabic_ai = r"D:\gradProject\Ai\ArabicAi"
+base_english_ai = r"D:\gradProject\Ai\EnglishAi"
+base_recommendation = r"D:\gradProject\Ai\Recommendation\English"
+base_arabic_recommendation = r"D:\gradProject\Ai\Recommendation\Arabic"
 
-NamesinCorrectEnglish=r"E:\gradProject\Ai\EnglishAi\Names.txt"
-NamesinCorrectArabic=r"E:\gradProject\Ai\ArabicAi\arabic_names.txt"
-CourseNameArabic=r"E:\gradProject\Ai\ArabicAi\اسماء المواد.txt"
+MapDataLocationAr = fr"{base_arabic_ai}\MapData.json"
+arabic_word = fr"{base_arabic_ai}\arabic_words.txt"
+ResponseDataLocationAr = fr"{base_arabic_ai}\response.json"
+NamesinCorrectArabic = fr"{base_arabic_ai}\arabic_names.txt"
+subjectNameLocation = fr"{base_arabic_ai}\subject_names.txt"
+CourseNameArabic = fr"{base_arabic_ai}\اسماء المواد.txt"
 
-Bigrams=r"E:\gradProject\Ai\EnglishAi\bigrams.txt"
-courseLocation=r"E:\gradProject\Ai\EnglishAi\courses.txt"
 
-ArResponseDataLocationRE=r"E:\gradProject\Ai\Recommendation\Arabic\AraResponseEx.json"
+
+MapDataLocationEn = fr"{base_english_ai}\map.json"
+ResponseDataLocationEn = fr"{base_english_ai}\response.json"
+Bigrams = fr"{base_english_ai}\bigrams.txt"
+NamesinCorrectEnglish = fr"{base_english_ai}\Names.txt"
+courseLocation = fr"{base_english_ai}\courses.txt"
+MapData2LocationEn = fr"{base_english_ai}\Newmap.json"
+
+ResponseDataLocationRE = fr"{base_recommendation}\responseExamReco.json"
+MapDataLocationRE = fr"{base_recommendation}\mapR.json"
+RecomLocation = fr"{base_recommendation}\courses.json"
+
+ArResponseDataLocationRE = fr"{base_arabic_recommendation}\AraResponseEx.json"
+
