@@ -37,4 +37,5 @@ class ChatTask(Enum):
     PreventDelays=33
     UnderstandRules=34
     ScheduleTask=35
- MultiCourseRecommendationTask = 36
+    MultiCourseRecommendationTask = 36
+    CourseHours=37

@@ -4,7 +4,7 @@ class DatabaseStorage:
     def __init__(self):
         self.session = SessionLocal()
 
-    def get_course_prerequisite(self, course_name: str):
+    def get_course_prerequisite(self, course_name):
         course = self.session.query(Course).filter(
             Course.name.ilike(f"%{course_name}%") |
             (Course.short_name.ilike(f"%{course_name}%")) |
@@ -15,7 +15,7 @@ class DatabaseStorage:
             return [prerequisite.code for prerequisite in course.prerequisites]
         return None
 
-    def get_course_description(self, course_name: str) -> str:
+    def get_course_description(self, course_name) -> str:
         course = self.session.query(Course).filter(
             Course.name.ilike(f"%{course_name}%") |
             (Course.short_name.ilike(f"%{course_name}%")) |
@@ -23,14 +23,14 @@ class DatabaseStorage:
         ).first()
         return course.description if course else "Course not found."
 
-    def get_course_description_arabic(self, course_name: str) -> str:
+    def get_course_description_arabic(self, course_name) -> str:
 
         course = self.session.query(Course).filter(
             Course.name_arabic.ilike(f"%{course_name}%")).first()
         return course.description_arabic if course else "Course not found."
 
 
-    def get_course_questions(self, course_name: str) -> list:
+    def get_course_questions(self, course_name) -> list:
         course = self.session.query(Course).filter(
             Course.name.ilike(f"%{course_name}%") |
             (Course.short_name.ilike(f"%{course_name}%"))|
@@ -39,7 +39,7 @@ class DatabaseStorage:
 
         return course.questions if course else "Questions not found."
 
-    def get_professor_info(self, professor_name: str) -> str:
+    def get_professor_info(self, professor_name) -> str:
         professor = self.session.query(Professor).filter(Professor.name.ilike(f"%{professor_name}%")).first()
 
         if not professor:
@@ -47,7 +47,7 @@ class DatabaseStorage:
 
         return professor.description
 
-    def get_professor_info_arabic(self, professor_name: str) -> str:
+    def get_professor_info_arabic(self, professor_name) -> str:
         professor = self.session.query(Professor).filter(Professor.name_arabic.ilike(f"%{professor_name}%")).first()
 
         if not professor:
@@ -69,3 +69,17 @@ class DatabaseStorage:
         }
 
         return question_data
+
+    def get_course_hours_and_degree(self, course_name):
+        course = self.session.query(Course).filter(
+            Course.name.ilike(f"%{course_name}%") |
+            Course.short_name.ilike(f"%{course_name}%") |
+            Course.code.ilike(f"%{course_name}%") |
+            Course.name_arabic.ilike(f"%{course_name}%")
+        ).first()
+
+        if course:
+            return course.course_hours, course.course_degree
+        else:
+            return None, None
+

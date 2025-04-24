@@ -136,7 +136,15 @@
   "ReasonsGraduation":["You are permitted to register for a course outside its regular semester and have it countedasa graduation course,  but subject to specific conditions:There must be an open semester for other courses in addition to this course. This course must be the only one registered under the graduation course. Registration for graduation courses is not permitted during the summer semester."],
   "PreventDelays":["Based on your ability, it is preferable to register for the number of hours specified inthe studenthandbook for each semester."],
   "UnderstandRules":["Simply put, to register for courses at the beginning of the semester, you need to followthedatessetby the college and consult your academic advisor to make sure you're registering for the right courses.If you're late by more than a week, your registration won’t be final until you get approval fromthedepartment. If there are any disagreements between departments, you can still register until thesecond week, but you will have to pay a late fee. Also, during the first two weeks, you can add or drop any course, as long as your academicadvisorapproves and there are available spots on the course. After that, your schedule is finalized. After the two-week period, no more course additions or drops are allowed.”"],
-  "ScheduleTask": ["The schedule cannot be modified after course registration. The schedule is determinedcentrallyaccording to criteria set by the college."]
-
+  "ScheduleTask": ["The schedule cannot be modified after course registration. The schedule is determinedcentrallyaccording to criteria set by the college."],
+ "CourseHours":
+ [
+   "course {x} has {y} credit_hours and with degree {z}.",
+   "For the course {x}, you will earn {y} credit hours and the grade is {z}.",
+   "The course {x} offers {y} credit hours, and the degree awarded is {z}.",
+   "You will gain {y} credit hours in course {x}, with a degree of {z}.",
+   "Course {x} involves {y} credit hours, and the degree you will earn is {z}.",
+   "The course {x} has a total of {y} credit hours, and the degree is {z}."
+ ]
 
 }

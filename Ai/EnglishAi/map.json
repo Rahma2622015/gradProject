@@ -184,10 +184,10 @@
   },
   "CreditHoursTask": {
       "QuestionKeywords": ["how", "what", "do", "can"],
-                "VerbKeywords": ["be", "many", "long", "tell"],
-                "SubjectKeywords": ["hours", "hour", "credit",
+      "VerbKeywords": ["be", "many", "long", "tell"],
+      "SubjectKeywords": ["hours", "hour", "credit",
                                     "duration", "study", "you"],
-                "ObjectKeywords": ["program", "credit", "computer", "science", "cs",
+     "ObjectKeywords": ["program", "credit", "computer", "science", "cs",
                                    "consist", "overall", "enroll","studying", "allotted",
                                    "minimum", "number", "single","me", "required",
                                    "single","duration","total", "include",
@@ -222,5 +222,12 @@
     "gpa", "grade", "performance", "score", "track", "term", "semester",
     "only", "just", "among", "from", "out of", "list", "options", "these", "those"
   ]
-}
+},
+  "CourseHours":
+  {
+    "QuestionKeywords": ["what","how"],
+    "VerbKeywords": ["be"],
+    "SubjectKeywords": ["credit","hours","hour","for","of","degree","total"],
+    "ObjectKeywords": ["course","courses"]
+  }
 }

@@ -84,7 +84,37 @@ class TaskProcessor:
                 responses.append((ChatTask.ExamSystem, ""))
             elif task_enum == ChatTask.MultiCourseRecommendationTask:
                 responses.append((ChatTask.MultiCourseRecommendationTask, ""))
+            elif task_enum == ChatTask.CourseHours:
+                course_name,hours,degree = " ","",""
+                task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task
+                pos_tags = task[2] if isinstance(task, tuple) and len(task) > 2 else []
+                print(task_words)
+                print("c:",pos_tags)
+                for i, tag in enumerate(pos_tags):
+                    if tag == "<CourseName>":
+                        course_name = task_words[i]
+                        print("🔍 Extracted 1name from POS tag:", course_name)
+                        break
 
+                if not course_name:
+                    keywords = [ "subject", "lesson", "course"]
+                    for i, word in enumerate(task_words):
+                        if word in keywords and i + 1 < len(task_words):
+                            course_name = " ".join(task_words[i + 2:])
+                            print("🔍 Extracted cname from keywords:", course_name)
+                            break
+
+                try:
+                    hours, degree = D.get_course_hours_and_degree(course_name)
+                    if hours is None or "":
+                        hours = f"Sorry, the course_hourse is not found in our database."
+                    elif degree is None or "":
+                        degree = f"Sorry, the course_degree is not found in our database."
+
+                except Exception as e:
+                    print("❌ Error while getting course info:", str(e))
+
+                responses.append((ChatTask.CourseHours, course_name, hours,degree))
             elif task_enum == ChatTask.PrerequisitesTask:
                 course_name = ""
                 task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task

@@ -75,6 +75,11 @@ class ReplyModule:
                 s += "\n" + choice((ChatTask.UnderstandRules, ""))
             elif r[0] == ChatTask.ScheduleTask:
                 s += "\n" + choice((ChatTask.ScheduleTask, ""))
+            elif r[0] == ChatTask.CourseHours:
+                course_name =r[1]
+                hours = r[2]
+                degree = r[3]
+                s += "\n" + choice(self.data.get("CourseHours", [])).format(x=course_name, y=hours, z=degree)
             elif r[0] == ChatTask.PrerequisitesTask:
                 if isinstance(r[2], str):
                     s += "\n" + r[2]
