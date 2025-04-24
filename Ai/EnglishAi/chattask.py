@@ -39,3 +39,4 @@ class ChatTask(Enum):
     ScheduleTask=35
     MultiCourseRecommendationTask = 36
     CourseHours=37
+

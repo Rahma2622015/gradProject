@@ -32,3 +32,4 @@ MapDataLocationRE = fr"{base_recommendation}\mapR.json"
 RecomLocation = fr"{base_recommendation}\courses.json"
 
 ArResponseDataLocationRE = fr"{base_arabic_recommendation}\AraResponseEx.json"
+

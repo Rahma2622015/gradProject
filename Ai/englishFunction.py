@@ -16,8 +16,9 @@ from Ai.EnglishAi.SemanticTaskMapper import SemanticTaskMapper
 from Ai.EnglishAi.GrammerChecker import EnglishGrammarChecker
 from Ai.EnglishAi.functionsForMapping import functions
 
+
 f=functions()
-grammer=EnglishGrammarChecker()
+#grammer=EnglishGrammarChecker()
 m=SemanticTaskMapper()
 mapper = TaskMapper()
 trivial_mapper = MappingTrivial()
@@ -26,6 +27,7 @@ proces = TaskProcessor()
 t = Tokenizers()
 p = Preprocessors()
 a = AutoCorrector()
+f=functions()
 recom_reply = ReplyModuleRe()
 bigram_model = BigramModel(variables.Bigrams)
 data_storage=DatabaseStorage()
@@ -97,10 +99,10 @@ def langEnglish(message, storage, user_id):
                 tasks = trivial_mapper.mapToken(tokens, pos)
             else:
                 bigram_model.sentence_probability(tokens)
-                grammer.is_correct(tokens)
-                grammer.get_errors(tokens)
+             #   grammer.is_correct(tokens)
+             #   grammer.get_errors(tokens)
                 print("[DEBUG] Mapping using TaskMapper")
-                tasks = mapper.mapToken(tokens, pos)
+                tasks = m.mapToken(tokens, pos)
             print(f"[DEBUG] Identified tasks: {tasks}, type: {type(tasks)}")
 
             if all(task[0] == ChatTask.UnknownTask for task in tasks):
