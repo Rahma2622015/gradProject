@@ -100,7 +100,7 @@ def langEnglish(message, storage, user_id):
              #   grammer.is_correct(tokens)
              #   grammer.get_errors(tokens)
                 print("[DEBUG] Mapping using TaskMapper")
-                tasks = m.mapToken(tokens, pos)
+                tasks = mapper.mapToken(tokens, pos)
             print(f"[DEBUG] Identified tasks: {tasks}, type: {type(tasks)}")
 
             if all(task[0] == ChatTask.UnknownTask for task in tasks):
