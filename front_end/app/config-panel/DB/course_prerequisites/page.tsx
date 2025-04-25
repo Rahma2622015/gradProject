@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import styles from "./pre.module.css";
+import variables from "../../../variables.json";
 
  function DatabaseManager() {
   const [dbData, setDbData] = useState([]);
@@ -12,7 +13,7 @@ import styles from "./pre.module.css";
  const [pre, setPre] = useState([]);
    const fetchPre = async () => {
       try {
-        const response = await fetch("https://192.168.1.9:3001/pre");
+        const response = await fetch(variables.pre);
         if (response.ok) {
           const data = await response.json();
           setDbData(data);
@@ -77,7 +78,7 @@ import styles from "./pre.module.css";
       formData.append("file", file);
 
       try {
-        const response = await fetch("https://192.168.1.9:3001/upload-sqlite", {
+        const response = await fetch(variables.upload_sqlite, {
           method: "POST",
           body: formData,
         });
@@ -122,7 +123,7 @@ import styles from "./pre.module.css";
 
   const uploadDataToAPI = async (data) => {
     try {
-      const response = await fetch("https://192.168.1.9:3001/pre", {
+      const response = await fetch(variables.pre, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

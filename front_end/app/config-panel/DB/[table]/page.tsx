@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import styles from "./table.module.css";
-
+import variables from "../../../variables.json";
  function TablePage() {
   const { table } = useParams();
   const [columns, setColumns] = useState([]);
@@ -19,7 +19,7 @@ import styles from "./table.module.css";
   useEffect(() => {
     const fetchTableData = async () => {
       try {
-        const res = await fetch(`https://192.168.1.9:3001/get-table/${dbName}/${table}`);
+        const res = await fetch(`${variables.get_table}/get-table/${dbName}/${table}`);
         const result = await res.json();
 
         if (res.ok) {
@@ -45,7 +45,7 @@ import styles from "./table.module.css";
 
   const handleDelete = async (index) => {
     const rowToDelete = rows[index];
-    const res = await fetch(`https://192.168.1.9:3001/delete-row/${dbName}/${table}`, {
+    const res = await fetch(`${variables.get_table}/delete-row/${dbName}/${table}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(rowToDelete),
@@ -61,7 +61,7 @@ import styles from "./table.module.css";
   };
 
   const handleSave = async (index) => {
-    const res = await fetch(`https://192.168.1.9:3001/update-row/${dbName}/${table}`, {
+    const res = await fetch(`${variables.get_table}/update-row/${dbName}/${table}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ oldRow: rows[index], newRow: editRow }),
@@ -84,7 +84,7 @@ import styles from "./table.module.css";
     return;
   }
 
-  const res = await fetch(`https://192.168.1.9:3001/add-row/${dbName}/${table}`, {
+  const res = await fetch(`${variables.get_table}/add-row/${dbName}/${table}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(newRow),
@@ -109,7 +109,7 @@ const handleAddAttribute = async () => {
   const payload = { columnName: newAttribute };
 
   try {
-    const res = await fetch(`https://192.168.1.9:3001/add-attribute/${dbName}/${table}`, {
+    const res = await fetch(`${variables.get_table}/add-attribute/${dbName}/${table}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

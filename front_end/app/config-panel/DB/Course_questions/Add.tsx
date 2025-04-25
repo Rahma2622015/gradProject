@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./Add.module.css";
-
+import variables from "../../../variables.json";
 const AddQuestionForm = ({ onQuestionAdded }) => {
   const [question, setQuestion] = useState({
     question: "",
@@ -17,7 +17,7 @@ const AddQuestionForm = ({ onQuestionAdded }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://192.168.1.9:3001/question", {
+      const response = await fetch(variables.question, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(question),
@@ -28,7 +28,7 @@ const AddQuestionForm = ({ onQuestionAdded }) => {
       if (response.ok) {
         alert("Question added successfully");
         onQuestionAdded(result);
-        setQuestion({ question: "", course_id: ""});
+        setQuestion({ question: "", course_id: "",question_arabic:""});
       } else {
         alert(`Error: ${result.error}`);
       }

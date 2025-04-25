@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from "./table.module.css";
-
+import variables from "../../variables.json";
 function Table() {
   const [tables, setTables] = useState([]);
   const [newTable, setNewTable] = useState("");
@@ -21,7 +21,7 @@ function Table() {
    useEffect(() => {
       const fetchTables = async () => {
         try {
-          const res = await fetch(`https://192.168.1.9:3001/get-tables/${dbName}`);
+          const res = await fetch(`${variables.get_table}/get-tables/${dbName}`);
           const result = await res.json();
 
           if (res.ok) {
@@ -52,7 +52,7 @@ function Table() {
     }
 
     try {
-      const response = await fetch(`https://192.168.1.9:3001/create-table/${dbName}`, {
+      const response = await fetch(`${variables.get_table}/create-table/${dbName}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -78,7 +78,7 @@ const handleDeleteTable = async (tableName) => {
   if (!confirmDelete) return;
 
   try {
-    const res = await fetch(`https://192.168.1.9:3001/delete-table/${dbName}`, {
+    const res = await fetch(`${variables.get_table}/delete-table/${dbName}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"

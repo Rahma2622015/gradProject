@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import styles from "./question.module.css";
 import AddQuestionForm from "./Add.tsx";
-
+import variables from "../../../variables.json";
  function DatabaseManager() {
   const [dbData, setDbData] = useState([]);
   const [editingRow, setEditingRow] = useState(null);
@@ -13,7 +13,7 @@ import AddQuestionForm from "./Add.tsx";
  const [question, setQuestion] = useState([]);
   const fetchQuestion = async () => {
       try {
-        const response = await fetch("https://192.168.1.9:3001/question");
+        const response = await fetch(variables.question);
         if (response.ok) {
           const data = await response.json();
           setDbData(data);
@@ -78,7 +78,7 @@ import AddQuestionForm from "./Add.tsx";
       formData.append("file", file);
 
       try {
-        const response = await fetch("https://192.168.1.9:3001/upload-sqlite", {
+        const response = await fetch(variables.upload_sqlite, {
           method: "POST",
           body: formData,
         });
@@ -123,7 +123,7 @@ import AddQuestionForm from "./Add.tsx";
 
   const uploadDataToAPI = async (data) => {
     try {
-      const response = await fetch("https://192.168.1.9:3001/question", {
+      const response = await fetch(variables.question, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -154,7 +154,7 @@ import AddQuestionForm from "./Add.tsx";
     setEditingRow(null);
 
     try {
-      const response = await fetch(`https://192.168.1.9:3001/question/${updatedRow.id}`, {
+      const response = await fetch(`${variables.question}/${updatedRow.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -182,7 +182,7 @@ import AddQuestionForm from "./Add.tsx";
 
   if (confirmDelete) {
     try {
-      const response = await fetch(`https://192.168.1.9:3001/question/${deletedRow.id}`, {
+      const response = await fetch(`${variables.question}/${deletedRow.id}`, {
         method: "DELETE",
       });
 

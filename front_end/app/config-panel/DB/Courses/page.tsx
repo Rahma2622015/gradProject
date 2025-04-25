@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import styles from "./courses.module.css";
 import AddCourseForm from "./Add.tsx";
+import variables from "../../../variables.json";
 
  function DatabaseManager() {
   const [dbData, setDbData] = useState([]);
@@ -13,7 +14,7 @@ import AddCourseForm from "./Add.tsx";
  const [courses, setCourses] = useState([]);
   const fetchCourses = async () => {
       try {
-        const response = await fetch("https://192.168.1.9:3001/fetch");
+        const response = await fetch(variables.fetch);
         if (response.ok) {
           const data = await response.json();
           setDbData(data);
@@ -78,7 +79,7 @@ import AddCourseForm from "./Add.tsx";
       formData.append("file", file);
 
       try {
-        const response = await fetch("https://192.168.1.9:3001/upload-sqlite", {
+        const response = await fetch(variables.upload_sqlite, {
           method: "POST",
           body: formData,
         });
@@ -123,7 +124,7 @@ import AddCourseForm from "./Add.tsx";
 
   const uploadDataToAPI = async (data) => {
     try {
-      const response = await fetch("https://192.168.1.9:3001/courses", {
+      const response = await fetch(variables.courses, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -154,7 +155,7 @@ import AddCourseForm from "./Add.tsx";
     setEditingRow(null);
 
     try {
-      const response = await fetch(`https://192.168.1.9:3001/courses/${updatedRow.id}`, {
+      const response = await fetch(`${variables.courses}/${updatedRow.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -182,7 +183,7 @@ import AddCourseForm from "./Add.tsx";
 
   if (confirmDelete) {
     try {
-      const response = await fetch(`https://192.168.1.9:3001/courses/${deletedRow.id}`, {
+      const response = await fetch(`${variables.courses}/${deletedRow.id}`, {
         method: "DELETE",
       });
 
