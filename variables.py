@@ -1,15 +1,13 @@
-ip="https://192.168.1.11:3000"
+ip="https://192.168.1.5:3000"
 
-base_ssl=r"D:/gradProject/ssl11"
-
-cert_loc=fr"{base_ssl}/certificate.crt"
-key_loc=fr"{base_ssl}/private.key"
+cert_loc=r"E:\gradProject\cert.crt"
+key_loc=r"E:\gradProject\private.key"
 
 
-base_arabic_ai = r"D:\gradProject\Ai\ArabicAi"
-base_english_ai = r"D:\gradProject\Ai\EnglishAi"
-base_recommendation = r"D:\gradProject\Ai\Recommendation\English"
-base_arabic_recommendation = r"D:\gradProject\Ai\Recommendation\Arabic"
+base_arabic_ai = r"F:\gradProject\Ai\ArabicAi"
+base_english_ai = r"F:\gradProject\Ai\EnglishAi"
+base_recommendation = r"F:\gradProject\Ai\Recommendation\English"
+base_arabic_recommendation = r"F:\gradProject\Ai\Recommendation\Arabic"
 
 MapDataLocationAr = fr"{base_arabic_ai}\MapData.json"
 arabic_word = fr"{base_arabic_ai}\arabic_words.txt"

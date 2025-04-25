@@ -2,12 +2,6 @@ from Data.dataStorage import DataStorage
 from Ai import arabicFunction
 from Ai import englishFunction
 
-# def is_recommendation_task(tokens, pos, mapper, allowed_tasks=None) -> bool:
-#     mapped_tasks = mapper.mapToken(tokens, pos)
-#     if allowed_tasks is None:
-#         allowed_tasks = [ChatTaskR.ExamSystem]
-#     return any(task[0] in allowed_tasks for task in mapped_tasks)
-
 import re
 
 def detect_language(text):

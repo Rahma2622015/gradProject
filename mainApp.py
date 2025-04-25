@@ -19,7 +19,7 @@ client_list=[]
 chat_bot.secret_key = os.urandom(24)
 uploaded_db_path = "university_information.db"
 CORS(chat_bot)
-
+BASE_DIR = os.path.abspath(r"D:\project_grid")
 UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__))
 chat_bot.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -174,12 +174,15 @@ def get_courses():
                 "name": course.name,
                 "description": course.description,
                 "short_name": course.short_name,
-                "code": course.code
+                "code": course.code,
+                "name_arabic":course.name_arabic,
+                "description_arabic":course.description_arabic,
+                "course_hours":course.course_hours,
+                "course_degree":course.course_degree
             }
             for course in courses
         ])
     except Exception as e:
-        print("Error in get_courses:", e)
         return jsonify({'error': str(e)}), 500
 @chat_bot.route('/courses', methods=['POST'])
 def create_course():
@@ -190,7 +193,11 @@ def create_course():
             name=data['name'],
             description=data['description'],
             short_name=data.get('short_name'),
-            code=data['code']
+            code=data['code'],
+            name_arabic=['name_arabic'],
+            description_arabic=['description_arabic'] ,
+            course_hours=['course_hours'],
+            course_degree=['course_degree']
         )
         session.add(new_course)
         session.commit()
@@ -213,6 +220,10 @@ def update_course(course_id):
         course.description = data.get('description', course.description)
         course.short_name = data.get('short_name', course.short_name)
         course.code = data.get('code', course.code)
+        course.name_arabic = data.get('name_arabic', course.name_arabic)
+        course.description_arabic = data.get('description_arabic', course.description_arabic)
+        course.course_hours = data.get('course_hours', course.course_hours)
+        course.course_degree=data.get('course_degree',course.course_degree)
         session.commit()
         return jsonify({"message": "Course updated successfully"})
     except Exception as e:
@@ -237,7 +248,6 @@ def delete_course(course_id):
     finally:
         session.close()
 
-
 @chat_bot.route('/upload-sqlite', methods=['POST'])
 def upload_sqlite():
     global uploaded_db_path
@@ -260,7 +270,7 @@ def upload_sqlite():
 
     return jsonify({"error": "Invalid file format"}), 400
 #Answer
-@chat_bot.route('/answer', methods=['GET'])
+@chat_bot.route('/answers', methods=['GET'])
 def get_answers():
     try:
         session = get_uploaded_session()
@@ -271,11 +281,11 @@ def get_answers():
                 "answer": answer.answer,
                 "score": answer.score,
                 "question_id": answer.question_id,
+                "answer_arabic":answer.answer_arabic
             }
             for answer in answer_list
         ])
     except Exception as e:
-        print("Error in get_answer:", e)
         return jsonify({'error': str(e)}), 500
 @chat_bot.route('/answers', methods=['POST'])
 def create_answer():
@@ -286,6 +296,7 @@ def create_answer():
             answer=data['answer'],
             score=data['score'],
             question_id=data.get('question_id'),
+            answer_arabic=data.get('answer_arabic'),
         )
         session.add(new_Answer)
         session.commit()
@@ -307,6 +318,7 @@ def update_answer(answer_id):
         answer_obj.answer = data.get('answer', answer_obj.answer)
         answer_obj.score = data.get('score', answer_obj.score)
         answer_obj.question_id = data.get('question_id', answer_obj.question_id)
+        answer_obj.answer_arabic = data.get('answer_arabic', answer_obj.answer_arabic)
         session.commit()
         return jsonify({"message": "Answer updated successfully"})
     except Exception as e:
@@ -341,6 +353,8 @@ def get_professor():
                 "id": professor.id,
                 "name": professor.name,
                 "description": professor.description,
+                "name_arabic": professor.name_arabic,
+                "description_arabic": professor.description_arabic,
             }
             for professor in professor_list
         ])
@@ -355,6 +369,8 @@ def create_professor():
         new_professor = Professor(
             name=data['name'],
             description=data['description'],
+            name_arabic=data['name_arabic'],
+            description_arabic=data['description_arabic'],
         )
         session.add(new_professor)
         session.commit()
@@ -375,6 +391,8 @@ def update_professor(professor_id):
         data = request.get_json()
         professor_obj.name = data.get('name', professor_obj.name)
         professor_obj.description = data.get('description', professor_obj.description)
+        professor_obj.name_arabic = data.get('name_arabic', professor_obj.name_arabic)
+        professor_obj.description_arabic = data.get('description_arabic', professor_obj.description_arabic)
         session.commit()
         return jsonify({"message": "professor updated successfully"})
     except Exception as e:
@@ -409,6 +427,7 @@ def get_question():
                 "id": question.id,
                 "question": question.question,
                 "course_id": question.course_id,
+                "question_arabic": question.question_arabic,
             }
             for question in question_list
         ])
@@ -423,6 +442,7 @@ def create_question():
         new_question = CourseQuestion(
             question=data['question'],
             course_id=data['course_id'],
+            question_arabic=data['question_arabic'],
         )
         session.add(new_question)
         session.commit()
@@ -443,6 +463,7 @@ def update_question(question_id):
         data = request.get_json()
         question_obj.question = data.get('question',question_obj.question)
         question_obj.course_id = data.get('course_id', question_obj.course_id)
+        question_obj.question_arabic = data.get('question_arabic', question_obj.question_arabic)
         session.commit()
         return jsonify({"message": "question updated successfully"})
     except Exception as e:
@@ -467,17 +488,33 @@ def delete_question(question_id):
     finally:
         session.close()
 #json
-@chat_bot.route("/config/<filename>", methods=["GET"])
-def get_config(filename):
-    filepath = os.path.join(UPLOAD_FOLDER, filename)
-    if not os.path.exists(filepath):
-        return jsonify({"error": "File not found"}), 404
+@chat_bot.route("/list_json_files", methods=["GET"])
+def list_json_files():
     try:
+        print("BASE_DIR:", BASE_DIR)
+        all_json_files = []
+        for root, dirs, files in os.walk(BASE_DIR):
+            for f in files:
+                if f.endswith(".json"):
+                    relative_path = os.path.relpath(os.path.join(root, f), BASE_DIR)
+                    all_json_files.append(relative_path.replace("\\", "/"))  # للويندوز
+        print("JSON Files:", all_json_files)  # طباعة الملفات
+        return jsonify(all_json_files)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@chat_bot.route("/get_json/<path:filename>", methods=["GET"])
+def get_json(filename):
+    try:
+        filepath = os.path.join(BASE_DIR, filename)
+        if not os.path.isfile(filepath):
+            return jsonify({"message": "File not found"}), 404
+
         with open(filepath, "r", encoding="utf-8") as f:
-            config_data = json.load(f)
-        return jsonify(config_data), 200
-    except json.JSONDecodeError:
-        return jsonify({"error": "Invalid JSON format"}), 400
+            content = json.load(f)
+        return jsonify({"content": content})
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
 
 @chat_bot.route("/save_json/<filename>", methods=["POST"])
 def save_config(filename):
@@ -495,21 +532,6 @@ def save_config(filename):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-@chat_bot.route('/upload_json', methods=['POST'])
-def upload_json():
-    if 'file' not in request.files:
-        return jsonify({'error': 'No file uploaded'}), 400
-
-    file = request.files['file']
-    if not file.filename.endswith('.json'):
-        return jsonify({'error': 'Only .json files are supported'}), 400
-
-    try:
-        content = json.load(file)
-        return jsonify({'content': content}), 200
-    except Exception as e:
-        return jsonify({'error': f'Invalid JSON format: {str(e)}'}), 400
 #Prerequisites
 @chat_bot.route('/pre', methods=['GET'])
 def get_pre():
