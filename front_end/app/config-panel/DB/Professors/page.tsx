@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import styles from "./professors.module.css";
 import AddProfessorForm from "./Add.tsx";
-
+import variables from "../../../variables.json";
  function DatabaseManager() {
   const [dbData, setDbData] = useState([]);
   const [editingRow, setEditingRow] = useState(null);
@@ -13,7 +13,7 @@ import AddProfessorForm from "./Add.tsx";
  const [professor, setProfessor] = useState([]);
   const fetchProfessor = async () => {
       try {
-        const response = await fetch("https://192.168.1.9:3001/professor");
+        const response = await fetch(variables.professor);
         if (response.ok) {
           const data = await response.json();
           console.log("Fetched data:", data);
@@ -79,7 +79,7 @@ import AddProfessorForm from "./Add.tsx";
       formData.append("file", file);
 
       try {
-        const response = await fetch("https://192.168.1.9:3001/upload-sqlite", {
+        const response = await fetch(variables.upload_sqlite, {
           method: "POST",
           body: formData,
         });
@@ -124,7 +124,7 @@ import AddProfessorForm from "./Add.tsx";
 
   const uploadDataToAPI = async (data) => {
     try {
-      const response = await fetch("https://192.168.1.9:3001/professor", {
+      const response = await fetch(variables.professor, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -155,7 +155,7 @@ import AddProfessorForm from "./Add.tsx";
     setEditingRow(null);
 
     try {
-      const response = await fetch(`https://192.168.1.9:3001/professor/${updatedRow.id}`, {
+      const response = await fetch(`${variables.professor}/${updatedRow.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -183,7 +183,7 @@ import AddProfessorForm from "./Add.tsx";
 
   if (confirmDelete) {
     try {
-      const response = await fetch(`https://192.168.1.9:3001/professor/${deletedRow.id}`, {
+      const response = await fetch(`${variables.professor}/${deletedRow.id}`, {
         method: "DELETE",
       });
 

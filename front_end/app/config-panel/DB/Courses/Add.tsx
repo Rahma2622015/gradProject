@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./Add.module.css";
-
+import variables from "../../../variables.json";
 const AddCourseForm = ({ onCourseAdded }) => {
   const [course, setCourse] = useState({
     name: "",
@@ -10,7 +10,8 @@ const AddCourseForm = ({ onCourseAdded }) => {
     code: "",
     name_arabic:"",
     description_arabic:"",
-    course_hours:""
+    course_hours:"",
+    course_degree:""
 
   });
 
@@ -22,7 +23,7 @@ const AddCourseForm = ({ onCourseAdded }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://192.168.1.9:3001/courses", {
+      const response = await fetch(variables.courses, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(course),
@@ -53,6 +54,7 @@ const AddCourseForm = ({ onCourseAdded }) => {
        <input name="name_arabic" value={course.name_arabic} onChange={handleChange} placeholder="Course Name Arabic" required className={styles.input} />
       <input name="description_arabic" value={course.description_arabic} onChange={handleChange} placeholder="Description Arabic" required className={styles.input} />
       <input name="course_hours" value={course.course_hours} onChange={handleChange} placeholder="course_hours" className={styles.input} />
+       <input name="course_degree" value={course.course_degree} onChange={handleChange} placeholder="course_degree" className={styles.input} />
       <button type="submit" className={styles.button}>Add Course</button>
     </form>
   );

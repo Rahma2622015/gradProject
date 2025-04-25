@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./Add.module.css";
-
+import variables from "../../../variables.json";
 const AddProfessorForm = ({ onProfessorAdded }) => {
   const [professor, setProfessor] = useState({
     name: "",
@@ -18,7 +18,7 @@ const AddProfessorForm = ({ onProfessorAdded }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://192.168.1.9:3001/professor", {
+      const response = await fetch(variables.professor, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(professor),

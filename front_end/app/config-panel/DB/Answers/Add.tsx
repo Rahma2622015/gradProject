@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./Add.module.css";
-
+import variables from "../../../variables.json";
 const AddAnswerForm = ({ onAnswerAdded }) => {
   const [answer, setAnswer] = useState({
     answer: "",
@@ -19,7 +19,7 @@ const AddAnswerForm = ({ onAnswerAdded }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://192.168.1.9:3001/answers", {
+      const response = await fetch(variables.answers, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(answer),
