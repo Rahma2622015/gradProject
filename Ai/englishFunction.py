@@ -1,4 +1,3 @@
-# Imports
 from Ai.EnglishAi.TaskMapping import TaskMapper
 from Ai.EnglishAi.ReplyModule import ReplyModule
 from Ai.EnglishAi.TaskProcessor import TaskProcessor
@@ -17,7 +16,6 @@ from Ai.EnglishAi.GrammerChecker import EnglishGrammarChecker
 from Ai.EnglishAi.functionsForMapping import functions
 import variables
 
-# Initialize modules
 f = functions()
 m = SemanticTaskMapper()
 mapper = TaskMapper()
@@ -33,7 +31,6 @@ data_storage = DatabaseStorage()
 memory = DataStorage()
 course_recommender = RecommendationSystem(data_storage, memory)
 
-# Utility function
 def is_trivial_task(tokens, f) -> bool:
     for sentence in tokens:
         for token in sentence:
@@ -42,7 +39,6 @@ def is_trivial_task(tokens, f) -> bool:
                 return True
     return False
 
-# Main function
 def langEnglish(message, storage):
     try:
         message_lower = p.lowercase(message)

@@ -57,7 +57,7 @@ class ArReplyModuleRe:
                         response = self.course_dynamic_recommender.start_recommendation(course_name)
                         if isinstance(response, str):
                             s = response
-                            options = []  # Ensure options is empty
+                            options = []
                         else:
                             print(f"[ERROR] Unexpected course recommendation format: {response}")
                             s = "Error processing course recommendation."

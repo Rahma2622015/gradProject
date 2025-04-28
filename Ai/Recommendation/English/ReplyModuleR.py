@@ -58,7 +58,7 @@ class ReplyModuleRe:
                         response = self.course_dynamic_recommender.start_recommendation(course_name)
                         if isinstance(response, str):
                             s = response
-                            options = []  # Ensure options is empty
+                            options = []
                         else:
                             print(f"[ERROR] Unexpected course recommendation format: {response}")
                             s = "Error processing course recommendation."
@@ -70,14 +70,13 @@ class ReplyModuleRe:
                 course_names = self.tokenizer.extract_all_course_names(user_input)
                 print(f"[INFO] Detected course names: {course_names}")
                 if course_names:
-                    # Improve how multi-course recommendations are handled
                     response, options = self.course_selection_recommender.start(course_names)
                     if isinstance(response, str):
                         s = response
-                        options = []  # Ensure options is empty if the response is a string
+                        options = []
                     else:
                         s = "Error processing multi-course recommendation."
-                        options = []  # Ensure options are empty in case of unexpected results
+                        options = []
                 else:
                     s = "Sorry, I couldn't detect the course names from your question."
                     options = []

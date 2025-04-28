@@ -11,7 +11,6 @@ class ArRecommendationSystem:
         if not questions or isinstance(questions, str):
             return "اسف لا يوجد اسئلة متاحة لهذا الكورس", []
 
-        # Save course-related data in memory
         self.memory.save_data("course_name", course_name)
         self.memory.save_data("question_index", 0)
         self.memory.save_data("score", 0)

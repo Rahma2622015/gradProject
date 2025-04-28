@@ -32,7 +32,6 @@ class ArRecommendation:
             return []
 
     def handle_exam_recommendation(self, user_input):
-        # In this case, we're not using user_id directly, so we'll use a global variable or class-level storage.
         prev_data = self.storage.get_prev_data()
 
         if not isinstance(prev_data, dict):

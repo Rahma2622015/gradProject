@@ -1,5 +1,5 @@
 import json
-from Data.dataStorage import DataStorage  # ما هنشيله دلوقتي بس مش هنستخدمه
+from Data.dataStorage import DataStorage
 import variables
 
 class Recommendation:
@@ -7,7 +7,7 @@ class Recommendation:
                  json_path2=variables.ResponseDataLocationRE):
         self.task_definitionsR = self.load_definitions(json_path)
         self.responses = self.load_responses(json_path2)
-        self.prev_data = {}  # تخزين داخلي بدل استخدام user_id + storage
+        self.prev_data = {}
 
     def load_definitions(self, json_path: str) -> dict:
         try:
@@ -85,7 +85,7 @@ class Recommendation:
                 self.prev_data["semester"].lower() in [s.lower() for s in exam["semester"]] and
                 self.prev_data["subject"].lower() in [sub.lower() for sub in exam["subject"]]):
                 print(f"[INFO] Match found! Exam system: {exam['exam_format']}")
-                self.prev_data.clear()  # مسح البيانات بعد ما يجيب النظام
+                self.prev_data.clear()
                 return f"The exam system for {exam['subject']} is: {exam['exam_format']}", []
 
         print(f"[WARNING] No match for: {self.prev_data}")
