@@ -14,6 +14,7 @@ class TaskMapper:
         for i, data in enumerate(tokens):
             if fun.isQuestion(data):
                 best_task = "UnknownTask"
+                best_task_enum=""
                 max_score = 0
                 for task in m.task_definitions.keys():
                     score = m.MaxMatches(task, pos[i], data)

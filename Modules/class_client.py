@@ -1,11 +1,11 @@
-from Data.dataStorage import DataStorage
+from Modules.dataStorage import DataStorage
 import time
 
 
 class Client:
 
     def __init__(self):
-        self.id=None
+        self.id = None
         self.timeStart= None
         self.timeEnd= None
         self.last_task = None
@@ -14,11 +14,6 @@ class Client:
 
     def setClientId(self,id):
         self.id=id
-
-
-    def getClientId(self):
-        return self.id
-
 
     def data_storage(self,key ,value):
         if self.data.addData(key,value):
@@ -42,6 +37,5 @@ class Client:
             return True
         return False
 
-
     def __repr__(self):
-        return f"Client(Data={self.data})"
+        return f"Client(ID={self.id}, Data={self.data})"

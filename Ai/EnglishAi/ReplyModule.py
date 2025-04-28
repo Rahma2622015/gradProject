@@ -75,6 +75,12 @@ class ReplyModule:
                 s += "\n" + choice((ChatTask.UnderstandRules, ""))
             elif r[0] == ChatTask.ScheduleTask:
                 s += "\n" + choice((ChatTask.ScheduleTask, ""))
+            elif r[0] == ChatTask.GPARequirements:
+                s += "\n" + choice(self.data.get("GPARequirements", []))
+            elif r[0] == ChatTask.Training:
+                s += "\n" + choice(self.data.get("Training", []))
+            elif r[0] == ChatTask.AdjustCreditLoad:
+                s += "\n" + choice(self.data.get("AdjustCreditLoad", []))
             elif r[0] == ChatTask.CourseHours:
                 course_name =r[1]
                 hours = r[2]
