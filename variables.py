@@ -4,10 +4,10 @@ cert_loc=r"E:\gradProject\cert.crt"
 key_loc=r"E:\gradProject\private.key"
 
 
-base_arabic_ai = r"F:\gradProject\Ai\ArabicAi"
-base_english_ai = r"F:\gradProject\Ai\EnglishAi"
-base_recommendation = r"F:\gradProject\Ai\Recommendation\English"
-base_arabic_recommendation = r"F:\gradProject\Ai\Recommendation\Arabic"
+base_arabic_ai = r"E:\gradProject\Ai\ArabicAi"
+base_english_ai = r"E:\gradProject\Ai\EnglishAi"
+base_recommendation = r"E:\gradProject\Ai\Recommendation\English"
+base_arabic_recommendation = r"E:\gradProject\Ai\Recommendation\Arabic"
 
 MapDataLocationAr = fr"{base_arabic_ai}\MapData.json"
 arabic_word = fr"{base_arabic_ai}\arabic_words.txt"

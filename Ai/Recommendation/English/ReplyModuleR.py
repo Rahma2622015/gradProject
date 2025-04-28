@@ -12,7 +12,6 @@ import variables
 data_storage = DatabaseStorage()
 memory = DataStorage()
 
-
 class ReplyModuleRe:
     def __init__(self, json_path=variables.ResponseDataLocationRE):
         self.load_responses(json_path)
@@ -33,14 +32,14 @@ class ReplyModuleRe:
             print(f"[ERROR] Failed to load response file: {e}")
             self.data = {}
 
-    def generate_responseR(self, reply, user_input, user_id):
+    def generate_responseR(self, reply, user_input):
         s = ""
         options = []
 
         for r in reply:
             if isinstance(r, tuple) and len(r) > 0:
                 if r[0] == ChatTask.ExamSystem:
-                    response = self.recommender.handle_exam_recommendation(user_input, user_id)
+                    response = self.recommender.handle_exam_recommendation(user_input)
 
                     if isinstance(response, tuple) and len(response) == 2:
                         s, options = response
@@ -56,7 +55,7 @@ class ReplyModuleRe:
                     course_name = self.tokenizer.extract_course_name(user_input)
                     print(f"[INFO] Detected course name: {course_name}")
                     if course_name:
-                        response = self.course_dynamic_recommender.start_recommendation(user_id, course_name)
+                        response = self.course_dynamic_recommender.start_recommendation(course_name)
                         if isinstance(response, str):
                             s = response
                             options = []  # Ensure options is empty
@@ -67,23 +66,22 @@ class ReplyModuleRe:
                     else:
                         s = "Sorry, I couldn't detect the course name from your question."
                         options = []
-
-                elif r[0] == ChatTask.MultiCourseRecommendationTask:
-                    course_names = self.tokenizer.extract_all_course_names(user_input)
-                    print(f"[INFO] Detected course names: {course_names}")
-                    if course_names:
-                        response, options = self.course_selection_recommender.start(user_id, course_names)
-                        if isinstance(response, str):
-                            s = response
-                            options = []  # Ensure options is empty if response is string
-                        else:
-                            s = "Error processing multi-course recommendation."
-                            options = []  # Ensure options is empty if response is unexpected
+            elif r[0] == ChatTask.MultiCourseRecommendationTask:
+                course_names = self.tokenizer.extract_all_course_names(user_input)
+                print(f"[INFO] Detected course names: {course_names}")
+                if course_names:
+                    # Improve how multi-course recommendations are handled
+                    response, options = self.course_selection_recommender.start(course_names)
+                    if isinstance(response, str):
+                        s = response
+                        options = []  # Ensure options is empty if the response is a string
                     else:
-                        s = "Sorry, I couldn't detect the course names from your question."
-                        options = []
-
-                elif r[0] == ChatTask.UnknownTask:
+                        s = "Error processing multi-course recommendation."
+                        options = []  # Ensure options are empty in case of unexpected results
+                else:
+                    s = "Sorry, I couldn't detect the course names from your question."
+                    options = []
+            elif r[0] == ChatTask.UnknownTask:
                     s = choice(self.data.get("Unknown", ["I'm not sure how to respond to that."]))
                     options = []
 

@@ -3,6 +3,8 @@ from Ai.ArabicAi.ArabicTokenizer import ArabicTokenizers
 from Ai.ArabicAi.ArabicNormalizer import ArabicNormalize
 import variables
 A=ArabicNormalize()
+import string
+
 class ArabicPreprocessor:
     def __init__(self):
         self.nlp = stanza.Pipeline(lang="ar", processors="tokenize,lemma", download_method=None)
@@ -36,8 +38,45 @@ class ArabicPreprocessor:
     def preprocess(self, sentences: list[list[str]]) -> list[list[str]]:
         return self.lemmatization(sentences)
 
-tt=ArabicTokenizers()
-t=tt.tokenize("بيانات")
-l=ArabicPreprocessor()
-lemmas=l.preprocess(t)
+    def is_course(self, word):
+        word = word.lower()
+        word_no_space = word.replace(" ", "")
+        return word in self.course_name or word_no_space in self.course_name
+
+    def extract_course_name(self, tokens: list[list[str]]) -> str | None:
+        words = [token for sublist in tokens for token in sublist]
+        potential_course_name = []
+
+        for word in words:
+            cleaned_word = word.strip(string.punctuation).lower()
+            if self.is_course(cleaned_word):
+                potential_course_name.append(cleaned_word)
+            else:
+                if potential_course_name:
+                    return " ".join(potential_course_name)
+                potential_course_name = []
+        if potential_course_name:
+            return " ".join(potential_course_name)
+
+        return None
+
+    def extract_all_course_names(self, tokens: list[list[str]]) -> list[str]:
+        words = [token for sublist in tokens for token in sublist]  # Flatten
+        course_names = []
+        for word in words:
+            cleaned_word = word.strip(string.punctuation).lower()
+            if self.is_course(cleaned_word):
+                course_names.append(cleaned_word)
+        return list(set(course_names))
+
+    def preprocess_text(self, tokens: list[list[str]]) -> str:
+        words = [token for sublist in tokens for token in sublist]  # Flatten
+        preprocessed_text = " ".join(words)
+        return preprocessed_text
+
+
+tt = ArabicTokenizers()
+t = tt.tokenize("بيانات")
+l = ArabicPreprocessor()
+lemmas = l.preprocess(t)
 print(lemmas)

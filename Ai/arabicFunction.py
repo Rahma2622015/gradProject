@@ -4,8 +4,10 @@ from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 from Ai.ArabicAi.ReplyModule import replyModule
 from Ai.ArabicAi.TaskProcessor import taskProcessor
 from Ai.Recommendation.Arabic.ArabicReplyModuleRe import ArReplyModuleRe
-from Ai.Recommendation.Arabic.ArabicRecomExamSystem import ArRecommendation
+from Ai.Recommendation.Arabic.ArabicCoursesystem import ArRecommendationSystem
 from Ai.ArabicAi.chattask import ChatTask
+from Data.dataStorage import DataStorage
+from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
 
 ARmapper = mapping()
 ARreply = replyModule()
@@ -13,24 +15,40 @@ ARproces = taskProcessor()
 ARt = ArabicTokenizers()
 ARp = ArabicPreprocessor()
 recom_replyAr = ArReplyModuleRe()
-def langArabic(message, storage, user_id):
-    try:
-        ARtokens = ARt.tokenize(message)
-        print("tokens: ",ARtokens)
-        ARpos = ARt.pos_tag(ARtokens)
-        print("pos: ",ARpos)
-        ARtokens = ARp.preprocess(ARtokens)
-        prev_data = storage.get_prev_data(user_id)
+data_storage = DatabaseStorage()
+memory = DataStorage()
+course_recommender = ArRecommendationSystem(data_storage, memory)
 
-        print(f"[DEBUG] Current task before processing: {storage.get_current_task(user_id)}")
+def langArabic(message, storage):
+    try:
+        corrected_message = ARt.normalize(message)
+        ARtokens = ARt.tokenize(corrected_message)
+        print("tokens: ", ARtokens)
+        ARpos = ARt.pos_tag(ARtokens)
+        print("pos: ", ARpos)
+        ARtokens = ARp.preprocess(ARtokens)
+        prev_data = storage.get_prev_data()
+
+        print(f"[DEBUG] Current task before processing: {storage.get_current_task()}")
         s, options = "", []
 
-        if storage.get_current_task(user_id) == "ExamRecom":
+        if storage.get_current_task() == "ExamRecom":
             print("[DEBUG] Continuing arabic Exam Recommendation Flow")
-            s, options = recom_replyAr.recommender.handle_exam_recommendation(message, user_id)
-            print(f"[DEBUG] Updated prev_data after response: {storage.get_prev_data(user_id)}")
+            s, options = recom_replyAr.recommender.handle_exam_recommendation(message)
+            print(f"[DEBUG] Updated prev_data after response: {storage.get_prev_data()}")
+            if s == "لا يوجد نظام امتحانات متاح لهذه المعلومات":
+                return s, options, False
             if not options:
-                storage.clear_data(user_id)
+                storage.clear_data()
+            return s, options, True
+        elif storage.get_current_task() == "CourseSystem":
+            print("[DEBUG] Continuing Course Recommendation Flow")
+            s, options = course_recommender.receive_answer(message.strip())
+            if ((s == "اسف لا يوجد اسئلة متاحة لهذا الكورس" and s == "لا يوجد اسم مادة هكذا") and
+                    s == "يوجد خطا فى تنفيذ اجابتك , جرب مره اخرى"):
+                return s, options, False
+            if not options:
+                storage.clear_data()
             return s, options, True
 
         else:
@@ -43,8 +61,21 @@ def langArabic(message, storage, user_id):
             else:
                 if any(task[0] == ChatTask.ExamRecom for task in ARtasks):
                     print("[DEBUG] Handling Arabic Exam Recommendation Task")
-                    storage.set_current_task(user_id, "ExamRecom")
-                    s, options = recom_replyAr.recommender.handle_exam_recommendation("", user_id)
+                    storage.set_current_task("ExamRecom")
+                    s, options = recom_replyAr.recommender.handle_exam_recommendation("")
+                    return s, options, True
+                if any(task[0] == ChatTask.courseSystem for task in ARtasks):
+                    print("[DEBUG] Handling Course Recommendation Task")
+                    storage.set_current_task("CourseSystem")
+                    course_name = ARp.extract_course_name(ARtokens)
+                    if course_name is not None:
+                        print("===> " + course_name)
+                    else:
+                        print("===> No course name found.")
+                    if course_name:
+                        s, options = course_recommender.start_recommendation(course_name)
+                    else:
+                        s = "لا يوجد اسم مادة هكذا"
                     return s, options, True
             ARpre = ARproces.process(ARtasks, storage)
             print(f"[DEBUG] Processed tasks output: {ARpre}, type: {type(ARpre)}")

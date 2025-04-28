@@ -182,31 +182,6 @@
       "suitable", "worth", "decision", "choice", "option", "me"
     ]
   },
-  "CreditHoursTask": {
-      "QuestionKeywords": ["how", "what", "do", "can"],
-      "VerbKeywords": ["be", "many", "long", "tell"],
-      "SubjectKeywords": ["hours", "hour", "credit",
-                                    "duration", "study", "you"],
-     "ObjectKeywords": ["program", "credit", "computer", "science", "cs",
-                                   "consist", "overall", "enroll","studying", "allotted",
-                                   "minimum", "number", "single","me", "required",
-                                   "single","duration","total", "include",
-                                   "term", "workload"]
-    },
-  "AcademicAdvisorTask": {
-      "QuestionKeywords": ["what", "who", "can"],
-      "VerbKeywords": ["be", "tell", "responsible", "take", "let", "provide", "act"],
-      "SubjectKeywords": ["we", "you"],
-      "ObjectKeywords": ["me", "meant", "academic", "advisor", "function"
-                    , "opinion", "serve", "meaning", "mean", "advising", "role"
-                    , "charge", "guidance", "student"]
-    },
-  "AskHelpingTask": {
-        "QuestionKeywords": ["can", "could", "would"],
-        "VerbKeywords": ["help", "assist", "aid", "support","ask"],
-        "SubjectKeywords": ["you", "me"],
-        "ObjectKeywords": ["question", "task", "issue","this","with"]
-    },
  "MultiCourseRecommendationTask": {
   "QuestionKeywords": ["can", "would", "help", "recommend", "please"],
   "VerbKeywords": ["choose", "select", "pick", "register", "take", "enroll", "recommend", "need", "want", "thinking"],

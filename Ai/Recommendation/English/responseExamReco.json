@@ -7,8 +7,8 @@
       "subject": ["algorithm", "comp 201"],
       "instructor": ["dr niveen", "dr dowlt","dr niveen , dr dowlt"],
       "exam_format": {
-        "Midterm": ["MCQ + Coding + Complete"],
-        "Final": ["MCQ + Theory + Solve Problem + Short Answers"]
+        "mid term": ["MCQ + Coding + Complete"],
+        "final": ["MCQ + Theory + Solve Problem + Short Answers"]
       }
     },
     {
@@ -18,8 +18,8 @@
       "subject": ["computability", "comp 203"],
       "instructor": ["dr ghada"],
       "exam_format": {
-        "Midterm": ["MCQ + Short Answers"],
-        "Final": ["MCQ + Theory + Solve Problem + Short Answers"]
+        "mid term": ["MCQ + Short Answers"],
+        "final": ["MCQ + Theory + Solve Problem + Short Answers"]
       }
     },
     {
@@ -29,8 +29,8 @@
       "subject": ["oop", "object oriented programming", "comp 205"],
       "instructor": ["dr dowlt"],
       "exam_format": {
-        "Midterm": ["Give a problem and apply operations on it"],
-        "Final": ["Full Written Exam"]
+        "mid term": ["Give a problem and apply operations on it"],
+        "final": ["Full Written Exam"]
       }
     },
     {
@@ -40,8 +40,8 @@
       "subject": ["database", "comp 207"],
       "instructor": ["dr wael"],
       "exam_format": {
-        "Midterm": ["MCQ + Coding + Complete"],
-        "Final": ["MCQ + Theory + Solve Problem + Short Answers"],
+        "mid term": ["MCQ + Coding + Complete"],
+        "final": ["MCQ + Theory + Solve Problem + Short Answers"],
         "Project": ["Do a project based on your study"]
       }
     },
@@ -52,8 +52,8 @@
       "subject": ["linear algebra", "math 203"],
       "instructor": ["dr manar", "dr ahmed","dr manar , dr ahmed"],
       "exam_format": {
-        "Midterm": ["MCQ + Solve Mathematical Problems"],
-        "Final": ["MCQ + Solve Mathematical Problems"]
+        "mid term": ["MCQ + Solve Mathematical Problems"],
+        "final": ["MCQ + Solve Mathematical Problems"]
       }
     },
      {
@@ -63,7 +63,7 @@
       "subject": ["english", "engl 201"],
       "instructor": ["dr abdelrahman"],
       "exam_format": {
-        "Final": ["MCQ"]
+        "final": ["MCQ"]
       }
     },
     {
@@ -73,8 +73,8 @@
       "subject": ["data structure", "comp 202"],
       "instructor": ["dr wael", "dr ghada","dr wael , dr ghada"],
       "exam_format": {
-        "Midterm": ["MCQ + Written Questions"],
-        "Final": ["MCQ + Written Questions + Solve Problem"]
+        "mid term": ["MCQ + Written Questions"],
+        "final": ["MCQ + Written Questions + Solve Problem"]
       }
     },
     {
@@ -84,8 +84,8 @@
       "subject": ["network", "comp 204"],
       "instructor": ["dr hussein"],
       "exam_format": {
-        "Midterm": ["MCQ + Written Questions"],
-        "Final": ["MCQ"]
+        "mid term": ["MCQ + Written Questions"],
+        "final": ["MCQ"]
       }
     },
     {
@@ -95,8 +95,8 @@
       "subject": ["web programming", "comp 206"],
       "instructor": ["dr mohamed", "dr nashwa" ,"dr mohamed , dr nashwa"],
       "exam_format": {
-        "Midterm": ["MCQ + Written Questions"],
-        "Final": ["MCQ + Written Questions + Solve Problem+Particular Part"]
+        "mid term": ["MCQ + Written Questions"],
+        "final": ["MCQ + Written Questions + Solve Problem+Particular Part"]
       }
     },
     {
@@ -106,8 +106,8 @@
       "subject": ["automata", "comp 208"],
       "instructor": ["dr azaa"],
       "exam_format": {
-        "Midterm": ["MCQ + Written Questions"],
-        "Final": ["MCQ + Written Questions + Solve Problem + sometimes true & false"]
+        "mid term": ["MCQ + Written Questions"],
+        "final": ["MCQ + Written Questions + Solve Problem + sometimes true & false"]
       }
     },
     {
@@ -117,8 +117,8 @@
       "subject": ["graph", "comp 210"],
       "instructor": ["dr neveen"],
       "exam_format": {
-        "Midterm": ["MCQ + Written Questions"],
-        "Final": ["MCQ + Written Questions + Solve Problem"]
+        "mid term": ["MCQ + Written Questions"],
+        "final": ["MCQ + Written Questions + Solve Problem"]
       }
     },
     {
@@ -128,8 +128,8 @@
       "subject": ["ordinary differential equation", "math 202", "math"],
       "instructor": ["dr hany", "dr samir","dr hany & dr samir"],
       "exam_format": {
-        "Midterm": ["MCQ + Written Questions"],
-        "Final": ["MCQ + Solve Mathematical Problem"]
+        "mid term": ["MCQ + Written Questions"],
+        "final": ["MCQ + Solve Mathematical Problem"]
       }
     },
     {
@@ -139,8 +139,8 @@
       "subject": ["java", "comp 301"],
       "instructor": ["dr nashwa"],
       "exam_format": {
-        "Midterm": ["coding function + test some errors in code"],
-        "Final": ["coding function + test some errors in code"]
+        "mid term": ["coding function + test some errors in code"],
+        "final": ["coding function + test some errors in code"]
       }
     },
     {
@@ -164,10 +164,10 @@
         "dr azza"
       ],
       "exam_format": {
-        "Midterm": [
+        "mid term": [
           "MCQ + Written Questions + definitions"
         ],
-        "Final": [
+        "final": [
           "MCQ + problem solving + definitions"
         ]
       }
@@ -179,8 +179,8 @@
       "subject": ["complexity", "comp 305"],
       "instructor": ["dr neveen"],
       "exam_format": {
-        "Midterm": ["MCQ + Written Questions"],
-        "Final": ["MCQ + Solve Problems in course"]
+        "mid term": ["MCQ + Written Questions"],
+        "final": ["MCQ + Solve Problems in course"]
       }
     },
      {
@@ -190,8 +190,8 @@
       "subject": ["os", "operating system", "comp 307"],
       "instructor": ["dr mohamed", "dr neveen","dr mohamed & dr neveen"],
       "exam_format": {
-        "Midterm": ["MCQ + Written Questions"],
-        "Final": ["MCQ + Written Questions"]
+        "mid term": ["MCQ + Written Questions"],
+        "final": ["MCQ + Written Questions"]
       }
     },
      {
@@ -201,8 +201,8 @@
       "subject": ["abstract algebra", "math 333", "math"],
       "instructor": ["dr ahmed"],
       "exam_format": {
-        "Midterm": ["MCQ + Solve Mathematical Problem"],
-        "Final": ["MCQ + Solve Mathematical Problem"]
+        "mid term": ["MCQ + Solve Mathematical Problem"],
+        "final": ["MCQ + Solve Mathematical Problem"]
       }
     },
      {
@@ -212,8 +212,8 @@
       "subject": ["multimedia", "comp 309"],
       "instructor": ["dr hussein"],
       "exam_format": {
-        "Midterm": ["MCQ + sometimes Written Questions"],
-        "Final": ["MCQ"]
+        "mid term": ["MCQ + sometimes Written Questions"],
+        "final": ["MCQ"]
       }
     },
      {
@@ -223,7 +223,7 @@
       "subject": ["scientific thinking", "scth 301"],
       "instructor": ["dr abdelrahman"],
       "exam_format": {
-        "Final": ["MCQ"]
+        "final": ["MCQ"]
       }
     },
       {
@@ -233,7 +233,7 @@
       "subject": ["scientific research ethics", "ethr 302"],
       "instructor": ["dr abdelrahman"],
       "exam_format": {
-        "Final": ["MCQ"]
+        "final": ["MCQ"]
       }
     },
        {
@@ -243,8 +243,8 @@
       "subject": ["combinatorics", "comp 302"],
       "instructor": ["dr neveen"],
       "exam_format": {
-        "Midterm": ["MCQ + Written Questions"],
-        "Final": ["MCQ + Written Questions"]
+        "mid term": ["MCQ + Written Questions"],
+        "final": ["MCQ + Written Questions"]
       }
     },
        {
@@ -254,8 +254,8 @@
       "subject": ["compiler", "comp 304"],
       "instructor": ["dr wael"],
       "exam_format": {
-        "Midterm": ["MCQ +Written Questions"],
-        "Final": ["MCQ + sole coding problems"]
+        "mid term": ["MCQ +Written Questions"],
+        "final": ["MCQ + sole coding problems"]
       }
     },
        {
@@ -265,8 +265,8 @@
       "subject": ["graphics", "comp 306"],
       "instructor": ["dr hussein"],
       "exam_format": {
-        "Midterm": ["MCQ + sometimes Written Questions"],
-        "Final": ["MCQ"]
+        "mid term": ["MCQ + sometimes Written Questions"],
+        "final": ["MCQ"]
       }
     },
        {
@@ -276,7 +276,7 @@
       "subject": ["android", "comp 310"],
       "instructor": ["dr deiaa"],
       "exam_format": {
-        "Final": ["MCQ +  Written Questions"],
+        "final": ["MCQ +  Written Questions"],
         "Project": ["App doctor will suggest for you"]
       }
     },
@@ -287,7 +287,7 @@
       "subject": ["advanced data base", "comp 314"],
       "instructor": ["dr wael"],
       "exam_format": {
-        "Final": ["MCQ +  Written Questions"],
+        "final": ["MCQ +  Written Questions"],
         "Project": ["project to arrange data doctor will suggest for you"]
       }
        },
@@ -298,8 +298,8 @@
       "subject": ["crybto", "comp 308"],
       "instructor": ["dr deiaa"],
       "exam_format": {
-        "Midterm": ["MCQ +Written Questions"],
-        "Final": ["MCQ +  Written Questions"]
+        "mid term": ["MCQ +Written Questions"],
+        "final": ["MCQ +  Written Questions"]
       }
     },
        {
@@ -309,7 +309,7 @@
       "subject": ["skills", "skil 401"],
       "instructor": ["dr mohamed"],
       "exam_format": {
-        "Final": ["MCQ"]
+        "final": ["MCQ"]
       }
     },
       {
@@ -319,8 +319,8 @@
       "subject": ["Ai", "comp 401","artificial intelligence"],
       "instructor": ["dr azza"],
       "exam_format": {
-        "Midterm": ["MCQ + definitions + Written Questions"],
-        "Final": ["MCQ+ definitions + Written Questions"]
+        "mid term": ["MCQ + definitions + Written Questions"],
+        "final": ["MCQ+ definitions + Written Questions"]
       }
     },
       {
@@ -330,9 +330,9 @@
       "subject": ["parallel", "comp 403"],
       "instructor": ["dr mohamed fakhry"],
       "exam_format": {
-        "Midterm": ["solve coding problems + implement functions"],
+        "mid term": ["solve coding problems + implement functions"],
         "practical": ["give question has specific problem and you solve it"],
-        "Final": ["solve coding problems + implement functions"]
+        "final": ["solve coding problems + implement functions"]
       }
     },
       {
@@ -342,7 +342,7 @@
       "subject": ["project", "comp 405"],
       "instructor": ["dr azza"],
       "exam_format": {
-        "Final": ["presentation"]
+        "final": ["presentation"]
       }
     },
     {
@@ -352,8 +352,8 @@
       "subject": ["image", "comp 407","image processing"],
       "instructor": ["dr hewayda"],
       "exam_format": {
-        "Midterm": ["sometimes MCQ +  Written Questions + complete"],
-        "Final": ["full written exam"]
+        "mid term": ["sometimes MCQ +  Written Questions + complete"],
+        "final": ["full written exam"]
       }
     },
       {
@@ -363,8 +363,8 @@
       "subject": ["cyber","cyber security", "comp 409"],
       "instructor": ["dr deiaa"],
       "exam_format": {
-        "Midterm": ["MCQ + sometimes Written Questions + complete"],
-        "Final": ["MCQ + definitions + Written Questions"]
+        "mid term": ["MCQ + sometimes Written Questions + complete"],
+        "final": ["MCQ + definitions + Written Questions"]
       }
     },
       {
@@ -374,8 +374,8 @@
       "subject": ["Computational geometry", "geometry","math","comp 411"],
       "instructor": ["dr ghada"],
       "exam_format": {
-        "Midterm": ["MCQ + sometimes Written Questions"],
-        "Final": ["MCQ + solve math problem + solve problems in general"]
+        "mid term": ["MCQ + sometimes Written Questions"],
+        "final": ["MCQ + solve math problem + solve problems in general"]
       }
     },
       {
@@ -385,8 +385,8 @@
       "subject": ["bioinformatics", "comp 402"],
       "instructor": ["dr mohamed hashim","dr mohamed fakhry","dr mohamed hashim , dr mohamed fakhry"],
       "exam_format": {
-        "Midterm": ["MCQ + more Written Questions"],
-        "Final": ["MCQ + Written Questions"]
+        "mid term": ["MCQ + more Written Questions"],
+        "final": ["MCQ + Written Questions"]
       }
     },
     {
@@ -396,8 +396,8 @@
       "subject": ["software","software engineering", "comp 404"],
       "instructor": ["dr hussein"],
       "exam_format": {
-        "Midterm": ["MCQ + sometimes Written Questions"],
-        "Final": ["MCQ"]
+        "mid term": ["MCQ + sometimes Written Questions"],
+        "final": ["MCQ"]
       }
     },
     {
@@ -407,7 +407,7 @@
       "subject": ["project", "comp 406"],
       "instructor": ["dr azza"],
       "exam_format": {
-        "Final": ["presentation"]
+        "final": ["presentation"]
       }
     },
     {
@@ -417,8 +417,8 @@
       "subject": ["advanced Ai", "comp 408","advanced artificial intelligence"],
       "instructor": ["dr azza","dr hewayda","dr hewayda , dr azza"],
       "exam_format": {
-        "Midterm": ["MCQ + Written Questions"],
-        "Final": ["MCQ + Written Questions"]
+        "mid term": ["MCQ + Written Questions"],
+        "final": ["MCQ + Written Questions"]
       }
     },
     {
@@ -428,8 +428,8 @@
       "subject": ["data mining", "comp 416"],
       "instructor": ["dr dowlt"],
       "exam_format": {
-        "Midterm": ["Solve problems like those explained + definitions + drawings"],
-        "Final": ["full writeen exam"]
+        "mid term": ["Solve problems like those explained + definitions + drawings"],
+        "final": ["full writeen exam"]
       }
     }
   ]

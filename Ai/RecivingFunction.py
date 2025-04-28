@@ -13,15 +13,15 @@ def detect_language(text):
         return "Unknown"
 
 
-def receive(message: str, storage: DataStorage, user_id: str):
+def receive(message: str, storage: DataStorage):
 
     languag = detect_language(message)
 
     if languag == "English":
-       return  englishFunction.langEnglish(message,storage,user_id)
+       return  englishFunction.langEnglish(message,storage)
 
     elif languag == "Arabic":
-        return arabicFunction.langArabic(message,storage,user_id)
+        return arabicFunction.langArabic(message,storage)
 
     else:
         return "Sorry, I can't recognize this language.", None, None

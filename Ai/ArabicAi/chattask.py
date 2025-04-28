@@ -30,4 +30,5 @@ class ChatTask(Enum):
     ProfessorQueryTask = 26
     PrerequisiteQueryTask = 27
     ExamRecom=28
+    courseSystem=29
 
