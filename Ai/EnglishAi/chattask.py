@@ -40,3 +40,6 @@ class ChatTask(Enum):
     MultiCourseRecommendationTask = 36
     CourseHours=37
 
+    GPARequirements=38
+    Training=39
+    AdjustCreditLoad=40
