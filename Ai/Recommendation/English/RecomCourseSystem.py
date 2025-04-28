@@ -85,22 +85,25 @@ class RecommendationSystem:
             max_score = 1
 
         percentage = (total_score / max_score) * 100
-        self.user_data.clear()
 
         if big_system:
-            return int(percentage)
+            self.user_data.clear()
+            return int(percentage), []
 
         if percentage >= 70:
-            return f"Your score is {percentage:.2f}%. This course is suitable for you to enroll.", []
+            result_text = f"Your score is {percentage:.2f}%. This course is suitable for you to enroll."
         elif percentage >= 50:
-            return f"Your score is {percentage:.2f}%. You can enroll in this course, but it may require extra effort.", []
+            result_text = f"Your score is {percentage:.2f}%. You can enroll in this course, but it may require extra effort."
         else:
-            return f"Your score is {percentage:.2f}%. This course might not be suitable for you at the moment.", []
+            result_text = f"Your score is {percentage:.2f}%. This course might not be suitable for you at the moment."
+
+        self.user_data.clear()
+        return result_text, []
 
     def continue_recommendation(self, user_answer: str, big_system=False):
         response, options = self.receive_answer(user_answer, big_system)
 
         if not options:
-            return None, []
+            return response, []
 
         return response, options

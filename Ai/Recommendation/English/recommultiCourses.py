@@ -43,9 +43,8 @@ class MultiCourseRecommendationSystem:
         if isinstance(result, tuple) and len(result) == 2:
             response, options = result
         else:
-            response = result
-            options = []
-            score = response if isinstance(response, (int, float)) else 0
+            # لو النتيجة عبارة عن سكور فقط، خزنه وخلاص بدون ما ترجعه للمستخدم
+            score = result if isinstance(result, (int, float)) else 0
 
             current_scores = self.user_data.get("course_scores", {})
             current_scores[course_name] = score
@@ -55,8 +54,8 @@ class MultiCourseRecommendationSystem:
 
             return self._start_next_course()
 
-        if response is None:
-            score = self.recommendation_system.user_data.get("score", 0)
+        if isinstance(result, (int, float)):
+            score = result
 
             current_scores = self.user_data.get("course_scores", {})
             current_scores[course_name] = score if score is not None else 0
