@@ -38,6 +38,8 @@ function ChatPage() {
   const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null);
   const emojiPickerRef = useRef<HTMLDivElement | null>(null);
   const messageListRef = useRef(null);
+  const [isWaitingForResponse, setIsWaitingForResponse] = useState(false);
+  const [answeredFromList, setAnsweredFromList] = useState(false);
 
     // عند تحميل الصفحة، نضيف مستمع للأحداث لغلق القائمة عند الضغط خارجها
     useEffect(() => {
@@ -95,7 +97,7 @@ function ChatPage() {
         console.log("response data:",data);
         if (data.message === 'Session closed') {
           setSessionMessage("Session closed successfully.");
-          localStorage.removeItem('client_id');
+          sessionStorage.removeItem('client_id');
           console.log("Session closed successfully.");
         } else {
           setSessionMessage('Failed to close session: ' + data.message);
@@ -120,10 +122,12 @@ function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
    const toggleInputMethod = () => {
     setInputVisible(!isInputVisible);
-    setDropdownVisible(false); // إغلاق أي قائمة أخرى عند التبديل
+    setDropdownVisible(false);
   };
 
     const handleQuestionClick = (question: string) => {
+      if (answeredFromList) return
+      setAnsweredFromList(true);
       setSelectedQuestion(question);
       setDropdownVisible(false);
       handleSend(question);
@@ -135,7 +139,7 @@ function ChatPage() {
     const router = useRouter();
     const [isClient, setIsClient] = useState(false);
     useEffect(() => {
-      setIsClient(true); // تأكيد تحميل المكون على العميل
+      setIsClient(true);
     }, []);
 
    useEffect(() => {
@@ -162,6 +166,7 @@ function ChatPage() {
     const newMessages = [...messages, newMessage];
     setMessages(newMessages);
     setInputValue("");
+    setIsWaitingForResponse(true);
     try {
       console.log('Sending message:', message);
       const token=sessionStorage.getItem("client_id");
@@ -209,7 +214,9 @@ function ChatPage() {
     catch (error) {
         console.error("Error sending message:", error);
     }
-
+    finally {
+    setIsWaitingForResponse(false);
+    setAnsweredFromList(false);    }
     };
   const[isShowlist,setList]=useState(false);
   const dropList = () => {
@@ -295,7 +302,7 @@ function ChatPage() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
+                  if (e.key === "Enter" && !e.shiftKey && !isWaitingForResponse) {
                     e.preventDefault();
                     handleSend(inputValue);
                   }
@@ -316,7 +323,10 @@ function ChatPage() {
                   <Image src="/smile-plus.png" alt="EmojiButton" width={30} height={30} />
                 </button>
 
-                <button onClick={() => handleSend(inputValue)} className={styles.sendButton}>
+                <button onClick={() => handleSend(inputValue)}
+                className={styles.sendButton}
+                 disabled={isWaitingForResponse}
+                >
                   <Image src="/send.png" alt="Send" width={25} height={25} />
                 </button>
               </div>
@@ -326,7 +336,7 @@ function ChatPage() {
               {exampleQuestions.length > 0 && (
                 <ul className={styles.dropdownList}>
                   {exampleQuestions.map((question, index) => (
-                    <li key={index} onClick={() => handleQuestionClick(question)}>
+                    <li key={index} onClick={() => handleQuestionClick(question)}  disabled={answeredFromList}>
                       {question}
                     </li>
                   ))}

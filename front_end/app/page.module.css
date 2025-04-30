@@ -194,6 +194,22 @@
   cursor: pointer;
   transition: background 0.3s ease;
 }
+.cornerImage {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.cornerImage:hover {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1000;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 @media (max-width:1000px){
     .modebutton{
         top: 10px;
