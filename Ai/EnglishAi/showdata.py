@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, text
 
-DATABASE_URL = "sqlite:///E:/gradProject/university_information.db"
+DATABASE_URL = "sqlite:///D:/gradProject/university_information.db"
 
 engine = create_engine(DATABASE_URL, echo=False)
 

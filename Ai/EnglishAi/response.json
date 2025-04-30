@@ -145,6 +145,9 @@
    "You will gain {y} credit hours in course {x}, with a degree of {z}.",
    "Course {x} involves {y} credit hours, and the degree you will earn is {z}.",
    "The course {x} has a total of {y} credit hours, and the degree is {z}."
- ]
+ ],
+  "GPARequirements": ["To specialize in computer science, students are admitted first into the\n mathematics department. Students are ranked based on their first-semester grades\n (35%), while for the single-semester computer science major, 60% of their\n second-semester grades are taken into account. The percentages may change\n from year to year."],
+  "Training": ["During the third year of leave, internships are offered at companies or within the college. If you have\n an internship opportunity at a particular company, you can apply for that opportunity as well. It is\n essential that you have completed the internship before graduation, as completing the internship is\n required for graduation."],
+  "AdjustCreditLoad": ["“Based on your GPA, if it is above 3.0 in your final semester, you may submit a request, which must\n be approved by your academic advisor and college. This is called \"graduation reasons.\" You may\n register for your regular semester courses or choose to register for fewer courses\n"]
 
 }

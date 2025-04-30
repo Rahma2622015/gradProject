@@ -1,8 +1,8 @@
 from Ai.EnglishAi.chattask import ChatTask
 
-from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
+from Database.Datastorage_DB import DatabaseStorage
 
-from Data import DataStorage
+from Modules import DataStorage
 
 class TaskProcessor:
     def process(self, tasks:list[tuple[ChatTask,]],data:DataStorage)->list[tuple[ChatTask,]]:
@@ -82,6 +82,12 @@ class TaskProcessor:
 
             elif task_enum == ChatTask.ExamSystem:
                 responses.append((ChatTask.ExamSystem, ""))
+            elif task_enum == ChatTask.GPARequirements:
+                responses.append((ChatTask.GPARequirements, ""))
+            elif task_enum == ChatTask.Training:
+                responses.append((ChatTask.Training, ""))
+            elif task_enum == ChatTask.AdjustCreditLoad:
+                responses.append((ChatTask.AdjustCreditLoad, ""))
             elif task_enum == ChatTask.MultiCourseRecommendationTask:
                 responses.append((ChatTask.MultiCourseRecommendationTask, ""))
             elif task_enum == ChatTask.CourseHours:

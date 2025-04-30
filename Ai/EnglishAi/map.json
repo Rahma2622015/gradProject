@@ -204,5 +204,26 @@
     "VerbKeywords": ["be"],
     "SubjectKeywords": ["credit","hours","hour","for","of","degree","total"],
     "ObjectKeywords": ["course","courses"]
+  },
+  "GPARequirements":
+  {
+    "QuestionKeywords": ["what","which","how"],
+    "VerbKeywords":["be","require","need","can","qualify ","get","join","have","do","must","enroll"],
+    "SubjectKeywords": ["gpa","specific","necessary","steps"],
+    "ObjectKeywords": ["department","departments","major","computer","science","program"]
+  },
+    "Training":
+  {
+    "QuestionKeywords": ["be","can"],
+    "VerbKeywords":["help","join","improve","enhance","develop","offered"],
+    "SubjectKeywords": ["workshops","strengthen","training","sessions","opportunities","available"],
+    "ObjectKeywords": ["skills","our","courses","programs","aim"]
+  },
+    "AdjustCreditLoad":
+  {
+    "QuestionKeywords": ["be","can"],
+    "VerbKeywords":["be","allow","exceed","choose","register","specify"],
+    "SubjectKeywords": ["limit","more","less","additional","fewer"],
+    "ObjectKeywords": ["number","credit","hours"]
   }
 }
