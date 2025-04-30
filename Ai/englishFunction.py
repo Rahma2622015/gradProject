@@ -8,17 +8,17 @@ from Ai.EnglishAi.MappingTrivialTasks import MappingTrivial
 from Ai.Recommendation.English.ReplyModuleR import ReplyModuleRe
 from Ai.EnglishAi.BigramModel import BigramModel
 from Ai.EnglishAi.chattask import ChatTask
-from Data.dataStorage import DataStorage
-from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
+from Modules.dataStorage import DataStorage
+from Database.Datastorage_DB import DatabaseStorage
 import variables
 from Ai.Recommendation.English.RecomCourseSystem import RecommendationSystem
 from Ai.EnglishAi.SemanticTaskMapper import SemanticTaskMapper
 from Ai.EnglishAi.GrammerChecker import EnglishGrammarChecker
 from Ai.EnglishAi.functionsForMapping import functions
-
+from endPoints.ai_config_endpoints import load_ai_config
 
 f=functions()
-#grammer=EnglishGrammarChecker()
+grammer=EnglishGrammarChecker()
 m=SemanticTaskMapper()
 mapper = TaskMapper()
 trivial_mapper = MappingTrivial()
@@ -34,6 +34,7 @@ data_storage=DatabaseStorage()
 memory=DataStorage()
 course_recommender = RecommendationSystem(data_storage, memory)
 
+
 def is_trivial_task(tokens, f) -> bool:
     for sentence in tokens:
         for token in sentence:
@@ -42,6 +43,11 @@ def is_trivial_task(tokens, f) -> bool:
                 return True
     return False
 
+def config():
+        return load_ai_config()
+
+def use_semantic_mapper():
+    return config().get("use_semantic_mapper", True)
 
 def langEnglish(message, storage, user_id):
     try:
@@ -99,10 +105,14 @@ def langEnglish(message, storage, user_id):
                 tasks = trivial_mapper.mapToken(tokens, pos)
             else:
                 bigram_model.sentence_probability(tokens)
-             #   grammer.is_correct(tokens)
-             #   grammer.get_errors(tokens)
-                print("[DEBUG] Mapping using TaskMapper")
-                tasks = m.mapToken(tokens, pos)
+                grammer.is_correct(tokens)
+                grammer.get_errors(tokens)
+                if use_semantic_mapper():
+                    print("[DEBUG] Mapping using SemanticTaskMapper")
+                    tasks = m.mapToken(tokens, pos)
+                else:
+                    print("[DEBUG] Mapping using TaskMapper")
+                    tasks = mapper.mapToken(tokens, pos)
             print(f"[DEBUG] Identified tasks: {tasks}, type: {type(tasks)}")
 
             if all(task[0] == ChatTask.UnknownTask for task in tasks):

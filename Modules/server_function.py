@@ -2,6 +2,7 @@ import random
 from Modules.functions_json import jsonFunction
 
 json_function=jsonFunction()
+data_file=r'../session_data.json'
 
 class serverFunction:
 
@@ -10,7 +11,7 @@ class serverFunction:
 
     def generateClientId(self):
         new_id = random.randint(1, 999999)
-        client_data = json_function.load_data()
+        client_data = json_function.load_data(data_file)
         while str(new_id) in client_data:
             new_id = random.randint(1, 999999)
         return new_id

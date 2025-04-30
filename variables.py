@@ -1,18 +1,20 @@
-ip="https://192.168.1.5:3000"
+ip="https://192.168.1.10:3000"
 
-cert_loc=r"E:\gradProject\cert.crt"
-key_loc=r"E:\gradProject\private.key"
+base_ssl=r"D:/gradProject/ssl10"
+
+cert_loc=fr"{base_ssl}/certificate.crt"
+key_loc=fr"{base_ssl}/private.key"
 
 
-base_arabic_ai = r"F:\gradProject\Ai\ArabicAi"
-base_english_ai = r"F:\gradProject\Ai\EnglishAi"
-base_recommendation = r"F:\gradProject\Ai\Recommendation\English"
-base_arabic_recommendation = r"F:\gradProject\Ai\Recommendation\Arabic"
+base_arabic_ai = r"D:\gradProject\Ai\ArabicAi"
+base_english_ai = r"D:\gradProject\Ai\EnglishAi"
+base_recommendation = r"D:\gradProject\Ai\Recommendation\English"
+base_arabic_recommendation = r"D:\gradProject\Ai\Recommendation\Arabic"
 
 MapDataLocationAr = fr"{base_arabic_ai}\MapData.json"
 arabic_word = fr"{base_arabic_ai}\arabic_words.txt"
 ResponseDataLocationAr = fr"{base_arabic_ai}\response.json"
-NamesinCorrectArabic = fr"{base_arabic_ai}\arabic_names.txt"
+NamesInCorrectArabic = fr"{base_arabic_ai}\arabic_names.txt"
 subjectNameLocation = fr"{base_arabic_ai}\subject_names.txt"
 CourseNameArabic = fr"{base_arabic_ai}\اسماء المواد.txt"
 
@@ -30,4 +32,3 @@ MapDataLocationRE = fr"{base_recommendation}\mapR.json"
 RecomLocation = fr"{base_recommendation}\courses.json"
 
 ArResponseDataLocationRE = fr"{base_arabic_recommendation}\AraResponseEx.json"
-

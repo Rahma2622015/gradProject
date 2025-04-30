@@ -1,198 +1,48 @@
 from Ai.EnglishAi.chattask import ChatTask
-
+from Ai.EnglishAi.TasksHandlers.basic_tasks import handle_basic_tasks
+from Ai.EnglishAi.TasksHandlers.course_tasks import handle_course_tasks
+from Ai.EnglishAi.TasksHandlers.professor_tasks import handle_professor_tasks
+from Ai.EnglishAi.TasksHandlers.general_tasks import handle_general_tasks
+from Ai.EnglishAi.TasksHandlers.advisor_tasks import handle_advisor_tasks  # أضيفيه لو عندك
+from Modules import DataStorage
 from Database.Datastorage_DB import DatabaseStorage
 
-from Modules import DataStorage
-
 class TaskProcessor:
-    def process(self, tasks:list[tuple[ChatTask,]],data:DataStorage)->list[tuple[ChatTask,]]:
+
+    def process(self, tasks, data: DataStorage):
+        D = DatabaseStorage()
         responses = []
-        D=DatabaseStorage()
+
+        # Process tasks
         for task in tasks:
-            task_enum = task[0]
-            if isinstance(task_enum, ChatTask):
-                task_string = task_enum.name
-            if task_enum == ChatTask.StoreTask:
-               if data.findName(task[1]):
-                   responses.append((ChatTask.ContradictionTask,task[1],data.fetchValue(task[1]),task[1],task[2]))
-               else:
-                   data.addData(task[1],task[2])
-                   responses.append((ChatTask.UnderstandingTask,task[1],task[2]))
-            elif task_enum == ChatTask.LoadTask:
-                responses.append((ChatTask.UnderstandingTask,task[1]))
-            elif task_enum== ChatTask.GreetingTask:
-                  if data.findName(task[1]):
-                      responses.append((ChatTask.GreetingTask, data.fetchValue(task[1])))
-                  else:
-                      responses.append((ChatTask.GreetingTask,""))
-            elif task_enum==ChatTask.CheckWellbeingTask:
-                responses.append((ChatTask.CheckWellbeingTask,""))
-            elif task_enum==ChatTask.MathTask:
-                responses.append((ChatTask.MathTask,""))
-            elif task_enum ==  ChatTask.QuestionTask:
-                responses.append((ChatTask.UnderstandingTask,""))
-            elif task_enum ==  ChatTask.ThanksTask:
-                responses.append((ChatTask.ThanksTask,""))
-            elif task_enum ==  ChatTask.HelpTask:
-                responses.append((ChatTask.HelpTask,""))
-            elif task_enum ==  ChatTask.GoodbyeTask:
-                responses.append((ChatTask.GoodbyeTask,""))
-            elif task_enum == ChatTask.ConfusionTask:
-                responses.append((ChatTask.ConfusionTask, ""))
-            elif task_enum == ChatTask.TypesOfProgramsTask:
-                responses.append((ChatTask.TypesOfProgramsTask, ""))
-            elif task_enum == ChatTask.ExternalCoursesTask:
-                responses.append((ChatTask.ExternalCoursesTask, ""))
-            elif task_enum== ChatTask.DifficultyTask:
-                responses.append((ChatTask.DifficultyTask, ""))
-            elif task_enum == ChatTask.HighGpaTask:
-                responses.append((ChatTask.HighGpaTask, ""))
-            elif task_enum == ChatTask.MaterialsTypeTask:
-                responses.append(( ChatTask.MaterialsTypeTask, ""))
-            elif task_enum == ChatTask.ChooseDepartmentTask:
-                responses.append((ChatTask.ChooseDepartmentTask, ""))
-            elif task_enum == ChatTask.AcademicAdvisorTask:
-                responses.append((ChatTask.AcademicAdvisorTask, ""))
-            elif task_enum == ChatTask.ClassificationTask:
-                responses.append((ChatTask.ClassificationTask, ""))
-            elif task_enum == ChatTask.CreditHoursTask:
-                responses.append((ChatTask.CreditHoursTask, ""))
-            elif task_enum == ChatTask.GraduationTask:
-                responses.append(( ChatTask.GraduationTask, ""))
-            elif task_enum == ChatTask.EnrollmentTask:
-                responses.append(( ChatTask.EnrollmentTask, ""))
-            elif task_enum == ChatTask.AssessGraduation:
-                responses.append(( ChatTask.AssessGraduation, ""))
-            elif task_enum == ChatTask.ReasonsGraduation:
-                responses.append(( ChatTask.ReasonsGraduation, ""))
-            elif task_enum == ChatTask.PreventDelays:
-                responses.append((ChatTask.PreventDelays, ""))
-            elif task_enum == ChatTask.UnderstandRules:
-                responses.append((ChatTask.UnderstandRules, ""))
-            elif task_enum == ChatTask.ScheduleTask:
-                responses.append((ChatTask.ScheduleTask, ""))
-            elif task_enum == ChatTask.AskHelpingTask:
-                responses.append((ChatTask.AskHelpingTask, ""))
-            elif task[0] == ChatTask.AskNameTask:
-                name = data.fetchValue("name")
-                if name:
-                    responses.append((ChatTask.AskNameTask, name))
-                else:
-                    responses.append((ChatTask.AskNameTask, "I can't remember your name, could you tell me it? "))
+            task_type = task[0]
 
-            elif task_enum == ChatTask.ExamSystem:
-                responses.append((ChatTask.ExamSystem, ""))
-            elif task_enum == ChatTask.GPARequirements:
-                responses.append((ChatTask.GPARequirements, ""))
-            elif task_enum == ChatTask.Training:
-                responses.append((ChatTask.Training, ""))
-            elif task_enum == ChatTask.AdjustCreditLoad:
-                responses.append((ChatTask.AdjustCreditLoad, ""))
-            elif task_enum == ChatTask.MultiCourseRecommendationTask:
-                responses.append((ChatTask.MultiCourseRecommendationTask, ""))
-            elif task_enum == ChatTask.CourseHours:
-                course_name,hours,degree = " ","",""
-                task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task
-                pos_tags = task[2] if isinstance(task, tuple) and len(task) > 2 else []
-                print(task_words)
-                print("c:",pos_tags)
-                for i, tag in enumerate(pos_tags):
-                    if tag == "<CourseName>":
-                        course_name = task_words[i]
-                        print("🔍 Extracted 1name from POS tag:", course_name)
-                        break
+            if task_type in [ChatTask.GreetingTask, ChatTask.StoreTask, ChatTask.AskNameTask]:
+                responses.extend(handle_basic_tasks(task, data))
 
-                if not course_name:
-                    keywords = [ "subject", "lesson", "course"]
-                    for i, word in enumerate(task_words):
-                        if word in keywords and i + 1 < len(task_words):
-                            course_name = " ".join(task_words[i + 2:])
-                            print("🔍 Extracted cname from keywords:", course_name)
-                            break
+            elif task_type in [ChatTask.CourseQueryTask, ChatTask.PrerequisitesTask, ChatTask.CourseHours]:
+                responses.extend(handle_course_tasks(task, D))
 
-                try:
-                    hours, degree = D.get_course_hours_and_degree(course_name)
-                    if hours is None or "":
-                        hours = f"Sorry, the course_hourse is not found in our database."
-                    elif degree is None or "":
-                        degree = f"Sorry, the course_degree is not found in our database."
+            elif task_type == ChatTask.ProfessorQueryTask:
+                responses.extend(handle_professor_tasks(task, D))
 
-                except Exception as e:
-                    print("❌ Error while getting course info:", str(e))
+            elif task_type in [
+                ChatTask.ThanksTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask,
+                ChatTask.DifficultyTask, ChatTask.CheckWellbeingTask, ChatTask.MathTask,
+                ChatTask.QuestionTask, ChatTask.AskHelpingTask, ChatTask.TypesOfProgramsTask,
+                ChatTask.ExternalCoursesTask, ChatTask.HighGpaTask, ChatTask.MaterialsTypeTask,
+                ChatTask.GraduationTask, ChatTask.EnrollmentTask, ChatTask.AssessGraduation,ChatTask.HelpTask,
+                ChatTask.ReasonsGraduation, ChatTask.PreventDelays, ChatTask.UnderstandRules,
+                ChatTask.ScheduleTask, ChatTask.ExamSystem, ChatTask.GPARequirements, ChatTask.Training,
+                ChatTask.AdjustCreditLoad, ChatTask.MultiCourseRecommendationTask, ChatTask.OptimizeStudyPlan,
+                ChatTask.LabAttendance, ChatTask.GoodGPA, ChatTask.SelectDepartment, ChatTask.TransferBetweenDepartments
+            ]:
+                responses.extend(handle_general_tasks(task))
 
-                responses.append((ChatTask.CourseHours, course_name, hours,degree))
-            elif task_enum == ChatTask.PrerequisitesTask:
-                course_name = ""
-                task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task
-                pos_tags = task[2] if isinstance(task, tuple) and len(task) > 2 else []
-                print(task_words)
-                print("p:",pos_tags)
-                for i, tag in enumerate(pos_tags):
-                    if tag == "<CourseName>":
-                        course_name = task_words[i]
-                        print("🔍 Extracted cname from POS tag:", course_name)
-                        break
-
-                if not course_name:
-                    keywords = [ "subject", "lesson", "course"]
-                    for i, word in enumerate(task_words):
-                        if word in keywords and i + 1 < len(task_words):
-                            course_name = " ".join(task_words[i + 2:])
-                            print("🔍 Extracted cname from keywords:", course_name)
-                            break
-
-                try:
-                    course_req = D.get_course_prerequisite(course_name)
-                    if course_req is None:
-                        course_req = f"Sorry, the course '{course_name}' is not found in our database."
-
-                    elif not course_req:  # كورس موجود لكن مفيش متطلبات
-                        course_req = f"The course '{course_name}' has no prerequisites."
-
-                except Exception as e:
-                    print("❌ Error while getting course info:", str(e))
-                    course_req = "There was an error while fetching the course prerequisites."
-
-                responses.append((ChatTask.PrerequisitesTask, course_name, course_req))
-
-            elif task_enum == ChatTask.ProfessorQueryTask:
-                professor_name = None
-                keywords = ["professor", "dr.","doctor"]
-                task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task
-                for i, word in enumerate(task_words):
-                    if word.lower().strip() in keywords and i + 1 < len(task_words):
-                        professor_name =" ".join( task_words[i + 1:])
-                        print("🔍 Extracted name:", professor_name)
-                        break
-                if professor_name :
-                    professor_info = D.get_professor_info(str(professor_name))
-                else:
-                    professor_name = "Unknown"
-                    professor_info = "No information available"
-
-                responses.append((ChatTask.ProfessorQueryTask, professor_name, professor_info))
-
-            elif task_enum == ChatTask.CourseQueryTask:
-                course_name = ""
-                keywords = ["course", "subject", "lesson"]
-                task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task
-
-                for i, word in enumerate(task_words):
-                    if word in keywords and i + 1 < len(task_words):
-                        course_name = " ".join(task_words[i + 1:])
-                        print("🔍 Extracted cname:", course_name)
-                        break
-                try:
-                        course_info = D.get_course_description(course_name)
-                        if not course_info or course_info.strip() == "Course not found.":
-                            course_info = f"Sorry, the course '{course_name}' is not found in our database."
-                except Exception as e:
-                    print("❌ Error while getting course info:", str(e))
-                    course_info = "There was an error while fetching the course description."
-
-                responses.append((ChatTask.CourseQueryTask, course_name, course_info))
+            elif task_type in [ChatTask.AcademicAdvisorTask, ChatTask.ChooseDepartmentTask]:
+                responses.extend(handle_advisor_tasks(task))
 
             else:
-                responses.append((ChatTask.UnknownTask,""))
+                responses.append((ChatTask.UnknownTask, ""))
 
-        return  responses
+        return responses

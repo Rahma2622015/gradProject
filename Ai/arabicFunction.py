@@ -2,14 +2,14 @@ from Ai.ArabicAi.ArabicTokenizer import ArabicTokenizers
 from Ai.ArabicAi.Mapping import mapping
 from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 from Ai.ArabicAi.ReplyModule import replyModule
-from Ai.ArabicAi.TaskProcessor import taskProcessor
+from Ai.ArabicAi.TaskProcessor import TaskProcessor
 from Ai.Recommendation.Arabic.ArabicReplyModuleRe import ArReplyModuleRe
 from Ai.Recommendation.Arabic.ArabicRecomExamSystem import ArRecommendation
 from Ai.ArabicAi.chattask import ChatTask
 
 ARmapper = mapping()
 ARreply = replyModule()
-ARproces = taskProcessor()
+ARproces = TaskProcessor()
 ARt = ArabicTokenizers()
 ARp = ArabicPreprocessor()
 recom_replyAr = ArReplyModuleRe()
@@ -20,6 +20,7 @@ def langArabic(message, storage, user_id):
         ARpos = ARt.pos_tag(ARtokens)
         print("pos: ",ARpos)
         ARtokens = ARp.preprocess(ARtokens)
+        print("artokens: ",ARtokens)
         prev_data = storage.get_prev_data(user_id)
 
         print(f"[DEBUG] Current task before processing: {storage.get_current_task(user_id)}")

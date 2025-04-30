@@ -148,6 +148,16 @@
  ],
   "GPARequirements": ["To specialize in computer science, students are admitted first into the\n mathematics department. Students are ranked based on their first-semester grades\n (35%), while for the single-semester computer science major, 60% of their\n second-semester grades are taken into account. The percentages may change\n from year to year."],
   "Training": ["During the third year of leave, internships are offered at companies or within the college. If you have\n an internship opportunity at a particular company, you can apply for that opportunity as well. It is\n essential that you have completed the internship before graduation, as completing the internship is\n required for graduation."],
-  "AdjustCreditLoad": ["“Based on your GPA, if it is above 3.0 in your final semester, you may submit a request, which must\n be approved by your academic advisor and college. This is called \"graduation reasons.\" You may\n register for your regular semester courses or choose to register for fewer courses\n"]
+  "AdjustCreditLoad": ["“Based on your GPA, if it is above 3.0 in your final semester, you may submit a request, which must\n be approved by your academic advisor and college. This is called \"graduation reasons.\" You may\n register for your regular semester courses or choose to register for fewer courses\n"],
+
+  "OptimizeStudyPlan": ["Commitment to attendance and study"],
+    "LabAttendance": ["Oh, it's important."],
+    "GoodGPA": ["You will rely on yourself for self-study, regular studying, and commitment to attendance to achieve a good GPA."],
+    "SelectDepartment": ["It depends on what you prefer."],
+    "EnhanceCareerReadiness": ["You can use your summer vacation to develop your skills through self-study or enrolling in online courses like those offered by Coursera, which the university provides to us for free. These courses help you acquire practical skills that are in demand in the job market, and you can also benefit from them by strengthening the practical aspects that we don't always get to cover in our studies."],
+    "TransferBetweenDepartments": ["It is allowed within the narrowest limits, and it is preferable to ask the guide."]
+
+
+
 
 }

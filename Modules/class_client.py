@@ -5,7 +5,7 @@ import time
 class Client:
 
     def __init__(self):
-        self.id = None
+        self.__id = None
         self.timeStart= None
         self.timeEnd= None
         self.last_task = None
@@ -13,7 +13,7 @@ class Client:
 
 
     def setClientId(self,id):
-        self.id=id
+        self.__id=id
 
     def data_storage(self,key ,value):
         if self.data.addData(key,value):
