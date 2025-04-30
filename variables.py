@@ -12,6 +12,7 @@ base_arabic_recommendation = r"E:\gradProject\Ai\Recommendation\Arabic"
 
 
 MapDataLocationAr = fr"{base_arabic_ai}\MapData.json"
+MapData2LocationAr=fr"{base_arabic_ai}\NewMapData.json"
 arabic_word = fr"{base_arabic_ai}\arabic_words.txt"
 ResponseDataLocationAr = fr"{base_arabic_ai}\response.json"
 NamesInCorrectArabic = fr"{base_arabic_ai}\arabic_names.txt"
@@ -21,7 +22,7 @@ CourseNameArabic = fr"{base_arabic_ai}\اسماء المواد.txt"
 
 MapDataLocationEn = fr"{base_english_ai}\map.json"
 ResponseDataLocationEn = fr"{base_english_ai}\response.json"
-Bigrams = fr"{base_english_ai}\bigrams.txt"
+Bigrams = fr"{base_english_ai}\bigram.txt"
 NamesinCorrectEnglish = fr"{base_english_ai}\Names.txt"
 courseLocation = fr"{base_english_ai}\courses.txt"
 MapData2LocationEn = fr"{base_english_ai}\Newmap.json"
@@ -31,3 +32,4 @@ MapDataLocationRE = fr"{base_recommendation}\mapR.json"
 RecomLocation = fr"{base_recommendation}\courses.json"
 
 ArResponseDataLocationRE = fr"{base_arabic_recommendation}\AraResponseEx.json"
+

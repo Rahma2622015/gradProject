@@ -9,6 +9,7 @@ from Ai.Recommendation.English.ReplyModuleR import ReplyModuleRe
 from Ai.EnglishAi.BigramModel import BigramModel
 from Ai.EnglishAi.chattask import ChatTask
 from Modules.dataStorage import DataStorage
+import variables
 from Database.Datastorage_DB import DatabaseStorage
 from Ai.Recommendation.English.RecomCourseSystem import RecommendationSystem
 from Ai.EnglishAi.SemanticTaskMapper import SemanticTaskMapper
@@ -32,7 +33,7 @@ bigram_model = BigramModel(variables.Bigrams)
 data_storage = DatabaseStorage()
 memory = DataStorage()
 course_recommender = RecommendationSystem(data_storage, memory)
-
+use_semantic_mapper = True
 
 def is_trivial_task(tokens, f) -> bool:
     for sentence in tokens:
@@ -53,9 +54,9 @@ def langEnglish(message, storage):
         message_lower = p.lowercase(message)
         corrected_message = a.correct_text(message_lower)
         tokens = t.tokenize(corrected_message)
-        pos = t.pos_tag(tokens)
-        tokens = p.preprocess(tokens, pos)
-
+        pos = t.pos_tag(tokens
+        if not use_semantic_mapper:
+         tokens = p.preprocess(tokens, pos)
         prev_data = storage.get_prev_data()
         print(f"[DEBUG] Current task before processing: {storage.get_current_task()}")
 
@@ -107,10 +108,11 @@ def langEnglish(message, storage):
                 print("[DEBUG] Mapping using TrivialMapper")
                 tasks = trivial_mapper.mapToken(tokens, pos)
             else:
+
                 bigram_model.sentence_probability(tokens)
                 grammer.is_correct(tokens)
                 grammer.get_errors(tokens)
-                if use_semantic_mapper():
+                if use_semantic_mapper:
                     print("[DEBUG] Mapping using SemanticTaskMapper")
                     tasks = m.mapToken(tokens, pos)
                 else:
