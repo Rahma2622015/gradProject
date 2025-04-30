@@ -46,7 +46,7 @@ def is_trivial_task(tokens, f) -> bool:
 def config():
         return load_ai_config()
 
-def use_semantic_mapper():
+def use_semantic_mapperfun():
     return config().get("use_semantic_mapper", True)
 
 def langEnglish(message, storage):
@@ -54,8 +54,8 @@ def langEnglish(message, storage):
         message_lower = p.lowercase(message)
         corrected_message = a.correct_text(message_lower)
         tokens = t.tokenize(corrected_message)
-        pos = t.pos_tag(tokens
-        if not use_semantic_mapper:
+        pos = t.pos_tag(tokens)
+        if not use_semantic_mapperfun:
          tokens = p.preprocess(tokens, pos)
         prev_data = storage.get_prev_data()
         print(f"[DEBUG] Current task before processing: {storage.get_current_task()}")
@@ -112,7 +112,7 @@ def langEnglish(message, storage):
                 bigram_model.sentence_probability(tokens)
                 grammer.is_correct(tokens)
                 grammer.get_errors(tokens)
-                if use_semantic_mapper:
+                if use_semantic_mapperfun:
                     print("[DEBUG] Mapping using SemanticTaskMapper")
                     tasks = m.mapToken(tokens, pos)
                 else:

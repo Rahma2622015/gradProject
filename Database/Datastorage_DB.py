@@ -7,22 +7,22 @@ class DatabaseStorage:
     def get_course_prerequisite(self, course_name):
         course = self.session.query(Course).filter(
             Course.name.ilike(f"%{course_name}%") |
-            (Course.short_name.ilike(f"%{course_name}%")) |
-            (Course.code.ilike(f"%{course_name}%"))
-        ).first()
-
-        if course:
-            return [prerequisite.code for prerequisite in course.prerequisites]
-        return None
-
-    def get_course_prerequisite_arabic(self, course_name):
-        course = self.session.query(Course).filter(
+            Course.short_name.ilike(f"%{course_name}%") |
+            Course.code.ilike(f"%{course_name}%") |
             Course.name_arabic.ilike(f"%{course_name}%")
         ).first()
-
-        if course:
-            return [prerequisite.code for prerequisite in course.prerequisites]
-        return None
+        if not course:
+            return None
+        if course_name.lower() in course.code.lower():
+            return [p.code for p in course.prerequisites]
+        elif course_name.lower() in (course.name_arabic or "").lower():
+            return [p.name_arabic for p in course.prerequisites]
+        elif course_name.lower() in (course.name or "").lower():
+            return [p.name for p in course.prerequisites]
+        elif course_name.lower() in (course.short_name or "").lower():
+            return [p.short_name for p in course.prerequisites]
+        else:
+            return [p.code for p in course.prerequisites]
 
     def get_course_description(self, course_name) -> str:
         course = self.session.query(Course).filter(
@@ -31,6 +31,7 @@ class DatabaseStorage:
             (Course.code.ilike(f"%{course_name}%"))
         ).first()
         return course.description if course else "Course not found."
+
 
     def get_course_description_arabic(self, course_name) -> str:
 

@@ -23,7 +23,7 @@ def handle_course_tasks(task, D: DatabaseStorage):
             except Exception as e:
                 responses.append((ChatTask.CourseQueryTask, course_name, "There was an error fetching the course description ."))
 
-        elif task[0] == ChatTask.PrerequisiteQueryTask:
+        elif task[0] == ChatTask.PrerequisitesTask:
             try:
                 course_info = D.get_course_prerequisite(course_name)
                 responses.append((ChatTask.CourseQueryTask, course_name, course_info))

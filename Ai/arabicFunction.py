@@ -7,7 +7,7 @@ from Ai.Recommendation.Arabic.ArabicReplyModuleRe import ArReplyModuleRe
 from Ai.Recommendation.Arabic.ArabicCoursesystem import ArRecommendationSystem
 from Ai.ArabicAi.chattask import ChatTask
 from Ai.ArabicAi.SemanticTaskMapper import SemanticTaskMapperArabic
-from Data.dataStorage import DataStorage
+from Modules.dataStorage import DataStorage
 from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
 
 
@@ -33,7 +33,7 @@ def langArabic(message, storage):
         #if not use_semantic_armapper:
         ARtokens = ARp.preprocess(ARtokens)
         print("artokens: ",ARtokens)
-        prev_data = storage.get_prev_data(user_id)
+        prev_data = storage.get_prev_data()
 
         print(f"[DEBUG] Current task before processing: {storage.get_current_task()}")
         s, options = "", []

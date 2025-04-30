@@ -1,5 +1,5 @@
 {
-  "threshold": 5,
-  "use_semantic_mapper": false,
-  "use_semantic_armapper": false
+  "threshold": 0.5,
+  "use_semantic_mapper": true,
+  "use_semantic_armapper": true
 }
