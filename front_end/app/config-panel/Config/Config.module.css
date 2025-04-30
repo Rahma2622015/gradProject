@@ -1,124 +1,90 @@
 .container {
   max-width: 900px;
-  margin: 0 auto;
+  margin: auto;
   padding: 2rem;
-  background-color: #ffffff;
+  background-color: #f9f9f9;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .title {
+  text-align: center;
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  text-align: center;
   color: #333;
 }
 
 .topBar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
   gap: 1rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
 
-.searchInput {
+.searchInput,
+.selectInput {
   flex: 1;
   padding: 0.5rem 1rem;
   font-size: 1rem;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-.uploadLabel {
-  padding: 0.6rem 1.2rem;
-  background-color: #4caf50;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.uploadLabel:hover {
-  background-color: #45a049;
-}
-
-.fileInput {
-  display: none;
 }
 
 .card {
-  background: #f9f9f9;
-  padding: 1rem 1.5rem;
+  background: #fff;
+  padding: 1.5rem;
   border-radius: 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
   margin-bottom: 2rem;
-  border: 1px solid #ddd;
 }
 
 .cardTitle {
-  font-weight: bold;
+  font-size: 1.25rem;
   margin-bottom: 1rem;
-  color: #222;
-}
-
-.emptyText {
-  color: #888;
-  font-style: italic;
 }
 
 .addEntrySection {
-  margin-bottom: 2rem;
-}
-
-.sectionTitle {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #444;
+  margin-top: 2rem;
 }
 
 .inputGroup {
   display: flex;
-  flex-wrap: wrap;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .input {
   flex: 1;
-  min-width: 200px;
   padding: 0.5rem;
-  font-size: 1rem;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
 
-.addButton {
-  background-color: #2196f3;
-  color: white;
-  padding: 0.5rem 1.2rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.addButton:hover {
-  background-color: #1e88e5;
-}
-
+.addButton,
 .saveButton {
-  background-color: #673ab7;
-  color: white;
-  padding: 0.6rem 1.5rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
   border: none;
   border-radius: 8px;
+  background-color: #4CAF50;
+  color: white;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background 0.3s;
+  transition: background 0.3s ease;
 }
 
+.addButton:hover,
 .saveButton:hover {
-  background-color: #5e35b1;
+  background-color: #45a049;
+}
+
+.emptyText {
+  color: #999;
+  font-style: italic;
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 1.5rem;
 }
