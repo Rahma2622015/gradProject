@@ -1,5 +1,5 @@
 import json
-from Data.dataStorage import DataStorage
+from Modules.dataStorage import DataStorage
 import variables
 
 class ArRecommendation:

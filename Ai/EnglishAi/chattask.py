@@ -43,3 +43,11 @@ class ChatTask(Enum):
     GPARequirements=38
     Training=39
     AdjustCreditLoad=40
+
+    OptimizeStudyPlan=41
+    LabAttendance=42
+    GoodGPA=43
+    SelectDepartment=44
+    EnhanceCareerReadiness=45
+    TransferBetweenDepartments=46
+

@@ -1,5 +1,5 @@
-from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
-from Data.dataStorage import DataStorage
+from Database.Datastorage_DB import DatabaseStorage
+from Modules.dataStorage import DataStorage
 
 class RecommendationSystem:
     def __init__(self, data_storage: DatabaseStorage, memory: DataStorage):
