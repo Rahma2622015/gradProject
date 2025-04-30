@@ -6,7 +6,7 @@ from Ai.Recommendation.Arabic.ArabicCoursesystem import ArRecommendationSystem
 from Ai.EnglishAi.Tokeniztion import Tokenizers
 from Database.Datastorage_DB import DatabaseStorage
 from Modules import DataStorage
-from Ai.Recommendation.English.recommultiCourses import MultiCourseRecommendationSystem
+from Ai.Recommendation.Arabic.arabicRecomMulticourses import ArMultiCourseRecommendationSystem
 import variables
 
 data_storage = DatabaseStorage()

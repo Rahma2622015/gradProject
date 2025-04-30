@@ -1,5 +1,5 @@
 from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
-from Data.dataStorage import DataStorage
+from Modules.dataStorage import DataStorage
 from Ai.Recommendation.Arabic.ArabicCoursesystem import ArRecommendationSystem
 from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 from Ai.ArabicAi.ArabicTokenizer import ArabicTokenizers
