@@ -225,5 +225,41 @@
     "VerbKeywords":["be","allow","exceed","choose","register","specify"],
     "SubjectKeywords": ["limit","more","less","additional","fewer"],
     "ObjectKeywords": ["number","credit","hours"]
+  },
+  "OptimizeStudyPlan": {
+    "QuestionKeywords": ["what","how"],
+    "VerbKeywords": ["can","be","complete","finish","take","ensure","should","meet","manage"],
+    "SubjectKeywords": ["strategy","efficient","degree","steps"],
+    "ObjectKeywords": ["time","requirements","effectively","schedule"]
+  },
+  "LabAttendance": {
+    "QuestionKeywords": ["be","do","how"],
+    "VerbKeywords": ["consider","affect","impact","attend"],
+    "SubjectKeywords": ["attendance","lab","grade"],
+    "ObjectKeywords": ["important","final","performance","session","influence"]
+  },
+  "GoodGPA": {
+    "QuestionKeywords": ["how","what"],
+    "VerbKeywords": ["be","can","do","ensure","should","improve","achieve","take"],
+    "SubjectKeywords": ["tips","gpa","high","good","maintain","strong"],
+    "ObjectKeywords": ["steps","formula","strategies"]
+  },
+  "SelectDepartment": {
+    "QuestionKeywords": ["what","how"],
+    "VerbKeywords": ["would","should","select","pick","do","decide","know","choose","advice"],
+    "SubjectKeywords": ["department","right","goals","interests"],
+    "ObjectKeywords": ["consider","suits","skills","matches","fits"]
+  },
+  "EnhanceCareerReadiness": {
+    "QuestionKeywords": ["how","what"],
+    "VerbKeywords": ["should","be","take","get","prepare","can"],
+    "SubjectKeywords": ["market","career","job","employment","employer"],
+    "ObjectKeywords": ["ready","experience","gradution","future","attractive","skills"]
+  },
+  "TransferBetweenDepartments": {
+    "QuestionKeywords": ["what","be","how","can"],
+    "VerbKeywords": ["be","need","transfer","change","allow"],
+    "SubjectKeywords": ["major","criteria","switch","rules"],
+    "ObjectKeywords": ["guide","preferable","limit","anytime"]
   }
 }

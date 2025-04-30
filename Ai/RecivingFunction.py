@@ -1,4 +1,4 @@
-from Data.dataStorage import DataStorage
+from Modules.dataStorage import DataStorage
 from Ai import arabicFunction
 from Ai import englishFunction
 

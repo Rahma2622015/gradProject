@@ -5,7 +5,7 @@ from Modules.server_instance import server_function
 
 
 json_function=jsonFunction()
-
+data_file= '../session_data.json'
 expired_clients = []
 
 def start_session():
@@ -13,19 +13,17 @@ def start_session():
         client = Client()
         client_id = server_function.generateClientId()
         client.setClientId(client_id)
-        client_data = json_function.load_data()
+        client_data = json_function.load_data(data_file)
 
         client_data[str(client_id)] = {
             'id': client_id,
             'session_started': True
         }
-        json_function.save_data(client_data)
+        json_function.save_data(client_data,data_file)
 
         session['client_id'] = client_id
 
         server_function.client_list.append(client)
-
-
 
         for c in server_function.client_list:
             if c.endSession():
@@ -33,7 +31,7 @@ def start_session():
 
         for c in expired_clients:
             server_function.client_list.remove(c)
-            json_function.remove_data(c.id)
+            json_function.remove_data(c.id,data_file)
 
         if client.startSession(client_id):
             return jsonify({"message": "Session started", "client_id": client_id})
@@ -54,7 +52,7 @@ def close_session():
         client_to_remove = server_function.get_client_by_id(client_id)
 
         if client_to_remove:
-            json_function.remove_data(client_id)
+            json_function.remove_data(client_id,data_file)
             server_function.client_list.remove(client_to_remove)
             return jsonify({"message": "Session closed", "client_id": client_id})
         else:

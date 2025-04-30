@@ -3,8 +3,13 @@ from random import choice
 from Ai.EnglishAi.chattask import ChatTask
 import variables
 
+from Ai.EnglishAi.Replies.reply_basic import handle_basic_tasks
+from Ai.EnglishAi.Replies .reply_general import handle_general_tasks
+from Ai.EnglishAi.Replies .reply_professor import handle_professor_tasks
+from Ai.EnglishAi.Replies .reply_course import handle_course_tasks
+
 class ReplyModule:
-    def __init__(self, json_path =variables.ResponseDataLocationEn):
+    def __init__(self, json_path=variables.ResponseDataLocationEn):
         self.load_responses(json_path)
 
     def load_responses(self, json_path):
@@ -22,86 +27,11 @@ class ReplyModule:
     def generate_response(self, reply: list[tuple[ChatTask, ...]]) -> tuple[str, list]:
         s = ""
         for r in reply:
-            if r[0] == ChatTask.GreetingTask:
-                s += "\n" + choice(self.data.get("Greeting", [])).format(x=r[1])
-            elif r[0] == ChatTask.UnderstandingTask:
-                s += "\n" + choice(self.data.get("Understanding", [])).format(x=r[2])
-            elif r[0] == ChatTask.AskNameTask:
-                s += "\n" + choice(self.data.get("replay_name", [])).format(x=r[1])
-            elif r[0] == ChatTask.ContradictionTask:
-                s += "\n" + choice(self.data.get("Contradiction", [])).format(y=r[2])
-            elif r[0] == ChatTask.CheckWellbeingTask:
-                s += "\n" + choice(self.data.get("CheckWellbeing", []))
-            elif r[0] == ChatTask.ThanksTask:
-                s += "\n" + choice(self.data.get("ThanksReplies", []))
-            elif r[0] == ChatTask.HelpTask:
-                s += "\n" + choice(self.data.get("askhelp", []))
-            elif r[0] == ChatTask.GoodbyeTask:
-                s += "\n" + choice(self.data.get("Goodbye", []))
-            elif r[0] == ChatTask.ConfusionTask:
-                s += "\n" + choice(self.data.get("ConfusionReplies", []))
-            # end trivial
-            elif r[0] == ChatTask.TypesOfProgramsTask:
-                s += "\n" + choice(self.data.get("Programs", []))
-            elif r[0] == ChatTask.MathTask:
-                s += "\n" + choice(self.data.get("Math", []))
-            elif r[0] == ChatTask.ExternalCoursesTask:
-                s += "\n" + choice(self.data.get("ExternalCourses", []))
-            elif r[0] == ChatTask.DifficultyTask:
-                s += "\n" + choice(self.data.get("Difficulty", []))
-            elif r[0] ==ChatTask.HighGpaTask:
-                s += "\n" + choice(self.data.get("HighGpa", []))
-            elif r[0] == ChatTask.MaterialsTypeTask:
-                s += "\n" + choice(self.data.get("MaterialType", []))
-            elif r[0] == ChatTask.ChooseDepartmentTask:
-                s += "\n" + choice(self.data.get("chooseDepartment", []))
-            elif r[0] == ChatTask.AcademicAdvisorTask:
-                s += "\n" + choice(self.data.get("AcademicAdvisorTask", []))
-            elif r[0] == ChatTask.ClassificationTask:
-                s += "\n" + choice(self.data.get("Classification", []))
-            elif r[0] == ChatTask.CreditHoursTask:
-                s += "\n" + choice(self.data.get("CreditHours", []))
-            elif r[0] == ChatTask.GraduationTask:
-                s += "\n" + choice(self.data.get("Graduation", []))
-            elif r[0] == ChatTask.EnrollmentTask:
-                s += "\n" + choice(self.data.get("Enrollment", []))
-            elif r[0] == ChatTask.AssessGraduation:
-                s += "\n" + choice(( ChatTask.AssessGraduation, ""))
-            elif r[0] == ChatTask.ReasonsGraduation:
-                s += "\n" + choice((ChatTask.ReasonsGraduation, ""))
-            elif r[0] == ChatTask.PreventDelays:
-                s += "\n" + choice((ChatTask.PreventDelays, ""))
-            elif r[0] == ChatTask.UnderstandRules:
-                s += "\n" + choice((ChatTask.UnderstandRules, ""))
-            elif r[0] == ChatTask.ScheduleTask:
-                s += "\n" + choice((ChatTask.ScheduleTask, ""))
-            elif r[0] == ChatTask.GPARequirements:
-                s += "\n" + choice(self.data.get("GPARequirements", []))
-            elif r[0] == ChatTask.Training:
-                s += "\n" + choice(self.data.get("Training", []))
-            elif r[0] == ChatTask.AdjustCreditLoad:
-                s += "\n" + choice(self.data.get("AdjustCreditLoad", []))
-            elif r[0] == ChatTask.CourseHours:
-                course_name =r[1]
-                hours = r[2]
-                degree = r[3]
-                s += "\n" + choice(self.data.get("CourseHours", [])).format(x=course_name, y=hours, z=degree)
-            elif r[0] == ChatTask.PrerequisitesTask:
-                if isinstance(r[2], str):
-                    s += "\n" + r[2]
-                else:
-                    prereq_list = r[2]
-                    prereq_names = prereq_list[0] if len(prereq_list) == 1 else ", ".join(prereq_list)
-                    s += "\n" + choice(self.data.get("PrerequisitesTask", [])).format(x=prereq_names, y=r[1])
-
-            elif r[0] == ChatTask.ProfessorQueryTask:
-                professor_name = r[1] if len(r) > 1 and r[1] else "Professor name not provided"
-                professor_info = r[2] if len(r) > 2 and r[2] else "No Information Available"
-                s += "\n" + choice(self.data.get("ProfessorQueryTask", [])).format(x=professor_name, y=professor_info)
-
-            elif r[0] == ChatTask.CourseQueryTask:
-                s += "\n" + choice(self.data.get("CourseQueryTask", [])).format(x=r[1], y=r[2])
+            for handler in (handle_basic_tasks, handle_general_tasks, handle_professor_tasks, handle_course_tasks):
+                result = handler(r, self.data)
+                if result:
+                    s += "\n" + result
+                    break
             else:
                 s += "\n" + choice(self.data.get("Unknown", []))
-
-        return s.strip(),[]
+        return s.strip(), []

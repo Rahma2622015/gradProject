@@ -1,5 +1,5 @@
-from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
-from Data.dataStorage import DataStorage
+from Database.Datastorage_DB import DatabaseStorage
+from Modules.dataStorage import DataStorage
 from Ai.Recommendation.English.RecomCourseSystem import RecommendationSystem
 from Ai.EnglishAi.Tokeniztion import Tokenizers
 from Ai.EnglishAi.Preprocessing import Preprocessors

@@ -4,9 +4,9 @@ from Ai.Recommendation.Arabic.ArabicRecomExamSystem import ArRecommendation
 from Ai.EnglishAi.chattask import ChatTask
 from Ai.Recommendation.Arabic.ArabicCoursesystem import ArRecommendationSystem
 from Ai.EnglishAi.Tokeniztion import Tokenizers
-from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
-from Data import DataStorage
-from Ai.Recommendation.Arabic.arabicRecomMulticourses import ArMultiCourseRecommendationSystem
+from Database.Datastorage_DB import DatabaseStorage
+from Modules import DataStorage
+from Ai.Recommendation.English.recommultiCourses import MultiCourseRecommendationSystem
 import variables
 
 data_storage = DatabaseStorage()

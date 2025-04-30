@@ -2,6 +2,7 @@ import stanza
 from Ai.ArabicAi.ArabicTokenizer import ArabicTokenizers
 from Ai.ArabicAi.ArabicNormalizer import ArabicNormalize
 import variables
+
 A=ArabicNormalize()
 import string
 
@@ -9,11 +10,15 @@ class ArabicPreprocessor:
     def __init__(self):
         self.nlp = stanza.Pipeline(lang="ar", processors="tokenize,lemma", download_method=None)
 
-        with open(variables.NamesinCorrectArabic, "r", encoding="utf-8") as f:
-            self.word = set(f.read().splitlines())
+        with open(variables.NamesInCorrectArabic, "r", encoding="utf-8") as f:
+            self.name = set(f.read().splitlines())
 
         with open(variables.CourseNameArabic, "r", encoding="utf-8") as f:
             self.course_name = set(f.read().splitlines())
+
+        with open(variables.arabic_word, "r", encoding="utf-8") as f:
+            self.word = set(f.read().splitlines())
+
 
     def lemmatization(self, sentences: list[list[str]]) -> list[list[str]]:
         lemmatized_sentences = []
@@ -26,7 +31,7 @@ class ArabicPreprocessor:
             for sent in s.sentences:
                 for word in sent.words:
                     original_word = word.text
-                    if original_word in self.course_name or original_word in self.word:
+                    if original_word in self.course_name or original_word in self.word or original_word in self.name:
                         lemmas.append(original_word)
                     else:
                         new_lemma = A.remove_diacritics(word.lemma)
@@ -37,6 +42,7 @@ class ArabicPreprocessor:
 
     def preprocess(self, sentences: list[list[str]]) -> list[list[str]]:
         return self.lemmatization(sentences)
+
 
     def is_course(self, word):
         word = word.lower()
@@ -106,8 +112,4 @@ class ArabicPreprocessor:
         return preprocessed_text
 
 
-tt = ArabicTokenizers()
-t = tt.tokenize("بيانات")
-l = ArabicPreprocessor()
-lemmas = l.preprocess(t)
-print(lemmas)
+

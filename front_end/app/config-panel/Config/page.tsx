@@ -13,22 +13,22 @@ function ConfigPage() {
 
  useEffect(() => {
   const fetchJsonFiles = async () => {
-    try {
-      const res = await fetch(variables.list_json_files);
-      const files = await res.json();
-      console.log("Files from API:", files);  // تحقق مما يتم استلامه من الـ API
+  try {
+    const res = await fetch(variables.list_json_files);
+    const files = await res.json();
+    console.log("Files from API:", files);
 
-      if (Array.isArray(files)) {
-        setJsonFiles(files);
-      } else {
-        console.error("Unexpected response format:", files);
-        setJsonFiles([]); // safe fallback
-      }
-    } catch (err) {
-      console.error("Error fetching JSON files:", err);
-      setJsonFiles([]); // fallback in case of error
+    if (Array.isArray(files)) {
+      setJsonFiles(files);
+    } else {
+      console.error("Unexpected response format:", files);
+      setJsonFiles([]);
     }
-  };
+  } catch (err) {
+    console.error("Error fetching JSON files:", err);
+    setJsonFiles([]);
+  }
+};
 
   fetchJsonFiles();
 }, []);
@@ -39,6 +39,7 @@ function ConfigPage() {
   try {
     const encodedPath = encodeURIComponent(selectedFile);
     const res = await fetch(`${variables.get_json}/${encodedPath}`);
+    const contentType = res.headers.get("Content-Type");
     const data = await res.json();
     setConfig(data.content);
     setFileName(selectedFile);
@@ -55,7 +56,7 @@ function ConfigPage() {
 
   setIsLoading(true);
   try {
-    const response = await fetch(`https://192.168.1.9:3001/save_json/${fileName}`, {
+    const response = await fetch(`${variables.save_json}/${fileName}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -178,73 +179,75 @@ function ConfigPage() {
   };
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>JSON Configuration Editor</h2>
+  <div className={styles.container}>
+    <h2 className={styles.title}>🛠 JSON Configuration Editor</h2>
 
-      <div className={styles.topBar}>
+    <div className={styles.topBar}>
+      <input
+        type="text"
+        placeholder=" Search Task by Name"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className={styles.searchInput}
+      />
+
+      <select
+        value={fileName}
+        onChange={(e) => fetchSelectedFile(e.target.value)}
+        className={styles.selectInput}
+      >
+        <option value=""> Select a JSON file</option>
+        {jsonFiles.length > 0 ? (
+          jsonFiles.map((file) => (
+            <option key={file} value={file}>
+              {file}
+            </option>
+          ))
+        ) : (
+          <option disabled> No JSON files available</option>
+        )}
+      </select>
+    </div>
+
+    <div className={styles.card}>
+      <h3 className={styles.cardTitle}>
+        Editing: <span className={styles.fileName}>{fileName || "No file selected"}</span>
+      </h3>
+      {Object.keys(config).length > 0 ? (
+        renderObject(Object.fromEntries(filterConfig(config, searchTerm)))
+      ) : (
+        <p className={styles.emptyText}>📭 No config loaded yet. Please select a file.</p>
+      )}
+    </div>
+
+    <div className={styles.addEntrySection}>
+      <h4 className={styles.sectionTitle}>➕ Add New Entry</h4>
+      <div className={styles.inputGroup}>
         <input
           type="text"
-          placeholder=" Search Task by Name"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className={styles.searchInput}
+          placeholder=" Key (e.g. app.name)"
+          value={newKey}
+          onChange={(e) => setNewKey(e.target.value)}
+          className={styles.input}
         />
-
-        <select
-          value={fileName}
-          onChange={(e) => fetchSelectedFile(e.target.value)}
-          className={styles.selectInput}
-        >
-          <option value="">📂 Select a JSON file</option>
-          {jsonFiles.length > 0 ? (
-            jsonFiles.map((file) => (
-              <option key={file} value={file}>
-                {file}
-              </option>
-            ))
-          ) : (
-            <option disabled>لا توجد ملفات JSON</option>
-          )}
-        </select>
-
+        <input
+          type="text"
+          placeholder=' Value (e.g. "My App" or {"nested":true})'
+          value={newValue}
+          onChange={(e) => setNewValue(e.target.value)}
+          className={styles.input}
+        />
+        <button onClick={addEntry} className={styles.addButton}>➕ Add</button>
       </div>
+    </div>
 
-      <div className={styles.card}>
-        <h3 className={styles.cardTitle}>Editing: {fileName || "No file selected"}</h3>
-        {Object.keys(config).length > 0 ? (
-          renderObject(Object.fromEntries(filterConfig(config, searchTerm)))
-        ) : (
-          <p className={styles.emptyText}>No config loaded yet. Please select a file.</p>
-        )}
-      </div>
-
-      <div className={styles.addEntrySection}>
-        <h4 className={styles.sectionTitle}>➕ Add New Entry</h4>
-        <div className={styles.inputGroup}>
-          <input
-            type="text"
-            placeholder=" Key (e.g. app.name)"
-            value={newKey}
-            onChange={(e) => setNewKey(e.target.value)}
-            className={styles.input}
-          />
-          <input
-            type="text"
-            placeholder=' Value (e.g. "My App" or {"nested":true})'
-            value={newValue}
-            onChange={(e) => setNewValue(e.target.value)}
-            className={styles.input}
-          />
-          <button onClick={addEntry} className={styles.addButton}>Add</button>
-        </div>
-      </div>
-
+    <div className={styles.footer}>
       <button onClick={saveFileToServer} className={styles.saveButton}>
         {isLoading ? " Saving..." : " Save"}
       </button>
     </div>
-  );
+  </div>
+);
 }
 
 export default ConfigPage;
-

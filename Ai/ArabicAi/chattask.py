@@ -30,5 +30,21 @@ class ChatTask(Enum):
     ProfessorQueryTask = 26
     PrerequisiteQueryTask = 27
     ExamRecom=28
-    courseSystem=29
-    MultiCourseRecommendationTask = 30
+    AssessGraduation=29
+    ReasonsGraduation=30
+    PreventDelays=31
+    UnderstandRules=32
+    ScheduleTask=33
+    CourseHours=34
+
+    GPARequirements=35
+    Training=36
+    AdjustCreditLoad=37
+    OptimizeStudyPlan=38
+    LabAttendance=39
+    GoodGPA=40
+    SelectDepartment=41
+    EnhanceCareerReadiness=42
+    TransferBetweenDepartments=43
+    courseSystem=44
+    MultiCourseRecommendationTask = 45
