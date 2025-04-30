@@ -50,10 +50,15 @@ class DatabaseStorage:
 
     def get_course_questions_arabic(self, course_name) -> list:
         course = self.session.query(Course).filter(
-            Course.name.ilike(f"%{course_name}%")
+            Course.name_arabic.ilike(f"%{course_name}%")
         ).first()
 
-        return course.questions_arabic if course else "Questions not found."
+        if not course:
+            return "لم يتم العثور على المقرر."
+
+        arabic_questions = [q.question_arabic for q in course.questions if q.question_arabic]
+
+        return arabic_questions if arabic_questions else "لا توجد أسئلة بالعربية لهذا المقرر."
 
     def get_professor_info(self, professor_name) -> str:
         professor = self.session.query(Professor).filter(Professor.name.ilike(f"%{professor_name}%")).first()
@@ -86,22 +91,17 @@ class DatabaseStorage:
 
         return question_data
 
-
     def get_question_with_answers_arabic(self, question_id: int):
         question = self.session.query(CourseQuestion).filter(CourseQuestion.id == question_id).first()
 
         if not question:
             return None
-
         answers = self.session.query(Answers).filter(Answers.question_id == question_id).all()
-
         question_data = {
             'question': question.question_arabic,
             'answers': [{'answer': answer.answer_arabic, 'score': answer.score} for answer in answers]
         }
-
         return question_data
-
 
     def get_course_hours_and_degree(self, course_name):
         course = self.session.query(Course).filter(

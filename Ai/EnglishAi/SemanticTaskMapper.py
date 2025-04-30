@@ -1,13 +1,22 @@
 import json
 from Ai.EnglishAi.chattask import ChatTask
 from Ai.EnglishAi.SentenceSimilarity import SentenceSimilarity
+from endPoints.ai_config_endpoints import load_ai_config
 import variables
 
 class SemanticTaskMapper:
     def __init__(self, json_path=variables.MapData2LocationEn):
         self.similarity = SentenceSimilarity()
-        self.threshold = 0.5
         self.task_definitions = self.load_definitions(json_path)
+
+
+    @property
+    def config(self):
+        return load_ai_config()
+
+    @property
+    def threshold(self):
+        return self.config.get("threshold", 0.5)
 
     def load_definitions(self, json_path: str) -> dict:
         try:

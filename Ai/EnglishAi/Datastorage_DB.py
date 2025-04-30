@@ -83,3 +83,24 @@ class DatabaseStorage:
         else:
             return None, None
 
+    def get_question_with_answers_arabic(self, question_id: int):
+        question = self.session.query(CourseQuestion).filter(CourseQuestion.id == question_id).first()
+
+        if not question:
+            return None
+
+        answers = self.session.query(Answers).filter(Answers.question_id == question_id).all()
+
+        question_data = {
+            'question': question.question_arabic,
+            'answers': [{'answer': answer.answer_arabic, 'score': answer.score} for answer in answers]
+        }
+
+        return question_data
+
+    def get_course_questions_arabic(self, course_name) -> list:
+        course = self.session.query(Course).filter(
+            Course.name.ilike(f"%{course_name}%")
+        ).first()
+
+        return course.questions_arabic if course else "Questions not found."

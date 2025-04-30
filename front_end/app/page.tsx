@@ -16,7 +16,7 @@ export default function Home() {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
-    setIsClicked(!isClicked); // تغيير النص عند كل ضغطة
+    setIsClicked(!isClicked);
   };
 
   const [isShowlist, setList] = useState(false);
@@ -163,7 +163,6 @@ export default function Home() {
         />
       </motion.div>
 
-      {/* النصوص التي تتغير عند الضغط */}
       <div className={styles.description}>
         {isClicked ? (
           <motion.h3
@@ -176,12 +175,15 @@ export default function Home() {
             <div> who need information about the Computer Science program</div>
             <div>and dual degree programs in Computer Science,</div>
            <div> and who have some questions and inquiries.</div>
-
+            <div>This assistant was created by</div>
+            <div>Computer Science students at Ain Shams University:</div>
+            <div>Heba Gamal Ahmed</div><div>Hagar Basiony Attia</div>
+            <div>Hagar Mohamed Kamel</div><div>and Rahma Mohamed Sayed.</div>
           </motion.h3>
         ) : (
           <motion.div
             initial={{ opacity: 1 }}
-            animate={{ opacity: isClicked ? 0 : 1 }} // يخفي النص الأصلي عند الضغط
+            animate={{ opacity: isClicked ? 0 : 1 }}
             transition={{ duration: 0.5 }}
           >
             <h2>Hello</h2>
@@ -195,6 +197,19 @@ export default function Home() {
             I want to Know!
          </button>
        </Link>
+       <motion.div
+      className={styles.cornerImage}
+      whileHover={{ scale: 2.5 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      <Image
+        src="/chat_bot.png"
+        alt="Image"
+        width={100}
+        height={100}
+      />
+    </motion.div>
+
       </main>
     </div>
   );

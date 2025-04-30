@@ -14,6 +14,9 @@ import styles from './bar.module.css';
           <li className={styles.listItem}>
             <Link href="/config-panel/Tables" className={styles.link}>Manage Database</Link>
           </li>
+          <li className={styles.listItem}>
+            <Link href="/config-panel/AiControl" className={styles.link}>Ai Control Panel</Link>
+          </li>
         </ul>
       </div>
     </div>
