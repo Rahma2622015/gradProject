@@ -6,8 +6,11 @@ from Ai.ArabicAi.TaskProcessor import taskProcessor
 from Ai.Recommendation.Arabic.ArabicReplyModuleRe import ArReplyModuleRe
 from Ai.Recommendation.Arabic.ArabicRecomExamSystem import ArRecommendation
 from Ai.ArabicAi.chattask import ChatTask
+from Ai.ArabicAi.SemanticTaskMapper import SemanticTaskMapperArabic
 
+use_semantic_armapper=True
 ARmapper = mapping()
+mapper=SemanticTaskMapperArabic()
 ARreply = replyModule()
 ARproces = taskProcessor()
 ARt = ArabicTokenizers()
@@ -19,6 +22,7 @@ def langArabic(message, storage, user_id):
         print("tokens: ",ARtokens)
         ARpos = ARt.pos_tag(ARtokens)
         print("pos: ",ARpos)
+        #if not use_semantic_armapper:
         ARtokens = ARp.preprocess(ARtokens)
         prev_data = storage.get_prev_data(user_id)
 
@@ -34,7 +38,11 @@ def langArabic(message, storage, user_id):
             return s, options, True
 
         else:
-            ARtasks = ARmapper.mapToken(ARtokens, ARpos)
+            if not use_semantic_armapper:
+                ARtasks = ARmapper.mapToken(ARtokens, ARpos)
+            else:
+                print("I am using it........")
+                ARtasks=mapper.mapToken(ARtokens,ARpos)
             print(f"[DEBUG] Identified tasks: {ARtasks}, type: {type(ARtasks)}")
 
             if all(task[0] == ChatTask.UnknownTask for task in ARtasks):

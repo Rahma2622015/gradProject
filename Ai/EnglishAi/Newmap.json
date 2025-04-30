@@ -1,14 +1,9 @@
 {
   "CheckWellbeingTask": [
-    "how be you",
-    "be you okay",
-    "what be go on"
+    "how are you",
+    "are you okay",
+    "what's go on"
   ],
-  "AskNameTask": [
-  "what be my name",
-  "can you tell me my name",
-  "what be i call"
-],
   "AskHelpingTask": [
   "can you help me",
   "could you assist me with this task"
@@ -16,11 +11,11 @@
 
   "MathTask": [
     "do i have to be good at mathematics in high school",
-    "will be weak in mathematics during high school affect me now"
+    "will being weak in mathematics during high school affect me now"
   ],
   "TypesOfProgramsTask": [
-  "what programs be available in the mathematics department",
-  "which programs be offered in the mathematics department"
+  "what programs are available in the mathematics department",
+  "which programs are offered in the mathematics department"
 ],
 
 "ExternalCoursesTask": [
@@ -30,12 +25,12 @@
 ],
 
   "DifficultyTask": [
-    "be computer science considered a tougher field of study",
-    "be cs harder than other subjects"
+    "is computer science considered a tougher field of study",
+    "is cs harder than other subjects"
   ],
  "MaterialsTypeTask": [
   "what type of material is used in the course",
-  "which materials do we need for the study",
+  "which materials do we need for the studying",
   "do we have primary resources for the course"
 ],
 "HighGpaTask": [
@@ -50,33 +45,33 @@
   "how can i make an informed decision on which department to join"
 ],
 "AcademicAdvisorTask": [
-  "who be responsible for advising students",
-  "what be the role of an academic advisor"
+  "who is responsible for advising students",
+  "what is the role of an academic advisor"
 ],
 "ClassificationTask": [
-  "what be the classification of students in the program",
+  "what is the classification of students in the program",
   "can you explain the different classifications available",
   "what specialization can i focus on in my program",
-  "be there a classification for students in artificial intelligence",
+  "is there a classification for students in artificial intelligence",
   "how can i start specializing in cybersecurity"
 ],
 "CreditHoursTask": [
-  "how many credit hours be required for the program",
-  "what be the total number of credit hours for computer science",
+  "how many credit hours are required for the program",
+  "what is the total number of credit hours for computer science",
   "how many credit hours do i need to complete the degree",
   "how many hours should i dedicate to studying each credit hour"
 ],
 "GraduationTask": [
   "how long will it take to complete the computer science program",
-  "what be the duration for completing the cs degree"
+  "what is the duration for completing the cs degree"
 ],
 "EnrollmentTask": [
-  "how do i enroll in the program",
+  "how do i enrolling in the program",
   "what do i need to do to apply for the course"
 ],
 "ProfessorQueryTask": [
-  "who be the professor for ",
-  "who be teach"
+  "who is dr",
+  "who is professor"
 ],
 "CourseQueryTask": [
   "what is the content of this course",
@@ -85,18 +80,18 @@
 ],
 "ExamSystem": [
   "how do the exam system work",
-  "what be the structure of the exam",
+  "what is the structure of the exam",
   "how will the exam be designed"
 ],
 "PrerequisitesTask": [
-  "what be the prerequisites for ",
+  "what is the prerequisites for ",
   "which courses must i complete before ",
-  "be there any requirements before enrolling in this subject",
+  "is there any requirements before enrolling in this subject",
   "what prerequisites do i need for the next course"
 ],
 "CourseSystem": [
   "can this course benefit my academic performance",
-  "which course be most suitable for me"
+  "which course is most suitable for me"
 ]
 
 }
