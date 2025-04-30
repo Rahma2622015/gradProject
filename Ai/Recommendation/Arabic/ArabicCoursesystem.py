@@ -1,16 +1,16 @@
-from Database.Datastorage_DB import DatabaseStorage
-from Modules.dataStorage import DataStorage
+from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
+from Data.dataStorage import DataStorage
 
-class RecommendationSystem:
+class ArRecommendationSystem:
     def __init__(self, data_storage: DatabaseStorage, memory: DataStorage):
         self.data_storage = data_storage
         self.memory = memory
         self.user_data = {}
 
     def start_recommendation(self, course_name, big_system=False):
-        questions = self.data_storage.get_course_questions(course_name)
+        questions = self.data_storage.get_course_questions_arabic(course_name)
         if not questions or isinstance(questions, str):
-            return "Sorry, I couldn't find any questions for this course.", []
+            return "اسف لا يوجد اسئلة متاحة لهذا الكورس", []
 
         self.user_data = {
             "course_name": course_name,
@@ -35,9 +35,9 @@ class RecommendationSystem:
 
             return result
 
-        question_data = self.data_storage.get_question_with_answers(question_ids[question_index])
+        question_data = self.data_storage.get_question_with_answers_arabic(question_ids[question_index])
         if not question_data:
-            return "Error retrieving question data.", []
+            return "خطا فى الوصول لمعلومات السؤال", []
 
         question_text = question_data["question"]
         answers = question_data["answers"]
@@ -50,9 +50,9 @@ class RecommendationSystem:
         answers = self.user_data.get("current_answers", [])
         if answers is None:
             print("Error: answers is None")
-            return "There was an error processing your answer. Please try again.", []
+            return "يوجد خطا فى تنفيذ اجابتك , جرب مره اخرى", []
 
-        normalized_input = user_answer.strip().lower()
+        normalized_input = user_answer.strip()
         matched_answer = next(
             (ans for ans in answers if ans["answer"].strip().lower() == normalized_input),
             None
@@ -60,11 +60,11 @@ class RecommendationSystem:
 
         if not matched_answer:
             question_index = self.user_data.get("question_index", 0)
-            question_text = self.data_storage.get_question_with_answers(self.user_data["question_ids"][question_index])["question"]
+            question_text = self.data_storage.get_question_with_answers_arabic(self.user_data["question_ids"][question_index])["question"]
             options = [ans["answer"] for ans in answers]
             return (
-                f"Invalid answer. Please choose one of the options exactly as shown.\n\n"
-                f"Question {question_index + 1}: {question_text}",
+                f"اجابه خاطئة , ادخل الاجابة الصحيحه \n\n"
+                f"السؤال  {question_index + 1}: {question_text}",
                 options
             )
 
@@ -90,7 +90,7 @@ class RecommendationSystem:
 
         max_score = 0
         for q_id in question_ids:
-            q_data = self.data_storage.get_question_with_answers(q_id)
+            q_data = self.data_storage.get_question_with_answers_arabic(q_id)
             if q_data and "answers" in q_data:
                 max_score += max(ans["score"] for ans in q_data["answers"])
 
@@ -103,11 +103,11 @@ class RecommendationSystem:
             return int(percentage)
 
         if percentage >= 70:
-            result_text = f"Your score is {percentage:.2f}%. This course is suitable for you to enroll."
+            return f"الاسكور {percentage:.2f}%. هذا الكورس مناسب لك انك تسجله .", []
         elif percentage >= 50:
-            result_text = f"Your score is {percentage:.2f}%. You can enroll in this course, but it may require extra effort."
+            return f"الاسكور {percentage:.2f}%. تستطيع تسجيل هذا الكورس ولكن ربما تحتاج الى محهود اضافى حتى تحقق نتيجة جيدة.", []
         else:
-            result_text = f"Your score is {percentage:.2f}%. This course might not be suitable for you at the moment."
+            return f"الاسكور  {percentage:.2f}%. هذا الكورس غير مناسب لك , جرب تحسن من خبارتك حتى تتناسب مع تسجيله ", []
 
         return result_text, []
 

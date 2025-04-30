@@ -46,8 +46,5 @@ class ChatTask(Enum):
     SelectDepartment=41
     EnhanceCareerReadiness=42
     TransferBetweenDepartments=43
-
-    #متعملش
-    CourseSystem=44
+    courseSystem=44
     MultiCourseRecommendationTask = 45
-

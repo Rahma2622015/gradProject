@@ -5,11 +5,11 @@ base_ssl=r"D:/gradProject/ssl10"
 cert_loc=fr"{base_ssl}/certificate.crt"
 key_loc=fr"{base_ssl}/private.key"
 
+base_arabic_ai = r"E:\gradProject\Ai\ArabicAi"
+base_english_ai = r"E:\gradProject\Ai\EnglishAi"
+base_recommendation = r"E:\gradProject\Ai\Recommendation\English"
+base_arabic_recommendation = r"E:\gradProject\Ai\Recommendation\Arabic"
 
-base_arabic_ai = r"D:\gradProject\Ai\ArabicAi"
-base_english_ai = r"D:\gradProject\Ai\EnglishAi"
-base_recommendation = r"D:\gradProject\Ai\Recommendation\English"
-base_arabic_recommendation = r"D:\gradProject\Ai\Recommendation\Arabic"
 
 MapDataLocationAr = fr"{base_arabic_ai}\MapData.json"
 arabic_word = fr"{base_arabic_ai}\arabic_words.txt"
@@ -17,7 +17,6 @@ ResponseDataLocationAr = fr"{base_arabic_ai}\response.json"
 NamesInCorrectArabic = fr"{base_arabic_ai}\arabic_names.txt"
 subjectNameLocation = fr"{base_arabic_ai}\subject_names.txt"
 CourseNameArabic = fr"{base_arabic_ai}\اسماء المواد.txt"
-
 
 
 MapDataLocationEn = fr"{base_english_ai}\map.json"

@@ -1,14 +1,14 @@
-from Database.Datastorage_DB import DatabaseStorage
-from Modules.dataStorage import DataStorage
-from Ai.Recommendation.English.RecomCourseSystem import RecommendationSystem
-from Ai.EnglishAi.Tokeniztion import Tokenizers
-from Ai.EnglishAi.Preprocessing import Preprocessors
+from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
+from Data.dataStorage import DataStorage
+from Ai.Recommendation.Arabic.ArabicCoursesystem import ArRecommendationSystem
+from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
+from Ai.ArabicAi.ArabicTokenizer import ArabicTokenizers
 
-tokenizer = Tokenizers()
-pre = Preprocessors()
+tokenizer=ArabicTokenizers()
+pre = ArabicPreprocessor()
 
-class MultiCourseRecommendationSystem:
-    def __init__(self, data_storage: DatabaseStorage, memory: DataStorage, recommendation_system: RecommendationSystem):
+class ArMultiCourseRecommendationSystem:
+    def __init__(self, data_storage: DatabaseStorage, memory: DataStorage, recommendation_system: ArRecommendationSystem):
         self.data_storage = data_storage
         self.memory = memory
         self.recommendation_system = recommendation_system
@@ -16,15 +16,15 @@ class MultiCourseRecommendationSystem:
 
     def start(self, user_input):
         if isinstance(user_input, str):
-            course_names = tokenizer.extract_all_course_names(user_input)
+            course_names = pre.extract_all_course_names(user_input)
             self.user_data["initial_message"] = user_input
         elif isinstance(user_input, list):
             course_names = user_input
         else:
-            return "Invalid input type. Please provide a list or a sentence.", []
+            return "نوع ادخال خطا , من فضلك ادخل جملة او قائمة", []
 
         if not course_names:
-            return "Sorry, I couldn't detect any valid course names from your message.", []
+            return "اسف مش قادر احدد اى اسم مواد من رسالتك.", []
 
         self.user_data["all_courses"] = course_names
         self.user_data["course_scores"] = {}
@@ -75,16 +75,15 @@ class MultiCourseRecommendationSystem:
             response = result
             options = []
 
-        return f"For the course {course_name}, the first question is:\n{response}", options
+        return f" بالنسبة لمادة {course_name}, اول سؤال بيكون :\n{response}", options
 
     def _finalize_recommendations(self):
-        pre = Preprocessors()
         initial_message = self.user_data.get("initial_message")
 
         if initial_message:
             tokens = tokenizer.tokenize(initial_message)
             pos_tags = tokenizer.pos_tag(tokens)
-            top_n = pre.extract_first_number(tokens, pos_tags)
+            top_n = pre.extract_first_number_ar(tokens, pos_tags)
         else:
             top_n = None
 
@@ -97,7 +96,7 @@ class MultiCourseRecommendationSystem:
 
         self.user_data.clear()
 
-        result_text = "Based on your answers, the top recommended courses for you are:\n"
+        result_text = "بناءً على اجابتك هذه هى المواد اللى تصلح لك \n"
         for i, (course, score) in enumerate(top_courses, start=1):
             result_text += f"{i}. {course} ({score:.2f}%)\n"
 

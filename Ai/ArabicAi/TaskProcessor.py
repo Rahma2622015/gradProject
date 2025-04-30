@@ -26,6 +26,7 @@ class TaskProcessor:
 
         # Process tasks
         for task in tasks:
+
             task_type = task[0]
 
             if task_type in [ChatTask.GreetingTask, ChatTask.StoreTask, ChatTask.askNameTask]:
