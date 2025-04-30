@@ -50,6 +50,19 @@ def langArabic(message, storage):
             if not options:
                 storage.clear_data()
             return s, options, True
+        elif storage.get_current_task() == "MultiCourseSystem":
+            print("[DEBUG] Continuing Multi-Course Recommendation Flow")
+            if not prev_data.get("all_courses"):
+                course_names = ARp.extract_all_course_names(message)
+                print(f"[INFO] Detected course names: {course_names}")
+                if course_names:
+                    response, options = recom_replyAr.course_selection_recommender.start(course_names)
+                    s = response if isinstance(response, str) else "Error processing multi-course recommendation."
+                else:
+                    s = "Sorry, I couldn't detect the course names from your question."
+            else:
+                s, options = recom_replyAr.course_selection_recommender.handle_answer(message)
+            return s, options, True
 
         else:
             ARtasks = ARmapper.mapToken(ARtokens, ARpos)
@@ -76,6 +89,18 @@ def langArabic(message, storage):
                         s, options = course_recommender.start_recommendation(course_name)
                     else:
                         s = "لا يوجد اسم مادة هكذا"
+                    return s, options, True
+                if any(task[0] == ChatTask.MultiCourseRecommendationTask for task in ARtasks):
+                    print("[DEBUG] Handling Multi-Course Recommendation Task")
+                    storage.set_current_task("MultiCourseSystem")
+                    course_names =ARp.extract_all_course_names(corrected_message)
+                    storage.save_data("all_courses", course_names)
+                    print(f"[INFO] Detected course names: {course_names}")
+                    if course_names:
+                        response, options = recom_replyAr.course_selection_recommender.start(course_names)
+                        s = response if isinstance(response, str) else "Error processing multi-course recommendation."
+                    else:
+                        s = "Sorry, I couldn't detect the course names from your question."
                     return s, options, True
             ARpre = ARproces.process(ARtasks, storage)
             print(f"[DEBUG] Processed tasks output: {ARpre}, type: {type(ARpre)}")

@@ -6,7 +6,7 @@ from Ai.Recommendation.Arabic.ArabicCoursesystem import ArRecommendationSystem
 from Ai.EnglishAi.Tokeniztion import Tokenizers
 from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
 from Data import DataStorage
-from Ai.Recommendation.English.recommultiCourses import MultiCourseRecommendationSystem
+from Ai.Recommendation.Arabic.arabicRecomMulticourses import ArMultiCourseRecommendationSystem
 import variables
 
 data_storage = DatabaseStorage()
@@ -18,9 +18,9 @@ class ArReplyModuleRe:
         self.recommender = ArRecommendation()
         self.course_dynamic_recommender = ArRecommendationSystem(memory_db, temp_storage)
         self.tokenizer = Tokenizers()
-        # # self.course_selection_recommender = MultiCourseRecommendationSystem(
-        # #     data_storage, memory, RecommendationSystem(memory_db, temp_storage)
-        # # )
+        self.course_selection_recommender = ArMultiCourseRecommendationSystem(
+             data_storage, memory, ArRecommendationSystem(memory_db, temp_storage)
+         )
 
     def load_responses(self, json_path):
         try:
@@ -65,7 +65,20 @@ class ArReplyModuleRe:
                     else:
                         s = "Sorry, I couldn't detect the course name from your question."
                         options = []
-
+                elif r[0] == ChatTask.MultiCourseRecommendationTask:
+                    course_names = self.tokenizer.extract_all_course_names(user_input)
+                    print(f"[INFO] Detected course names: {course_names}")
+                    if course_names:
+                        response, options = self.course_selection_recommender.start(course_names)
+                        if isinstance(response, str):
+                            s = response
+                            options = []
+                        else:
+                            s = "Error processing multi-course recommendation."
+                            options = []
+                    else:
+                        s = "Sorry, I couldn't detect the course names from your question."
+                        options = []
                 elif r[0] == ChatTask.UnknownTask:
                     s = choice(self.data.get("Unknown", ["لست متاكد من الاجابة على هذا."]))
                     options = []

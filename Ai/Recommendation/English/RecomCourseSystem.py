@@ -1,5 +1,3 @@
-from stanza.models.mwt.scorer import score
-
 from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
 from Data.dataStorage import DataStorage
 

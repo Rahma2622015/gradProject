@@ -87,6 +87,8 @@ class taskProcessor:
                 responses.append((ChatTask.ExamRecom, ""))
             elif task[0] == ChatTask.courseSystem:
                 responses.append((ChatTask.courseSystem, ""))
+            elif task[0] == ChatTask.MultiCourseRecommendationTask:
+                responses.append((ChatTask.MultiCourseRecommendationTask, ""))
             elif task[0] == ChatTask.ProfessorQueryTask:
                 professor_name = None
                 keywords = ["استاذ", "دكتور"]

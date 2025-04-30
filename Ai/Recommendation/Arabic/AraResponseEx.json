@@ -411,7 +411,7 @@
       "instructor": ["دكتور دولت"],
       "exam_format": {
         "mid term": ["حل مسائل مثل ما تم شرحه + تعريفات + رسومات"],
-        "final": ["full writeen exam"]
+        "final": ["اسئلة كتابية بالكامل"]
       }
     }
   ]
