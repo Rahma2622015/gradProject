@@ -1,3 +1,5 @@
+from stanza.models.mwt.scorer import score
+
 from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
 from Data.dataStorage import DataStorage
 
@@ -27,7 +29,13 @@ class RecommendationSystem:
         question_ids = self.user_data.get("question_ids", [])
 
         if question_index >= len(question_ids):
-            return self.generate_result(big_system)
+            result = self.generate_result(big_system)
+
+            if big_system and isinstance(result, (int, float)):
+                self.user_data["final_score"] = result
+                return None
+
+            return result
 
         question_data = self.data_storage.get_question_with_answers(question_ids[question_index])
         if not question_data:
@@ -69,7 +77,14 @@ class RecommendationSystem:
         self.user_data["score"] = updated_score
         self.user_data["question_index"] = self.user_data.get("question_index", 0) + 1
 
-        return self.ask_next_question(big_system)
+        re = self.ask_next_question(big_system)
+
+        if re is None and big_system:
+            final_score = self.user_data.get("final_score")
+            print(f"Final score stored: {final_score}")
+            return None
+        else:
+            return re
 
     def generate_result(self, big_system=False):
         total_score = self.user_data.get("score", 0)
@@ -87,8 +102,7 @@ class RecommendationSystem:
         percentage = (total_score / max_score) * 100
 
         if big_system:
-            self.user_data.clear()
-            return int(percentage), []
+            return int(percentage)
 
         if percentage >= 70:
             result_text = f"Your score is {percentage:.2f}%. This course is suitable for you to enroll."
@@ -97,13 +111,21 @@ class RecommendationSystem:
         else:
             result_text = f"Your score is {percentage:.2f}%. This course might not be suitable for you at the moment."
 
-        self.user_data.clear()
         return result_text, []
 
     def continue_recommendation(self, user_answer: str, big_system=False):
-        response, options = self.receive_answer(user_answer, big_system)
+        result = self.receive_answer(user_answer, big_system)
 
-        if not options:
-            return response, []
+        if result is None and big_system:
+            return None
 
-        return response, options
+        if isinstance(result, tuple) and len(result) == 2:
+            return result
+
+        return result, []
+
+    def get_final_score(self):
+        return self.user_data.get("final_score")
+
+    def clear_user_data(self):
+        self.user_data.clear()
