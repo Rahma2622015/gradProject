@@ -9,7 +9,7 @@ from Ai.ArabicAi.chattask import ChatTask
 from Ai.ArabicAi.SemanticTaskMapper import SemanticTaskMapperArabic
 from Modules.dataStorage import DataStorage
 from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
-
+from Database.Courses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 
 use_semantic_armapper=True
 ARmapper = mapping()
@@ -21,7 +21,26 @@ ARp = ArabicPreprocessor()
 recom_replyAr = ArReplyModuleRe()
 data_storage = DatabaseStorage()
 memory = DataStorage()
-course_recommender = ArRecommendationSystem(data_storage, memory)
+dbs=CourseQuestionsAndAnswers()
+course_recommender = ArRecommendationSystem(data_storage, memory,dbs)
+
+
+def is_ar_recommendation_complete(s: str) -> bool:
+    s = s.strip()
+    return (
+        s == "لا يوجد نظام امتحانات متاح لهذه المعلومات" or
+        s.startswith("نظام الامتحانات ل") or
+        s == "اسف لا يوجد اسئلة متاحة لهذا الكورس" or
+        s == "لا توجد بيانات حالية عن المقرر." or
+        s == "حدث خطأ أثناء معالجة إجابتك. حاول مرة أخرى." or
+        s.startswith("النتيجة") or
+        s == "عذرًا، لم أتمكن من العثور على أي أسئلة لهذا الكورس." or
+        s == "لا توجد بيانات حالية لهذه المواد." or
+        s.startswith("بناءً على إجاباتك") or
+        s == "حدث خطأ أثناء جلب بيانات السؤال." or
+        s== "نوع الإدخال غير صحيح. من فضلك أدخل قائمة أو جملة تحتوي على أسماء المقررات." or
+        s=="عذرًا، لم أتمكن من استخراج أسماء مقررات صالحة من رسالتك."
+    )
 
 def langArabic(message, storage):
     try:
@@ -37,39 +56,46 @@ def langArabic(message, storage):
 
         print(f"[DEBUG] Current task before processing: {storage.get_current_task()}")
         s, options = "", []
+        current_task = storage.get_current_task()
 
-        if storage.get_current_task() == "ExamRecom":
+        if current_task == "ExamRecom":
             print("[DEBUG] Continuing arabic Exam Recommendation Flow")
             s, options = recom_replyAr.recommender.handle_exam_recommendation(message)
             print(f"[DEBUG] Updated prev_data after response: {storage.get_prev_data()}")
-            if s == "لا يوجد نظام امتحانات متاح لهذه المعلومات":
+            if is_ar_recommendation_complete(s):
+                storage.clear_data()
                 return s, options, False
             if not options:
                 storage.clear_data()
             return s, options, True
-        elif storage.get_current_task() == "CourseSystem":
+        elif current_task == "CourseSystem":
             print("[DEBUG] Continuing Course Recommendation Flow")
-            s, options = course_recommender.receive_answer(message.strip())
-            if ((s == "اسف لا يوجد اسئلة متاحة لهذا الكورس" and s == "لا يوجد اسم مادة هكذا") and
-                    s == "يوجد خطا فى تنفيذ اجابتك , جرب مره اخرى"):
+            s, options = course_recommender.receive_answer(message.strip()) if isinstance(
+                course_recommender.receive_answer(message.strip()), tuple) else (
+            course_recommender.receive_answer(message.strip()), [])
+            if is_ar_recommendation_complete(s):
+                storage.clear_data()
                 return s, options, False
             if not options:
                 storage.clear_data()
             return s, options, True
-        elif storage.get_current_task() == "MultiCourseSystem":
+        elif current_task  == "MultiCourseSystem":
             print("[DEBUG] Continuing Multi-Course Recommendation Flow")
             if not prev_data.get("all_courses"):
                 course_names = ARp.extract_all_course_names(message)
                 print(f"[INFO] Detected course names: {course_names}")
                 if course_names:
-                    response, options = recom_replyAr.course_selection_recommender.start(course_names)
+                    response, options = recom_replyAr.course_selection_recommender.startswith(course_names)
                     s = response if isinstance(response, str) else "Error processing multi-course recommendation."
                 else:
                     s = "Sorry, I couldn't detect the course names from your question."
             else:
                 s, options = recom_replyAr.course_selection_recommender.handle_answer(message)
-            return s, options, True
-
+            if is_ar_recommendation_complete(s):
+                storage.clear_data()
+                return s, options, False
+            else:
+                return s, options, True
         else:
             if not use_semantic_armapper:
                 ARtasks = ARmapper.mapToken(ARtokens, ARpos)

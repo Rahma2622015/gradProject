@@ -2,6 +2,10 @@ nashwaAq
 abdelghaffar
 abdelazeez
 nour
+ayat
+heba
+ayman
+emad
 samy
 eldeen
 hessin
@@ -18,7 +22,6 @@ rahma
 ahmed
 mohamed
 ali
-heba
 youssef
 omar
 salma
@@ -152,7 +155,6 @@ younis
 hagar
 اhager
 rahma
-heba
 omar
 youssef
 fatima
@@ -176,7 +178,6 @@ laila
 sara
 amr
 karim
-ayman
 dina
 rania
 nadia
@@ -255,7 +256,6 @@ nabwy
 ziad
 mamdouh
 ashraf
-heba
 ramy
 amin
 salim
@@ -264,7 +264,6 @@ fares
 samiha
 lobna
 reda
-ayman
 shahin
 taymour
 farida

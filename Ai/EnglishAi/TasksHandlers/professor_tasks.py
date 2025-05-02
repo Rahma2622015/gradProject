@@ -14,7 +14,7 @@ def handle_professor_tasks(task, D: DatabaseStorage):
                 print("🔍 Extracted name:", professor_name)
                 break
         if professor_name:
-            professor_info = D.get_professor_info(str(professor_name))
+            professor_info = D.professors.get_professor_info(str(professor_name))
         else:
             professor_name = "Unknown"
             professor_info = "No information available"

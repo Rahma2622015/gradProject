@@ -4,7 +4,7 @@ from Ai.Recommendation.Arabic.ArabicCoursesystem import ArRecommendationSystem
 from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 from Ai.ArabicAi.ArabicTokenizer import ArabicTokenizers
 
-tokenizer=ArabicTokenizers()
+tokenizer = ArabicTokenizers()
 pre = ArabicPreprocessor()
 
 class ArMultiCourseRecommendationSystem:
@@ -21,10 +21,10 @@ class ArMultiCourseRecommendationSystem:
         elif isinstance(user_input, list):
             course_names = user_input
         else:
-            return "نوع ادخال خطا , من فضلك ادخل جملة او قائمة", []
+            return "نوع الإدخال غير صحيح. من فضلك أدخل قائمة أو جملة تحتوي على أسماء المقررات.", []
 
         if not course_names:
-            return "اسف مش قادر احدد اى اسم مواد من رسالتك.", []
+            return "عذرًا، لم أتمكن من استخراج أسماء مقررات صالحة من رسالتك.", []
 
         self.user_data["all_courses"] = course_names
         self.user_data["course_scores"] = {}
@@ -36,7 +36,7 @@ class ArMultiCourseRecommendationSystem:
         course_name = self.user_data.get("current_course")
 
         if course_name is None:
-            return "No current course data found.", []
+            return "لا توجد بيانات حالية عن المقرر.", []
 
         result = self.recommendation_system.continue_recommendation(user_input, True)
 
@@ -75,7 +75,7 @@ class ArMultiCourseRecommendationSystem:
             response = result
             options = []
 
-        return f" بالنسبة لمادة {course_name}, اول سؤال بيكون :\n{response}", options
+        return f"بالنسبة للمقرر {course_name}، السؤال الأول هو:\n{response}", options
 
     def _finalize_recommendations(self):
         initial_message = self.user_data.get("initial_message")
@@ -96,7 +96,7 @@ class ArMultiCourseRecommendationSystem:
 
         self.user_data.clear()
 
-        result_text = "بناءً على اجابتك هذه هى المواد اللى تصلح لك \n"
+        result_text = "بناءً على إجاباتك، فإن المقررات الأعلى توصية لك هي:\n"
         for i, (course, score) in enumerate(top_courses, start=1):
             result_text += f"{i}. {course} ({score:.2f}%)\n"
 

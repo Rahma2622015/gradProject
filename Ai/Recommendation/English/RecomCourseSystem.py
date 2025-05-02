@@ -8,7 +8,7 @@ class RecommendationSystem:
         self.user_data = {}
 
     def start_recommendation(self, course_name, big_system=False):
-        questions = self.data_storage.get_course_questions(course_name)
+        questions = self.data_storage.courseQuestion.get_course_questions(course_name,'en')
         if not questions or isinstance(questions, str):
             return "Sorry, I couldn't find any questions for this course.", []
 
@@ -35,10 +35,11 @@ class RecommendationSystem:
 
             return result
 
-        question_data = self.data_storage.get_question_with_answers(question_ids[question_index])
-        if not question_data:
+        question_data_list = self.data_storage.courseQuestion.get_all_questions_with_answers(question_ids[question_index],'en')
+        if not question_data_list or isinstance(question_data_list[0], str):
             return "Error retrieving question data.", []
 
+        question_data = question_data_list[0]
         question_text = question_data["question"]
         answers = question_data["answers"]
         self.user_data["current_answers"] = answers
@@ -60,7 +61,12 @@ class RecommendationSystem:
 
         if not matched_answer:
             question_index = self.user_data.get("question_index", 0)
-            question_text = self.data_storage.get_question_with_answers(self.user_data["question_ids"][question_index])["question"]
+            question_data_list = self.data_storage.courseQuestion.get_all_questions_with_answers(
+                self.user_data["question_ids"][question_index], 'en')
+            if not question_data_list or isinstance(question_data_list[0], str):
+                return "Error retrieving question data.", []
+
+            question_text = question_data_list[0]["question"]
             options = [ans["answer"] for ans in answers]
             return (
                 f"Invalid answer. Please choose one of the options exactly as shown.\n\n"
@@ -90,9 +96,9 @@ class RecommendationSystem:
 
         max_score = 0
         for q_id in question_ids:
-            q_data = self.data_storage.get_question_with_answers(q_id)
-            if q_data and "answers" in q_data:
-                max_score += max(ans["score"] for ans in q_data["answers"])
+            q_data_list = self.data_storage.courseQuestion.get_all_questions_with_answers(q_id,'en')
+            if q_data_list and isinstance(q_data_list[0], dict) and "answers" in q_data_list[0]:
+                max_score += max(ans["score"] for ans in q_data_list[0]["answers"])
 
         if max_score == 0:
             max_score = 1

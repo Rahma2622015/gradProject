@@ -1,5 +1,4 @@
 import json
-from Modules.dataStorage import DataStorage
 import variables
 
 class Recommendation:
@@ -32,7 +31,6 @@ class Recommendation:
         if not isinstance(self.prev_data, dict):
             print(f"[ERROR] Invalid prev_data format: {self.prev_data}")
             self.prev_data = {}
-        print("[DEBUG] Asking for department first")
 
         if "department" not in self.prev_data or not self.prev_data["department"].strip():
             self.prev_data["department"] = user_input.strip().lower()
@@ -53,11 +51,19 @@ class Recommendation:
         if "subject" not in self.prev_data:
             self.prev_data["subject"] = user_input.strip().lower()
             return "Who is the professor?", self.get_professor_options()
+        self.prev_data["professor"]=user_input.strip().lower()
 
-        return self.get_exam_system()
+        if ("department" in self.prev_data and "year" in self.prev_data  and
+             "semester" in self.prev_data and "subject" in self.prev_data and
+                "professor" in self.prev_data ):
+            return self.get_exam_system()
+        else:
+            return "sorry the answer not matched with my data ",[]
 
     def get_subject_options(self):
         subjects = {
+            ("freshman","one"):["saftey","human rights","calculus & integration","physics","chemistry","statistics"],
+            ("freshman","two"):["calculus & integration 2","Basic concepts in mathematics","html & css","c++","logic design","english"],
             ("sophomore", "one"): ["algorithm", "computability", "oop", "database", "linear algebra", "english"],
             ("sophomore", "two"): ["data structure", "network", "web programming", "automata", "graph", "ordinary differential equation"],
             ("junior", "one"): ["java", "syntax", "complexity", "operating system", "abstract algebra", "multimedia", "scientific thinking"],
@@ -69,6 +75,12 @@ class Recommendation:
 
     def get_professor_options(self):
         professors = {
+            ("freshman", "one"): ["dr abelrahman","dr essam","dr heba","dr sayed","dr heba & dr sayed"
+                            ,"dr mohamed Emad", "dr ayman","dr mohamed Emad , dr ayman",
+                                  "dr ayat"],
+            ("freshman", "two"): ["dr hany", "dr manar","dr ahmed gaber","dr manar , dr ahmed gaber"
+                                , "dr nashwa", "dr mohamed fakhry","dr deiaa","dr mohamed fakhry & dr deiaa",
+                                  "dr naglaa", "dr abdelrahman"],
             ("sophomore", "one"): ["dr niveen", "dr dowlt", "dr ghada", "dr wael", "dr manar", "dr ahmed", "dr niveen , dr dowlt", "dr manar , dr ahmed"],
             ("sophomore", "two"): ["dr wael", "dr ghada", "dr hussein", "dr mohamed", "dr nashwa", "dr azaa", "dr wael , dr ghada", "dr mohamed , dr nashwa", "dr hany & dr samir"],
             ("junior", "one"): ["dr nashwa", "dr azza", "dr neveen", "dr mohamed", "dr ahmed", "dr hussein", "dr mohamed & dr neveen"],
@@ -83,10 +95,27 @@ class Recommendation:
             if (self.prev_data["department"].lower() in [d.lower() for d in exam["department"]] and
                 self.prev_data["year"].lower() in [y.lower() for y in exam["level"]] and
                 self.prev_data["semester"].lower() in [s.lower() for s in exam["semester"]] and
-                self.prev_data["subject"].lower() in [sub.lower() for sub in exam["subject"]]):
+                self.prev_data["subject"].lower() in [sub.lower() for sub in exam["subject"]] and
+                self.prev_data["professor"].lower() in [pro.lower() for pro in exam["instructor"]]):
                 print(f"[INFO] Match found! Exam system: {exam['exam_format']}")
                 self.prev_data.clear()
-                return f"The exam system for {exam['subject']} is: {exam['exam_format']}", []
+
+                exam_format = exam['exam_format']
+                parts = []
+
+                if "mid term" in exam_format:
+                    parts.append(f"midterm: {', '.join(exam_format['mid term'])}")
+                if "final" in exam_format:
+                    parts.append(f"final: {', '.join(exam_format['final'])}")
+                if "project" in exam_format:
+                    parts.append(f"project: {', '.join(exam_format['project'])}")
+
+                exam_system_str = " and ".join(parts)
+                self.prev_data.clear()
+
+                subject_name = ', '.join(exam['subject']) if isinstance(exam['subject'], list) else exam['subject']
+                return f"The exam system for {subject_name} is: {exam_system_str}", []
 
         print(f"[WARNING] No match for: {self.prev_data}")
+        self.prev_data.clear()
         return "No exam data available for this subject.", []

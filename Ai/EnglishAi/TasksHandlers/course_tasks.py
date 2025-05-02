@@ -18,21 +18,21 @@ def handle_course_tasks(task, D: DatabaseStorage):
     if course_name:
         if task[0] == ChatTask.CourseQueryTask:
             try:
-                course_info = D.get_course_description(course_name)
+                course_info = D.courseDes.get_course_description(course_name)
                 responses.append((ChatTask.CourseQueryTask, course_name, course_info))
             except Exception as e:
                 responses.append((ChatTask.CourseQueryTask, course_name, "There was an error fetching the course description ."))
 
         elif task[0] == ChatTask.PrerequisitesTask:
             try:
-                course_info = D.get_course_prerequisite(course_name)
+                course_info = D.coursePre.get_course_prerequisite(course_name)
                 responses.append((ChatTask.CourseQueryTask, course_name, course_info))
             except Exception as e:
                 responses.append((ChatTask.CourseQueryTask, course_name, "There was an error fetching the prerequisites ."))
 
         elif task[0] == ChatTask.CourseHours:
             try:
-                hours, degree = D.get_course_hours_and_degree(course_name)
+                hours, degree = D.courseHour.get_course_hours(course_name)
                 if not hours or not degree:
                     responses.append((ChatTask.CourseHours, course_name, "Course hours or degree not found in the database."))
                 else:
