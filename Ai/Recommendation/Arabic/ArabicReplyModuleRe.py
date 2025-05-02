@@ -7,19 +7,23 @@ from Ai.EnglishAi.Tokeniztion import Tokenizers
 from Database.Datastorage_DB import DatabaseStorage
 from Modules import DataStorage
 from Ai.Recommendation.Arabic.arabicRecomMulticourses import ArMultiCourseRecommendationSystem
+from Database.Courses.QuestionsAndAnswers import CourseQuestionsAndAnswers
+from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 import variables
 
 data_storage = DatabaseStorage()
 memory = DataStorage()
+dbs=CourseQuestionsAndAnswers()
 
 class ArReplyModuleRe:
     def __init__(self, json_path=variables.ArResponseDataLocationRE, memory_db=None, temp_storage=None):
         self.load_responses(json_path)
         self.recommender = ArRecommendation()
-        self.course_dynamic_recommender = ArRecommendationSystem(memory_db, temp_storage)
+        self.course_dynamic_recommender = ArRecommendationSystem(memory_db, temp_storage,dbs)
         self.tokenizer = Tokenizers()
+        self.pre = ArabicPreprocessor()
         self.course_selection_recommender = ArMultiCourseRecommendationSystem(
-             data_storage, memory, ArRecommendationSystem(memory_db, temp_storage)
+             data_storage, memory, ArRecommendationSystem(memory_db, temp_storage,dbs)
          )
 
     def load_responses(self, json_path):
@@ -47,40 +51,41 @@ class ArReplyModuleRe:
                         options = []
                     else:
                         print(f"[ERROR] Unexpected response format: {response}")
-                        s = "Error processing recommendation."
+                        s = "حدث خطأ أثناء معالجة التوصية الخاصة بك."
                         options = []
 
                 elif r[0] == ChatTask.CourseSystem:
-                    course_name = self.tokenizer.extract_course_name(user_input)
-                    print(f"[INFO] Detected course name: {course_name}")
+                    course_name = self.pre.extract_course_name(user_input)
+                    print(f"[INFO] تم التعرف على اسم المادة: {course_name}")
                     if course_name:
-                        response = self.course_dynamic_recommender.start_recommendation(course_name)
+                        response, options = self.course_dynamic_recommender.start_recommendation(course_name)
                         if isinstance(response, str):
                             s = response
                             options = []
                         else:
                             print(f"[ERROR] Unexpected course recommendation format: {response}")
-                            s = "Error processing course recommendation."
+                            s = "حدث خطأ أثناء معالجة التوصية بالمادة."
                             options = []
                     else:
-                        s = "Sorry, I couldn't detect the course name from your question."
-                        options = []
+                        s = "عذرًا، لم أتمكن من استخراج اسم المادة من سؤالك."
+
                 elif r[0] == ChatTask.MultiCourseRecommendationTask:
                     course_names = self.tokenizer.extract_all_course_names(user_input)
-                    print(f"[INFO] Detected course names: {course_names}")
+                    print(f"[INFO] تم التعرف على أسماء المواد: {course_names}")
                     if course_names:
                         response, options = self.course_selection_recommender.start(course_names)
                         if isinstance(response, str):
                             s = response
                             options = []
                         else:
-                            s = "Error processing multi-course recommendation."
+                            s = "حدث خطأ أثناء معالجة توصية المواد المتعددة."
                             options = []
                     else:
-                        s = "Sorry, I couldn't detect the course names from your question."
+                        s = "عذرًا، لم أتمكن من استخراج أسماء المواد من سؤالك."
                         options = []
+
                 elif r[0] == ChatTask.UnknownTask:
-                    s = choice(self.data.get("Unknown", ["لست متاكد من الاجابة على هذا."]))
+                    s = choice(self.data.get("Unknown", ["لست متأكدًا من الإجابة على هذا."]))
                     options = []
 
         return s.strip(), options

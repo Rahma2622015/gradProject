@@ -1,436 +1,1261 @@
 {
   "exam_data": [
     {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["one", "1"],
-      "subject": ["algorithm", "comp 201"],
-      "instructor": ["dr niveen", "dr dowlt","dr niveen , dr dowlt"],
+      "department": [
+        "cs"
+      ],
       "exam_format": {
-        "mid term": ["MCQ + Coding + Complete"],
-        "final": ["MCQ + Theory + Solve Problem + Short Answers"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "semester": ["one", "1"],
-      "level": ["sophomore", "2", "two"],
-      "subject": ["computability", "comp 203"],
-      "instructor": ["dr ghada"],
-      "exam_format": {
-        "mid term": ["MCQ + Short Answers"],
-        "final": ["MCQ + Theory + Solve Problem + Short Answers"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["one", "1"],
-      "subject": ["oop", "object oriented programming", "comp 205"],
-      "instructor": ["dr dowlt"],
-      "exam_format": {
-        "mid term": ["Give a problem and apply operations on it"],
-        "final": ["Full Written Exam"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["one", "1"],
-      "subject": ["database", "comp 207"],
-      "instructor": ["dr wael"],
-      "exam_format": {
-        "mid term": ["MCQ + Coding + Complete"],
-        "final": ["MCQ + Theory + Solve Problem + Short Answers"],
-        "Project": ["Do a project based on your study"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["one", "1"],
-      "subject": ["linear algebra", "math 203"],
-      "instructor": ["dr manar", "dr ahmed","dr manar , dr ahmed"],
-      "exam_format": {
-        "mid term": ["MCQ + Solve Mathematical Problems"],
-        "final": ["MCQ + Solve Mathematical Problems"]
-      }
-    },
-     {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["one", "1"],
-      "subject": ["english", "engl 201"],
-      "instructor": ["dr abdelrahman"],
-      "exam_format": {
-        "final": ["MCQ"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["two", "2"],
-      "subject": ["data structure", "comp 202"],
-      "instructor": ["dr wael", "dr ghada","dr wael , dr ghada"],
-      "exam_format": {
-        "mid term": ["MCQ + Written Questions"],
-        "final": ["MCQ + Written Questions + Solve Problem"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["two", "2"],
-      "subject": ["network", "comp 204"],
-      "instructor": ["dr hussein"],
-      "exam_format": {
-        "mid term": ["MCQ + Written Questions"],
-        "final": ["MCQ"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["two", "2"],
-      "subject": ["web programming", "comp 206"],
-      "instructor": ["dr mohamed", "dr nashwa" ,"dr mohamed , dr nashwa"],
-      "exam_format": {
-        "mid term": ["MCQ + Written Questions"],
-        "final": ["MCQ + Written Questions + Solve Problem+Particular Part"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["two", "2"],
-      "subject": ["automata", "comp 208"],
-      "instructor": ["dr azaa"],
-      "exam_format": {
-        "mid term": ["MCQ + Written Questions"],
-        "final": ["MCQ + Written Questions + Solve Problem + sometimes true & false"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["two", "2"],
-      "subject": ["graph", "comp 210"],
-      "instructor": ["dr neveen"],
-      "exam_format": {
-        "mid term": ["MCQ + Written Questions"],
-        "final": ["MCQ + Written Questions + Solve Problem"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "level": ["sophomore", "2", "two"],
-      "semester": ["two", "2"],
-      "subject": ["ordinary differential equation", "math 202", "math"],
-      "instructor": ["dr hany", "dr samir","dr hany & dr samir"],
-      "exam_format": {
-        "mid term": ["MCQ + Written Questions"],
-        "final": ["MCQ + Solve Mathematical Problem"]
-      }
-    },
-    {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["one", "1"],
-      "subject": ["java", "comp 301"],
-      "instructor": ["dr nashwa"],
-      "exam_format": {
-        "mid term": ["coding function + test some errors in code"],
-        "final": ["coding function + test some errors in code"]
-      }
+        "final": [
+          "MCQ"
+        ]
+      },
+      "instructor": [
+        "dr abelrahman"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "saftey"
+      ]
     },
     {
       "department": [
         "cs"
       ],
+      "exam_format": {
+        "final": [
+          "MCQ"
+        ]
+      },
+      "instructor": [
+        "dr abdelrahman"
+      ],
       "level": [
-        "Junior",
-        "3",
-        "three"
+        "freshman"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "human rights"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Solve Mathematical Problem"
+        ],
+        "mid term": [
+          "MCQ + Written Mathematical Questions"
+        ]
+      },
+      "instructor": [
+        "dr essam"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "calculus & integration"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Theory + Solve physics Problem + Short Answers + proves"
+        ],
+        "mid term": [
+          "MCQ + Complete + solve physics problems"
+        ]
+      },
+      "instructor": [
+        "dr heba",
+        "dr sayed",
+        "dr heba & dr sayed"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "physics"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Theory + Solve chemical Problem + Short Answers"
+        ],
+        "mid term": [
+          "MCQ + Solving chemical equations"
+        ]
+      },
+      "instructor": [
+        "dr mohamed Emad",
+        "dr ayman",
+        "dr mohamed Emad , dr ayman"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "chemistry"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Theory + Solve statistics Problem + Short Answers"
+        ],
+        "mid term": [
+          "MCQ + Complete + solve statistics problems"
+        ]
+      },
+      "instructor": [
+        "dr ayat"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "statistics"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Solve Mathematical Problem"
+        ],
+        "mid term": [
+          "MCQ + Written Mathematical Questions"
+        ]
+      },
+      "instructor": [
+        "dr hany"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "calculus & integration 2"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Solve Mathematical Problem"
+        ],
+        "mid term": [
+          "MCQ + Written Mathematical Questions"
+        ]
+      },
+      "instructor": [
+        "dr manar",
+        "dr ahmed gaber",
+        "dr manar , dr ahmed gaber"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "Basic concepts in mathematics"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions + Solve Problem + Particular Part"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr nashwa"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "html & css"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions + Solve Problem + sometimes true & false"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr mohamed fakhry",
+        "dr deiaa",
+        "dr mohamed fakhry & dr deiaa"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "c++"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions + Solve Problem"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr naglaa"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "logic design"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ"
+        ]
+      },
+      "instructor": [
+        "dr abdelrahman"
+      ],
+      "level": [
+        "freshman"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "english"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Theory + Solve Problem + Short Answers"
+        ],
+        "mid term": [
+          "MCQ + Coding + Complete"
+        ]
+      },
+      "instructor": [
+        "dr niveen",
+        "dr dowlt",
+        "dr niveen , dr dowlt"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "algorithm"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Theory + Solve Problem + Short Answers"
+        ],
+        "mid term": [
+          "MCQ + Short Answers"
+        ]
+      },
+      "instructor": [
+        "dr ghada"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "computability"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "Full Written Exam"
+        ],
+        "mid term": [
+          "Give a problem and apply operations on it"
+        ]
+      },
+      "instructor": [
+        "dr dowlt"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "oop"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "Project": [
+          "Do a project based on your study"
+        ],
+        "final": [
+          "MCQ + Theory + Solve Problem + Short Answers"
+        ],
+        "mid term": [
+          "MCQ + Coding + Complete"
+        ]
+      },
+      "instructor": [
+        "dr wael"
+      ],
+      "level": [
+        "sophomore"
       ],
       "semester": [
         "one",
         "1"
       ],
       "subject": [
-        "syntax",
-        "comp 303"
+        "database"
+      ]
+    },
+    {
+      "department": [
+        "cs"
       ],
+      "exam_format": {
+        "final": [
+          "MCQ + Solve Mathematical Problems"
+        ],
+        "mid term": [
+          "MCQ + Solve Mathematical Problems"
+        ]
+      },
+      "instructor": [
+        "dr manar",
+        "dr ahmed",
+        "dr manar , dr ahmed"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "linear algebra"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ"
+        ]
+      },
+      "instructor": [
+        "dr abdelrahman"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "english"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions + Solve Problem"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr wael",
+        "dr ghada",
+        "dr wael , dr ghada"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "data structure"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr hussein"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "two",
+        "2"
+      ],
+      "subject": [
+        "network",
+        "comp 204"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions + Solve Problem+Particular Part"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr mohamed",
+        "dr nashwa",
+        "dr mohamed , dr nashwa"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "web programming"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions + Solve Problem + sometimes true & false"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr azaa"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "automata"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions + Solve Problem"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr neveen"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "graph"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Solve Mathematical Problem"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr hany",
+        "dr samir",
+        "dr hany & dr samir"
+      ],
+      "level": [
+        "sophomore"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "ordinary differential equation"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "coding function + test some errors in code"
+        ],
+        "mid term": [
+          "coding function + test some errors in code"
+        ]
+      },
+      "instructor": [
+        "dr nashwa"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "java"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + problem solving + definitions"
+        ],
+        "mid term": [
+          "MCQ + Written Questions + definitions"
+        ]
+      },
       "instructor": [
         "dr azza"
       ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "syntax"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
       "exam_format": {
+        "final": [
+          "MCQ + Solve Problems in course"
+        ],
         "mid term": [
-          "MCQ + Written Questions + definitions"
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr neveen"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "complexity"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr mohamed",
+        "dr neveen",
+        "dr mohamed & dr neveen"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "operating system"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Solve Mathematical Problem"
+        ],
+        "mid term": [
+          "MCQ + Solve Mathematical Problem"
+        ]
+      },
+      "instructor": [
+        "dr ahmed"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "abstract algebra"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ"
+        ],
+        "mid term": [
+          "MCQ + sometimes Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr hussein"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "multimedia"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ"
+        ]
+      },
+      "instructor": [
+        "dr abdelrahman"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "scientific thinking"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ"
+        ]
+      },
+      "instructor": [
+        "dr abdelrahman"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "scientific research ethics"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr neveen"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "combinatorics"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + sole coding problems"
+        ],
+        "mid term": [
+          "MCQ +Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr wael"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "compiler"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ"
+        ],
+        "mid term": [
+          "MCQ + sometimes Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr hussein"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "graphics"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "Project": [
+          "App doctor will suggest for you"
         ],
         "final": [
-          "MCQ + problem solving + definitions"
+          "MCQ +  Written Questions"
         ]
-      }
-    },
-     {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["one", "1"],
-      "subject": ["complexity", "comp 305"],
-      "instructor": ["dr neveen"],
-      "exam_format": {
-        "mid term": ["MCQ + Written Questions"],
-        "final": ["MCQ + Solve Problems in course"]
-      }
-    },
-     {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["one", "1"],
-      "subject": ["os", "operating system", "comp 307"],
-      "instructor": ["dr mohamed", "dr neveen","dr mohamed & dr neveen"],
-      "exam_format": {
-        "mid term": ["MCQ + Written Questions"],
-        "final": ["MCQ + Written Questions"]
-      }
-    },
-     {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["one", "1"],
-      "subject": ["abstract algebra", "math 333", "math"],
-      "instructor": ["dr ahmed"],
-      "exam_format": {
-        "mid term": ["MCQ + Solve Mathematical Problem"],
-        "final": ["MCQ + Solve Mathematical Problem"]
-      }
-    },
-     {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["one", "1"],
-      "subject": ["multimedia", "comp 309"],
-      "instructor": ["dr hussein"],
-      "exam_format": {
-        "mid term": ["MCQ + sometimes Written Questions"],
-        "final": ["MCQ"]
-      }
-    },
-     {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["one", "1"],
-      "subject": ["scientific thinking", "scth 301"],
-      "instructor": ["dr abdelrahman"],
-      "exam_format": {
-        "final": ["MCQ"]
-      }
-    },
-      {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["two", "2"],
-      "subject": ["scientific research ethics", "ethr 302"],
-      "instructor": ["dr abdelrahman"],
-      "exam_format": {
-        "final": ["MCQ"]
-      }
-    },
-       {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["two", "2"],
-      "subject": ["combinatorics", "comp 302"],
-      "instructor": ["dr neveen"],
-      "exam_format": {
-        "mid term": ["MCQ + Written Questions"],
-        "final": ["MCQ + Written Questions"]
-      }
-    },
-       {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["two", "2"],
-      "subject": ["compiler", "comp 304"],
-      "instructor": ["dr wael"],
-      "exam_format": {
-        "mid term": ["MCQ +Written Questions"],
-        "final": ["MCQ + sole coding problems"]
-      }
-    },
-       {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["two", "2"],
-      "subject": ["graphics", "comp 306"],
-      "instructor": ["dr hussein"],
-      "exam_format": {
-        "mid term": ["MCQ + sometimes Written Questions"],
-        "final": ["MCQ"]
-      }
-    },
-       {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["two", "2"],
-      "subject": ["android", "comp 310"],
-      "instructor": ["dr deiaa"],
-      "exam_format": {
-        "final": ["MCQ +  Written Questions"],
-        "Project": ["App doctor will suggest for you"]
-      }
-    },
-       {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["two", "2"],
-      "subject": ["advanced data base", "comp 314"],
-      "instructor": ["dr wael"],
-      "exam_format": {
-        "final": ["MCQ +  Written Questions"],
-        "Project": ["project to arrange data doctor will suggest for you"]
-      }
-       },
-       {
-      "department": ["cs"],
-      "level": ["Junior", "3", "three"],
-      "semester": ["two", "2"],
-      "subject": ["crybto", "comp 308"],
-      "instructor": ["dr deiaa"],
-      "exam_format": {
-        "mid term": ["MCQ +Written Questions"],
-        "final": ["MCQ +  Written Questions"]
-      }
-    },
-       {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["one", "1"],
-      "subject": ["skills", "skil 401"],
-      "instructor": ["dr mohamed"],
-      "exam_format": {
-        "final": ["MCQ"]
-      }
-    },
-      {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["one", "1"],
-      "subject": ["Ai", "comp 401","artificial intelligence"],
-      "instructor": ["dr azza"],
-      "exam_format": {
-        "mid term": ["MCQ + definitions + Written Questions"],
-        "final": ["MCQ+ definitions + Written Questions"]
-      }
-    },
-      {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["one", "1"],
-      "subject": ["parallel", "comp 403"],
-      "instructor": ["dr mohamed fakhry"],
-      "exam_format": {
-        "mid term": ["solve coding problems + implement functions"],
-        "practical": ["give question has specific problem and you solve it"],
-        "final": ["solve coding problems + implement functions"]
-      }
-    },
-      {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["one", "1"],
-      "subject": ["project", "comp 405"],
-      "instructor": ["dr azza"],
-      "exam_format": {
-        "final": ["presentation"]
-      }
+      },
+      "instructor": [
+        "dr deiaa"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "android"
+      ]
     },
     {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["one", "1"],
-      "subject": ["image", "comp 407","image processing"],
-      "instructor": ["dr hewayda"],
+      "department": [
+        "cs"
+      ],
       "exam_format": {
-        "mid term": ["sometimes MCQ +  Written Questions + complete"],
-        "final": ["full written exam"]
-      }
-    },
-      {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["one", "1"],
-      "subject": ["cyber","cyber security", "comp 409"],
-      "instructor": ["dr deiaa"],
-      "exam_format": {
-        "mid term": ["MCQ + sometimes Written Questions + complete"],
-        "final": ["MCQ + definitions + Written Questions"]
-      }
-    },
-      {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["one", "1"],
-      "subject": ["Computational geometry", "geometry","math","comp 411"],
-      "instructor": ["dr ghada"],
-      "exam_format": {
-        "mid term": ["MCQ + sometimes Written Questions"],
-        "final": ["MCQ + solve math problem + solve problems in general"]
-      }
-    },
-      {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["two", "2"],
-      "subject": ["bioinformatics", "comp 402"],
-      "instructor": ["dr mohamed hashim","dr mohamed fakhry","dr mohamed hashim , dr mohamed fakhry"],
-      "exam_format": {
-        "mid term": ["MCQ + more Written Questions"],
-        "final": ["MCQ + Written Questions"]
-      }
+        "Project": [
+          "project to arrange data doctor will suggest for you"
+        ],
+        "final": [
+          "MCQ +  Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr wael"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "advanced data base"
+      ]
     },
     {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["two", "2"],
-      "subject": ["software","software engineering", "comp 404"],
-      "instructor": ["dr hussein"],
+      "department": [
+        "cs"
+      ],
       "exam_format": {
-        "mid term": ["MCQ + sometimes Written Questions"],
-        "final": ["MCQ"]
-      }
+        "final": [
+          "MCQ +  Written Questions"
+        ],
+        "mid term": [
+          "MCQ +Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr deiaa"
+      ],
+      "level": [
+        "Junior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "crybto"
+      ]
     },
     {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["two", "2"],
-      "subject": ["project", "comp 406"],
-      "instructor": ["dr azza"],
+      "department": [
+        "cs"
+      ],
       "exam_format": {
-        "final": ["presentation"]
-      }
+        "final": [
+          "MCQ"
+        ]
+      },
+      "instructor": [
+        "dr mohamed"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "skills"
+      ]
     },
     {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["two", "2"],
-      "subject": ["advanced Ai", "comp 408","advanced artificial intelligence"],
-      "instructor": ["dr azza","dr hewayda","dr hewayda , dr azza"],
+      "department": [
+        "cs"
+      ],
       "exam_format": {
-        "mid term": ["MCQ + Written Questions"],
-        "final": ["MCQ + Written Questions"]
-      }
+        "final": [
+          "MCQ+ definitions + Written Questions"
+        ],
+        "mid term": [
+          "MCQ + definitions + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr azza"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "artificial intelligence"
+      ]
     },
     {
-      "department": ["cs"],
-      "level": ["senior", "4", "four"],
-      "semester": ["two", "2"],
-      "subject": ["data mining", "comp 416"],
-      "instructor": ["dr dowlt"],
+      "department": [
+        "cs"
+      ],
       "exam_format": {
-        "mid term": ["Solve problems like those explained + definitions + drawings"],
-        "final": ["full writeen exam"]
-      }
+        "final": [
+          "solve coding problems + implement functions"
+        ],
+        "mid term": [
+          "solve coding problems + implement functions"
+        ],
+        "practical": [
+          "give question has specific problem and you solve it"
+        ]
+      },
+      "instructor": [
+        "dr mohamed fakhry"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "parallel"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "presentation"
+        ]
+      },
+      "instructor": [
+        "dr azza"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "project"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "full written exam"
+        ],
+        "mid term": [
+          "sometimes MCQ +  Written Questions + complete"
+        ]
+      },
+      "instructor": [
+        "dr hewayda"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "image processing"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + definitions + Written Questions"
+        ],
+        "mid term": [
+          "MCQ + sometimes Written Questions + complete"
+        ]
+      },
+      "instructor": [
+        "dr deiaa"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "cyber",
+        "cyber security"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + solve math problem + solve problems in general"
+        ],
+        "mid term": [
+          "MCQ + sometimes Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr ghada"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "Computational geometry"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions"
+        ],
+        "mid term": [
+          "MCQ + more Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr mohamed hashim",
+        "dr mohamed fakhry",
+        "dr mohamed hashim , dr mohamed fakhry"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "bioinformatics"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ"
+        ],
+        "mid term": [
+          "MCQ + sometimes Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr hussein"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "software engineering"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "presentation"
+        ]
+      },
+      "instructor": [
+        "dr azza"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "project"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "MCQ + Written Questions"
+        ],
+        "mid term": [
+          "MCQ + Written Questions"
+        ]
+      },
+      "instructor": [
+        "dr azza",
+        "dr hewayda",
+        "dr hewayda , dr azza"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "advanced artificial intelligence"
+      ]
+    },
+    {
+      "department": [
+        "cs"
+      ],
+      "exam_format": {
+        "final": [
+          "full writeen exam"
+        ],
+        "mid term": [
+          "Solve problems like those explained + definitions + drawings"
+        ]
+      },
+      "instructor": [
+        "dr dowlt"
+      ],
+      "level": [
+        "senior"
+      ],
+      "semester": [
+        "two"
+      ],
+      "subject": [
+        "data mining"
+      ]
     }
   ]
 }

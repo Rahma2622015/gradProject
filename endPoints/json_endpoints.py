@@ -1,9 +1,9 @@
 import json
 from flask import jsonify, request
 import os
-from Modules.helper_functions import uploaded_db_path
-import variables
-BASE_DIR = os.path.abspath(variables.base_ssl)
+from Modules.helper_functions import uploaded_json_paths
+
+BASE_DIR = os.path.abspath(r"E:\gradProject")
 
 def list_json_files():
     try:
@@ -13,6 +13,7 @@ def list_json_files():
                 if f.endswith(".json"):
                     relative_path = os.path.relpath(os.path.join(root, f), BASE_DIR)
                     all_json_files.append(relative_path.replace("\\", "/"))
+                    uploaded_json_paths[relative_path.replace("\\", "/")] = os.path.join(root, f)
         return jsonify(all_json_files)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -31,10 +32,12 @@ def get_json(filename):
 
 
 def save_config(filename):
+    print("Received filename:", filename)
+    print("Uploaded DB paths:", uploaded_json_paths)
     data = request.get_json()
     content = data.get("content")
 
-    filepath = uploaded_db_path.get(filename)
+    filepath = uploaded_json_paths.get(filename)
     if not filepath:
         return jsonify({"error": "File not found or not uploaded"}), 404
 

@@ -9,7 +9,6 @@ from Ai.Recommendation.English.ReplyModuleR import ReplyModuleRe
 from Ai.EnglishAi.BigramModel import BigramModel
 from Ai.EnglishAi.chattask import ChatTask
 from Modules.dataStorage import DataStorage
-import variables
 from Database.Datastorage_DB import DatabaseStorage
 from Ai.Recommendation.English.RecomCourseSystem import RecommendationSystem
 from Ai.EnglishAi.SemanticTaskMapper import SemanticTaskMapper
@@ -42,7 +41,22 @@ def is_trivial_task(tokens, f) -> bool:
                 f.isThanksTool(token) or f.isConfusionTool(token)):
                 return True
     return False
-  
+
+def is_recommendation_complete(s: str) -> bool:
+    s = s.strip().lower()
+    return (
+            s == "no exam data available for this subject." or
+            s.startswith("the exam system for") or
+            s == "sorry the answer not matched with my data " or
+            s == "sorry, i couldn't find any questions for this course." or
+            s == "error retrieving question data." or
+            s.startswith("your score is") or
+            s == "sorry, i couldn't detect any valid course names from your message." or
+            s == "no current course data found." or
+            s.startswith("based on your answers")
+    )
+
+
 def config():
         return load_ai_config()
 
@@ -68,7 +82,7 @@ def langEnglish(message, storage):
             print("[DEBUG] Continuing Exam Recommendation Flow")
             s, options = recom_reply.recommender.handle_exam_recommendation(message)
             print(f"[DEBUG] Updated prev_data after response: {storage.get_prev_data()}")
-            if s == "No exam data available for this subject.":
+            if is_recommendation_complete(s):
                 storage.clear_data()
                 return s, options, False
             if not options:
@@ -79,7 +93,7 @@ def langEnglish(message, storage):
         elif current_task == "CourseSystem":
             print("[DEBUG] Continuing Course Recommendation Flow")
             s, options = course_recommender.receive_answer(message.strip())
-            if s == "Sorry, I couldn't find any questions for this course.":
+            if is_recommendation_complete(s):
                 storage.clear_data()
                 return s, options, False
             if not options:
@@ -93,13 +107,17 @@ def langEnglish(message, storage):
                 course_names = t.extract_all_course_names(message)
                 print(f"[INFO] Detected course names: {course_names}")
                 if course_names:
-                    response, options = recom_reply.course_selection_recommender.start(course_names)
+                    response, options = recom_reply.course_selection_recommender.startswith(course_names)
                     s = response if isinstance(response, str) else "Error processing multi-course recommendation."
                 else:
                     s = "Sorry, I couldn't detect the course names from your question."
             else:
                 s, options = recom_reply.course_selection_recommender.handle_answer(message)
-            return s, options, True
+            if is_recommendation_complete(s):
+                storage.clear_data()
+                return s, options, False
+            else:
+                return s, options, True
 
         # ---------------------- Start New Task ----------------------
         else:
@@ -108,7 +126,6 @@ def langEnglish(message, storage):
                 print("[DEBUG] Mapping using TrivialMapper")
                 tasks = trivial_mapper.mapToken(tokens, pos)
             else:
-
                 bigram_model.sentence_probability(tokens)
                 grammer.is_correct(tokens)
                 grammer.get_errors(tokens)

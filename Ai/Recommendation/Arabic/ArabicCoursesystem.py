@@ -1,16 +1,18 @@
-from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
+from Database.Datastorage_DB import DatabaseStorage
 from Modules.dataStorage import DataStorage
+from Database.Courses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 
 class ArRecommendationSystem:
-    def __init__(self, data_storage: DatabaseStorage, memory: DataStorage):
+    def __init__(self, data_storage: DatabaseStorage, memory: DataStorage,DS : CourseQuestionsAndAnswers):
         self.data_storage = data_storage
+        self.DSb=DS
         self.memory = memory
         self.user_data = {}
 
     def start_recommendation(self, course_name, big_system=False):
-        questions = self.data_storage.get_course_questions_arabic(course_name)
+        questions = self.DSb.get_course_questions(course_name, 'ar')
         if not questions or isinstance(questions, str):
-            return "اسف لا يوجد اسئلة متاحة لهذا الكورس", []
+            return "عذرًا، لم أتمكن من العثور على أي أسئلة لهذا الكورس.", []
 
         self.user_data = {
             "course_name": course_name,
@@ -35,36 +37,46 @@ class ArRecommendationSystem:
 
             return result
 
-        question_data = self.data_storage.get_question_with_answers_arabic(question_ids[question_index])
-        if not question_data:
-            return "خطا فى الوصول لمعلومات السؤال", []
+        question_data_list = self.DSb.get_all_questions_with_answers(
+            question_ids[question_index], 'ar')
+        if not question_data_list or isinstance(question_data_list[0], str):
+            return "حدث خطأ أثناء جلب بيانات السؤال.", []
 
+        question_data = question_data_list[0]
         question_text = question_data["question"]
         answers = question_data["answers"]
         self.user_data["current_answers"] = answers
         choices = [ans["answer"] for ans in answers]
 
-        return f"Question {question_index + 1}: {question_text}", choices
+        return f"السؤال {question_index + 1}: {question_text}", choices
 
     def receive_answer(self, user_answer: str, big_system=False):
         answers = self.user_data.get("current_answers", [])
         if answers is None:
-            print("Error: answers is None")
-            return "يوجد خطا فى تنفيذ اجابتك , جرب مره اخرى", []
+            print("خطأ: لا توجد إجابات محفوظة")
+            return "حدث خطأ أثناء معالجة إجابتك. حاول مرة أخرى.", []
 
-        normalized_input = user_answer.strip()
+        normalized_input = user_answer.strip().casefold()
         matched_answer = next(
-            (ans for ans in answers if ans["answer"].strip().lower() == normalized_input),
+            (
+                ans for ans in answers
+                if ans["answer"].strip().casefold() == normalized_input
+            ),
             None
         )
 
         if not matched_answer:
             question_index = self.user_data.get("question_index", 0)
-            question_text = self.data_storage.get_question_with_answers_arabic(self.user_data["question_ids"][question_index])["question"]
+            question_data_list = self.DSb.get_all_questions_with_answers(
+                self.user_data["question_ids"][question_index], 'ar')
+            if not question_data_list or isinstance(question_data_list[0], str):
+                return "حدث خطأ أثناء جلب بيانات السؤال.", []
+
+            question_text = question_data_list[0]["question"]
             options = [ans["answer"] for ans in answers]
             return (
-                f"اجابه خاطئة , ادخل الاجابة الصحيحه \n\n"
-                f"السؤال  {question_index + 1}: {question_text}",
+                f"الإجابة غير صحيحة. من فضلك اختر إحدى الخيارات كما هي مكتوبة.\n\n"
+                f"السؤال {question_index + 1}: {question_text}",
                 options
             )
 
@@ -79,7 +91,7 @@ class ArRecommendationSystem:
 
         if re is None and big_system:
             final_score = self.user_data.get("final_score")
-            print(f"Final score stored: {final_score}")
+            print(f"النتيجة النهائية التي تم تخزينها: {final_score}")
             return None
         else:
             return re
@@ -90,9 +102,9 @@ class ArRecommendationSystem:
 
         max_score = 0
         for q_id in question_ids:
-            q_data = self.data_storage.get_question_with_answers_arabic(q_id)
-            if q_data and "answers" in q_data:
-                max_score += max(ans["score"] for ans in q_data["answers"])
+            q_data_list = self.DSb.get_all_questions_with_answers(q_id, 'ar')
+            if q_data_list and isinstance(q_data_list[0], dict) and "answers" in q_data_list[0]:
+                max_score += max(ans["score"] for ans in q_data_list[0]["answers"])
 
         if max_score == 0:
             max_score = 1
@@ -103,13 +115,11 @@ class ArRecommendationSystem:
             return int(percentage)
 
         if percentage >= 70:
-            return f"الاسكور {percentage:.2f}%. هذا الكورس مناسب لك انك تسجله .", []
+            return f"النتيجة {percentage:.2f}%. هذا الكورس مناسب لك لتقوم بتسجيله.", []
         elif percentage >= 50:
-            return f"الاسكور {percentage:.2f}%. تستطيع تسجيل هذا الكورس ولكن ربما تحتاج الى محهود اضافى حتى تحقق نتيجة جيدة.", []
+            return f"النتيجة {percentage:.2f}%. يمكنك تسجيل هذا الكورس ولكن قد تحتاج إلى بذل مجهود إضافي لتحقيق نتائج جيدة.", []
         else:
-            return f"الاسكور  {percentage:.2f}%. هذا الكورس غير مناسب لك , جرب تحسن من خبارتك حتى تتناسب مع تسجيله ", []
-
-        return result_text, []
+            return f"النتيجة {percentage:.2f}%. هذا الكورس غير مناسب لك حاليًا، حاول تحسين مهاراتك قبل تسجيله.", []
 
     def continue_recommendation(self, user_answer: str, big_system=False):
         result = self.receive_answer(user_answer, big_system)
