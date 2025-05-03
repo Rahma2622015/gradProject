@@ -45,7 +45,7 @@ def is_trivial_task(tokens, f) -> bool:
 def is_recommendation_complete(s: str) -> bool:
     s = s.strip().lower()
     return (
-            s == "no exam data available for this subject." or
+            s == "No matching exam data or professor information." or
             s.startswith("the exam system for") or
             s == "sorry the answer not matched with my data " or
             s == "sorry, i couldn't find any questions for this course." or

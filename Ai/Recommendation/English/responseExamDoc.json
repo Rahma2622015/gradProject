@@ -1,0 +1,96 @@
+{
+  "exam_data": [
+    {
+      "instructo": ["dr abdelrahman"],
+      "exam_system": ["Prefers multiple-choice questions."]
+    },
+    {
+      "instructo": ["dr essam"],
+      "exam_system": ["Prefers mostly problem-solving, proofs, or applying new ideas based on previous knowledge."]
+    },
+    {
+      "instructo": ["dr heba"],
+      "exam_system": ["Prefers mostly proofs, especially related to physical theories, and sometimes includes multiple-choice questions."]
+    },
+    {
+      "instructo": ["dr sayed"],
+      "exam_system": ["Prefers multiple-choice questions, fill-in-the-blanks, and solving problems based on formulas."]
+    },
+    {
+      "instructo": ["dr mohamed emad"],
+      "exam_system": ["Prefers mostly multiple-choice questions."]
+    },
+    {
+      "instructo": ["dr ayman ayoub"],
+      "exam_system": ["Prefers definitions and questions that test the validity of chemical equations."]
+    },
+    {
+      "instructo": ["dr ayat"],
+      "exam_system": ["Prefers statistical problem-solving, proofs, and definitions."]
+    },
+    {
+      "instructo": ["dr hany"],
+      "exam_system": ["Prefers a lot of mathematical problem-solving and mathematical proofs based on what has been studied."]
+    },
+    {
+      "instructo": ["dr manar"],
+      "exam_system": ["Prefers mostly proofs, with some mathematical problem-solving."]
+    },
+    {
+      "instructo": ["dr ahmed gaber"],
+      "exam_system": ["Prefers mostly proofs, with some mathematical problem-solving."]
+    },
+    {
+      "instructo": ["dr nashwa"],
+      "exam_system": ["Prefers practical questions to test the student's understanding of terminology by giving code with or without errors and asking the student to fix or analyze them."]
+    },
+    {
+      "instructo": ["dr mohamed fakhry"],
+      "exam_system": ["Always prefers deep thinking questions, where students must innovate. He does not stick to one format but applies algorithms or ideas in new, unexpected ways."]
+    },
+    {
+      "instructo": ["dr neevin"],
+      "exam_system": ["Prefers multiple-choice questions, definitions, algorithm writing, or fill-in-the-blanks — not fixed, but these are examples."]
+    },
+    {
+      "instructo": ["dr doalat"],
+      "exam_system": ["Prefers essay questions, definitions, problem-solving in some subjects, and applying algorithms to examples."]
+    },
+    {
+      "instructo": ["dr ghada"],
+      "exam_system": ["Sometimes prefers multiple-choice, sometimes problem-solving, and sometimes algorithm applications."]
+    },
+    {
+      "instructo": ["dr hussein"],
+      "exam_system": ["Prefers multiple-choice questions, true/false, fill-in-the-blanks, and occasionally essay questions but to a lesser extent."]
+    },
+    {
+      "instructo": ["dr mohamed hashem"],
+      "exam_system": ["Relies heavily on theory. Most of his questions are large essay-style questions that require detailed writing."]
+    },
+    {
+      "instructo": ["dr azza"],
+      "exam_system": ["Sometimes prefers multiple-choice questions, prefers definitions and algorithm writing, and occasionally includes theoretical questions but not extensively."]
+    },
+    {
+      "instructo": ["dr samir"],
+      "exam_system": ["Prefers a lot of mathematical problem-solving and mathematical proofs based on what has been studied."]
+    },
+    {
+      "instructo": ["dr ahmed el-sonbaty"],
+      "exam_system": ["Always prefers deep thinking questions, encouraging students to innovate. He avoids fixed formats and prefers applying ideas in new contexts."]
+    },
+    {
+      "instructo": ["dr diaa"],
+      "exam_system": ["Prefers multiple-choice questions, sometimes definitions, and also essay questions."]
+    },
+    {
+      "instructo": ["dr mohamed"],
+      "exam_system": ["Prefers multiple-choice questions."]
+    },
+    {
+      "instructo": ["dr howaida"],
+      "exam_system": ["Relies heavily on theory. Most questions are large essay-style or problem-solving tasks that require implementation."]
+    }
+  ]
+}
