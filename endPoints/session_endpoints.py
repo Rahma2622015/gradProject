@@ -60,5 +60,3 @@ def close_session():
 
     except Exception as e:
         return jsonify({"error": f"Internal Server Error: {str(e)}"}), 500
-
-

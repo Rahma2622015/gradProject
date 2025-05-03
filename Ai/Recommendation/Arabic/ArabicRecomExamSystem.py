@@ -2,9 +2,9 @@ import json
 import variables
 
 class ArRecommendation:
-    def __init__(self, json_path=variables.MapDataLocationAr,
+    def __init__(self, json_path=variables.ArResponseDataDocLocationRE,
                  json_path2=variables.ArResponseDataLocationRE):
-        self.task_definitionsR = self.load_definitions(json_path)
+        self.doct=self.load_definitions(json_path)
         self.responses = self.load_responses(json_path2)
         self.prev_data = {}
 
@@ -19,14 +19,14 @@ class ArRecommendation:
             print(f"Error: Failed to parse JSON from {json_path}.")
             return {}
 
-    def load_responses(self, json_path):
+    def load_responses(self, json_path2):
         try:
-            with open(json_path, "r", encoding="utf-8") as file:
+            with open(json_path2, "r", encoding="utf-8") as file:
                 responses = json.load(file)
-                print(f"[INFO] Arabic Response file loaded successfully: {json_path}")
+                print(f"[INFO] Arabic Response doc file loaded successfully: {json_path2}")
                 return responses.get("exam_data", [])
         except (FileNotFoundError, json.JSONDecodeError) as e:
-            print(f"[ERROR] Unable to load Arabic Response file: {e}")
+            print(f"[ERROR] Unable to load Arabic Response doc file: {e}")
             return []
 
     def handle_exam_recommendation(self, user_input):
@@ -53,12 +53,18 @@ class ArRecommendation:
 
         if "subject" not in self.prev_data:
             self.prev_data["subject"] = user_input.strip().lower()
-            return "ما اسم الدكتور؟", self.get_professor_options()
-        self.prev_data["professor"]=user_input.strip().lower()
+            return "ما اسم الدكتور؟",["دكتور عبدالرحمن", "دكتور عصام", "دكتور هبه", "دكتور سيد"
+                , "دكتور محمد عماد", "دكتور ايمن ايوب","دكتور هانى", "دكتور منار", "دكتور احمد جابر"
+                , "دكتور نشوى", "دكتور محمد فخرى", "دكتور ضياء","دكتور ايات"
+                ,"دكتور نيفين", "دكتور دولت", "دكتور غادة"
+                , "دكتور عزة" , "دكتور هانى","دكتور سمير", "دكتور احمد السنباطى", "دكتور حسين"
+                , "دكتور هوايدا" ,"دكتور محمد هاشم"
+            ]
+        self.prev_data["instructor"]=user_input.strip().lower()
 
         if ("department" in self.prev_data and "year" in self.prev_data and
                 "semester" in self.prev_data and "subject" in self.prev_data and
-                "professor" in self.prev_data):
+                "instructor" in self.prev_data):
             return self.get_exam_system()
         else:
             return "عذرًا، لم أتمكن من فهم البيانات بالكامل.", []
@@ -73,71 +79,50 @@ class ArRecommendation:
             ("تانية", "اول"): ["الجوريزم", "كومبيتبلتى", "برمجة2", "داتابيز"
                 , "رياضة", "انجليزى"],
             ("تانية", "تانى"): ["تركيب البيانات", "شبكات", "ويب"
-                , "اوتوماتا", "جراف", "رياضه"],
+                , "اوتوماتا", "جراف", "رياضة"],
             ("تالته", "اول"): ["جافا", "سينتاكس", "تعقد", "نظم التشغيل"
                 , "رياضه", "مالتى ميديا", "تفكير العلمى"],
             ("تالته", "تانى"): ["اخلاقيات البحث العلمى", "كومبيناتركس", "كومبلير"
                 , "جرافكس", "اندرويد", "داتابيز متقدمه", "كريبتو"],
-            ("رابعه", "اول"): ["مهارات", "ذكاء اصطناعى", "بارليل", "مشروع"
+            ("رابعه", "اول"): ["مهارات العمل", "ذكاء اصطناعى", "بارليل", "مشروع"
                 , "ايمدج", "سايبر", "جيمتورى"],
-            ("رابعه", "تانى"): ["بايو", "سوفت وير", "مشروع"
+            ("رابعه", "تانى"): ["بايو", "سوفت وير"
                 , "ذكاء اصطناعى متقدمة", "داتا ماينيج"]
         }
         return subjects.get((self.prev_data.get("year"), self.prev_data.get("semester")), [])
 
-
-    def get_professor_options(self):
-        professors = {
-            ("اولى", "اول"): ["دكتور عبدالرحمن", "دكتور عصام", "دكتور هبه", "دكتور سيد", "دكتور هبه , دكتور سيد"
-                , "دكتور محمد عماد", "دكتور ايمن", "دكتور محمد عماد , دكتور ايمن",
-                                  "دكتور ايات"],
-            ("اولى", "تانى"): ["دكتور هانى", "دكتور منار", "دكتور احمد جابر", "دكتور منار , دكتور احمد جابر"
-                , "دكتور نشوى", "دكتور محمد فخرى", "دكتور ضياء", "دكتور محمد فخرى , دكتور ضياء",
-                                  "دكتور نجلاء", "دكتور عبدالرحمن"],
-
-            ("تانية", "اول"): ["دكتور نيفين", "دكتور دولت", "دكتور غادة",
-                                   "دكتور وائل", "دكتور منار"
-                    , "دكتور احمد", "دكتور نيفين و دكتور دولت", "دكتور منار و دكتور احمد"],
-            ("تانية", "تانى"): ["دكتور وائل", "دكتور غادة", "دكتور حسين", "دكتور محمد"
-                    , "دكتور نشوى", "دكتور عزة", "دكتور وائل و دكتور غادة"
-                    , "دكتور محمد و دكتور نشوى", "دكتور هانى و دكتور سمير"],
-            ("تالته", "اول"): ["دكتور نشوى", "دكتور عزة", "دكتور نيفين", "دكتور محمد"
-                    , "دكتور احمد", "دكتور حسين", "دكتور نيفين و دكتور محمد"],
-            ("تالته", "تانى"): ["دكتور عبدالرحمن", "دكتور نيفين", "دكتور وائل",
-                                    "دكتور حسين", "دكتور ضياء"],
-            ("رابعه", "اول"): ["دكتور فخرى", "دكتور عزة", "دكتور هوايدا"
-                    , "دكتور ضياء", "دكتور غادة"],
-            ("رابعه", "تانى"): ["دكتور هاشم ", "دكتور فخرى"
-                    , "دكتور حسين", "دكتور عزة", "دكتور هوايدا", "دكتور دولت"
-                    , "دكتور فخرى و دكتور هاشم", "دكتور هوايدا و دكتور عزة"]
-        }
-        return professors.get((self.prev_data.get("year"), self.prev_data.get("semester")), [])
-
     def get_exam_system(self):
-        for exam in self.responses:
-            if (self.prev_data["department"].lower() in [d.lower() for d in exam["department"]] and
-                    self.prev_data["year"].lower() in [y.lower() for y in exam["level"]] and
-                    self.prev_data["semester"].lower() in [s.lower() for s in exam["semester"]] and
-                    self.prev_data["subject"].lower() in [sub.lower() for sub in exam["subject"]] and
-                    self.prev_data["professor"].lower() in [pro.lower() for pro in exam["instructor"]]):
+        exam_system_response = ""
+        exam_format_message = ""
 
-                print(f"[INFO] Match found! Exam system: {exam['exam_format']}")
-                exam_format = exam['exam_format']
-                parts = []
+        if not exam_system_response:
+            for doctor in self.doct:
+                if self.prev_data["instructor"].lower() in [d.lower() for d in doctor["instructo"]]:
+                    professor_name = ', '.join(doctor['instructo']) if isinstance(doctor['instructo'], list) else \
+                    doctor['instructo']
+                    exam_sys = doctor["exam_system"]
+                    exam_system_text = ', '.join(exam_sys)
+                    exam_system_response = f"نظام الامتحان ل{professor_name}: \n{exam_system_text}"
+                    break
+        if not exam_format_message:
+            for exam in self.responses:
+                if (self.prev_data["department"].lower() in [di.lower() for di in exam["department"]] and
+                        self.prev_data["year"].lower() in [y.lower() for y in exam["level"]] and
+                        self.prev_data["semester"].lower() in [s.lower() for s in exam["semester"]] and
+                        self.prev_data["subject"].lower() in [sub.lower() for sub in exam["subject"]]):
+                    exam_format = exam['topics']
+                    subject_name = ', '.join(exam['subject']) if isinstance(exam['subject'], list) else exam['subject']
 
-                if "منتصف الترم" in exam_format:
-                    parts.append(f"امتحان منتصف الترم: {', '.join(exam_format['منتصف الترم'])}")
-                if "النهائى" in exam_format:
-                    parts.append(f"الامتحان النهائي: {', '.join(exam_format['النهائى'])}")
-                if "مشروع" in exam_format:
-                    parts.append(f"مشروع المادة: {', '.join(exam_format['مشروع'])}")
+                    exam_format_text = ', '.join(exam_format)
+                    exam_format_message = f"شكل الامتحان لمادة  {subject_name}:\n{exam_format_text}"
+                    break
 
-                exam_system_str = " و ".join(parts)
-                self.prev_data.clear()
+        if not exam_format_message:
+            exam_format_message = "لا يوجد داتا متاحه لهذه المادة."
+        if not exam_system_response:
+            exam_system_response = "لا يوجد دكتور متاح نظامه."
 
-                subject_name = ', '.join(exam['subject']) if isinstance(exam['subject'], list) else exam['subject']
-                return f"نظام الامتحانات لمادة {subject_name} هو: {exam_system_str}", []
-
-        print(f"[WARNING] No match for: {self.prev_data}")
+        if exam_system_response and exam_format_message:
+            return f"{exam_format_message}\n\n, {exam_system_response}", []
         self.prev_data.clear()
-        return "لا توجد بيانات متاحة لنظام الامتحان لهذه المادة.", []
+        return "لا يوجد نظام امتحانات متاح لهذه المعلومات", []
