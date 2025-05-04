@@ -25,21 +25,39 @@ class ChatTask(Enum):
     EnrollmentTask = 21
     AskHelpingTask = 22
     AskNameTask = 23
-    CourseQueryTask = 24
-    ProfessorQueryTask = 25
     ExamSystem = 26
     UnderstandingTask =27
     ContradictionTask = 28
     CourseSystem=29
-    PrerequisitesTask=30
     AssessGraduation=31
     ReasonsGraduation=32
     PreventDelays=33
     UnderstandRules=34
     ScheduleTask=35
     MultiCourseRecommendationTask = 36
-    CourseHours=37
 
-    GPARequirements=38
     Training=39
     AdjustCreditLoad=40
+    OptimizeStudyPlan=41
+    LabAttendance=42
+    GoodGPA=43
+    SelectDepartment=44
+    EnhanceCareerReadiness=45
+    TransferBetweenDepartments=46
+    GPARequirements = 47
+
+    #Database tasks
+    CourseQueryTask = 24
+    ProfessorQueryTask = 25
+    PrerequisitesTask=30
+    CourseHours=37
+    CourseDegrees=38
+    HeadOfDepartment=48
+    ProfessorOfCourse=49
+    DepartmentOfCourse=50
+    CourseOfProfessor=51
+    CourseOfAssistant=52
+    AssistantOfCourse=53
+    AssistantTask=54
+    PersonRoleQueryTask=55
+    CourseRoleQueryTask=56

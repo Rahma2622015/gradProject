@@ -102,18 +102,7 @@
                     , "choose", "based", "which", "select", "semester", "way", "take"
                     , "use", "decide", "make", "choices", "suitable"]
     },
-"ProfessorQueryTask": {
-    "QuestionKeywords": ["who"],
-    "VerbKeywords": ["be"],
-    "SubjectKeywords": [],
-    "ObjectKeywords": ["professor", "teacher", "advisor", "person","dr","dr."]
-},
-"CourseQueryTask": {
-    "QuestionKeywords": ["what"],
-    "VerbKeywords": ["be"],
-    "SubjectKeywords": [],
-    "ObjectKeywords": ["course", "subject", "lesson", "module"]
-},
+
   "ExamSystem": {
     "QuestionKeywords": ["how", "what", "be"],
     "VerbKeywords": ["be", "do", "work", "like", "design"],
@@ -123,17 +112,11 @@
       "differ", "function", "test", "tough", "follow", "categories","cs"]
   },
 
-"PrerequisitesTask": {
-  "QuestionKeywords": ["which", "what", "can", "show", "do", "does", "is", "are"],
-  "VerbKeywords": ["be", "do", "must", "require", "need", "take", "complete", "finish","before"],
-  "SubjectKeywords": ["student", "course", "courses","for"],
-  "ObjectKeywords": ["prerequisite", "prerequisites", "requirement", "requirements", "needed", "required", "depend", "depend on"]
-},
   "AssessGraduation": {
     "QuestionKeywords":["what","haw","in"],
     "VerbKeywords": ["be","does","play","can"],
     "SubjectKeywords": ["selection","influence","my","way"],
-    "ObjectKeywords": ["graduation","course","role","plan","timeline","schedule","process"]
+    "ObjectKeywords": ["graduation","role","plan","timeline","schedule","process"]
   },
     "ReasonsGraduation":{
       "QuestionKeywords":["what"],
@@ -182,31 +165,6 @@
       "suitable", "worth", "decision", "choice", "option", "me"
     ]
   },
-  "CreditHoursTask": {
-      "QuestionKeywords": ["how", "what", "do", "can"],
-      "VerbKeywords": ["be", "many", "long", "tell"],
-      "SubjectKeywords": ["hours", "hour", "credit",
-                                    "duration", "study", "you"],
-     "ObjectKeywords": ["program", "credit", "computer", "science", "cs",
-                                   "consist", "overall", "enroll","studying", "allotted",
-                                   "minimum", "number", "single","me", "required",
-                                   "single","duration","total", "include",
-                                   "term", "workload"]
-    },
-  "AcademicAdvisorTask": {
-      "QuestionKeywords": ["what", "who", "can"],
-      "VerbKeywords": ["be", "tell", "responsible", "take", "let", "provide", "act"],
-      "SubjectKeywords": ["we", "you"],
-      "ObjectKeywords": ["me", "meant", "academic", "advisor", "function"
-                    , "opinion", "serve", "meaning", "mean", "advising", "role"
-                    , "charge", "guidance", "student"]
-    },
-  "AskHelpingTask": {
-        "QuestionKeywords": ["can", "could", "would"],
-        "VerbKeywords": ["help", "assist", "aid", "support","ask"],
-        "SubjectKeywords": ["you", "me"],
-        "ObjectKeywords": ["question", "task", "issue","this","with"]
-    },
  "MultiCourseRecommendationTask": {
   "QuestionKeywords": ["can", "would", "help", "recommend", "please"],
   "VerbKeywords": ["choose", "select", "pick", "register", "take", "enroll", "recommend", "need", "want", "thinking"],
@@ -223,13 +181,7 @@
     "only", "just", "among", "from", "out of", "list", "options", "these", "those"
   ]
 },
-  "CourseHours":
-  {
-    "QuestionKeywords": ["what","how"],
-    "VerbKeywords": ["be"],
-    "SubjectKeywords": ["credit","hours","hour","for","of","degree","total"],
-    "ObjectKeywords": ["course","courses"]
-  },
+
   "GPARequirements":
   {
     "QuestionKeywords": ["what","which","how"],
@@ -250,5 +202,61 @@
     "VerbKeywords":["be","allow","exceed","choose","register","specify"],
     "SubjectKeywords": ["limit","more","less","additional","fewer"],
     "ObjectKeywords": ["number","credit","hours"]
-  }
+  },
+  "OptimizeStudyPlan": {
+    "QuestionKeywords": ["what","how"],
+    "VerbKeywords": ["can","be","complete","finish","take","ensure","should","meet","manage"],
+    "SubjectKeywords": ["strategy","efficient","degree","steps"],
+    "ObjectKeywords": ["time","requirements","effectively","schedule"]
+  },
+  "LabAttendance": {
+    "QuestionKeywords": ["be","do","how"],
+    "VerbKeywords": ["consider","affect","impact","attend"],
+    "SubjectKeywords": ["attendance","lab","grade"],
+    "ObjectKeywords": ["important","final","performance","session","influence"]
+  },
+  "GoodGPA": {
+    "QuestionKeywords": ["how","what"],
+    "VerbKeywords": ["be","can","do","ensure","should","improve","achieve","take"],
+    "SubjectKeywords": ["tips","gpa","high","good","maintain","strong"],
+    "ObjectKeywords": ["steps","formula","strategies"]
+  },
+  "SelectDepartment": {
+    "QuestionKeywords": ["what","how"],
+    "VerbKeywords": ["would","should","select","pick","do","decide","know","choose","advice"],
+    "SubjectKeywords": ["department","right","goals","interests"],
+    "ObjectKeywords": ["consider","suits","skills","matches","fits"]
+  },
+  "EnhanceCareerReadiness": {
+    "QuestionKeywords": ["how","what"],
+    "VerbKeywords": ["should","be","take","get","prepare","can"],
+    "SubjectKeywords": ["market","career","job","employment","employer"],
+    "ObjectKeywords": ["ready","experience","gradution","future","attractive","skills"]
+  },
+  "TransferBetweenDepartments": {
+    "QuestionKeywords": ["what","be","how","can"],
+    "VerbKeywords": ["be","need","transfer","change","allow"],
+    "SubjectKeywords": ["major","criteria","switch","rules"],
+    "ObjectKeywords": ["guide","preferable","limit","anytime"]
+  },
+
+"PersonRoleQueryTask": {
+  "QuestionKeywords": ["who"],
+  "VerbKeywords": ["be","teach"],
+  "SubjectKeywords": ["professor", "doctor", "assistant", "helper", "dr.", "dr","manager"],
+  "ObjectKeywords": []
+},
+"CourseRoleQueryTask": {
+  "QuestionKeywords": [
+    "what", "which", "how many","how"
+  ],
+  "VerbKeywords": [
+    "be", "relate", "concern", "teach", "explain", "instruct", "belong", "associate","require"
+  ],
+  "SubjectKeywords": [
+    "course", "subject", "lesson", "module", "number", "requirement", "requirements", "hour", "hours", "grade", "grades","requirement"
+  ],
+  "ObjectKeywords": []
+}
+
 }

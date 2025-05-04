@@ -8,7 +8,7 @@ class ArabicTokenizers:
     def __init__(self):
         self.nlp = nlp
         self.pronouns = {"أنا", "أنت", "هو", "هي", "نحن", "أنتم", "أنهن", "هم", "هن"}
-        with open(variables.NamesinCorrectArabic, "r", encoding="utf-8") as f:
+        with open(variables.NamesInCorrectArabic, "r", encoding="utf-8") as f:
             self.known_names = set(f.read().splitlines())
         with open(variables.CourseNameArabic, "r", encoding="utf-8") as f:
             self.course_names = sorted(f.read().splitlines(), key=len, reverse=True)

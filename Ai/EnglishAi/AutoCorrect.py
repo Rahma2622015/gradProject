@@ -1,7 +1,7 @@
 from autocorrect import Speller
 import variables
 class AutoCorrector:
-    def __init__(self, names_file=variables.NamesinCorrectEnglish):
+    def __init__(self, names_file=variables.NamesInCorrectEnglish):
         self.spell = Speller()
         self.names = self.load_names(names_file)
 
