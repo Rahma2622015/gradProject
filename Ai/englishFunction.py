@@ -45,15 +45,17 @@ def is_trivial_task(tokens, f) -> bool:
 def is_recommendation_complete(s: str) -> bool:
     s = s.strip().lower()
     return (
-            s == "No matching exam data or professor information." or
-            s.startswith("the exam system for") or
+            s == "no matching exam data or professor information." or
+            s.startswith("exam format for the subject") or
             s == "sorry the answer not matched with my data " or
             s == "sorry, i couldn't find any questions for this course." or
             s == "error retrieving question data." or
             s.startswith("your score is") or
             s == "sorry, i couldn't detect any valid course names from your message." or
             s == "no current course data found." or
-            s.startswith("based on your answers")
+            s.startswith("based on your answers") or
+            s == "no exam data available for this subject." or
+            s == "no professor data available for this subject."
     )
 
 
@@ -84,6 +86,7 @@ def langEnglish(message, storage):
             print(f"[DEBUG] Updated prev_data after response: {storage.get_prev_data()}")
             if is_recommendation_complete(s):
                 storage.clear_data()
+                storage.set_current_task(None)
                 return s, options, False
             if not options:
                 storage.clear_data()
@@ -95,6 +98,7 @@ def langEnglish(message, storage):
             s, options = course_recommender.receive_answer(message.strip())
             if is_recommendation_complete(s):
                 storage.clear_data()
+                storage.set_current_task(None)
                 return s, options, False
             if not options:
                 storage.clear_data()
@@ -115,6 +119,7 @@ def langEnglish(message, storage):
                 s, options = recom_reply.course_selection_recommender.handle_answer(message)
             if is_recommendation_complete(s):
                 storage.clear_data()
+                storage.set_current_task(None)
                 return s, options, False
             else:
                 return s, options, True

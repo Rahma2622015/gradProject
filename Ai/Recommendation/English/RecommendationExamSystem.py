@@ -50,34 +50,84 @@ class Recommendation:
 
         if "subject" not in self.prev_data:
             self.prev_data["subject"] = user_input.strip().lower()
-            return "Who is the professor?",[
-            "dr abdelrahman", "dr essam", "dr heba", "dr sayed",
-            "dr mohamed emad", "dr ayman ayoub", "dr hany", "dr manar",
-            "dr ahmed gaber", "dr nashwa", "dr mohamed fakhry", "dr diaa",
-            "dr ayat", "dr nevin", "dr doalat", "dr ghada",
-            "dr azza", "dr samir", "dr ahmed el-sonbaty", "dr hussein",
-            "dr howaida", "dr mohamed hashem", "dr mohamed"]
+            return "Who is the professor?",self.get_professor_options()
         self.prev_data["instructor"]=user_input.strip().lower()
 
         if ("department" in self.prev_data and "year" in self.prev_data  and
              "semester" in self.prev_data and "subject" in self.prev_data and
             "instructor" in self.prev_data):
+            print(self.prev_data)
             return self.get_exam_system()
         else:
             return "sorry the answer not matched with my data ",[]
 
     def get_subject_options(self):
         subjects = {
-            ("freshman","one"):["saftey","human rights","calculus & integration","physics","chemistry","statistics"],
-            ("freshman","two"):["calculus & integration 2","Basic concepts in mathematics","html & css","c++","logic design","english"],
-            ("sophomore", "one"): ["algorithm", "computability", "oop", "database", "linear algebra", "english"],
-            ("sophomore", "two"): ["data structure", "network", "web programming", "automata", "graph", "ordinary differential equation"],
-            ("junior", "one"): ["java", "syntax", "complexity", "operating system", "abstract algebra", "multimedia", "scientific thinking"],
-            ("junior", "two"): ["scientific research ethics", "combinatorics", "compiler", "graphics", "android", "advanced data base", "crypto"],
-            ("senior", "one"): ["skills", "artificial intelligence", "parallel", "project", "image processing", "cyber security", "Computational geometry"],
-            ("senior", "two"): ["bioinformatics", "software engineering", "advanced artificial intelligence", "data mining"]
+            ("freshman","one"):["saftey","human rights","calculus & integration",
+                                "physics","chemistry","statistics"],
+            ("freshman","two"):["calculus & integration 2",
+                                "Basic concepts in mathematics","html & css","c++"
+                                ,"logic design","english"],
+            ("sophomore", "one"): ["algorithm", "computability",
+                                   "oop", "database", "linear algebra", "english"],
+            ("sophomore", "two"): ["data structure", "network", "web programming",
+                                   "automata", "graph", "ordinary differential equation"],
+            ("junior", "one"): ["java", "syntax", "complexity", "operating system",
+                                "abstract algebra", "multimedia", "scientific thinking"],
+            ("junior", "two"): ["scientific research ethics", "combinatorics",
+                                "compiler", "graphics", "android", "advanced data base"
+                                , "crypto"],
+            ("senior", "one"): ["skills", "artificial intelligence", "parallel",
+                                "project", "image processing", "cyber security"
+                                , "computational geometry"],
+            ("senior", "two"): ["bioinformatics", "software engineering",
+                                "advanced artificial intelligence", "data mining"]
         }
         return subjects.get((self.prev_data.get("year"), self.prev_data.get("semester")), [])
+
+    def get_professor_options(self):
+        category_subjects_map = {
+            "computer":["oop","data structure", "web programming","network",
+                        "operating system","java","android","crypto", "compiler",
+                         "graphics", "advanced data base" , "database","multimedia",
+                        "bioinformatics", "software engineering",
+                        "advanced artificial intelligence", "data mining",
+                        "html & css", "c++", "logic design","algorithm", "computability",
+                        "automata", "graph","syntax", "complexity", "parallel",
+                        "artificial intelligence""image processing", "cyber security",
+                        "computational geometry", "combinatorics"],
+
+            "math": [ "calculus & integration","statistics","calculus & integration 2",
+                        "Basic concepts in mathematics", "linear algebra",
+                        "ordinary differential equation","abstract algebra",
+                      "computational geometry"],
+
+            "phy": ["physics"],
+
+            "chem": ["chemistry"],
+
+            "require": ["saftey","human rights","english", "scientific thinking",
+                        "scientific research ethics","skills"]
+        }
+        professor_by_category = {
+            "computer":["dr nashwa" ,"dr mohamed fakhry" ,"dr neevin","dr doalat",
+                        "dr ghada","dr diaa" ,"dr mohamed hashem" ,"dr azza",
+                        "dr hussein" ,"dr howaida"],
+
+            "math": ["dr ayat","dr hany" , "dr manar", "dr ahmed gaber"
+                       , "dr samir","dr ahmed el-sonbaty","dr ghada" ,"dr essam"],
+
+            "phy": ["dr heba","dr sayed"],
+
+            "chem": ["dr ayman ayoub" ,"dr mohamed emad"],
+
+            "require": ["dr abdelrahman","dr mohamed"]
+        }
+
+        subject = self.prev_data.get("subject", "").strip()
+        category = next((cat for cat, subjects in category_subjects_map.items() if subject in subjects), "متطلب")
+
+        return professor_by_category.get(category, [])
 
     def get_exam_system(self):
         exam_system_response = ""

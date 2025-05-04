@@ -28,7 +28,7 @@ course_recommender = ArRecommendationSystem(data_storage, memory,dbs)
 def is_ar_recommendation_complete(s: str) -> bool:
     s = s.strip()
     return (
-        s == "لا يوجد نظام امتحانات متاح لهذه المعلومات" or
+        s == "لا يوجد نظام امتحانات متاح لهذه المعلومات." or
         s.startswith("نظام الامتحانات ل") or
         s == "اسف لا يوجد اسئلة متاحة لهذا الكورس" or
         s == "لا توجد بيانات حالية عن المقرر." or
@@ -39,7 +39,8 @@ def is_ar_recommendation_complete(s: str) -> bool:
         s.startswith("بناءً على إجاباتك") or
         s == "حدث خطأ أثناء جلب بيانات السؤال." or
         s== "نوع الإدخال غير صحيح. من فضلك أدخل قائمة أو جملة تحتوي على أسماء المقررات." or
-        s=="عذرًا، لم أتمكن من استخراج أسماء مقررات صالحة من رسالتك."
+        s=="عذرًا، لم أتمكن من استخراج أسماء مقررات صالحة من رسالتك." or
+        s.startswith("نظام الامتحان")
     )
 
 def langArabic(message, storage):
@@ -58,8 +59,8 @@ def langArabic(message, storage):
         s, options = "", []
         current_task = storage.get_current_task()
 
-        if current_task == "ExamRecom":
-            print("[DEBUG] Continuing arabic Exam Recommendation Flow")
+        if current_task == "ExamSystem":
+            print("[DEBUG] Continuing Exam Recommendation Flow")
             s, options = recom_replyAr.recommender.handle_exam_recommendation(message)
             print(f"[DEBUG] Updated prev_data after response: {storage.get_prev_data()}")
             if is_ar_recommendation_complete(s):
@@ -68,6 +69,7 @@ def langArabic(message, storage):
             if not options:
                 storage.clear_data()
             return s, options, True
+
         elif current_task == "CourseSystem":
             print("[DEBUG] Continuing Course Recommendation Flow")
             s, options = course_recommender.receive_answer(message.strip()) if isinstance(
@@ -109,8 +111,8 @@ def langArabic(message, storage):
                 return "I'm not sure how to answer that.", [], False
             else:
                 if any(task[0] == ChatTask.ExamRecom for task in ARtasks):
-                    print("[DEBUG] Handling Arabic Exam Recommendation Task")
-                    storage.set_current_task("ExamRecom")
+                    print("[DEBUG] Handling Exam Recommendation Task")
+                    storage.set_current_task("ExamSystem")
                     s, options = recom_replyAr.recommender.handle_exam_recommendation("")
                     return s, options, True
                 if any(task[0] == ChatTask.courseSystem for task in ARtasks):
