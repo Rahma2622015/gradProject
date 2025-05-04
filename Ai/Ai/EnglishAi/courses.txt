@@ -1,0 +1,234 @@
+mathematics
+math
+physics
+chemistry
+english
+statistics
+safs101
+safs 101
+religion and safety
+os
+html & css
+html&css
+cpp
+oop
+web
+java
+ai
+crypto
+bio
+cyber
+religionandSafety
+chem101
+chem 101
+general chemistry 
+generalchemistry
+chem 103
+chem103
+generalchemistrylab
+general chemistry lab
+huri101
+huri 101
+human rights
+humanrights
+math101
+math 101
+calculus
+phys101
+phys 101
+stat101
+stat 101
+introduction to statistics
+introductiontostatistics
+comp 102
+comp102
+introduction to computer skills
+introductiontocomputerskills
+comp104
+comp 104
+computer programming
+computerprogramming
+comp106
+comp 106
+logic design
+logicdesign
+engl102
+engl 102
+english language
+englishlanguage
+inco102
+inco 102
+introduction to computers
+introductiontocomputers
+math102
+math 102
+math104
+math 104
+fundamentalconceptsin mathematics
+comp201
+comp 201
+design and analysis of algorithms
+designandanalysisofalgorithms
+comp203
+comp 203
+theory of computation
+theoryofcomputation
+comp205
+comp 205
+computer programming2
+comp207
+comp 207
+database systems
+databasesystems
+database
+engl201
+engl 201
+math203
+math 203
+linear algebra
+linearalgebra
+comp202
+comp 202
+data structures
+datastructures
+comp204
+comp 204
+computernetworks
+computer networks
+comp206
+comp 206
+web programming
+webprogramming
+comp208
+comp 208
+automata theory
+automatatheory
+comp210
+comp 210
+graphics algorithms
+graphicsalgorithms
+math202
+math 202
+ordinary differential equations
+ordinarydifferentialequations
+comp 301  
+comp301
+advanced programming  
+advancedprogramming
+comp 302  
+comp302
+algorithmic combinatorics  
+algorithmiccombinatorics  
+comp 303  
+comp303
+programming language semantics and syntax  
+programminglanguagesemanticsandsyntax  
+comp 304  
+comp304
+compiler design  
+compilerdesign  
+comp 305  
+comp305
+complexity theory  
+complexitytheory  
+comp 306  
+comp306
+computer graphics  
+computergraphics  
+comp 307
+comp307  
+operating systems  
+operatingsystems  
+comp 308  
+comp308
+cryptography  
+cryptography  
+comp 309  
+comp309
+multimedia systems  
+multimediasystems  
+comp 310  
+comp310
+advanced web programming  
+advancedwebprogramming  
+comp 314  
+comp314
+advanced database systems  
+advanceddatabasesystems  
+c++
+cpp
+oop
+skill 401
+skill401
+work skills  
+workskills
+comp 401  
+comp401
+artificial intelligence  
+artificialintelligence  
+comp 403  
+comp403
+parallel and distributed processing  
+parallelanddistributedprocessing  
+comp 405  
+comp405
+computer projecta
+computerproject a 
+comp 407 
+comp407 
+image processing  
+imageprocessing  
+comp 409  
+comp409
+network security  
+networksecurity  
+comp 411  
+comp411
+computational engineering  
+computationalengineering  
+comp 402
+comp402
+bio
+bioinformatics
+comp 404
+comp404
+software engineering
+softwareengineering
+comp 406
+comp406
+computer project b
+computer projectb
+comp408
+comp 408
+advancedai
+advanced ai
+ai
+comp416
+comp 416 
+data mining
+datamining
+automata
+logic
+algorithm
+oop
+web
+graph
+java
+html&css
+cpp
+network
+combinatorics
+syntax
+compiler
+graphics
+complexity
+os
+crypto
+multimedia
+android
+bio
+parallel
+image
+software
+cyber
+geometry
