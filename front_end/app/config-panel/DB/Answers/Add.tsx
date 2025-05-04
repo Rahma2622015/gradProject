@@ -30,7 +30,7 @@ const AddAnswerForm = ({ onAnswerAdded }) => {
       if (response.ok) {
         alert("Answer added successfully");
         onAnswerAdded(result);
-        setAnswer({ answer: "", score: ""});
+        setAnswer({ answer: "", score: "",question_id:"",answer_arabic:"",question:""});
       } else {
         alert(`Error: ${result.error}`);
       }

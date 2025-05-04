@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import styles from "./Config.module.css";
 import variables from "../../variables.json";
+
 function ConfigPage() {
   const [config, setConfig] = useState({});
   const [newKey, setNewKey] = useState("");
@@ -9,106 +10,119 @@ function ConfigPage() {
   const [fileName, setFileName] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-   const [jsonFiles, setJsonFiles] = useState([]);
+  const [jsonFiles, setJsonFiles] = useState([]);
 
- useEffect(() => {
-  const fetchJsonFiles = async () => {
-    try {
-      const res = await fetch(variables.list_json_files);
-      const files = await res.json();
-      console.log("Files from API:", files);  // تحقق مما يتم استلامه من الـ API
-
-      if (Array.isArray(files)) {
-        setJsonFiles(files);
-      } else {
-        console.error("Unexpected response format:", files);
-        setJsonFiles([]); // safe fallback
+  useEffect(() => {
+    const fetchJsonFiles = async () => {
+      try {
+        const res = await fetch(variables.list_json_files);
+        const files = await res.json();
+        if (Array.isArray(files)) {
+          setJsonFiles(files);
+        } else {
+          setJsonFiles([]);
+        }
+      } catch (err) {
+        console.error("Error fetching JSON files:", err);
+        setJsonFiles([]);
       }
+    };
+    fetchJsonFiles();
+  }, []);
+
+  const fetchSelectedFile = async (selectedFile) => {
+    setIsLoading(true);
+    try {
+      const encodedPath = encodeURIComponent(selectedFile);
+      const res = await fetch(`${variables.get_json}/${encodedPath}`);
+      const data = await res.json();
+      setConfig(data.content);
+      setFileName(selectedFile);
     } catch (err) {
-      console.error("Error fetching JSON files:", err);
-      setJsonFiles([]); // fallback in case of error
+      console.error("Failed to load JSON:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  fetchJsonFiles();
-}, []);
-
-
-  const fetchSelectedFile = async (selectedFile: string) => {
-  setIsLoading(true);
-  try {
-    const encodedPath = encodeURIComponent(selectedFile);
-    const res = await fetch(`${variables.get_json}/${encodedPath}`);
-    const data = await res.json();
-    setConfig(data.content);
-    setFileName(selectedFile);
-  } catch (err) {
-    console.error("Failed to load JSON:", err);
-  } finally {
-    setIsLoading(false);
-  }
-};
-
-
- const saveFileToServer = async () => {
-  if (!fileName) return alert("No file loaded.");
-
-  setIsLoading(true);
-  try {
-    const response = await fetch(`https://192.168.1.9:3001/save_json/${fileName}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ content: config }),
-    });
-
-    const data = await response.json();
-    if (response.ok) {
-      alert("File saved successfully!");
-    } else {
-      alert(data.message || "Failed to save file");
-    }
-  } catch (error) {
-    console.error("Save error:", error);
-  } finally {
-    setIsLoading(false);
-  }
-};
-    const deleteKeyByPath = (path) => {
-      const keys = path.split(".");
-      const updated = { ...config };
-      let current = updated;
-
-      for (let i = 0; i < keys.length - 1; i++) {
-        if (!current[keys[i]]) return;
-        current = current[keys[i]];
+  const saveFileToServer = async () => {
+    if (!fileName) return alert("No file loaded.");
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${variables.save_json}/${fileName}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: config }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert("File saved successfully!");
+      } else {
+        alert(data.message || "Failed to save file");
       }
+    } catch (error) {
+      console.error("Save error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-      delete current[keys[keys.length - 1]];
-      setConfig(updated);
-    };
+ function deleteAtPath(obj, path) {
+  if (!obj || !Array.isArray(path) || path.length === 0) return;
+
+  const lastKey = path[path.length - 1];
+  const parentPath = path.slice(0, -1);
+  const parent = parentPath.reduce((acc, key) => acc?.[key], obj);
+
+  if (!parent) return;
+
+  if (Array.isArray(parent)) {
+    const index = parseInt(lastKey, 10);
+    if (!isNaN(index)) {
+      parent.splice(index, 1);
+    }
+  } else if (typeof parent === "object" && lastKey in parent) {
+    delete parent[lastKey];
+  }
+
+  const target = parentPath.reduce((acc, key) => acc?.[key], obj);
+  if (
+    (Array.isArray(target) && target.length === 0) ||
+    (typeof target === "object" && target !== null && Object.keys(target).length === 0)
+  ) {
+    deleteAtPath(obj, parentPath);
+  }
+}
+
 
   const updateNestedValue = (path, value) => {
     const keys = path.split(".");
     const updated = { ...config };
     let current = updated;
-
     for (let i = 0; i < keys.length - 1; i++) {
       if (!current[keys[i]]) current[keys[i]] = {};
       current = current[keys[i]];
     }
-
     current[keys[keys.length - 1]] = value;
     setConfig(updated);
   };
 
-  const handleKeyChange = (e, oldKey) => {
+  const handleKeyChange = (e, fullPath) => {
     const newKey = e.target.value;
-    if (newKey && newKey !== oldKey) {
-      const updated = { ...config };
-      updated[newKey] = updated[oldKey];
-      delete updated[oldKey];
+    if (!newKey) return;
+
+    const keys = fullPath.split(".");
+    const updated = { ...config };
+    let current = updated;
+    for (let i = 0; i < keys.length - 1; i++) {
+      if (!current[keys[i]]) return;
+      current = current[keys[i]];
+    }
+
+    const oldKey = keys[keys.length - 1];
+    if (newKey !== oldKey) {
+      current[newKey] = current[oldKey];
+      delete current[oldKey];
       setConfig(updated);
     }
   };
@@ -120,66 +134,110 @@ function ConfigPage() {
     );
   };
 
-  const renderObject = (obj, parentKey = "", level = 0) => {
-    return Object.entries(obj).map(([key, value]) => {
-      const fullPath = parentKey ? `${parentKey}.${key}` : key;
-      const paddingLeft = `${level * 20}px`;
+  const addNestedEntry = (parentKey) => {
+    const newKey = prompt("Enter new key:");
+    const newValue = prompt("Enter value (you can use JSON format):");
 
-      if (searchTerm && !key.toLowerCase().includes(searchTerm.toLowerCase())) {
-        return null;
+    if (newKey !== null && newValue !== null) {
+      let parsedValue;
+      try {
+        parsedValue = JSON.parse(newValue);
+      } catch {
+        parsedValue = newValue;
       }
 
+      const updated = { ...config };
+      let current = updated;
+      const keys = parentKey.split(".");
+      for (let i = 0; i < keys.length; i++) {
+        current = current[keys[i]];
+      }
+
+      current[newKey] = parsedValue;
+      setConfig(updated);
+    }
+  };
+
+  const renderObject = (obj, path = "") => {
+    return Object.entries(obj).map(([key, value]) => {
+      const fullPath = path ? `${path}.${key}` : key;
+
       return (
-        <div key={fullPath} className={styles.row} style={{ paddingLeft }}>
-          <input
-            type="text"
-            value={key}
-            onChange={(e) => handleKeyChange(e, key)}
-            className={styles.input}
-          />
-          <label className={styles.label}>:</label>
+        <div key={fullPath} className={styles.entry}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <strong>{key}:</strong>
+           <button
+              className={`${styles.button} ${styles.deleteButton}`}
+              onClick={() => {
+                const pathArray = fullPath.split(".");
+                const updated = JSON.parse(JSON.stringify(config));
+                deleteAtPath(updated, pathArray);
+                setConfig(updated);
+              }}
+              title="Delete this entry"
+            >
+              Delete
+            </button>
+          </div>
           {typeof value === "object" && value !== null ? (
-            <div className={styles.nestedObject}>
-              {renderObject(value, fullPath, level + 1)}
+            <div className={styles.nested}>
+              {renderObject(value, fullPath)}
+              <button
+                className={styles.button}
+                onClick={() => addNestedEntry(fullPath)}
+                title="Add Entry"
+              >
+                Add Entry
+              </button>
             </div>
           ) : (
             <input
               type="text"
-              value={value}
+              value={value === null || value === undefined ? "" : value}
               onChange={(e) => updateNestedValue(fullPath, e.target.value)}
               className={styles.input}
             />
           )}
-         <button
-            className={styles.deleteButton}
-            onClick={() => deleteKeyByPath(fullPath)}
-            title="Delete"
-             >
-            🗑️
-          </button>
-        </div>
-      );
-    }).filter(Boolean);
+        </div>)
+    });
   };
-
   const addEntry = () => {
     if (!newKey) return;
-
     let parsedValue;
     try {
       parsedValue = JSON.parse(newValue);
-    } catch (e) {
+    } catch {
       parsedValue = newValue;
     }
+    const keys = newKey.split(".");
+    const updated = { ...config };
+    let current = updated;
 
-    setConfig((prev) => ({ ...prev, [newKey]: parsedValue }));
+    for (let i = 0; i < keys.length - 1; i++) {
+      if (!current[keys[i]]) current[keys[i]] = {};
+      current = current[keys[i]];
+    }
+
+    const lastKey = keys[keys.length - 1];
+
+    if (Array.isArray(current[lastKey])) {
+      current[lastKey].push(parsedValue);
+    } else if (current[lastKey] && typeof current[lastKey] === "object") {
+      current[lastKey] = { ...current[lastKey], ...parsedValue };
+    } else if (current[lastKey] !== undefined) {
+      current[lastKey] = [current[lastKey], parsedValue];
+    } else {
+      current[lastKey] = parsedValue;
+    }
+
+    setConfig(updated);
     setNewKey("");
     setNewValue("");
   };
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>JSON Configuration Editor</h2>
+      <h2 className={styles.title}> JSON Configuration Editor</h2>
 
       <div className={styles.topBar}>
         <input
@@ -195,7 +253,7 @@ function ConfigPage() {
           onChange={(e) => fetchSelectedFile(e.target.value)}
           className={styles.selectInput}
         >
-          <option value="">📂 Select a JSON file</option>
+          <option value=""> Select a JSON file</option>
           {jsonFiles.length > 0 ? (
             jsonFiles.map((file) => (
               <option key={file} value={file}>
@@ -203,23 +261,26 @@ function ConfigPage() {
               </option>
             ))
           ) : (
-            <option disabled>لا توجد ملفات JSON</option>
+            <option disabled> No JSON files available</option>
           )}
         </select>
-
       </div>
 
       <div className={styles.card}>
-        <h3 className={styles.cardTitle}>Editing: {fileName || "No file selected"}</h3>
+        <h3 className={styles.cardTitle}>
+          Editing: <span className={styles.fileName}>{fileName || "No file selected"}</span>
+        </h3>
         {Object.keys(config).length > 0 ? (
           renderObject(Object.fromEntries(filterConfig(config, searchTerm)))
         ) : (
-          <p className={styles.emptyText}>No config loaded yet. Please select a file.</p>
+          <p className={styles.emptyText}>
+             No config loaded yet. Please select a file.
+          </p>
         )}
       </div>
 
       <div className={styles.addEntrySection}>
-        <h4 className={styles.sectionTitle}>➕ Add New Entry</h4>
+        <h4 className={styles.sectionTitle}> Add New Entry</h4>
         <div className={styles.inputGroup}>
           <input
             type="text"
@@ -235,16 +296,19 @@ function ConfigPage() {
             onChange={(e) => setNewValue(e.target.value)}
             className={styles.input}
           />
-          <button onClick={addEntry} className={styles.addButton}>Add</button>
+          <button onClick={addEntry} className={styles.addButton}>
+             Add
+          </button>
         </div>
       </div>
 
-      <button onClick={saveFileToServer} className={styles.saveButton}>
-        {isLoading ? " Saving..." : " Save"}
-      </button>
+      <div className={styles.footer}>
+        <button onClick={saveFileToServer} className={styles.saveButton}>
+          {isLoading ? " Saving..." : " Save"}
+        </button>
+      </div>
     </div>
   );
 }
 
 export default ConfigPage;
-
