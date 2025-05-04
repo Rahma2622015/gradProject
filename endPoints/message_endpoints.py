@@ -5,6 +5,7 @@ from Modules.server_instance import server_function
 
 
 json_function=jsonFunction()
+data_file= '../session_data.json'
 
 def messages():
     try:
@@ -23,12 +24,12 @@ def messages():
             return jsonify({"error": "Client ID is required"}), 400  # Bad Request
 
         try:
-            reply_text, reply_list, _ = receive(user_message, client.data, client_id)
+            reply_text, reply_list, _ = receive(user_message, client.data)
 
             for c in server_function.client_list:
                 if c.endSession():
                     server_function.client_list.remove(c)
-                    json_function.remove_data(c.id)
+                    json_function.remove_data(c.id,data_file)
 
             return jsonify({"reply": reply_text, "list": reply_list})
 

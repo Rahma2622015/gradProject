@@ -1,4 +1,5 @@
 from flask import Blueprint
+
 from endPoints.table_endpoints import get_tables, create_table, delete_table
 
 table_blueprint = Blueprint('table_routes', __name__)
