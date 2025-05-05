@@ -7,7 +7,7 @@ class func:
         return token in ["ما", "ماذا", "أين", "متى", "من", "لمن", "أي", "لماذا", "كيف","هل"]
 
     def isGreetingTool(self, token: str) -> bool:
-        greetings = ["أهلا", "مرحبا"  ]
+        greetings = ["أهلا","اهلا", "مرحبا"  ]
         return any(greet in token for greet in greetings)
 
     def isThanksTool(self, token: str) -> bool:

@@ -14,5 +14,5 @@ def handle_professor_tasks(r, data):
         return choice(data.get("AssistantOfCourse", [])).format(x=r[1], y=r[2])
     elif r[0] == ChatTask.HeadOfDepartment:
         return choice(data.get("HeadOfDepartment", [])).format(x=r[1], y=r[2])
-    else:
-        return choice(data.get("Unknown", []))
+
+    return None
