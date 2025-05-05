@@ -44,5 +44,5 @@ class MappingTrivial:
                         res.append((ChatTask.StoreTask, sentence[verbIndex - 1], sentence[verbIndex + 1]))
                 else:
                     res.append((ChatTask.UnknownTask,))
-
+        print("mappingTask:",res)
         return res if res else [(ChatTask.UnknownTask,)]

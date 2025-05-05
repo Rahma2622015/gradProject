@@ -1,8 +1,7 @@
 from flask import jsonify, request
 
-from Database.database import Professor
 from Modules.helper_functions import get_uploaded_session
-
+from Database.DatabaseTabels.professor import Professor
 
 def get_professor():
     try:

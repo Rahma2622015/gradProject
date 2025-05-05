@@ -65,17 +65,19 @@ function ConfigPage() {
     } finally {
       setIsLoading(false);
     }
-  };
-
+  } catch (err) {
+    console.error("Error fetching JSON files:", err);
+    setJsonFiles([]);
+  }
+};
  function deleteAtPath(obj, path) {
   if (!obj || !Array.isArray(path) || path.length === 0) return;
+
 
   const lastKey = path[path.length - 1];
   const parentPath = path.slice(0, -1);
   const parent = parentPath.reduce((acc, key) => acc?.[key], obj);
-
   if (!parent) return;
-
   if (Array.isArray(parent)) {
     const index = parseInt(lastKey, 10);
     if (!isNaN(index)) {
@@ -239,15 +241,28 @@ function ConfigPage() {
     <div className={styles.container}>
       <h2 className={styles.title}> JSON Configuration Editor</h2>
 
-      <div className={styles.topBar}>
+
+    <div className={styles.card}>
+      <h3 className={styles.cardTitle}>
+        Editing: <span className={styles.fileName}>{fileName || "No file selected"}</span>
+      </h3>
+      {Object.keys(config).length > 0 ? (
+        renderObject(Object.fromEntries(filterConfig(config, searchTerm)))
+      ) : (
+        <p className={styles.emptyText}>📭 No config loaded yet. Please select a file.</p>
+      )}
+    </div>
+
+    <div className={styles.addEntrySection}>
+      <h4 className={styles.sectionTitle}>➕ Add New Entry</h4>
+      <div className={styles.inputGroup}>
         <input
           type="text"
-          placeholder=" Search Task by Name"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className={styles.searchInput}
+          placeholder=" Key (e.g. app.name)"
+          value={newKey}
+          onChange={(e) => setNewKey(e.target.value)}
+          className={styles.input}
         />
-
         <select
           value={fileName}
           onChange={(e) => fetchSelectedFile(e.target.value)}
@@ -301,14 +316,17 @@ function ConfigPage() {
           </button>
         </div>
       </div>
+    </div>
 
       <div className={styles.footer}>
         <button onClick={saveFileToServer} className={styles.saveButton}>
           {isLoading ? " Saving..." : " Save"}
         </button>
       </div>
+
     </div>
-  );
+  </div>
+);
 }
 
 export default ConfigPage;

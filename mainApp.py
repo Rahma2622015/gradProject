@@ -16,6 +16,7 @@ from routes.professor_routes import professor_blueprint
 from routes.course_professor_routes import course_professor_blueprint
 from routes.new_table_routes import new_table_blueprint
 from routes.table_routes import table_blueprint
+from routes.ai_config_routes import ai_config_blueprint
 
 chat_bot = Flask(__name__)
 chat_bot.secret_key = os.urandom(24)
@@ -33,7 +34,7 @@ chat_bot.register_blueprint(prerequisite_blueprint)
 chat_bot.register_blueprint(table_blueprint)
 chat_bot.register_blueprint(course_professor_blueprint)
 chat_bot.register_blueprint(new_table_blueprint)
-
+chat_bot.register_blueprint(ai_config_blueprint)
 
 if __name__ == '__main__':
 

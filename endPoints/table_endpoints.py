@@ -3,7 +3,6 @@ import os
 from flask import jsonify, request
 from Modules.helper_functions import uploaded_db_path
 
-
 def get_tables(db_name):
     db_file = f"{db_name}.db"
     if not os.path.exists(db_file):
@@ -32,9 +31,8 @@ def create_table(db_name):
     if not table_name.replace("_", "").isalnum():
         return jsonify({"error": "Invalid table name."}), 400
 
-    uploaded_db_path = f"{db_name}.db"
     if not os.path.exists(uploaded_db_path):
-        return jsonify({"error": f"Database '{db_name}' does not exist."}), 404
+        return jsonify({"error": f"Uploaded database does not exist."}), 404
 
     try:
         conn = sqlite3.connect(uploaded_db_path)
@@ -46,7 +44,7 @@ def create_table(db_name):
         """)
         conn.commit()
         conn.close()
-        return jsonify({"message": f"Table '{table_name}' created successfully in database '{db_name}'."}), 200
+        return jsonify({"message": f"Table '{table_name}' created successfully in uploaded database."}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -62,7 +60,7 @@ def delete_table(db_name):
         return jsonify({"error": "Table name is required."}), 400
 
     if not os.path.exists(uploaded_db_path):
-        return jsonify({"error": f"Database '{db_name}' does not exist."}), 404
+        return jsonify({"error": f"Uploaded database does not exist."}), 404
 
     try:
         conn = sqlite3.connect(uploaded_db_path)

@@ -109,6 +109,24 @@
   "AcademicAdvisorTask": [
        "An academic advisor helps with course selection and career guidance. They have your academic record and assist in making study-related decisions."
     ],
+
+  "AssessGraduation": ["If your GPA is below 2.0, you will not be able to register for morethan12credithours per semester. If your GPA continues to decline and remains below2.0forfour semesters,you may be dismissed from the college. Each semesterwithaGPA below 2.0 will be considered a probationary period, whichmayimpactyourlength of college studies."],
+  "ReasonsGraduation":["You are permitted to register for a course outside its regular semester and have it countedasa graduation course,  but subject to specific conditions:There must be an open semester for other courses in addition to this course. This course must be the only one registered under the graduation course. Registration for graduation courses is not permitted during the summer semester."],
+  "PreventDelays":["Based on your ability, it is preferable to register for the number of hours specified inthe studenthandbook for each semester."],
+  "UnderstandRules":["Simply put, to register for courses at the beginning of the semester, you need to followthedatessetby the college and consult your academic advisor to make sure you're registering for the right courses.If you're late by more than a week, your registration won’t be final until you get approval fromthedepartment. If there are any disagreements between departments, you can still register until thesecond week, but you will have to pay a late fee. Also, during the first two weeks, you can add or drop any course, as long as your academicadvisorapproves and there are available spots on the course. After that, your schedule is finalized. After the two-week period, no more course additions or drops are allowed.”"],
+  "ScheduleTask": ["The schedule cannot be modified after course registration. The schedule is determinedcentrallyaccording to criteria set by the college."],
+  "GPARequirements": ["To specialize in computer science, students are admitted first into the\n mathematics department. Students are ranked based on their first-semester grades\n (35%), while for the single-semester computer science major, 60% of their\n second-semester grades are taken into account. The percentages may change\n from year to year."],
+  "Training": ["During the third year of leave, internships are offered at companies or within the college. If you have\n an internship opportunity at a particular company, you can apply for that opportunity as well. It is\n essential that you have completed the internship before graduation, as completing the internship is\n required for graduation."],
+  "AdjustCreditLoad": ["“Based on your GPA, if it is above 3.0 in your final semester, you may submit a request, which must\n be approved by your academic advisor and college. This is called \"graduation reasons.\" You may\n register for your regular semester courses or choose to register for fewer courses\n"],
+
+  "OptimizeStudyPlan": ["Commitment to attendance and study"],
+    "LabAttendance": ["Oh, it's important."],
+    "GoodGPA": ["You will rely on yourself for self-study, regular studying, and commitment to attendance to achieve a good GPA."],
+    "SelectDepartment": ["It depends on what you prefer."],
+    "EnhanceCareerReadiness": ["You can use your summer vacation to develop your skills through self-study or enrolling in online courses like those offered by Coursera, which the university provides to us for free. These courses help you acquire practical skills that are in demand in the job market, and you can also benefit from them by strengthening the practical aspects that we don't always get to cover in our studies."],
+  "TransferBetweenDepartments": ["It is allowed within the narrowest limits, and it is preferable to ask the guide."],
+
+
     "ProfessorQueryTask": [
     "{x} is a {y}.",
     "Professor {x} is a {y} ",
@@ -130,24 +148,58 @@
   "Before taking {y}, you need to pass {x}."
 ],
 
-
-
-  "AssessGraduation": ["If your GPA is below 2.0, you will not be able to register for morethan12credithours per semester. If your GPA continues to decline and remains below2.0forfour semesters,you may be dismissed from the college. Each semesterwithaGPA below 2.0 will be considered a probationary period, whichmayimpactyourlength of college studies."],
-  "ReasonsGraduation":["You are permitted to register for a course outside its regular semester and have it countedasa graduation course,  but subject to specific conditions:There must be an open semester for other courses in addition to this course. This course must be the only one registered under the graduation course. Registration for graduation courses is not permitted during the summer semester."],
-  "PreventDelays":["Based on your ability, it is preferable to register for the number of hours specified inthe studenthandbook for each semester."],
-  "UnderstandRules":["Simply put, to register for courses at the beginning of the semester, you need to followthedatessetby the college and consult your academic advisor to make sure you're registering for the right courses.If you're late by more than a week, your registration won’t be final until you get approval fromthedepartment. If there are any disagreements between departments, you can still register until thesecond week, but you will have to pay a late fee. Also, during the first two weeks, you can add or drop any course, as long as your academicadvisorapproves and there are available spots on the course. After that, your schedule is finalized. After the two-week period, no more course additions or drops are allowed.”"],
-  "ScheduleTask": ["The schedule cannot be modified after course registration. The schedule is determinedcentrallyaccording to criteria set by the college."],
  "CourseHours":
  [
-   "course {x} has {y} credit_hours and with degree {z}.",
-   "For the course {x}, you will earn {y} credit hours and the grade is {z}.",
-   "The course {x} offers {y} credit hours, and the degree awarded is {z}.",
-   "You will gain {y} credit hours in course {x}, with a degree of {z}.",
-   "Course {x} involves {y} credit hours, and the degree you will earn is {z}.",
-   "The course {x} has a total of {y} credit hours, and the degree is {z}."
+   "course {x} has {y} credit_hours.",
+   "For the course {x}, you will earn {y}.",
+   "The course {x} offers {y} credit hours.",
+   "You will gain {y} credit hours in course {x}.",
+   "Course {x} involves {y} credit hours.",
+   "The course {x} has a total of {y} credit hours."
  ],
-  "GPARequirements": ["To specialize in computer science, students are admitted first into the\n mathematics department. Students are ranked based on their first-semester grades\n (35%), while for the single-semester computer science major, 60% of their\n second-semester grades are taken into account. The percentages may change\n from year to year."],
-  "Training": ["During the third year of leave, internships are offered at companies or within the college. If you have\n an internship opportunity at a particular company, you can apply for that opportunity as well. It is\n essential that you have completed the internship before graduation, as completing the internship is\n required for graduation."],
-  "AdjustCreditLoad": ["“Based on your GPA, if it is above 3.0 in your final semester, you may submit a request, which must\n be approved by your academic advisor and college. This is called \"graduation reasons.\" You may\n register for your regular semester courses or choose to register for fewer courses\n"]
+
+  "CourseDegrees": [
+  "Course {x} has a degree of {y}.",
+  "For the course {x}, the grade is {y}.",
+  "The degree awarded in course {x} is {y}.",
+  "You will earn a degree of {z} in course {y}.",
+  "In course {x}, your grade will be {y}.",
+  "Course {x} results in a degree of {y}."
+],
+  "HeadOfDepartment": [
+  "The current head of the {x} department is professor {y}",
+  "Dr.{y} is the head of the {x} department.",
+  "Doctor {x} is currently headed by {y}"
+
+],
+"ProfessorOfCourse": [
+  "The professor of course {x} is Dr. {y}.",
+  "Dr. [y] teaches subject {x}.",
+  "course {x} is taught by Dr. {y}."
+],
+
+"DepartmentOfCourse": [
+  "This course belongs to the {x} department.",
+  "The responsible department for this course is {x}."
+],
+
+"CourseOfProfessor": [
+  "Dr. {x} teaches the course {y}.",
+  "Among the courses taught by Dr. {x} is {y}."
+],
+
+"CourseOfAssistant": [
+  "The teaching assistant {x} assists in the course {y}.",
+  "Among the courses assisted by {x} is {y}."
+],
+
+"AssistantOfCourse": [
+  "The assistant of this course{x} is {y}.",
+  "{y} is the teaching assistant for {x}."
+],
+"AssistantTask": [
+  "The assistant {x} is {y} ",
+  "The teaching assistant {x} is {y} "
+]
 
 }

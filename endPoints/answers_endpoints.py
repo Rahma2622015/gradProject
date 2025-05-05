@@ -1,7 +1,7 @@
 from flask import jsonify, request
 
-from Database.database import Answers
 from Modules.helper_functions import get_uploaded_session
+from Database.DatabaseTabels.question import Answers
 
 
 def get_answers():

@@ -64,6 +64,8 @@ class match:
         prp_pos = fun.getPOS("PRP", temp_position)
         if prp_pos == -1:
             prp_pos = fun.getPOS("NNS", temp_position)
+        if prp_pos == -1:
+            prp_pos = fun.getPOS("NN", temp_position)
         prp = temp_tokens[prp_pos] if prp_pos != -1 else None
         if prp and self.match_for_pos(task, "SubjectKeywords", prp):
             max_matches += 1
@@ -72,8 +74,4 @@ class match:
         for token in temp_tokens:
             if self.match_for_pos(task, "ObjectKeywords", token):
                 max_matches += 0.2
-        extra_keywords = ["require", "requires", "prerequisite", "prerequisites", "complete", "needed"]
-        for token in tokens:
-            if token.lower() in extra_keywords:
-                max_matches += 0.5
         return max_matches

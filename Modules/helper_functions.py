@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker
 
 uploaded_db_path = "university_information.db"
 uploaded_json_paths = {}
+
 def get_uploaded_session():
     global uploaded_db_path
     if not uploaded_db_path or not os.path.exists(uploaded_db_path):

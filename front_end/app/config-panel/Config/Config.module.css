@@ -1,5 +1,6 @@
 .container {
   max-width: 900px;
+
   margin: 40px auto;
   padding: 24px;
   background-color: #ffffff;
@@ -109,6 +110,7 @@
 .addButton {
   background-color: #4caf50;
   color: white;
+
   border: none;
   padding: 8px 14px;
   margin: 6px 4px;
@@ -175,4 +177,5 @@
 
 .deleteButton:hover {
   background-color: #b02a37;
+
 }

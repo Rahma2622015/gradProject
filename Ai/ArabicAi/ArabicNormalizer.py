@@ -36,6 +36,8 @@ class ArabicNormalize:
             (r"\دكتور\b", "دكتور"),
             (r"\دكتوره\b", "دكتور"),
             (r"\دكتورة\b", "دكتور"),
+            (r"\ماده\b", "مادة"),
+            (r"\هى\b", "هي"),
             (r"\bمعيد\b", "مدرس مساعد"),
             (r"\bمعيدة\b", "مدرسة مساعدة"),
             (r"\الالي\b"," الالى")
@@ -53,8 +55,8 @@ class ArabicNormalize:
 
 
     def replace_ending_y_with_alef_maqsura(self, word: str) -> str:
-        if word.endswith("ي") and len(word) > 2:
-            return word[:-1] + "ى"
+        if word.endswith("ى") and len(word) > 2:
+            return word[:-1] + "ي"
         return word
 
     def remove_diacritics(self, text: str) -> str:

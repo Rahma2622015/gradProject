@@ -29,6 +29,7 @@ function ChatPage() {
   const [answeredFromList, setAnsweredFromList] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
+
     useEffect(() => {
       const handleClickOutside = (event: Event) => {
        if (

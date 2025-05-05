@@ -1,8 +1,7 @@
 from flask import jsonify, request
 
-from Database.database import CourseQuestion
 from Modules.helper_functions import get_uploaded_session
-
+from Database.DatabaseTabels.question import CourseQuestion
 
 def get_question():
     try:

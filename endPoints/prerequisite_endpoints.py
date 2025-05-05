@@ -1,6 +1,6 @@
 from flask import jsonify
 from Modules.helper_functions import get_uploaded_session
-from Database.database import course_prerequisites
+from Database.DatabaseTabels.course import course_prerequisites
 
 def get_pre():
     try:

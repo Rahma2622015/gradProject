@@ -85,16 +85,10 @@ class match:
                 temp_tokens.pop(prp_pos)
                 temp_position.pop(prp_pos)
 
-        keywords = ["مقرر", "مادة", "درس", "ماده", "وحدة", "وحده", "موضوع""استاذ", "الدكتورة", "الدكتوره",
-                    "دكتور", "دكتوره", "دكتورة", "الاستاذ", "استاذه",  "استاذة","استاذ","معلم","شخص","د","د",
-                    " الاستاذة", "الاستاذه","متطلب", "متطلبات", "شرط", "شروط", "مطلوب", "ضروري", "معتمد", "معتمده" ,"معتمدة"]
 
         for token in temp_tokens:
             if self.match_for_pos(task, "مفعول", token):
-                if token in keywords:
-                    max_matches += 2
-                else:
-                    max_matches += 0.2
+                max_matches += 0.2
 
         return max_matches
 
