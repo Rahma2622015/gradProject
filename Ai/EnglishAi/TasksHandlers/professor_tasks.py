@@ -56,15 +56,8 @@ def handle_professor_tasks(task, D: DatabaseStorage):
     elif role == "course":
         professors = D.courseProfessor.get_professors_of_course(course_name)
         assistants = D.courseAssistant.get_assistants_of_course(course_name)
-
         if professors or assistants:
-            combined_info = ""
-            if professors:
-                combined_info += " Professors:\n" + "\n".join(f"- {p}" for p in professors) + "\n\n"
-            if assistants:
-                combined_info += " Assistants:\n" + "\n".join(f"- {a}" for a in assistants)
-
-            responses.append((ChatTask.ProfessorOfCourse, course_name, combined_info.strip()))
+            responses.append((ChatTask.ProfessorOfCourse, course_name,professors,assistants))
         else:
             responses.append((ChatTask.UnknownTask, "", "لم يتم التعرف على المطلوب."))
     else:

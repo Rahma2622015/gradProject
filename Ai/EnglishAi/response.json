@@ -167,9 +167,9 @@
   "Course {x} results in a degree of {y}."
 ],
   "HeadOfDepartment": [
-  "The current head of the {x} department is {y}",
-  "{y}is the head of the {x} department.",
-  "{x} is currently headed by {y}"
+  "The current head of the {x} department is professor {y}",
+  "Dr.{y} is the head of the {x} department.",
+  "Doctor {x} is currently headed by {y}"
 
 ],
 "ProfessorOfCourse": [

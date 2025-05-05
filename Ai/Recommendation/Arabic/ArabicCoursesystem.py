@@ -1,6 +1,6 @@
 from Database.Datastorage_DB import DatabaseStorage
 from Modules.dataStorage import DataStorage
-from Database.Courses.QuestionsAndAnswers import CourseQuestionsAndAnswers
+from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 
 class ArRecommendationSystem:
     def __init__(self, data_storage: DatabaseStorage, memory: DataStorage,DS : CourseQuestionsAndAnswers):

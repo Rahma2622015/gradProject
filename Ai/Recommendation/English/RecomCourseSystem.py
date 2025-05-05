@@ -1,14 +1,16 @@
 from Database.Datastorage_DB import DatabaseStorage
 from Modules.dataStorage import DataStorage
+from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 
 class RecommendationSystem:
-    def __init__(self, data_storage: DatabaseStorage, memory: DataStorage):
+    def __init__(self, data_storage: DatabaseStorage, memory: DataStorage,DS : CourseQuestionsAndAnswers):
         self.data_storage = data_storage
         self.memory = memory
         self.user_data = {}
+        self.DSb = DS
 
     def start_recommendation(self, course_name, big_system=False):
-        questions = self.data_storage.courseQuestion.get_course_questions(course_name,'en')
+        questions = self.DSb.get_course_questions(course_name, 'en')
         if not questions or isinstance(questions, str):
             return "Sorry, I couldn't find any questions for this course.", []
 
@@ -35,7 +37,7 @@ class RecommendationSystem:
 
             return result
 
-        question_data_list = self.data_storage.courseQuestion.get_all_questions_with_answers(question_ids[question_index],'en')
+        question_data_list = self.DSb.get_all_questions_with_answers(question_ids[question_index],'en')
         if not question_data_list or isinstance(question_data_list[0], str):
             return "Error retrieving question data.", []
 

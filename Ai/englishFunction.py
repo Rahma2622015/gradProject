@@ -15,6 +15,7 @@ from Ai.EnglishAi.SemanticTaskMapper import SemanticTaskMapper
 from Ai.EnglishAi.GrammerChecker import EnglishGrammarChecker
 from Ai.EnglishAi.functionsForMapping import functions
 from endPoints.ai_config_endpoints import load_ai_config
+from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 import variables
 
 f=functions()
@@ -31,7 +32,8 @@ recom_reply = ReplyModuleRe()
 bigram_model = BigramModel(variables.Bigrams)
 data_storage = DatabaseStorage()
 memory = DataStorage()
-course_recommender = RecommendationSystem(data_storage, memory)
+dbs=CourseQuestionsAndAnswers()
+course_recommender = RecommendationSystem(data_storage, memory,dbs)
 use_semantic_mapper = True
 
 def is_trivial_task(tokens, f) -> bool:

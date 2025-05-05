@@ -1,6 +1,6 @@
 from Modules.dataStorage import DataStorage
-from Ai.ArabicReceving import arabicFunction
-from Ai.EnglishReceving import englishFunction
+from Ai import arabicFunction
+from Ai import englishFunction
 
 import re
 
@@ -18,11 +18,10 @@ def receive(message: str, storage: DataStorage):
     languag = detect_language(message)
 
     if languag == "English":
-       return  englishFunction.langEnglish(message, storage)
+       return  englishFunction.langEnglish(message,storage)
 
     elif languag == "Arabic":
-        return arabicFunction.langArabic(message, storage)
+        return arabicFunction.langArabic(message,storage)
 
     else:
         return "Sorry, I can't recognize this language.", None, None
-

@@ -7,20 +7,22 @@ from Ai.EnglishAi.Tokeniztion import Tokenizers
 from Database.Datastorage_DB import DatabaseStorage
 from Modules import DataStorage
 from Ai.Recommendation.English.recommultiCourses import MultiCourseRecommendationSystem
+from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 import variables
 
 data_storage = DatabaseStorage()
 memory = DataStorage()
+dbs=CourseQuestionsAndAnswers()
 
 class ReplyModuleRe:
     def __init__(self, json_path=variables.ResponseDataLocationRE):
         self.load_responses(json_path)
 
         self.recommender = Recommendation()
-        self.course_dynamic_recommender = RecommendationSystem(data_storage, memory)
+        self.course_dynamic_recommender = RecommendationSystem(data_storage, memory,dbs)
         self.tokenizer = Tokenizers()
         self.course_selection_recommender = MultiCourseRecommendationSystem(
-            data_storage, memory, RecommendationSystem(data_storage, memory)
+            data_storage, memory, RecommendationSystem(data_storage, memory,dbs)
         )
 
     def load_responses(self, json_path):

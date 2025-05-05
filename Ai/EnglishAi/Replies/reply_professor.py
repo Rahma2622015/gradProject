@@ -9,7 +9,7 @@ def handle_professor_tasks(r, data):
     elif r[0] == ChatTask.AssistantTask:
         return choice(data.get("AssistantTask", [])).format(x=r[1], y=r[2])
     elif r[0] == ChatTask.ProfessorOfCourse:
-        return choice(data.get("ProfessorOfCourse", [])).format(x=r[1], y=r[2])
+        return choice(data.get("ProfessorOfCourse", [])).format(x=r[1], y=r[2],z=r[3])
     elif r[0] == ChatTask.AssistantOfCourse:
         return choice(data.get("AssistantOfCourse", [])).format(x=r[1], y=r[2])
     elif r[0] == ChatTask.HeadOfDepartment:

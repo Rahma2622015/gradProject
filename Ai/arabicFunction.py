@@ -8,8 +8,8 @@ from Ai.Recommendation.Arabic.ArabicCoursesystem import ArRecommendationSystem
 from Ai.ArabicAi.chattask import ChatTask
 from Ai.ArabicAi.SemanticTaskMapper import SemanticTaskMapperArabic
 from Modules.dataStorage import DataStorage
-from Ai.EnglishAi.Datastorage_DB import DatabaseStorage
-from Database.Courses.QuestionsAndAnswers import CourseQuestionsAndAnswers
+from Database.Datastorage_DB import DatabaseStorage
+from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 
 use_semantic_armapper=True
 ARmapper = mapping()

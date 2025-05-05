@@ -7,7 +7,7 @@ from Ai.EnglishAi.Tokeniztion import Tokenizers
 from Database.Datastorage_DB import DatabaseStorage
 from Modules import DataStorage
 from Ai.Recommendation.Arabic.arabicRecomMulticourses import ArMultiCourseRecommendationSystem
-from Database.Courses.QuestionsAndAnswers import CourseQuestionsAndAnswers
+from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 import variables
 

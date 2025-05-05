@@ -124,4 +124,3 @@ class DataStorage:
     def __str__(self):
         """ طباعة تفاصيل البيانات المخزنة """
         return f"Session Data: {self.session_data}, Course Scores: {self.course_scores}, General Data: {self.data}"
-
