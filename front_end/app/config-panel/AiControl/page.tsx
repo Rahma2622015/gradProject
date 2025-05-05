@@ -74,13 +74,13 @@ export default function AIConfigPage() {
         <label className={styles.label}>Use Semantic Mapper</label>
         <button
           className={`${styles.button} ${
-            config.use_semantic_mapper ? styles.enabled : styles.disabled
+            config.use_semantic_mapper ? styles.disabled : styles.enabled
           }`}
           onClick={() =>
             handleChange('use_semantic_mapper', !config.use_semantic_mapper)
           }
         >
-          {config.use_semantic_mapper ? 'Enabled' : 'Disabled'}
+          {config.use_semantic_mapper ? 'Disabled' : 'Enabled'}
         </button>
       </div>
 
@@ -88,13 +88,26 @@ export default function AIConfigPage() {
         <label className={styles.label}>Use Semantic ARMapper</label>
         <button
           className={`${styles.button} ${
-            config.use_semantic_armapper ? styles.enabled : styles.disabled
+            config.use_semantic_armapper ? styles.disabled : styles.enabled
           }`}
           onClick={() =>
             handleChange('use_semantic_armapper', !config.use_semantic_armapper)
           }
         >
-          {config.use_semantic_armapper ? 'Enabled' : 'Disabled'}
+          {config.use_semantic_armapper ? 'Disabled' : 'Enabled'}
+        </button>
+      </div>
+      <div className={styles.field}>
+        <label className={styles.label}>show_grammar_feedback</label>
+        <button
+          className={`${styles.button} ${
+            config.show_grammar_feedback ? styles.disabled : styles.enabled
+          }`}
+          onClick={() =>
+            handleChange('show_grammar_feedback', !config.show_grammar_feedback)
+          }
+        >
+          {config.show_grammar_feedback ? 'Disabled' : 'Enabled'}
         </button>
       </div>
 

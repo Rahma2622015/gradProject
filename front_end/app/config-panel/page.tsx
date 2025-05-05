@@ -21,8 +21,10 @@ function login() {
     const[email,setEmail]=useState("");
     const[password,setPassword]=useState("");
     const allowedUsers = [
-        { email: "Rahma_Mohamed@gmail.com", password: "rahma123" },
+        { email: "RahmaMo@gmail.com", password: "roro@1344" },
         { email: "Heba_gamal@gmail.com", password: "heba123" },
+        { email: "hagarkamel@gmail.com", password: "koko123" },
+        { email: "hagar123@gmail.com", password: "gogo456" },
       ];
     const formSubmitHandler = (e:React.FormEvent)=>{
         e.preventDefault();
