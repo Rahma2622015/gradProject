@@ -78,13 +78,13 @@ class MultiCourseRecommendationSystem:
         return f"For the course {course_name}, the first question is:\n{response}", options
 
     def _finalize_recommendations(self):
-        pre = Preprocessors()
         initial_message = self.user_data.get("initial_message")
 
         if initial_message:
             tokens = tokenizer.tokenize(initial_message)
             pos_tags = tokenizer.pos_tag(tokens)
-            top_n = pre.extract_first_number(tokens, pos_tags)
+            top_n = pre.extract_first_number([tokens], [pos_tags])
+            print(top_n)
         else:
             top_n = None
 

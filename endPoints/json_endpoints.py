@@ -2,8 +2,9 @@ import json
 from flask import jsonify, request
 import os
 from Modules.helper_functions import uploaded_json_paths
+import variables
 
-BASE_DIR = os.path.abspath(r"D:\gradProject")
+BASE_DIR = os.path.abspath(variables.base_ssl)
 
 def list_json_files():
     try:
