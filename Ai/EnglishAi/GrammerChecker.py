@@ -13,7 +13,6 @@ class EnglishGrammarChecker:
             matches = self.tool.check(sentence)
             grammar_matches = [m for m in matches if "spelling mistake" not in m.message.lower()]
             results.append(len(grammar_matches) == 0)
-        print("Grammar", results)
         return results
 
     def get_errors(self, lemmatized_sentences: list[list[str]]) -> list[list[str]]:
@@ -25,5 +24,4 @@ class EnglishGrammarChecker:
             matches = self.tool.check(sentence)
             errors = [match.message for match in matches]
             all_errors.append(errors)
-            print("All errors:", all_errors)
         return all_errors

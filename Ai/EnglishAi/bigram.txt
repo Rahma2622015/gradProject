@@ -18967,8 +18967,8 @@ my start 3
 only you 6
 must i 5
 i not 36
-be hagar 1
-hagar . 1
+be <Name> 1
+<Name> . 1
 huge fan 38
 fan of 181
 of google 4
