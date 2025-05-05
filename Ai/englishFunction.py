@@ -6,7 +6,7 @@ from Ai.EnglishAi.Preprocessing import Preprocessors
 from Ai.EnglishAi.AutoCorrect import AutoCorrector
 from Ai.EnglishAi.MappingTrivialTasks import MappingTrivial
 from Ai.Recommendation.English.ReplyModuleR import ReplyModuleRe
-from Ai.EnglishAi.BigramModel import BigramModel
+from Ai.EnglishAi.bigram_model import BigramModel
 from Ai.EnglishAi.chattask import ChatTask
 from Modules.dataStorage import DataStorage
 from Database.Datastorage_DB import DatabaseStorage
@@ -29,7 +29,7 @@ t = Tokenizers()
 p = Preprocessors()
 a = AutoCorrector()
 recom_reply = ReplyModuleRe()
-bigram_model = BigramModel(variables.Bigrams)
+bigram_model = BigramModel(variables.Bigrams,variables.NamesinCorrectEnglish)
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
@@ -67,13 +67,17 @@ def config():
 def use_semantic_mapperfun():
     return config().get("use_semantic_mapper", True)
 
+def show_grammar_feedback_enabled():
+    return config().get("show_grammar_feedback", True)
+
 def langEnglish(message, storage):
+    global g1
     try:
         message_lower = p.lowercase(message)
         corrected_message = a.correct_text(message_lower)
         tokens = t.tokenize(corrected_message)
         pos = t.pos_tag(tokens)
-        if not use_semantic_mapperfun:
+        if not use_semantic_mapperfun():
          tokens = p.preprocess(tokens, pos)
         prev_data = storage.get_prev_data()
         print(f"[DEBUG] Current task before processing: {storage.get_current_task()}")
@@ -129,20 +133,29 @@ def langEnglish(message, storage):
         # ---------------------- Start New Task ----------------------
         else:
             if is_trivial_task(tokens, f):
-                bigram_model.sentence_probability(tokens)
-                print("[DEBUG] Mapping using TrivialMapper")
+                bigram_results = bigram_model.sentence_probability(tokens)
+                if any(result[0] == "UnknownTask" for result in bigram_results):
+                    print(" Result: UnknownTask (at least one bigram is zero)")
+                    return "Hmm, I'm not quite sure how to respond to that. Could you try rephrasing? 🤔", [], False
+                print(" Mapping using TrivialMapper")
                 tasks = trivial_mapper.mapToken(tokens, pos)
+                g1, g2 = [True], []
             else:
-                bigram_model.sentence_probability(tokens)
-                grammer.is_correct(tokens)
-                grammer.get_errors(tokens)
-                if use_semantic_mapperfun:
-                    print("[DEBUG] Mapping using SemanticTaskMapper")
+
+                if use_semantic_mapperfun():
+                    g1 = grammer.is_correct(tokens)
+                    g2 = grammer.get_errors(tokens)
+                    print(" Mapping using SemanticTaskMapper")
                     tasks = m.mapToken(tokens, pos)
                 else:
-                    print("[DEBUG] Mapping using TaskMapper")
+                    bigram_results = bigram_model.sentence_probability(tokens)
+                    if any(result[0] == "UnknownTask" for result in bigram_results):
+                        print(" Result: UnknownTask (at least one bigram is zero)")
+                        return "Oh dear, I think I missed something there! Would you mind explaining it differently? I'd love to get this right for you.💕.", [], False
+                    print(" Mapping using TaskMapper")
+                    g1, g2 = [True], []
                     tasks = mapper.mapToken(tokens, pos)
-            print(f"[DEBUG] Identified tasks: {tasks}, type: {type(tasks)}")
+                print(f" Identified tasks: {tasks}, type: {type(tasks)}")
 
             if all(task[0] == ChatTask.UnknownTask for task in tasks):
                 print("[DEBUG] No valid recommendation task found, skipping recommendation.")
@@ -194,7 +207,15 @@ def langEnglish(message, storage):
         if not options:
             options = []
 
-        return s, options, False
+            # === Grammar Checking: Show errors if they exist ===
+            if use_semantic_mapperfun():
+                if any(g == False for g in g1):
+                    flat_errors = [error for sublist in g2 for error in sublist]
+                    if flat_errors and show_grammar_feedback_enabled():
+                        grammar_feedback = "However, I noticed some grammar issues:\n- " + "\n- ".join(flat_errors)
+                        s = f"{grammar_feedback + "i guess this what you mean 😊"}\n\n{s}"
+
+                return s, options, False
 
     except Exception as e:
         return f"Error in English processing: {str(e)}", [], False
