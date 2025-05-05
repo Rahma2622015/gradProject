@@ -15,13 +15,20 @@ class MultiCourseRecommendationSystem:
         self.user_data = {}
 
     def start(self, user_input):
-        if isinstance(user_input, str):
+        if isinstance(user_input, dict) and "message" in user_input and "courses" in user_input:
+            self.user_data["initial_message"] = user_input["message"]
+            print("Original Message:", self.user_data["initial_message"])  # ✅ هنا
+            course_names = user_input["courses"]
+        elif isinstance(user_input, str):
             course_names = tokenizer.extract_all_course_names(user_input)
             self.user_data["initial_message"] = user_input
+            print("Original Message:", self.user_data["initial_message"])  # ✅ وهنا برضو
         elif isinstance(user_input, list):
             course_names = user_input
+            self.user_data["initial_message"] = None
+            print("Original Message:", self.user_data["initial_message"])  # ✅ لو حابة تطبعيه في حالة الليست
         else:
-            return "Invalid input type. Please provide a list or a sentence.", []
+            return "Invalid input type. Please provide a list, a sentence, or a structured input.", []
 
         if not course_names:
             return "Sorry, I couldn't detect any valid course names from your message.", []
@@ -31,7 +38,6 @@ class MultiCourseRecommendationSystem:
         self.user_data["current_course_index"] = 0
 
         return self._start_next_course()
-
     def handle_answer(self, user_input):
         course_name = self.user_data.get("current_course")
 
@@ -81,9 +87,7 @@ class MultiCourseRecommendationSystem:
         initial_message = self.user_data.get("initial_message")
 
         if initial_message:
-            tokens = tokenizer.tokenize(initial_message)
-            pos_tags = tokenizer.pos_tag(tokens)
-            top_n = pre.extract_first_number([tokens], [pos_tags])
+            top_n = pre.extract_first_number(initial_message)
             print(top_n)
         else:
             top_n = None
