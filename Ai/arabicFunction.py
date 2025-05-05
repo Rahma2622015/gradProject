@@ -65,6 +65,7 @@ def langArabic(message, storage):
             print(f"[DEBUG] Updated prev_data after response: {storage.get_prev_data()}")
             if is_ar_recommendation_complete(s):
                 storage.clear_data()
+                storage.set_current_task(None)
                 return s, options, False
             if not options:
                 storage.clear_data()
@@ -77,6 +78,7 @@ def langArabic(message, storage):
             course_recommender.receive_answer(message.strip()), [])
             if is_ar_recommendation_complete(s):
                 storage.clear_data()
+                storage.set_current_task(None)
                 return s, options, False
             if not options:
                 storage.clear_data()
@@ -95,6 +97,7 @@ def langArabic(message, storage):
                 s, options = recom_replyAr.course_selection_recommender.handle_answer(message)
             if is_ar_recommendation_complete(s):
                 storage.clear_data()
+                storage.set_current_task(None)
                 return s, options, False
             else:
                 return s, options, True

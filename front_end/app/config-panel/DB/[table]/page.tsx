@@ -78,7 +78,6 @@ import variables from "../../../variables.json";
   };
 
   const handleAddRow = async () => {
-  // تحقق إذا كانت البيانات غير فارغة
   if (Object.keys(newRow).length === 0) {
     console.error("newRow is empty, aborting add");
     return;
@@ -103,7 +102,7 @@ import variables from "../../../variables.json";
 const handleAddAttribute = async () => {
   if (!newAttribute.trim()) {
     console.error("Attribute name is empty");
-    return; // لا ترسل البيانات إذا كانت فارغة
+    return;
   }
 
   const payload = { columnName: newAttribute };
@@ -122,7 +121,7 @@ const handleAddAttribute = async () => {
       setNewAttribute("");
       setShowAttrInput(false);
     } else {
-      console.error("Failed to add attribute", result); // اطبع محتوى الخطأ الذي يأتي من السيرفر
+      console.error("Failed to add attribute", result);
     }
   } catch (err) {
     console.error("Error adding attribute:", err);

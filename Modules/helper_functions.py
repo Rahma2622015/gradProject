@@ -3,7 +3,8 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-uploaded_db_path = r"D:\gradProject\university_information.db"
+uploaded_db_path = "university_information.db"
+uploaded_json_paths = {}
 
 def get_uploaded_session():
     global uploaded_db_path

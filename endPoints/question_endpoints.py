@@ -1,4 +1,5 @@
 from flask import jsonify, request
+
 from Modules.helper_functions import get_uploaded_session
 from Database.DatabaseTabels.question import CourseQuestion
 
@@ -11,12 +12,14 @@ def get_question():
                 "id": question.id,
                 "question": question.question,
                 "course_id": question.course_id,
+                "question_arabic": question.question_arabic
             }
             for question in question_list
         ])
     except Exception as e:
         print("Error in get_question:", e)
         return jsonify({'error': str(e)}), 500
+
 
 def create_question():
     session = get_uploaded_session()
@@ -25,6 +28,7 @@ def create_question():
         new_question = CourseQuestion(
             question=data['question'],
             course_id=data['course_id'],
+            question_arabic=data['question_arabic']
         )
         session.add(new_question)
         session.commit()
@@ -35,6 +39,7 @@ def create_question():
     finally:
         session.close()
 
+
 def update_question(question_id):
     session = get_uploaded_session()
     try:
@@ -44,6 +49,7 @@ def update_question(question_id):
         data = request.get_json()
         question_obj.question = data.get('question', question_obj.question)
         question_obj.course_id = data.get('course_id', question_obj.course_id)
+        question_obj.question_arabic = data.get('question_arabic', question_obj.question_arabic)
         session.commit()
         return jsonify({"message": "Question updated successfully"})
     except Exception as e:
@@ -51,6 +57,7 @@ def update_question(question_id):
         return jsonify({"error": str(e)}), 500
     finally:
         session.close()
+
 
 def delete_question(question_id):
     session = get_uploaded_session()
