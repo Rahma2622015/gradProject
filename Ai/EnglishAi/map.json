@@ -2,7 +2,7 @@
     "CheckWellbeingTask": {
         "QuestionKeywords": ["how", "what"],
         "VerbKeywords": ["be"],
-        "SubjectKeywords": ["you"],
+        "SubjectKeywords": ["you","u"],
         "ObjectKeywords": ["health", "mood", "day", "doing","feel"]
     },
     "AskNameTask": {

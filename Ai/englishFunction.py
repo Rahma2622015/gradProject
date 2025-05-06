@@ -37,6 +37,7 @@ dbs=CourseQuestionsAndAnswers()
 course_recommender = RecommendationSystem(data_storage, memory,dbs)
 excourse=SingleShotRecommendationSystem(data_storage, memory,dbs)
 use_semantic_mapper = True
+show_grammar_feedback=True
 
 def is_trivial_task(tokens, f) -> bool:
     for sentence in tokens:
@@ -140,10 +141,6 @@ def langEnglish(message, storage):
         # ---------------------- Start New Task ----------------------
         else:
             if is_trivial_task(tokens, f):
-                bigram_results = bigram_model.sentence_probability(tokens)
-                if any(result[0] == "UnknownTask" for result in bigram_results):
-                    print(" Result: UnknownTask (at least one bigram is zero)")
-                    return "Hmm, I'm not quite sure how to respond to that. Could you try rephrasing? 🤔", [], False
                 print(" Mapping using TrivialMapper")
                 tasks = trivial_mapper.mapToken(tokens, pos)
                 g1, g2 = [True], []
@@ -232,14 +229,13 @@ def langEnglish(message, storage):
             options = []
 
             # === Grammar Checking: Show errors if they exist ===
-            if use_semantic_mapperfun():
-                if any(g == False for g in g1):
+        if use_semantic_mapperfun():
+            if any(g == False for g in g1):
                     flat_errors = [error for sublist in g2 for error in sublist]
                     if flat_errors and show_grammar_feedback_enabled():
                         grammar_feedback = "However, I noticed some grammar issues:\n- " + "\n- ".join(flat_errors)
                         s = f"{grammar_feedback + "i guess this what you mean 😊"}\n\n{s}"
-
-                return s, options, False
+        return s, options, False
 
     except Exception as e:
         return f"Error in English processing: {str(e)}", [], False

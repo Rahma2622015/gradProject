@@ -22,7 +22,7 @@ CourseNameArabic = fr"{base_arabic_ai}\اسماء المواد.txt"
 
 MapDataLocationEn = fr"{base_english_ai}\map.json"
 ResponseDataLocationEn = fr"{base_english_ai}\response.json"
-Bigrams = fr"{base_english_ai}\\bigrams.txt"
+Bigrams = fr"{base_english_ai}\\bigram.txt"
 NamesinCorrectEnglish = fr"{base_english_ai}\Names.txt"
 courseLocation = fr"{base_english_ai}\courses.txt"
 MapData2LocationEn = fr"{base_english_ai}\Newmap.json"
