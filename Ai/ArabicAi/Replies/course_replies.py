@@ -16,5 +16,5 @@ def handle_course_reply(r, data):
         return choice(data.get("ProfessorOfCourse", [])).format(x=r[1], y=r[2])
     elif r[0] == ChatTask.DepartmentOfCourse:
         return choice(data.get("DepartmentOfCourse", [])).format(x=r[1], y=r[2])
-    else:
-        return choice(data.get("Unknown", []))
+
+    return None

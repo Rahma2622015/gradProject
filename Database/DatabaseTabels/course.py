@@ -24,14 +24,14 @@ class Course(Base):
     name_arabic = Column(String, nullable=True)
     short_name_arabic = Column(String, nullable=True)
     description_arabic = Column(String, nullable=True)
+    department_id = Column(Integer, ForeignKey('departments.id'), nullable=True)
+
 
     professors = relationship("Professor", secondary=course_professor, back_populates="courses")
     assistants = relationship("TeachingAssistant", secondary=course_ta, back_populates="courses")
     questions = relationship("CourseQuestion", back_populates="course")
-
-    department_id = Column(Integer, ForeignKey('departments.id'), nullable=True)
     department = relationship("Department", back_populates="courses")
-
+    exam_system = relationship("CourseExamSystem", back_populates="course", uselist=False)
     prerequisites = relationship(
         'Course',
         secondary=course_prerequisites,

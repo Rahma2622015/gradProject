@@ -17,5 +17,6 @@ class CourseDescription:
         if course :
             if language=="ar":
                 return course.description_arabic if course else "المادة ليست موجودة في الداتابيز!"
-        else:
-            return course.description if course else "Course not found."
+
+            return course.description
+        return None

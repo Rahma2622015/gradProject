@@ -11,8 +11,9 @@ def handle_course_tasks(task, D: DatabaseStorage):
     pro_of_course = D.courseProfessor
 
     responses = []
-    course_name = ""
-    role = ""
+    person_name = None
+    course_name = None
+    role = None
     task_words = task[1] if isinstance(task, tuple) and len(task) > 1 else task
     pos_tags = task[2] if isinstance(task, tuple) and len(task) > 2 else []
 
@@ -20,6 +21,7 @@ def handle_course_tasks(task, D: DatabaseStorage):
     for i, tag in enumerate(pos_tags):
         if tag == "<CourseName>":
             course_name = task_words[i]
+            role="course"
             break
 
     # Detect role by keywords
@@ -35,56 +37,50 @@ def handle_course_tasks(task, D: DatabaseStorage):
             role = "prerequisite"
             break
         elif word in ["professor", "doctor", "dr.", "dr","assistant"]:
+            person_name = task_words[i+1]
             role = "professor"
             break
         elif word in ["department", "faculty", "college"]:
             role = "department"
             break
-        elif word in ["description", "lesson", "about", "course"]:
-            role = "description"
-            break
 
     if task[0] == ChatTask.CourseRoleQueryTask:
-        if not course_name:
-            responses.append((ChatTask.UnknownTask, "", "Course name could not be determined."))
-            return responses
-
         try:
-            if role == "degree":
+            if role == "degree" and course_name:
                 val = degree.get_course_degree(course_name)
-                responses.append((ChatTask.CourseDegrees, course_name, val or "Course degree not found."))
+                responses.append((ChatTask.CourseDegrees, course_name, val ))
 
-            elif role == "hours":
+            elif role == "hours" and course_name:
                 val = hour.get_course_hours(course_name)
-                responses.append((ChatTask.CourseHours, course_name, val or "Course hours not found."))
+                responses.append((ChatTask.CourseHours, course_name, val ))
 
-            elif role == "prerequisite":
+            elif role == "prerequisite" and course_name:
                 val = prerequisite.get_course_prerequisite(course_name)
-                responses.append((ChatTask.PrerequisitesTask, course_name, val or "No prerequisites found."))
+                responses.append((ChatTask.PrerequisitesTask, course_name, val ))
 
             elif role == "professor":
-                val_prof = pro_of_course.get_professors_of_course(course_name)
-                val_ass = ass_of_course.get_assistants_of_course(course_name)
+                val_prof = pro_of_course.get_courses_of_professor(person_name)
+                val_ass = ass_of_course.get_courses_of_assistant(person_name)
                 found =False
 
                 if val_prof:
                     found=True
-                    responses.append((ChatTask.ProfessorOfCourse, course_name, val_prof or "Professor not found."))
+                    responses.append((ChatTask.CourseOfProfessor, person_name, val_prof ))
 
                 if val_ass:
                     found=True
-                    responses.append((ChatTask.AssistantOfCourse, course_name, val_ass or "Assistant not found."))
+                    responses.append((ChatTask.CourseOfAssistant, person_name, val_ass))
                 if not found:
                         responses.append(
                             (ChatTask.UnknownTask, course_name, "there are no information."))
 
-            elif role == "department":
+            elif role == "department" and course_name:
                 val = dep_of_course.get_department_of_course(course_name)
-                responses.append((ChatTask.DepartmentOfCourse, course_name, val or "Department not found."))
+                responses.append((ChatTask.DepartmentOfCourse, course_name, val))
 
-            elif role == "description":
+            elif role == "course" and course_name:
                 val = description.get_course_description(course_name)
-                responses.append((ChatTask.CourseQueryTask, course_name, val or "Course description not found."))
+                responses.append((ChatTask.CourseQueryTask, course_name, val))
 
             else:
                 responses.append((ChatTask.UnknownTask, course_name, "The question type could not be understood."))
