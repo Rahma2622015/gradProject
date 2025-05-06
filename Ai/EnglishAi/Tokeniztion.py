@@ -5,6 +5,14 @@ import re
 import string
 import variables
 
+def load_names(file_path=variables.NamesinCorrectEnglish):
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            names = {line.strip().lower() for line in file if line.strip()}
+        return names
+    except FileNotFoundError:
+        return {"hagar", "ahmed", "ali", "sara", "fatima", "john", "rahma"}
+
 def load_course_names(file_path=variables.courseLocation):
     try:
         with open(file_path, "r", encoding="utf-8") as file:
@@ -13,6 +21,7 @@ def load_course_names(file_path=variables.courseLocation):
     except FileNotFoundError:
         return {"skill 401", "comp301", "math 101", "comp 202", "religion and safety"}
 
+PERSON_NAMES = load_names()
 COURSE_NAMES = load_course_names()
 
 class Tokenizers:
@@ -23,8 +32,16 @@ class Tokenizers:
         self.phrases_pattern = re.compile(
             '|'.join(
                 re.escape(phrase.lower())
-                for phrase in sorted(COURSE_NAMES, key=len, reverse=True)
+                for phrase in sorted(COURSE_NAMES , key=len, reverse=True)
                 if ' ' in phrase
+            ),
+            re.IGNORECASE
+        )
+        self.person_pattern = re.compile(
+            '|'.join(
+                re.escape(name.lower())
+                for name in sorted(PERSON_NAMES, key=len, reverse=True)
+                if ' ' in name
             ),
             re.IGNORECASE
         )
@@ -33,7 +50,10 @@ class Tokenizers:
         def replacer(match):
             return match.group(0).replace(' ', '')
 
-        return self.phrases_pattern.sub(replacer, text)
+        text= self.phrases_pattern.sub(replacer, text)
+        text = self.person_pattern.sub(replacer, text)
+        return text
+
 
     def preprocess_text(self, text):
         text = self.preprocess_phrases(text)
@@ -61,6 +81,11 @@ class Tokenizers:
             tokenized_words.append(words)
 
         return tokenized_words
+
+    def is_person(self, word):
+        word = word.lower()
+        word_no_space = word.replace(" ", "")
+        return word in PERSON_NAMES or word_no_space in PERSON_NAMES
 
     def is_course(self, word):
         word = word.lower()
@@ -100,10 +125,13 @@ class Tokenizers:
             tags = []
             for token in flair_sentence.tokens:
                 word = token.text
-                if self.is_course(word):
+                if self.is_person(word) :
+                    tags.append("<Name>")
+                elif self.is_course(word):
                     tags.append("<CourseName>")
                 else:
                     tags.append(token.labels[0].value)
+
 
             pos_tags.append(tags)
         return pos_tags

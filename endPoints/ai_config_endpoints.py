@@ -33,4 +33,5 @@ def update_ai_config():
             f.truncate()
         return jsonify({"message": "Settings updated successfully"}), 200
     except Exception as e:
+
         return jsonify({"error": str(e)}), 500

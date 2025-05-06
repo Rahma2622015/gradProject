@@ -140,15 +140,14 @@ export default function Home() {
             )}
           </div>
 
-      {/* الصورة مع الأنميشن */}
       <motion.div
         animate={{
-            y: [0, -25, 0], // حركة قفز مستمرة
-            rotate: isClicked ? [0, 10, -10, 10, -10, 0] : 0, // دوران عند الضغط
+            y: [0, -25, 0],
+            rotate: isClicked ? [0, 10, -10, 10, -10, 0] : 0,
           }}
          transition={{
-            y: { repeat: Infinity, repeatType: "reverse", duration: 1 }, // القفز يستمر للأبد
-            rotate: { duration: 0.5 }, // حركة الدوران تحدث عند الضغط فقط
+            y: { repeat: Infinity, repeatType: "reverse", duration: 1 },
+            rotate: { duration: 0.5 },
           }}
         onClick={handleClick}
       >
@@ -162,7 +161,6 @@ export default function Home() {
           unoptimized
         />
       </motion.div>
-
       <div className={styles.description}>
         {isClicked ? (
           <motion.h3
@@ -170,15 +168,29 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div>My name is Lazeez ,</div>
-           <div> and I am here to help new students at the Faculty of Science</div>
-            <div> who need information about the Computer Science program</div>
-            <div>and dual degree programs in Computer Science,</div>
-           <div> and who have some questions and inquiries.</div>
-            <div>This assistant was created by</div>
-            <div>Computer Science students at Ain Shams University:</div>
-            <div>Heba Gamal Ahmed</div><div>Hagar Basiony Attia</div>
-            <div>Hagar Mohamed Kamel</div><div>and Rahma Mohamed Sayed.</div>
+            <div className={styles.container}>
+              <div>Hello! 👋 My name is <span className={styles.bold}>Lazeez</span>,</div>
+              <div>
+                and I'm here to help <em>new students</em> at the <span className={styles.bold}>Faculty of Science</span>
+              </div>
+              <div>
+                who need info about the <span className={styles.highlight}>Computer Science program</span>
+              </div>
+              <div>
+                and dual degree programs in <span className={styles.bold}>Computer Science</span>,
+              </div>
+              <div>or who simply have some questions and curiosities! 🤔</div>
+
+              <div className="mt-4">This assistant was proudly created by:</div>
+              <ul style={{ listStyle: "disc", paddingLeft: "1.5rem" }}>
+                <li><span className={styles.bold}>Hagar Mohamed Kamel</span></li>
+                <li><span className={styles.bold}>Heba Gamal Ahmed</span></li>
+                <li><span className={styles.bold}>Hagar Basiony Attia</span></li>
+                <li><span className={styles.bold}>Rahma Mohamed Sayed</span></li>
+              </ul>
+
+              <div className={styles.subtle}>— Computer Science students at Ain Shams University 💻🎓</div>
+            </div>
           </motion.h3>
         ) : (
           <motion.div

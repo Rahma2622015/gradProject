@@ -11,7 +11,9 @@ const AddCourseForm = ({ onCourseAdded }) => {
     name_arabic:"",
     description_arabic:"",
     course_hours:"",
-    course_degree:""
+    course_degree:"",
+    short_name_arabic:"",
+    department_id:""
 
   });
 
@@ -34,7 +36,7 @@ const AddCourseForm = ({ onCourseAdded }) => {
       if (response.ok) {
         alert("Course added successfully");
         onCourseAdded(result);
-        setCourse({ name: "", description: "", short_name: "", code: "",name_arabic:"",description_arabic:"",course_hours:"" });
+        setCourse({ name: "", description: "", short_name: "", code: "",name_arabic:"",description_arabic:"",course_hours:"",course_degree:"",short_name_arabic:"",department_id:"" });
       } else {
         alert(`Error: ${result.error}`);
       }
@@ -55,6 +57,8 @@ const AddCourseForm = ({ onCourseAdded }) => {
       <input name="description_arabic" value={course.description_arabic} onChange={handleChange} placeholder="Description Arabic" required className={styles.input} />
       <input name="course_hours" value={course.course_hours} onChange={handleChange} placeholder="course_hours" className={styles.input} />
        <input name="course_degree" value={course.course_degree} onChange={handleChange} placeholder="course_degree" className={styles.input} />
+       <input name="short_name_arabic" value={course.short_name_arabic} onChange={handleChange} placeholder="Short Name Arabic" className={styles.input} />
+       <input name="department_id" value={course.department_id} onChange={handleChange} placeholder="department_id" className={styles.input} />
       <button type="submit" className={styles.button}>Add Course</button>
     </form>
   );

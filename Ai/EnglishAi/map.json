@@ -20,7 +20,7 @@
     "CheckWellbeingTask": {
         "QuestionKeywords": ["how", "what"],
         "VerbKeywords": ["be"],
-        "SubjectKeywords": ["you"],
+        "SubjectKeywords": ["you","u"],
         "ObjectKeywords": ["health", "mood", "day", "doing","feel"]
     },
     "AskNameTask": {
@@ -256,6 +256,50 @@
     "VerbKeywords": ["be","need","transfer","change","allow"],
     "SubjectKeywords": ["major","criteria","switch","rules"],
     "ObjectKeywords": ["guide","preferable","limit","anytime"]
+
+  },
+
+"PersonRoleQueryTask": {
+  "QuestionKeywords": ["who"],
+  "VerbKeywords": ["be","teach"],
+  "SubjectKeywords": ["professor", "doctor", "assistant", "helper", "dr.", "dr","manager"],
+  "ObjectKeywords": []
+},
+"CourseRoleQueryTask": {
+  "QuestionKeywords": [
+    "what", "which", "how many","how"
+  ],
+  "VerbKeywords": [
+    "be", "relate", "concern", "teach", "explain", "instruct", "belong", "associate","require"
+  ],
+  "SubjectKeywords": [
+    "course", "subject", "lesson", "module", "number", "requirement", "requirements", "hour", "hours", "grade", "grades","requirement"
+  ],
+  "ObjectKeywords": []
+},
+ "ExamCourse": {
+    "QuestionKeywords": ["What", "How", "Can"],
+    "VerbKeywords": ["is", "will", "be", "tell"],
+    "SubjectKeywords": ["exam", "format", "type", "system", "structure", "details"],
+    "ObjectKeywords": [
+      "algorithm", "computability", "oop", "database", "linear",
+    "algebra", "english", "data", "structure", "network", "web", "programming",
+    "automata", "graph", "ordinary", "differential", "equation", "java",
+    "syntax", "complexity", "os", "abstract", "algebra", "multimedia", "combinatorics",
+    "compiler", "graphics", "android", "advanced", "crypto", "skills", "ai", "parallel",
+    "image", "processing", "cyber", "security", "geometry", "bioinformatics",
+    "software", "engineering", "mining"]
+  },
+  "ExamDoc": {
+     "QuestionKeywords": ["What", "How", "Can"],
+    "VerbKeywords": ["is", "will", "have", "be", "tell"],
+    "SubjectKeywords": ["exam", "format", "type", "system", "structure", "details"],
+    "ObjectKeywords": ["dr nashwa" ,"dr mohamed fakhry" ,"dr neevin","dr doalat",
+                        "dr ghada","dr diaa" ,"dr mohamed hashem" ,"dr azza",
+                        "dr hussein" ,"dr howaida","dr ayat","dr hany" ,
+                        "dr manar", "dr ahmed gaber", "dr samir","dr ahmed el-sonbaty",
+                        "dr ghada" ,"dr essam","dr heba","dr sayed","dr ayman ayoub"
+                        ,"dr mohamed emad" ,"dr abdelrahman","dr mohamed"]
   }
 
 }

@@ -10,7 +10,7 @@ import variables from "../../../variables.json";
   const [fileName, setFileName] = useState("");
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [databaseUploaded, setDatabaseUploaded] = useState(false);
- const [answers, setAnswers] = useState([]);
+  const [answers, setAnswers] = useState([]);
   const fetchAnswers = async () => {
       try {
         const response = await fetch(variables.answers);

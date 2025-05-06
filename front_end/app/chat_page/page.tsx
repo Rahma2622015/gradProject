@@ -10,23 +10,10 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import variables from "../variables.json";
-// تحميل مكتبة الإيموجي بطريقة ديناميكية لتجنب مشاكل SSR
+
 const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
 function ChatPage() {
-     useEffect(() => {
-        const currentPath = window.location.pathname;
-        sessionStorage.setItem('currentPath', currentPath);
-
-        const entries = performance.getEntriesByType("navigation");
-        if (entries.length > 0 && (entries[0] as PerformanceNavigationTiming).type === "reload") {
-            const savedPath = sessionStorage.getItem('currentPath');
-            if (savedPath && savedPath !== window.location.pathname) {
-                window.location.pathname = savedPath;
-            }
-        }
-    }, []);
-
   useEffect(() => {
     document.title = "Chatpage";
   }, []);
@@ -40,8 +27,9 @@ function ChatPage() {
   const messageListRef = useRef(null);
   const [isWaitingForResponse, setIsWaitingForResponse] = useState(false);
   const [answeredFromList, setAnsweredFromList] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
-    // عند تحميل الصفحة، نضيف مستمع للأحداث لغلق القائمة عند الضغط خارجها
+
     useEffect(() => {
       const handleClickOutside = (event: Event) => {
        if (
@@ -112,11 +100,12 @@ function ChatPage() {
         }
       };
 
-  const [messages, setMessages] = useState([//array
+  const [messages, setMessages] = useState([
     {
        message: "Hello, I'm Lazez! Ask me !",
         sender: "Lazez",
         direction: "incoming",
+        timestamp: new Date().toISOString(),
     }
   ]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -156,21 +145,22 @@ function ChatPage() {
           return;
      }
 
-      const messageWithoutEmojis = removeEmojis(finalMessage); // حذف الإيموجي عند الإرسال فقط
+      const messageWithoutEmojis = removeEmojis(finalMessage);
       const newMessage = {
         message: finalMessage,
         direction: "outgoing",
         sender: "user",
-     };
+        timestamp: new Date().toISOString(),
+      };
 
     const newMessages = [...messages, newMessage];
     setMessages(newMessages);
     setInputValue("");
     setIsWaitingForResponse(true);
+    setIsTyping(true);
     try {
       console.log('Sending message:', message);
       const token=sessionStorage.getItem("client_id");
-      //console.log(JSON.stringify({ userMessage:message,id:token}))
       const response = await fetch(variables.ip_messages, {
         method: "POST",
          headers: {
@@ -197,8 +187,10 @@ function ChatPage() {
             message:data.reply,
             direction: "incoming",
             sender: "Lazez",
+            timestamp: new Date().toISOString(),
           };
           setMessages((prevMessages) => [...prevMessages, replyMessage]);
+           setIsTyping(false);
           if (data.list && data.list.length > 0) {
             setExampleQuestions(data.list);
             setInputVisible(false);
@@ -255,31 +247,37 @@ function ChatPage() {
 
     <div className={styles.ChatContainer}>
       <MessageList
-        referance={messageListRef}
-        className="message-list"
-        lockable={true}
-        toBottomHeight="100%"
-        dataSource={messages.map((message, i) => ({
-          id: i,
-          position: message.direction === "incoming" ? "left" : "right",
-          type: "text",
-          text: message.message,
-          title: message.sender === "user" ? "You" : message.sender,
-          focus: false,
-          date: new Date(),
-          titleColor: "#000",
-          forwarded: false,
-          replyButton: false,
-          removeButton: fetch,
-          status: "sent",
-          notch: true,
-          retracted: false,
-          onClick: () => console.log("Message clicked"),
-        }))}
-      />
-
+          className="message-list"
+          lockable={true}
+          toBottomHeight="100%"
+          dataSource={messages.map((message, i) => ({
+            id: i,
+            position: message.direction === "incoming" ? "left" : "right",
+            type: "text",
+            text: message.message,
+            title: message.sender === "user" ? "You" : message.sender,
+            focus: false,
+            date: new Date(),
+            titleColor: "#000",
+            forwarded: false,
+            replyButton: false,
+            removeButton: fetch,
+            status: "sent",
+            notch: true,
+            retracted: false,
+            date: new Date(message.timestamp),
+            onClick: () => console.log("Message clicked"),
+          }))}
+        />
       <div ref={messagesEndRef} />
-
+       {isTyping && (
+        <div className={styles.typingIndicator}>
+          <span>Typing...</span>
+          <div className={styles.dot}></div>
+          <div className={styles.dot}></div>
+          <div className={styles.dot}></div>
+        </div>
+      )}
       <div className={styles.inputContainer}>
         <button className={styles.dropdown_change} onClick={toggleInputMethod}>
           <Image src="/exchange.png" alt="Switch Input" width={35} height={35} />

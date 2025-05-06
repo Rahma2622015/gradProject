@@ -33,10 +33,11 @@ class TaskMapper:
                     if data[verbIndex] == "be":
                         if pos[i][verbIndex - 1].startswith("N") and (
                                 pos[i][verbIndex + 1].startswith("J") or pos[i][verbIndex + 1].startswith("N") or
-                                pos[i][verbIndex + 1].endswith("N")):
+                                pos[i][verbIndex + 1].endswith("N") or pos[i][verbIndex + 1].startswith("<Name>")):
                             res.append((ChatTask.StoreTask, data[verbIndex - 1], data[verbIndex + 1]))
                 else:
                     res.append((ChatTask.UnknownTask,))
+
         if len(res) == 0:
             res.append((ChatTask.UnknownTask,))
             print("mappingTask:", res)

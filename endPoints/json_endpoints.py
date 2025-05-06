@@ -1,27 +1,44 @@
 import json
 from flask import jsonify, request
 import os
-from Modules.helper_functions import uploaded_db_path
+from Modules.helper_functions import uploaded_json_paths
+import variables
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
+BASE_DIR = os.path.abspath(variables.base_ssl)
 
-def get_config(filename):
-    filepath = os.path.join(UPLOAD_FOLDER, filename)
-    if not os.path.exists(filepath):
-        return jsonify({"error": "File not found"}), 404
+def list_json_files():
     try:
+        all_json_files = []
+        for root, dirs, files in os.walk(BASE_DIR):
+            for f in files:
+                if f.endswith(".json"):
+                    relative_path = os.path.relpath(os.path.join(root, f), BASE_DIR)
+                    all_json_files.append(relative_path.replace("\\", "/"))
+                    uploaded_json_paths[relative_path.replace("\\", "/")] = os.path.join(root, f)
+        return jsonify(all_json_files)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+def get_json(filename):
+    try:
+        filepath = os.path.join(BASE_DIR, filename)
+        if not os.path.isfile(filepath):
+            return jsonify({"message": "File not found"}), 404
+
         with open(filepath, "r", encoding="utf-8") as f:
-            config_data = json.load(f)
-        return jsonify(config_data), 200
-    except json.JSONDecodeError:
-        return jsonify({"error": "Invalid JSON format"}), 400
+            content = json.load(f)
+        return jsonify({"content": content})
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
 
 
 def save_config(filename):
+    print("Received filename:", filename)
+    print("Uploaded DB paths:", uploaded_json_paths)
     data = request.get_json()
     content = data.get("content")
 
-    filepath = uploaded_db_path.get(filename)
+    filepath = uploaded_json_paths.get(filename)
     if not filepath:
         return jsonify({"error": "File not found or not uploaded"}), 404
 
@@ -31,18 +48,3 @@ def save_config(filename):
         return jsonify({"message": "File saved successfully"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
-def upload_json():
-    if 'file' not in request.files:
-        return jsonify({'error': 'No file uploaded'}), 400
-
-    file = request.files['file']
-    if not file.filename.endswith('.json'):
-        return jsonify({'error': 'Only .json files are supported'}), 400
-
-    try:
-        content = json.load(file)
-        return jsonify({'content': content}), 200
-    except Exception as e:
-        return jsonify({'error': f'Invalid JSON format: {str(e)}'}), 400
