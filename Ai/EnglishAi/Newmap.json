@@ -69,37 +69,55 @@
   "how do i enrolling in the program",
   "what do i need to do to apply for the course"
 ],
-"ProfessorQueryTask": [
-  "who is dr azaa",
-  "who is professor azaa"
-],
-"CourseQueryTask": [
-  "what is comp 102",
-  "what subject does comp 102 cover",
-  "what module is being taught this semester"
-],
 "ExamSystem": [
   "how do the exam system work",
   "what is the structure of the exam",
   "how will the exam be designed"
 ],
-"PrerequisitesTask": [
-  "what is the prerequisites for comp 102 ",
-  "which courses must i complete before ",
-  "is there any requirements before enrolling in this subject",
-  "what prerequisites do i need for the next course"
-],
 "CourseSystem": [
-  "can this course benefit my academic performance",
+  "can <CourseName>benefit my academic performance?",
   "which course is most suitable for me",
   "should i enroll in the database course to improve my knowledge?"
 
 ],"MultiCourseRecommendationTask": [
 "Can you help me choose 3 subjects from Java, OS, Parallel, Software Engineering, and AI?"
 ],
-  "CourseHours": [
-    "how many hours for comp 102?",
-    "how many degrees for comp 102?"
+  "ExamCourse": [
+    "what is the format of the exam for <CourseName>?",
+    "how will the exam for the <CourseName> be structured?",
+    "what is the exam system for <CourseName>?"
+  ],
+  "ExamDoc": [
+    "what are the details of the exam with doctor <Name>?",
+    "what is the exam system with doctor <Name>",
+    "what is the exam system with professor <Name>",
+    "what is the format of the exam for doctor <Name>?",
+    "what is the format of the exam for professor <Name>?"
+
+
+  ],
+  "PersonRoleQueryTask": [
+    "who is dr <Name>?",
+    "who is doctor <Name>?",
+    "who is professor <Name>?",
+    "who is the manger of department of cs?",
+    "who is the manger of department of computer science?",
+    "who is the professor of course <CourseName>?",
+    "who is the doctor of course <CourseName>?"
+  ],
+  "CourseRoleQueryTask": [
+    "what is comp 102",
+    "what is course database?",
+    "what subject does comp 102 cover",
+    "what module is being taught this semester",
+    "what is the prerequisites for comp 102 ",
+    "which courses must i complete before ",
+    "is there any requirements before enrolling in <CourseName>?",
+    "what prerequisites do i need for course <CourseName>?",
+     "how many hours for <CourseName>?",
+     "how many degrees for <CourseName>?",
+     "what are the courses of professor <Name>?",
+     "what are the courses of doctor <Name>?",
+     "what is the program of course <CourseName>?"
   ]
 }
-

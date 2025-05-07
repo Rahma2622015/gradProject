@@ -2,13 +2,15 @@ from Database.session import SessionLocal
 from Database.DatabaseTabels.professor import Professor
 from Database.DatabaseTabels.examSystem import ProfessorExamSystem
 
-class CourseAssistant:
+class CourseAssistantPr:
+
     def __init__(self):
         self.session = SessionLocal()
 
     def get_exam_system_by_professor_name(self, professor_name: str, language: str = "en"):
         professor = self.session.query(Professor).filter(
-            Professor.name.ilike(f"%{professor_name}%")|
+
+            Professor.name.ilike(f"%{professor_name}%") |
             Professor.name_arabic.ilike(f"%{professor_name}%")
         ).first()
         if not professor:

@@ -9,11 +9,16 @@ from Modules import DataStorage
 from Ai.Recommendation.Arabic.arabicRecomMulticourses import ArMultiCourseRecommendationSystem
 from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
+from Ai.Recommendation.Arabic.ArabExamCourseSys import ArSingleShotRecommendationSystem
+from Database.FetchDataCourses.coureExamSystem import CourseAssistant
+from Database.FetchDataProfessors.professorExamSystem import CourseAssistantPr
 import variables
 
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
+dbcour=CourseAssistant()
+dbpro=CourseAssistantPr()
 
 class ArReplyModuleRe:
     def __init__(self, json_path=variables.ArResponseDataLocationRE, memory_db=None, temp_storage=None):
@@ -25,7 +30,7 @@ class ArReplyModuleRe:
         self.course_selection_recommender = ArMultiCourseRecommendationSystem(
              data_storage, memory, ArRecommendationSystem(memory_db, temp_storage,dbs)
          )
-
+        self.CourseExam=ArSingleShotRecommendationSystem(data_storage, memory,dbcour,dbpro)
     def load_responses(self, json_path):
         try:
             with open(json_path, "r", encoding="utf-8") as file:
@@ -82,6 +87,22 @@ class ArReplyModuleRe:
                             options = []
                     else:
                         s = "عذرًا، لم أتمكن من استخراج أسماء المواد من سؤالك."
+                        options = []
+                elif r[0] == ChatTask.ExamCourse:
+                    response = self.CourseExam.handle_user_message(user_input)
+                    if isinstance(response, str):
+                        s = response
+                        options = []
+                    else:
+                        s = "عذرًا، لم أتمكن من استخراج أسم المادة من سؤالك"
+                        options = []
+                elif r[0] == ChatTask.ExamDoc:
+                    response = self.CourseExam.handle_user_message(user_input)
+                    if isinstance(response, str):
+                        s = response
+                        options = []
+                    else:
+                        s = "عذرًا، لم أتمكن من استخراج أسم الدكتور من سؤالك"
                         options = []
 
                 elif r[0] == ChatTask.UnknownTask:

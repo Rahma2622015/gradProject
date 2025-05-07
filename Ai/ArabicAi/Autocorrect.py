@@ -1,7 +1,8 @@
 from spellchecker import SpellChecker
+import variables
 
 class ArabicSpellChecker:
-    def __init__(self, dictionary_path):
+    def __init__(self, dictionary_path = variables.arabic_word):
         self.spell = SpellChecker(language=None)
         self.spell.word_frequency.load_text_file(dictionary_path)
 
