@@ -6,10 +6,11 @@ class CourseProfessor:
     def __init__(self):
         self.session = SessionLocal()
 
-    def get_teachers_of_course(self, course_name, language="en"):
+    def get_professors_of_course(self, course_name, language="en"):
         course = self.session.query(Course).filter(
             Course.name.ilike(f"%{course_name}%") |
             Course.short_name.ilike(f"%{course_name}%") |
+            Course.short_name_arabic.ilike(f"%{course_name}%") |
             Course.code.ilike(f"%{course_name}%") |
             Course.name_arabic.ilike(f"%{course_name}%")
         ).first()
