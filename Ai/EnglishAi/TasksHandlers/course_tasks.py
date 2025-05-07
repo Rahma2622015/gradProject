@@ -21,10 +21,17 @@ def handle_course_tasks(task, D: DatabaseStorage):
     for i, tag in enumerate(pos_tags):
         if tag == "<CourseName>":
             course_name = task_words[i]
-            role="course"
+            role = "course"
             break
 
-    # Detect role by keywords
+    # Extract person name from POS tags
+    for i, tag in enumerate(pos_tags):
+        if tag == "<Name>":
+            person_name = task_words[i]
+            role = "professor"
+            break
+
+    # Detect role by keywords if not set yet
     lowered_words = [w.lower().strip() for w in task_words]
     for i, word in enumerate(lowered_words):
         if word in ["degree", "mark", "grade", "score"]:
@@ -36,45 +43,41 @@ def handle_course_tasks(task, D: DatabaseStorage):
         elif word in ["prerequisite", "requirement", "require"]:
             role = "prerequisite"
             break
-        elif word in ["professor", "doctor", "dr.", "dr","assistant"]:
-            person_name = task_words[i+1]
-            role = "professor"
+        elif word in ["department", "faculty", "college", "program"]:
+            role = "program"
             break
-        elif word in ["department", "faculty", "college"]:
-            role = "department"
-            break
-
+    print("rr",role ," cname",course_name)
     if task[0] == ChatTask.CourseRoleQueryTask:
         try:
             if role == "degree" and course_name:
                 val = degree.get_course_degree(course_name)
-                responses.append((ChatTask.CourseDegrees, course_name, val ))
+                responses.append((ChatTask.CourseDegrees, course_name, val))
 
             elif role == "hours" and course_name:
                 val = hour.get_course_hours(course_name)
-                responses.append((ChatTask.CourseHours, course_name, val ))
+                responses.append((ChatTask.CourseHours, course_name, val))
 
             elif role == "prerequisite" and course_name:
                 val = prerequisite.get_course_prerequisite(course_name)
-                responses.append((ChatTask.PrerequisitesTask, course_name, val ))
+                responses.append((ChatTask.PrerequisitesTask, course_name, val))
 
-            elif role == "professor":
+            elif role == "professor" and person_name:
                 val_prof = pro_of_course.get_courses_of_professor(person_name)
                 val_ass = ass_of_course.get_courses_of_assistant(person_name)
-                found =False
+                found = False
 
                 if val_prof:
-                    found=True
-                    responses.append((ChatTask.CourseOfProfessor, person_name, val_prof ))
+                    found = True
+                    responses.append((ChatTask.CourseOfProfessor, person_name, val_prof))
 
                 if val_ass:
-                    found=True
+                    found = True
                     responses.append((ChatTask.CourseOfAssistant, person_name, val_ass))
-                if not found:
-                        responses.append(
-                            (ChatTask.UnknownTask, course_name, "there are no information."))
 
-            elif role == "department" and course_name:
+                if not found:
+                    responses.append((ChatTask.UnknownTask, person_name, "There is no information."))
+
+            elif role == "program" and course_name:
                 val = dep_of_course.get_department_of_course(course_name)
                 responses.append((ChatTask.DepartmentOfCourse, course_name, val))
 
@@ -83,10 +86,10 @@ def handle_course_tasks(task, D: DatabaseStorage):
                 responses.append((ChatTask.CourseQueryTask, course_name, val))
 
             else:
-                responses.append((ChatTask.UnknownTask, course_name, "The question type could not be understood."))
+                responses.append((ChatTask.UnknownTask, course_name or person_name, "The question type could not be understood."))
 
         except Exception as e:
-            responses.append((ChatTask.UnknownTask, course_name, f"An error occurred: {str(e)}"))
+            responses.append((ChatTask.UnknownTask, course_name or person_name, f"An error occurred: {str(e)}"))
 
     else:
         responses.append((ChatTask.UnknownTask, "", "Unsupported task type."))

@@ -128,7 +128,7 @@
 
 
   "ProfessorQueryTask": [
-    "{x} is a {y}.",
+    "Dr.{x} is a {y}.",
     "Professor {x} is a {y} ",
     "Dr. {x} is a {y}."
 ],

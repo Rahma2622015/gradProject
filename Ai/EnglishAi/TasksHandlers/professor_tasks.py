@@ -19,16 +19,16 @@ def handle_professor_tasks(task, D: DatabaseStorage):
             role = "course"
             break
 
+        elif tag == "<Name>":
+            person_name = task_words[i]
+            print(person_name,"-----")
+            role = "professor"
+            break
+
     if role is None:
         for i, word in enumerate(task_words):
             w = word.lower().strip()
-            if w in ["professor", "dr.", "doctor", "dr", "assistant"]:
-                remaining_words = task_words[i + 1:]
-                person_name = " ".join(remaining_words)
-                role = "professor"
-                break
-
-            elif w == "department":
+            if w == "department":
                 dep_name = " ".join(task_words[i + 1:])
                 role = "department"
                 break
@@ -53,13 +53,13 @@ def handle_professor_tasks(task, D: DatabaseStorage):
             head_name = D.head_department.get_head_of_department(dep_name)
             responses.append((ChatTask.HeadOfDepartment, dep_name, head_name))
 
-    elif role == "course":
-        professors = D.courseProfessor.get_professors_of_course(course_name)
-        assistants = D.courseAssistant.get_assistants_of_course(course_name)
-        if professors or assistants:
-            responses.append((ChatTask.ProfessorOfCourse, course_name,professors,assistants))
-        else:
-            responses.append((ChatTask.UnknownTask, "", "لم يتم التعرف على المطلوب."))
+        elif role == "course":
+            professors = D.courseProfessor.get_professors_of_course(course_name)
+            assistants = D.courseAssistant.get_assistants_of_course(course_name)
+            if professors or assistants:
+                responses.append((ChatTask.ProfessorOfCourse, course_name,professors,assistants))
+            else:
+                responses.append((ChatTask.UnknownTask, "", "there are no information"))
     else:
         responses.append((ChatTask.UnknownTask, "", ""))
 
