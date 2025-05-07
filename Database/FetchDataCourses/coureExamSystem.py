@@ -11,7 +11,9 @@ class CourseAssistant:
             Course.name.ilike(f"%{course_name}%") |
             Course.short_name.ilike(f"%{course_name}%") |
             Course.code.ilike(f"%{course_name}%") |
+
             Course.name_arabic.ilike(f"%{course_name}%") |
+
             Course.short_name_arabic.ilike(f"%{course_name}%")
         ).first()
 
@@ -21,6 +23,8 @@ class CourseAssistant:
         exam_system = self.session.query(CourseExamSystem).filter(CourseExamSystem.course_id == course.id).first()
         if not exam_system:
             return None
+
         if language == "ar":
             return exam_system.course_system_arabic
         return exam_system.course_system
+

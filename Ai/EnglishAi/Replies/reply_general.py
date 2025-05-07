@@ -37,5 +37,6 @@ def handle_general_tasks(r, data):
 
     key = task_map.get(r[0])
     if key:
+        print(key,"----------------------")
         return choice(data.get(key, []))
     return None

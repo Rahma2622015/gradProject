@@ -2,7 +2,7 @@
   "PersonRoleQueryTask": {
   "QuestionKeywords": ["who"],
   "VerbKeywords": ["be","teach"],
-  "SubjectKeywords": ["professor", "doctor", "assistant", "helper", "dr.", "dr","manager"],
+  "SubjectKeywords": ["professor", "doctor", "program","assistant", "helper", "dr.", "dr","manager"],
   "ObjectKeywords": []
 },
 "CourseRoleQueryTask": {
