@@ -14,7 +14,7 @@ def handle_basic_tasks(r, data):
         return choice(data.get("CheckWellbeing", []))
     elif r[0] == ChatTask.ThanksTask:
         return choice(data.get("ThanksReplies", []))
-    elif r[0] == ChatTask.HelpTask:
+    elif r[0] == ChatTask.AskHelpingTask:
         return choice(data.get("askhelp", []))
     elif r[0] == ChatTask.GoodbyeTask:
         return choice(data.get("Goodbye", []))

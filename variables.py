@@ -16,7 +16,6 @@ MapData2LocationAr=fr"{base_arabic_ai}\NewMapData.json"
 arabic_word = fr"{base_arabic_ai}\arabic_words.txt"
 ResponseDataLocationAr = fr"{base_arabic_ai}\response.json"
 NamesInCorrectArabic = fr"{base_arabic_ai}\arabic_names.txt"
-subjectNameLocation = fr"{base_arabic_ai}\subject_names.txt"
 CourseNameArabic = fr"{base_arabic_ai}\اسماء المواد.txt"
 
 

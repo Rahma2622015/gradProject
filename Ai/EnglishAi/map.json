@@ -13,7 +13,7 @@
     "be", "relate", "concern", "teach", "explain", "instruct", "belong", "associate","require"
   ],
   "SubjectKeywords": [
-    "course", "subject","department","lesson", "module", "number", "requirement", "requirements", "hour", "hours", "grade", "grades","requirement"
+    "course", "subject","department","lesson", "module","program", "number", "requirement", "requirements", "hour", "hours", "grade", "grades","requirement"
   ],
   "ObjectKeywords": []
 },
@@ -258,25 +258,6 @@
     "ObjectKeywords": ["guide","preferable","limit","anytime"]
 
   },
-
-"PersonRoleQueryTask": {
-  "QuestionKeywords": ["who"],
-  "VerbKeywords": ["be","teach"],
-  "SubjectKeywords": ["professor", "doctor", "assistant", "helper", "dr.", "dr","manager"],
-  "ObjectKeywords": []
-},
-"CourseRoleQueryTask": {
-  "QuestionKeywords": [
-    "what", "which", "how many","how"
-  ],
-  "VerbKeywords": [
-    "be", "relate", "concern", "teach", "explain", "instruct", "belong", "associate","require"
-  ],
-  "SubjectKeywords": [
-    "course", "subject", "lesson", "module", "number", "requirement", "requirements", "hour", "hours", "grade", "grades","requirement"
-  ],
-  "ObjectKeywords": []
-},
  "ExamCourse": {
     "QuestionKeywords": ["What", "How", "Can"],
     "VerbKeywords": ["is", "will", "be", "tell"],

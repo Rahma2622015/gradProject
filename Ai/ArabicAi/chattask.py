@@ -60,3 +60,5 @@ class ChatTask(Enum):
     AssistantOfCourse=53
     PersonRoleQueryTask=54
     CourseRoleQueryTask=55
+    ExamCourse = 56
+    ExamDoc = 57

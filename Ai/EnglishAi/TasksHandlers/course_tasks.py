@@ -40,8 +40,8 @@ def handle_course_tasks(task, D: DatabaseStorage):
             person_name = task_words[i+1]
             role = "professor"
             break
-        elif word in ["department", "faculty", "college"]:
-            role = "department"
+        elif word in ["department", "faculty", "college","program"]:
+            role = "program"
             break
 
     if task[0] == ChatTask.CourseRoleQueryTask:
@@ -74,7 +74,7 @@ def handle_course_tasks(task, D: DatabaseStorage):
                         responses.append(
                             (ChatTask.UnknownTask, course_name, "there are no information."))
 
-            elif role == "department" and course_name:
+            elif role == "program" and course_name:
                 val = dep_of_course.get_department_of_course(course_name)
                 responses.append((ChatTask.DepartmentOfCourse, course_name, val))
 

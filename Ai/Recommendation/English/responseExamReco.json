@@ -4,9 +4,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Industrial safety procedures, hazard prevention, first aid, emergency plans, occupational safety"]
-      ,"level": [
-        "freshman"
+      "exam_format": [
+        "Industrial safety procedures, hazard prevention, first aid, emergency plans, occupational safety"
+      ],
+      "level": [
+        "freshman (level one)"
       ],
       "semester": [
         "one"
@@ -19,10 +21,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Universal Declaration of Human Rights, civil and political rights, equality and non-discrimination, freedom of expression, economic and social rights"]
-      ,
+      "exam_format": [
+        "Universal Declaration of Human Rights, civil and political rights, equality and non-discrimination, freedom of expression, economic and social rights"
+      ],
       "level": [
-        "freshman"
+        "freshman (level one)"
       ],
       "semester": [
         "one"
@@ -35,10 +38,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Limits and continuity with graphical and algebraic understanding; Derivatives of polynomial, trigonometric, and exponential functions with applications in motion and rates of change; Techniques of differentiation including product, quotient, and chain rules; Curve sketching using first and second derivatives; Applications of derivatives such as optimization and related rates; Integration as the inverse process of differentiation with area under curve interpretations; Definite and indefinite integrals with substitution techniques; Applications of integration in calculating area, volume (disk and shell method), and accumulated change"]
-      ,
+      "exam_format": [
+        "Limits and continuity with graphical and algebraic understanding; Derivatives of polynomial, trigonometric, and exponential functions with applications in motion and rates of change; Techniques of differentiation including product, quotient, and chain rules; Curve sketching using first and second derivatives; Applications of derivatives such as optimization and related rates; Integration as the inverse process of differentiation with area under curve interpretations; Definite and indefinite integrals with substitution techniques; Applications of integration in calculating area, volume (disk and shell method), and accumulated change"
+      ],
       "level": [
-        "freshman"
+        "freshman (level one)"
       ],
       "semester": [
         "one"
@@ -47,22 +51,32 @@
         "calculus & integration"
       ]
     },
-
     {
-      "department": ["cs"],
-      "exam_format":["Displacement, velocity, and acceleration in 1D and 2D motion;Newton's three laws with practical applications like friction and tension; Conservation of energy with calculations involving kinetic and potential energy; Impulse and momentum in collisions; Rotational motion with torque, angular velocity, and moment of inertia; Newton’s Law of Gravitation and orbital motion; Electric field, force, and potential around point charges; Ohm’s Law, series and parallel circuits, and power in electric circuits; Properties of mechanical waves including frequency, wavelength, and interference; Nature and behavior of sound including Doppler effect; Basic optics including reflection, refraction, lenses, and mirrors; Introduction to temperature, heat transfer methods, and specific heat in thermodynamics"],
-      "level": ["freshman"],
-      "semester": ["one"],
-      "subject": ["physics"]
+      "department": [
+        "cs"
+      ],
+      "exam_format": [
+        "Displacement, velocity, and acceleration in 1D and 2D motion;Newton's three laws with practical applications like friction and tension; Conservation of energy with calculations involving kinetic and potential energy; Impulse and momentum in collisions; Rotational motion with torque, angular velocity, and moment of inertia; Newton’s Law of Gravitation and orbital motion; Electric field, force, and potential around point charges; Ohm’s Law, series and parallel circuits, and power in electric circuits; Properties of mechanical waves including frequency, wavelength, and interference; Nature and behavior of sound including Doppler effect; Basic optics including reflection, refraction, lenses, and mirrors; Introduction to temperature, heat transfer methods, and specific heat in thermodynamics"
+      ],
+      "level": [
+        "freshman (level one)"
+      ],
+      "semester": [
+        "one"
+      ],
+      "subject": [
+        "physics"
+      ]
     },
     {
       "department": [
         "cs"
       ],
-      "exam_format":["Atomic structure including protons, neutrons, electrons, and isotopes; Periodic table trends such as electronegativity, atomic radius, and ionization energy; Chemical bonding including ionic, covalent, and metallic bonds; Stoichiometry and balancing chemical equations; States of matter and gas laws including Boyle’s and Charles’s law; Solutions and concentration calculations (molarity, dilution); Acids, bases, and pH scale with neutralization reactions; Thermochemistry including enthalpy, calorimetry, and heat transfer; Chemical kinetics and factors affecting reaction rates; Chemical equilibrium and Le Chatelier’s principle"]
-      ,
+      "exam_format": [
+        "Atomic structure including protons, neutrons, electrons, and isotopes; Periodic table trends such as electronegativity, atomic radius, and ionization energy; Chemical bonding including ionic, covalent, and metallic bonds; Stoichiometry and balancing chemical equations; States of matter and gas laws including Boyle’s and Charles’s law; Solutions and concentration calculations (molarity, dilution); Acids, bases, and pH scale with neutralization reactions; Thermochemistry including enthalpy, calorimetry, and heat transfer; Chemical kinetics and factors affecting reaction rates; Chemical equilibrium and Le Chatelier’s principle"
+      ],
       "level": [
-        "freshman"
+        "freshman (level one)"
       ],
       "semester": [
         "one"
@@ -75,9 +89,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Types of data: qualitative vs. quantitative, discrete vs. continuous; Descriptive statistics including mean, median, mode, range, and standard deviation; Data visualization: bar graphs, histograms, pie charts, box plots; Probability concepts and basic rules; Probability distributions including binomial and normal distributions; Sampling methods and bias in data collection; Central limit theorem and its implications; Confidence intervals for population parameters; Hypothesis testing with p-values and significance levels; Correlation and linear regression analysis"],
+      "exam_format": [
+        "Types of data: qualitative vs. quantitative, discrete vs. continuous; Descriptive statistics including mean, median, mode, range, and standard deviation; Data visualization: bar graphs, histograms, pie charts, box plots; Probability concepts and basic rules; Probability distributions including binomial and normal distributions; Sampling methods and bias in data collection; Central limit theorem and its implications; Confidence intervals for population parameters; Hypothesis testing with p-values and significance levels; Correlation and linear regression analysis"
+      ],
       "level": [
-        "freshman"
+        "freshman (level one)"
       ],
       "semester": [
         "one"
@@ -90,9 +106,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Techniques of integration including integration by parts, trigonometric integrals, and partial fractions; Improper integrals and convergence tests; Parametric equations and polar coordinates with area and arc length calculations; Sequences and series including geometric, harmonic, and power series; Convergence tests such as the ratio and root test; Taylor and Maclaurin series with approximation applications; Applications of integration in physics and engineering including center of mass and moments of inertia"],
+      "exam_format": [
+        "Techniques of integration including integration by parts, trigonometric integrals, and partial fractions; Improper integrals and convergence tests; Parametric equations and polar coordinates with area and arc length calculations; Sequences and series including geometric, harmonic, and power series; Convergence tests such as the ratio and root test; Taylor and Maclaurin series with approximation applications; Applications of integration in physics and engineering including center of mass and moments of inertia"
+      ],
       "level": [
-        "freshman"
+        "freshman (level one)"
       ],
       "semester": [
         "two"
@@ -105,9 +123,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Basic arithmetic operations including addition, subtraction, multiplication, and division of whole numbers and decimals; Fractions and mixed numbers with simplification and operations; Factors, multiples, prime numbers, and divisibility rules; Ratios, proportions, and percent calculations; Introduction to variables and algebraic expressions; Solving simple linear equations and inequalities; Number properties such as commutative, associative, and distributive; Order of operations using PEMDAS; Basic geometry including perimeter, area, and volume; Introduction to data, graphs, and simple probability"],
+      "exam_format": [
+        "Basic arithmetic operations including addition, subtraction, multiplication, and division of whole numbers and decimals; Fractions and mixed numbers with simplification and operations; Factors, multiples, prime numbers, and divisibility rules; Ratios, proportions, and percent calculations; Introduction to variables and algebraic expressions; Solving simple linear equations and inequalities; Number properties such as commutative, associative, and distributive; Order of operations using PEMDAS; Basic geometry including perimeter, area, and volume; Introduction to data, graphs, and simple probability"
+      ],
       "level": [
-        "freshman"
+        "freshman (level one)"
       ],
       "semester": [
         "two"
@@ -120,9 +140,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["HTML structure including elements, tags, and attributes; CSS styling with selectors, properties, and values; Responsive design principles using media queries; Semantic HTML for accessibility and SEO; Box model and layout techniques including flexbox and grid"],
+      "exam_format": [
+        "HTML structure including elements, tags, and attributes; CSS styling with selectors, properties, and values; Responsive design principles using media queries; Semantic HTML for accessibility and SEO; Box model and layout techniques including flexbox and grid"
+      ],
       "level": [
-        "freshman"
+        "freshman (level one)"
       ],
       "semester": [
         "two"
@@ -135,9 +157,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Basic syntax and structure of C++ programs; Data types, variables, and operators; Control structures including if, switch, loops; Functions and scope; Object-oriented programming concepts: classes, objects, inheritance, and polymorphism"],
+      "exam_format": [
+        "Basic syntax and structure of C++ programs; Data types, variables, and operators; Control structures including if, switch, loops; Functions and scope; Object-oriented programming concepts: classes, objects, inheritance, and polymorphism"
+      ],
       "level": [
-        "freshman"
+        "freshman (level one)"
       ],
       "semester": [
         "two"
@@ -150,9 +174,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Fundamentals of logic gates: AND, OR, NOT, NAND, NOR, XOR; Boolean algebra and simplification techniques; Karnaugh maps for minimizing logic expressions; Design and analysis of combinational circuits; Introduction to sequential circuits and flip-flops"],
+      "exam_format": [
+        "Fundamentals of logic gates: AND, OR, NOT, NAND, NOR, XOR; Boolean algebra and simplification techniques; Karnaugh maps for minimizing logic expressions; Design and analysis of combinational circuits; Introduction to sequential circuits and flip-flops"
+      ],
       "level": [
-        "freshman"
+        "freshman (level one)"
       ],
       "semester": [
         "two"
@@ -165,9 +191,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Essay structure including introduction, body, and conclusion; Thesis development and supporting arguments; Grammar and punctuation rules; Research and citation styles (APA, MLA); Revision and editing strategies for clarity and coherence"],
+      "exam_format": [
+        "Essay structure including introduction, body, and conclusion; Thesis development and supporting arguments; Grammar and punctuation rules; Research and citation styles (APA, MLA); Revision and editing strategies for clarity and coherence"
+      ],
       "level": [
-        "freshman"
+        "freshman (level one)"
       ],
       "semester": [
         "two"
@@ -180,9 +208,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Algorithm design strategies: divide and conquer, greedy algorithms, dynamic programming; Time and space complexity analysis; Sorting algorithms: bubble, selection, insertion, merge, quicksort; Searching algorithms: linear and binary search; Graph algorithms: BFS, DFS, Dijkstra's algorithm"],
+      "exam_format": [
+        "Algorithm design strategies: divide and conquer, greedy algorithms, dynamic programming; Time and space complexity analysis; Sorting algorithms: bubble, selection, insertion, merge, quicksort; Searching algorithms: linear and binary search; Graph algorithms: BFS, DFS, Dijkstra's algorithm"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "one"
@@ -195,9 +225,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Turing machines and the concept of computability; Decidable and undecidable problems; Church-Turing thesis; Recursive and recursively enumerable languages; Reductions and problem hardness"],
+      "exam_format": [
+        "Turing machines and the concept of computability; Decidable and undecidable problems; Church-Turing thesis; Recursive and recursively enumerable languages; Reductions and problem hardness"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "one"
@@ -210,9 +242,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Principles of OOP: encapsulation, inheritance, polymorphism, and abstraction; Class and object creation; Method overloading and overriding; Constructors and destructors; Interfaces and abstract classes"],
+      "exam_format": [
+        "Principles of OOP: encapsulation, inheritance, polymorphism, and abstraction; Class and object creation; Method overloading and overriding; Constructors and destructors; Interfaces and abstract classes"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "one"
@@ -225,10 +259,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Relational database concepts: tables, rows, and columns; SQL queries for data retrieval and manipulation; Normalization and database design; Indexing and query optimization; Transactions and concurrency control"]
-,
+      "exam_format": [
+        "Relational database concepts: tables, rows, and columns; SQL queries for data retrieval and manipulation; Normalization and database design; Indexing and query optimization; Transactions and concurrency control"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "one",
@@ -242,10 +277,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Matrix operations: addition, subtraction, multiplication; Determinants and their properties; Inverse of a matrix and solving linear systems; Eigenvalues and eigenvectors; Applications in computer graphics and systems of equations"]
-,
+      "exam_format": [
+        "Matrix operations: addition, subtraction, multiplication; Determinants and their properties; Inverse of a matrix and solving linear systems; Eigenvalues and eigenvectors; Applications in computer graphics and systems of equations"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "one"
@@ -258,9 +294,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Reading , Writing, Grammar, Vocabulary ,Conversation"],
+      "exam_format": [
+        "Reading , Writing, Grammar, Vocabulary ,Conversation"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "one"
@@ -273,9 +311,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Linear data structures: arrays, linked lists, stacks, and queues; Non-linear data structures: trees and graphs; Hash tables and hashing techniques; Sorting and searching algorithms; Complexity analysis and Big O notation"],
+      "exam_format": [
+        "Linear data structures: arrays, linked lists, stacks, and queues; Non-linear data structures: trees and graphs; Hash tables and hashing techniques; Sorting and searching algorithms; Complexity analysis and Big O notation"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "two"
@@ -288,10 +328,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Network topologies: star, ring, mesh, and bus; OSI and TCP/IP models; IP addressing and subnetting; Routing and switching concepts; Network security principles and protocols"]
-,
+      "exam_format": [
+        "Network topologies: star, ring, mesh, and bus; OSI and TCP/IP models; IP addressing and subnetting; Routing and switching concepts; Network security principles and protocols"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "two",
@@ -305,9 +346,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Client-server architecture and HTTP protocol; Front-end development using HTML, CSS, and JavaScript; Back-end development with server-side scripting; Database integration and CRUD operations; Web application security and authentication mechanisms"],
+      "exam_format": [
+        "Client-server architecture and HTTP protocol; Front-end development using HTML, CSS, and JavaScript; Back-end development with server-side scripting; Database integration and CRUD operations; Web application security and authentication mechanisms"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "two"
@@ -320,10 +363,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Finite automata: deterministic and non-deterministic; Regular expressions and languages; Context-free grammars and pushdown automata; Turing machines and decidability; Applications in compiler design and text processing"]
-,
+      "exam_format": [
+        "Finite automata: deterministic and non-deterministic; Regular expressions and languages; Context-free grammars and pushdown automata; Turing machines and decidability; Applications in compiler design and text processing"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "two"
@@ -336,10 +380,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":  ["Graph terminology: vertices, edges, degrees; Types of graphs: directed, undirected, weighted, unweighted; Graph traversal algorithms: BFS and DFS; Shortest path algorithms: Dijkstra's and Bellman-Ford; Applications in networking and social networks"]
-,
+      "exam_format": [
+        "Graph terminology: vertices, edges, degrees; Types of graphs: directed, undirected, weighted, unweighted; Graph traversal algorithms: BFS and DFS; Shortest path algorithms: Dijkstra's and Bellman-Ford; Applications in networking and social networks"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "two"
@@ -352,10 +397,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["First-order ODEs: separable and linear equations; Second-order linear ODEs with constant coefficients; Homogeneous and non-homogeneous equations; Laplace transforms and their applications; Systems of differential equations and modeling real-world phenomena"]
-,
+      "exam_format": [
+        "First-order ODEs: separable and linear equations; Second-order linear ODEs with constant coefficients; Homogeneous and non-homogeneous equations; Laplace transforms and their applications; Systems of differential equations and modeling real-world phenomena"
+      ],
       "level": [
-        "sophomore"
+        "sophomore (level two)"
       ],
       "semester": [
         "two"
@@ -368,10 +414,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Java syntax and structure including classes, methods, and variables; Object-oriented programming concepts: inheritance, polymorphism, encapsulation; Exception handling mechanisms and best practices; File I/O operations and serialization; Multithreading and concurrency control"]
-,
+      "exam_format": [
+        "Java syntax and structure including classes, methods, and variables; Object-oriented programming concepts: inheritance, polymorphism, encapsulation; Exception handling mechanisms and best practices; File I/O operations and serialization; Multithreading and concurrency control"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "one"
@@ -384,9 +431,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Programming language syntax rules and structure; Variable declarations and data types; Control flow statements: if, else, switch; Loop constructs: for, while, do-while; Function definitions and scope"],
+      "exam_format": [
+        "Programming language syntax rules and structure; Variable declarations and data types; Control flow statements: if, else, switch; Loop constructs: for, while, do-while; Function definitions and scope"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "one"
@@ -399,9 +448,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Time and space complexity analysis; Big O, Big Theta, and Big Omega notations; Complexity classes: P, NP, NP-complete, NP-hard; Reductions and problem hardness; Parallel and distributed computation models"],
+      "exam_format": [
+        "Time and space complexity analysis; Big O, Big Theta, and Big Omega notations; Complexity classes: P, NP, NP-complete, NP-hard; Reductions and problem hardness; Parallel and distributed computation models"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "one"
@@ -414,10 +465,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":  ["Process management and scheduling algorithms; Memory management techniques including paging and segmentation; File systems and storage management; Input/output systems and device drivers; Security and protection mechanisms"]
-,
+      "exam_format": [
+        "Process management and scheduling algorithms; Memory management techniques including paging and segmentation; File systems and storage management; Input/output systems and device drivers; Security and protection mechanisms"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "one"
@@ -430,9 +482,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Group theory including subgroups and cyclic groups; Ring theory and polynomial rings; Field theory and finite fields; Homomorphisms and isomorphisms; Applications in cryptography and coding theory"],
+      "exam_format": [
+        "Group theory including subgroups and cyclic groups; Ring theory and polynomial rings; Field theory and finite fields; Homomorphisms and isomorphisms; Applications in cryptography and coding theory"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "one"
@@ -445,9 +499,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Digital audio and video formats; Compression techniques for multimedia data; Multimedia networking and streaming protocols; Human-computer interaction in multimedia applications; Multimedia content creation and editing tools"],
+      "exam_format": [
+        "Digital audio and video formats; Compression techniques for multimedia data; Multimedia networking and streaming protocols; Human-computer interaction in multimedia applications; Multimedia content creation and editing tools"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "one"
@@ -460,9 +516,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Scientific method and hypothesis testing; Experimental design and control variables; Data analysis and interpretation; Critical thinking and logical reasoning; Ethical considerations in scientific research"],
+      "exam_format": [
+        "Scientific method and hypothesis testing; Experimental design and control variables; Data analysis and interpretation; Critical thinking and logical reasoning; Ethical considerations in scientific research"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "one"
@@ -475,9 +533,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Scientific integrity, plagiarism, participant protection, informed consent, researcher responsibilities"],
+      "exam_format": [
+        "Scientific integrity, plagiarism, participant protection, informed consent, researcher responsibilities"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "two"
@@ -490,9 +550,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Counting principles: permutations and combinations; Pigeonhole principle and inclusion-exclusion; Recurrence relations and generating functions; Graph theory basics; Applications in probability and algorithm analysis"],
+      "exam_format": [
+        "Counting principles: permutations and combinations; Pigeonhole principle and inclusion-exclusion; Recurrence relations and generating functions; Graph theory basics; Applications in probability and algorithm analysis"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "two"
@@ -505,9 +567,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Lexical analysis and token generation; Syntax analysis using parsing techniques; Semantic analysis and symbol tables; Intermediate code generation and optimization; Code generation and error handling"],
+      "exam_format": [
+        "Lexical analysis and token generation; Syntax analysis using parsing techniques; Semantic analysis and symbol tables; Intermediate code generation and optimization; Code generation and error handling"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "two"
@@ -520,10 +584,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["2D and 3D graphics rendering techniques; Transformations and projections; Lighting and shading models; Texture mapping and rasterization; Graphics programming with OpenGL and WebGL"]
-,
+      "exam_format": [
+        "2D and 3D graphics rendering techniques; Transformations and projections; Lighting and shading models; Texture mapping and rasterization; Graphics programming with OpenGL and WebGL"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "two"
@@ -536,10 +601,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Android application architecture and components; User interface design with XML layouts; Activity lifecycle and event handling; Data storage and content providers; Networking and RES Tful APIs integration"]
-,
+      "exam_format": [
+        "Android application architecture and components; User interface design with XML layouts; Activity lifecycle and event handling; Data storage and content providers; Networking and RES Tful APIs integration"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "two"
@@ -552,9 +618,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Database normalization and denormalization; Transaction management and concurrency control; Indexing and query optimization; Distributed databases and replication; Data warehousing and OLAP systems"],
+      "exam_format": [
+        "Database normalization and denormalization; Transaction management and concurrency control; Indexing and query optimization; Distributed databases and replication; Data warehousing and OLAP systems"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "two"
@@ -567,10 +635,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Symmetric and asymmetric encryption algorithms; Cryptographic hash functions and digital signatures; Public key infrastructure and certificate authorities; Cryptographic protocols and key exchange; Security considerations and attack vectors"]
-,
+      "exam_format": [
+        "Symmetric and asymmetric encryption algorithms; Cryptographic hash functions and digital signatures; Public key infrastructure and certificate authorities; Cryptographic protocols and key exchange; Security considerations and attack vectors"
+      ],
       "level": [
-        "Junior"
+        "Junior (level three)"
       ],
       "semester": [
         "two"
@@ -583,10 +652,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Problem-solving techniques in software development; Effective communication skills for technical documentation; Time management strategies for project deadlines; Teamwork and collaboration in agile environments; Attention to detail in code review and debugging"]
-,
+      "exam_format": [
+        "Problem-solving techniques in software development; Effective communication skills for technical documentation; Time management strategies for project deadlines; Teamwork and collaboration in agile environments; Attention to detail in code review and debugging"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "one"
@@ -599,10 +669,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Machine learning algorithms including supervised and unsupervised learning; Natural language processing techniques for text analysis; Computer vision applications in image recognition; Autonomous systems and robotics integration; Ethical considerations in AI deployment"]
-,
+      "exam_format": [
+        "Machine learning algorithms including supervised and unsupervised learning; Natural language processing techniques for text analysis; Computer vision applications in image recognition; Autonomous systems and robotics integration; Ethical considerations in AI deployment"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "one"
@@ -615,10 +686,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Parallel programming models such as OpenMP and MPI; Task scheduling and load balancing strategies; Synchronization mechanisms and concurrency control; Performance optimization in multi-core systems; Applications of parallel computing in scientific simulations"]
-,
+      "exam_format": [
+        "Parallel programming models such as OpenMP and MPI; Task scheduling and load balancing strategies; Synchronization mechanisms and concurrency control; Performance optimization in multi-core systems; Applications of parallel computing in scientific simulations"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "one"
@@ -631,10 +703,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":["Idea selection, requirements analysis, planning and implementation, team management, presentation and final evaluation"]
-     ,
+      "exam_format": [
+        "Idea selection, requirements analysis, planning and implementation, team management, presentation and final evaluation"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "one"
@@ -647,10 +720,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":  ["Image acquisition and representation techniques; Spatial filtering and enhancement methods; Frequency domain processing using Fourier transforms; Image compression standards like JPEG; Object detection and recognition algorithms"]
-,
+      "exam_format": [
+        "Image acquisition and representation techniques; Spatial filtering and enhancement methods; Frequency domain processing using Fourier transforms; Image compression standards like JPEG; Object detection and recognition algorithms"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "one"
@@ -663,9 +737,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Network security protocols and firewalls; Cryptographic algorithms and key management; Vulnerability assessment and penetration testing; Security policies and risk management; Ethical hacking and incident response strategies"],
+      "exam_format": [
+        "Network security protocols and firewalls; Cryptographic algorithms and key management; Vulnerability assessment and penetration testing; Security policies and risk management; Ethical hacking and incident response strategies"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "one"
@@ -678,10 +754,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Convex hull algorithms and applications; Line segment intersection detection; Polygon triangulation methods; Voronoi diagrams and Delaunay triangulations; Geometric data structures for spatial queries"]
-,
+      "exam_format": [
+        "Convex hull algorithms and applications; Line segment intersection detection; Polygon triangulation methods; Voronoi diagrams and Delaunay triangulations; Geometric data structures for spatial queries"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "one"
@@ -694,9 +771,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Sequence alignment algorithms for DNA and protein analysis; Gene expression data analysis using statistical methods; Protein structure prediction models; Phylogenetic tree construction and evolutionary analysis; Integration of biological databases and data mining techniques"],
+      "exam_format": [
+        "Sequence alignment algorithms for DNA and protein analysis; Gene expression data analysis using statistical methods; Protein structure prediction models; Phylogenetic tree construction and evolutionary analysis; Integration of biological databases and data mining techniques"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "two"
@@ -709,10 +788,11 @@
       "department": [
         "cs"
       ],
-      "exam_format":  ["Software development life cycle models including Agile and Waterfall; Requirements elicitation and specification techniques; Software design patterns and architectural styles; Testing methodologies and quality assurance; Project management and team collaboration tools"]
-,
+      "exam_format": [
+        "Software development life cycle models including Agile and Waterfall; Requirements elicitation and specification techniques; Software design patterns and architectural styles; Testing methodologies and quality assurance; Project management and team collaboration tools"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "two"
@@ -725,9 +805,11 @@
       "department": [
         "cs"
       ],
-      "exam_format": ["Deep learning architectures such as CNNs and RNNs; Reinforcement learning and decision-making models; Explainable AI and interpretability techniques; Generative adversarial networks (GANs) applications; Integration of AI with cognitive science concepts"],
+      "exam_format": [
+        "Deep learning architectures such as CNNs and RNNs; Reinforcement learning and decision-making models; Explainable AI and interpretability techniques; Generative adversarial networks (GANs) applications; Integration of AI with cognitive science concepts"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "two"
@@ -738,10 +820,13 @@
     },
     {
       "department": [
-        "cs"],
-      "exam_format": ["Data preprocessing and cleaning methods; Association rule mining for market basket analysis; Classification algorithms including decision trees and SVMs; Clustering techniques like k-means and hierarchical clustering; Anomaly detection in large datasets"],
+        "cs"
+      ],
+      "exam_format": [
+        "Data preprocessing and cleaning methods; Association rule mining for market basket analysis; Classification algorithms including decision trees and SVMs; Clustering techniques like k-means and hierarchical clustering; Anomaly detection in large datasets"
+      ],
       "level": [
-        "senior"
+        "senior (level four)"
       ],
       "semester": [
         "two"

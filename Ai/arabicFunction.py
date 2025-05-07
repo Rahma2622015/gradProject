@@ -10,6 +10,11 @@ from Ai.ArabicAi.SemanticTaskMapper import SemanticTaskMapperArabic
 from Modules.dataStorage import DataStorage
 from Database.Datastorage_DB import DatabaseStorage
 from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
+from Ai.Recommendation.Arabic.ArabExamCourseSys import ArSingleShotRecommendationSystem
+from Database.FetchDataCourses.coureExamSystem import CourseAssistant
+from Database.FetchDataProfessors.professorExamSystem import CourseAssistantPr
+from Ai.ArabicAi.Autocorrect import ArabicSpellChecker
+import variables
 
 use_semantic_armapper=True
 ARmapper = mapping()
@@ -18,12 +23,15 @@ ARreply = replyModule()
 ARproces = TaskProcessor()
 ARt = ArabicTokenizers()
 ARp = ArabicPreprocessor()
+auto=ArabicSpellChecker()
 recom_replyAr = ArReplyModuleRe()
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
+dbcour=CourseAssistant()
+dbpro=CourseAssistantPr()
 course_recommender = ArRecommendationSystem(data_storage, memory,dbs)
-
+excourse=ArSingleShotRecommendationSystem(data_storage, memory,dbcour,dbpro)
 
 def is_ar_recommendation_complete(s: str) -> bool:
     s = s.strip()
@@ -45,7 +53,7 @@ def is_ar_recommendation_complete(s: str) -> bool:
 
 def langArabic(message, storage):
     try:
-        corrected_message = ARt.normalize(message)
+        corrected_message = auto.auto_correct(message)
         ARtokens = ARt.tokenize(corrected_message)
         print("tokens: ", ARtokens)
         ARpos = ARt.pos_tag(ARtokens)
@@ -111,7 +119,7 @@ def langArabic(message, storage):
 
             if all(task[0] == ChatTask.UnknownTask for task in ARtasks):
                 print("[DEBUG] No valid recommendation task found, skipping recommendation.")
-                return "I'm not sure how to answer that.", [], False
+                return "انا لست متاكد من الاجابة على ذلك.", [], False
             else:
                 if any(task[0] == ChatTask.ExamRecom for task in ARtasks):
                     print("[DEBUG] Handling Exam Recommendation Task")
@@ -141,8 +149,27 @@ def langArabic(message, storage):
                         response, options = recom_replyAr.course_selection_recommender.start(course_names)
                         s = response if isinstance(response, str) else "Error processing multi-course recommendation."
                     else:
-                        s = "Sorry, I couldn't detect the course names from your question."
+                        s = "اسف انا لا استطيع تحديد اسماء المواد من رسالتك."
                     return s, options, True
+                if any(task[0] == ChatTask.ExamDoc for task in ARtasks):
+                    print("[DEBUG] Handling exam Doctor Recommendation Task")
+                    storage.set_current_task("CourseExSystem")
+                    if isinstance(s, str):
+                        s, options = excourse.handle_user_message(corrected_message)
+                    else:
+                        s = "من فضلك شير الى اسم دكتور صحيح."
+                    storage.set_current_task(None)
+                    return s, options, False
+
+                if any(task[0] == ChatTask.ExamCourse for task in ARtasks):
+                    print("[DEBUG] Handling  exam course Recommendation Task")
+                    storage.set_current_task("ExamDoc")
+                    if isinstance(s, str):
+                        s, options = excourse.handle_user_message(corrected_message)
+                    else:
+                        s = "من فضلك شير الى اسم مادة صحيح."
+                    storage.set_current_task(None)
+                    return s, options, False
             ARpre = ARproces.process(ARtasks, storage)
             print(f"[DEBUG] Processed tasks output: {ARpre}, type: {type(ARpre)}")
             response = ARreply.generate_response(ARpre)
