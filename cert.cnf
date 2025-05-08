@@ -16,5 +16,5 @@ extendedKeyUsage = serverAuth
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1 =192.168.138.48
-IP.1 =192.168.138.48
+DNS.1 = 192.168.1.3
+IP.1 = 192.168.1.3
