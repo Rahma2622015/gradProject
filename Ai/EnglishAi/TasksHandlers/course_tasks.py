@@ -43,7 +43,12 @@ def handle_course_tasks(task, D: DatabaseStorage):
         elif word in ["prerequisite", "requirement", "require"]:
             role = "prerequisite"
             break
-        elif word in ["department", "faculty", "college", "program"]:
+        elif word in ["professor", "doctor", "dr.", "dr","assistant"]:
+            person_name = task_words[i+1]
+            role = "professor"
+            break
+        elif word in ["department", "faculty", "college","program"]:
+
             role = "program"
             break
     print("rr",role ," cname",course_name)

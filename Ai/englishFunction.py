@@ -32,7 +32,7 @@ t = Tokenizers()
 p = Preprocessors()
 a = AutoCorrector()
 recom_reply = ReplyModuleRe()
-bigram_model = BigramModel(variables.Bigrams,variables.NamesinCorrectEnglish)
+bigram_model = BigramModel()
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
@@ -40,8 +40,6 @@ dbcour=CourseAssistant()
 dbpro=CourseAssistantPr()
 course_recommender = RecommendationSystem(data_storage, memory,dbs)
 excourse=SingleShotRecommendationSystem(data_storage, memory,dbcour,dbpro)
-use_semantic_mapper = True
-show_grammar_feedback=True
 
 def is_trivial_task(tokens, f) -> bool:
     for sentence in tokens:
@@ -245,4 +243,5 @@ def langEnglish(message, storage):
         return s, options, False
 
     except Exception as e:
-        return f"Error in English processing: {str(e)}", [], False
+        return (f"Error in English proces"
+                f"+sing: {str(e)}"), [], False
