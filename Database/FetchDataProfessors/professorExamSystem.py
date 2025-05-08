@@ -2,7 +2,7 @@ from Database.session import SessionLocal
 from Database.DatabaseTabels.professor import Professor
 from Database.DatabaseTabels.examSystem import ProfessorExamSystem
 
-class CourseAssistantPr:
+class ProfessorSystem:
 
     def __init__(self):
         self.session = SessionLocal()

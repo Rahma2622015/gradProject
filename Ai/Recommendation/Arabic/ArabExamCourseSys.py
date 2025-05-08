@@ -1,12 +1,12 @@
 from Database.Datastorage_DB import DatabaseStorage
 from Modules.dataStorage import DataStorage
-from Database.FetchDataCourses.coureExamSystem import CourseAssistant
-from Database.FetchDataProfessors.professorExamSystem import CourseAssistantPr
+from Database.FetchDataCourses.coureExamSystem import CourseSystem
+from Database.FetchDataProfessors.professorExamSystem import ProfessorSystem
 from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 
 class ArSingleShotRecommendationSystem:
     def __init__(self, data_storage: DatabaseStorage, memory: DataStorage
-                 , DS: CourseAssistant,Dsbe:CourseAssistantPr):
+                 , DS: CourseSystem,Dsbe:ProfessorSystem):
         self.data_storage = data_storage
         self.memory = memory
         self.DSb = DS

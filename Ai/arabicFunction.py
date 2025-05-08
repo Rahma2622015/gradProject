@@ -14,8 +14,8 @@ from Database.Datastorage_DB import DatabaseStorage
 from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 from endPoints.ai_config_endpoints import load_ai_config
 from Ai.Recommendation.Arabic.ArabExamCourseSys import ArSingleShotRecommendationSystem
-from Database.FetchDataCourses.coureExamSystem import CourseAssistant
-from Database.FetchDataProfessors.professorExamSystem import CourseAssistantPr
+from Database.FetchDataCourses.coureExamSystem import CourseSystem
+from Database.FetchDataProfessors.professorExamSystem import ProfessorSystem
 from Ai.ArabicAi.Autocorrect import ArabicSpellChecker
 import variables
 
@@ -33,8 +33,8 @@ grammer = ArabicGrammarChecker()
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
-dbcour=CourseAssistant()
-dbpro=CourseAssistantPr()
+dbcour=CourseSystem()
+dbpro=ProfessorSystem()
 course_recommender = ArRecommendationSystem(data_storage, memory,dbs)
 excourse=ArSingleShotRecommendationSystem(data_storage, memory,dbcour,dbpro)
 

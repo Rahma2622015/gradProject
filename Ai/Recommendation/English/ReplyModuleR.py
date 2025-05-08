@@ -9,15 +9,15 @@ from Modules import DataStorage
 from Ai.Recommendation.English.recommultiCourses import MultiCourseRecommendationSystem
 from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 from Ai.Recommendation.English.examCourseSystem import SingleShotRecommendationSystem
-from Database.FetchDataCourses.coureExamSystem import CourseAssistant
-from Database.FetchDataProfessors.professorExamSystem import CourseAssistantPr
+from Database.FetchDataCourses.coureExamSystem import CourseSystem
+from Database.FetchDataProfessors.professorExamSystem import ProfessorSystem
 import variables
 
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
-dbcour=CourseAssistant()
-dbpro=CourseAssistantPr()
+dbcour=CourseSystem()
+dbpro=ProfessorSystem()
 
 class ReplyModuleRe:
     def __init__(self, json_path=variables.ResponseDataLocationRE):

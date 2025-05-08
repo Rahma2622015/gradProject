@@ -17,8 +17,8 @@ from Ai.EnglishAi.functionsForMapping import functions
 from endPoints.ai_config_endpoints import load_ai_config
 from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 from Ai.Recommendation.English.examCourseSystem import SingleShotRecommendationSystem
-from Database.FetchDataCourses.coureExamSystem import CourseAssistant
-from Database.FetchDataProfessors.professorExamSystem import CourseAssistantPr
+from Database.FetchDataCourses.coureExamSystem import CourseSystem
+from Database.FetchDataProfessors.professorExamSystem import ProfessorSystem
 import variables
 
 f=functions()
@@ -36,8 +36,8 @@ bigram_model = BigramModel()
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
-dbcour=CourseAssistant()
-dbpro=CourseAssistantPr()
+dbcour=CourseSystem()
+dbpro=ProfessorSystem()
 course_recommender = RecommendationSystem(data_storage, memory,dbs)
 excourse=SingleShotRecommendationSystem(data_storage, memory,dbcour,dbpro)
 

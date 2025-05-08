@@ -10,15 +10,15 @@ from Ai.Recommendation.Arabic.arabicRecomMulticourses import ArMultiCourseRecomm
 from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
 from Ai.Recommendation.Arabic.ArabExamCourseSys import ArSingleShotRecommendationSystem
-from Database.FetchDataCourses.coureExamSystem import CourseAssistant
-from Database.FetchDataProfessors.professorExamSystem import CourseAssistantPr
+from Database.FetchDataCourses.coureExamSystem import CourseSystem
+from Database.FetchDataProfessors.professorExamSystem import ProfessorSystem
 import variables
 
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
-dbcour=CourseAssistant()
-dbpro=CourseAssistantPr()
+dbcour=CourseSystem()
+dbpro=ProfessorSystem()
 
 class ArReplyModuleRe:
     def __init__(self, json_path=variables.ArResponseDataLocationRE, memory_db=None, temp_storage=None):

@@ -2,7 +2,7 @@ from Database.session import SessionLocal
 from Database.DatabaseTabels.course import Course
 from Database.DatabaseTabels.examSystem import CourseExamSystem
 
-class CourseAssistant:
+class CourseSystem:
     def __init__(self):
         self.session = SessionLocal()
 
