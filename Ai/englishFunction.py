@@ -17,7 +17,6 @@ from Ai.EnglishAi.functionsForMapping import functions
 from endPoints.ai_config_endpoints import load_ai_config
 from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
 from Ai.Recommendation.English.examCourseSyatem import SingleShotRecommendationSystem
-import variables
 
 f=functions()
 grammer=EnglishGrammarChecker()
@@ -30,15 +29,12 @@ t = Tokenizers()
 p = Preprocessors()
 a = AutoCorrector()
 recom_reply = ReplyModuleRe()
-bigram_model = BigramModel(variables.Bigrams,variables.NamesinCorrectEnglish)
+bigram_model = BigramModel()
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
 course_recommender = RecommendationSystem(data_storage, memory,dbs)
 excourse=SingleShotRecommendationSystem(data_storage, memory,dbs)
-use_semantic_mapper = True
-show_grammar_feedback=True
-
 def is_trivial_task(tokens, f) -> bool:
     for sentence in tokens:
         for token in sentence:
@@ -238,4 +234,5 @@ def langEnglish(message, storage):
         return s, options, False
 
     except Exception as e:
-        return f"Error in English processing: {str(e)}", [], False
+        return (f"Error in English proces"
+                f"+sing: {str(e)}"), [], False

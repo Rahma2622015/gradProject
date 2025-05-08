@@ -26,17 +26,31 @@ class TaskProcessor:
             elif task_type in [ChatTask.PersonRoleQueryTask]:
                 responses.extend(handle_professor_tasks(task, D))
 
+
             elif task_type in [
-                ChatTask.ThanksTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask,
+
+                ChatTask.ThanksTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask, ChatTask.ClassificationTask,
+
                 ChatTask.DifficultyTask, ChatTask.CheckWellbeingTask, ChatTask.MathTask,
+
                 ChatTask.QuestionTask, ChatTask.AskHelpingTask, ChatTask.TypesOfProgramsTask,
+
                 ChatTask.ExternalCoursesTask, ChatTask.HighGpaTask, ChatTask.MaterialsTypeTask,
-                ChatTask.GraduationTask, ChatTask.EnrollmentTask, ChatTask.AssessGraduation,ChatTask.HelpTask,
+
+                ChatTask.GraduationTask, ChatTask.EnrollmentTask, ChatTask.AssessGraduation,
+
                 ChatTask.ReasonsGraduation, ChatTask.PreventDelays, ChatTask.UnderstandRules,
+
                 ChatTask.ScheduleTask, ChatTask.ExamSystem, ChatTask.GPARequirements, ChatTask.Training,
+
                 ChatTask.AdjustCreditLoad, ChatTask.MultiCourseRecommendationTask, ChatTask.OptimizeStudyPlan,
-                ChatTask.LabAttendance, ChatTask.GoodGPA, ChatTask.SelectDepartment, ChatTask.TransferBetweenDepartments,
-                ChatTask.ExamCourse,ChatTask.ExamDoc
+
+                ChatTask.LabAttendance, ChatTask.GoodGPA, ChatTask.SelectDepartment,
+                ChatTask.TransferBetweenDepartments,
+
+                ChatTask.ExamCourse, ChatTask.ExamDoc, ChatTask.CreditHoursTask, ChatTask.CourseSystem,
+                ChatTask.EnhanceCareerReadiness,
+
             ]:
                 responses.extend(handle_general_tasks(task))
 

@@ -1,3 +1,4 @@
+from Ai.ArabicAi.bigram_model import BigramModelArabic
 from Ai.ArabicAi.ArabicTokenizer import ArabicTokenizers
 from Ai.ArabicAi.Mapping import mapping
 from Ai.ArabicAi.ArabicPreprocessor import ArabicPreprocessor
@@ -7,11 +8,12 @@ from Ai.Recommendation.Arabic.ArabicReplyModuleRe import ArReplyModuleRe
 from Ai.Recommendation.Arabic.ArabicCoursesystem import ArRecommendationSystem
 from Ai.ArabicAi.chattask import ChatTask
 from Ai.ArabicAi.SemanticTaskMapper import SemanticTaskMapperArabic
+from Ai.ArabicAi.grammer_checker import ArabicGrammarChecker
 from Modules.dataStorage import DataStorage
 from Database.Datastorage_DB import DatabaseStorage
 from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
+from endPoints.ai_config_endpoints import load_ai_config
 
-use_semantic_armapper=True
 ARmapper = mapping()
 mapper=SemanticTaskMapperArabic()
 ARreply = replyModule()
@@ -19,12 +21,21 @@ ARproces = TaskProcessor()
 ARt = ArabicTokenizers()
 ARp = ArabicPreprocessor()
 recom_replyAr = ArReplyModuleRe()
+bigram=BigramModelArabic()
+grammer = ArabicGrammarChecker()
+
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
 course_recommender = ArRecommendationSystem(data_storage, memory,dbs)
 
 
+def config():
+    return load_ai_config()
+def use_semantic_armapperfun():
+    return config().get("use_semantic_armapper", True)
+def show_grammar_feedback_enabled():
+    return config().get("show_grammar_feedback", True)
 def is_ar_recommendation_complete(s: str) -> bool:
     s = s.strip()
     return (
@@ -44,6 +55,7 @@ def is_ar_recommendation_complete(s: str) -> bool:
     )
 
 def langArabic(message, storage):
+    global g1, g2
     try:
         corrected_message = ARt.normalize(message)
         ARtokens = ARt.tokenize(corrected_message)
@@ -102,11 +114,16 @@ def langArabic(message, storage):
             else:
                 return s, options, True
         else:
-            if not use_semantic_armapper:
-                ARtasks = ARmapper.mapToken(ARtokens, ARpos)
-            else:
+            if  use_semantic_armapperfun():
                 print("I am using it........")
-                ARtasks=mapper.mapToken(ARtokens,ARpos)
+                g1 = grammer.is_correct(ARtokens)
+                g2 = grammer.get_errors(ARtokens)
+                ARtasks = mapper.mapToken(ARtokens, ARpos)
+            else:
+                bigram_results = bigram.sentence_probability(ARtokens)
+                if any(result[0] == "UnknownTask" for result in bigram_results):
+                    return " يبدو أنني لم أوصل الفكرة بشكل جيد! ممكن تسمح لي أشرحها بطريقة ثانية؟ بكل الحب والله، أبغاها تكون زيك بالضبط! 💕", [], True
+                ARtasks = ARmapper.mapToken(ARtokens, ARpos)
             print(f"[DEBUG] Identified tasks: {ARtasks}, type: {type(ARtasks)}")
 
             if all(task[0] == ChatTask.UnknownTask for task in ARtasks):
@@ -155,7 +172,16 @@ def langArabic(message, storage):
             s = "انا اسف لا استطيع تنفيذ طلبك."
         if not options:
             options = []
-        return s, options, False
+            # === Grammar Checking: Show errors if they exist ===
+        if use_semantic_armapperfun():
+            if any(g == False for g in g1):
+                    flat_errors = [error for sublist in g2 for error in sublist]
+                    if flat_errors and show_grammar_feedback_enabled():
+                        grammar_feedback = "لاحظت شوية أخطاء بسيطة في الكتابة:\n- " + "\n- ".join(flat_errors)
+                        s = f"{grammar_feedback}\n\nأعتقد إنك تقصد كده 😊:\n\n{s}"
+
+            return s, options, False
+
 
     except Exception as e:
         return f"حدث خطأ أثناء معالجة العربية: {str(e)}"

@@ -1,12 +1,12 @@
 {
   "CheckWellbeingTask": [
-    "how are you",
-    "are you okay",
-    "what's go on"
+    "how are you?",
+    "are you okay?",
+    "what's going on?"
   ],
   "AskHelpingTask": [
-  "can you help me",
-  "could you assist me with this task"
+  "help me",
+  "could you assist me with this task?"
 ],
 
   "MathTask": [
@@ -14,92 +14,167 @@
     "will being weak in mathematics during high school affect me now"
   ],
   "TypesOfProgramsTask": [
-  "what programs are available in the mathematics department",
-  "which programs are offered in the mathematics department"
+  "what programs are available in the mathematics department?",
+  "which branches are exist in the department of mathematics?"
 ],
-
 "ExternalCoursesTask": [
-  "when should i take external courses",
-  "which external courses do you recommend",
-  "would you suggest any external courses to focus on"
+  "which year would you recommend for me to focus on improving my skills?",
+  "what year do you think I should dedicate to enhancing my skills, and why?"
 ],
 
   "DifficultyTask": [
-    "is computer science considered a tougher field of study",
-    "is cs harder than other subjects"
+    "is computer science considered a tougher field of study compared to other disciplines?",
+    "is cs harder than other subjects",
+    "how challenging is computer science compared to other disciplines?"
   ],
  "MaterialsTypeTask": [
-  "what type of material is used in the course",
-  "which materials do we need for the studying",
-  "do we have primary resources for the course"
+  "what types of materials are typically included in the study?",
+  "which materials do we need for the studying?",
+  "which types of resources are commonly used by professors in studies?"
 ],
 "HighGpaTask": [
-  "what can i do to achieve a high gpa",
-  "how can i get a strong gpa in computer science",
-  "can i achieve a high gpa in cs",
-  "how can i improve my gpa in computer science"
+  "what can i do to achieve a high gpa?",
+  "how can i get a strong gpa in computer science?",
+  "can i achieve a high gpa in cs?",
+  "how can i improve my gpa in computer science?"
 ],
 "ChooseDepartmentTask": [
-  "how do i determine which department to join",
-  "what factors should i consider to choose the best department",
-  "how can i make an informed decision on which department to join"
+  "how do i determine which department to join  among the six programs?",
+  "what factors should i consider when selecting the best program from the six programs?",
+  "how can i make an informed decision on which department to join?"
 ],
 "AcademicAdvisorTask": [
-  "who is responsible for advising students",
-  "what is the role of an academic advisor"
+  "who is responsible for advising students?",
+  "what is the role of an academic advisor?"
 ],
 "ClassificationTask": [
-  "what is the classification of students in the program",
-  "can you explain the different classifications available",
-  "what specialization can i focus on in my program",
-  "is there a classification for students in artificial intelligence",
-  "how can i start specializing in cybersecurity"
+  "does the college offer any specializations starting from a specific year?",
+  "are there any specialized fields available in the college from a certain year?",
+  "how can i start specializing in cybersecurity?"
 ],
 "CreditHoursTask": [
-  "how many credit hours are required for the program",
-  "what is the total number of credit hours for computer science",
-  "how many credit hours do i need to complete the degree",
-  "how many hours should i dedicate to studying each credit hour"
+  "how  many credit hours are required for computer science program?",
+  "what is the total number of credit hours for cs program?"
 ],
 "GraduationTask": [
-  "how long will it take to complete the computer science program",
-  "what is the duration for completing the cs degree"
+  "how long will it take to complete the computer science program?",
+  "what is the duration for completing the cs degree?",
+  "how many years are needed to graduate in computer science program?",
+  "is it possible to complete computer science program in a specific number of years?"
 ],
 "EnrollmentTask": [
-  "how do i enrolling in the program",
-  "what do i need to do to apply for the course"
+  "how do i decide which subjects to enroll in for this semester?",
+  "how can i select the best subjects to select for in the semester?",
+  "what’s the best way to choose the subjects to register for this semester?"
 ],
-"ProfessorQueryTask": [
-  "who is dr azaa",
-  "who is professor azaa"
+  "AssessGraduation": [
+    "how does my choice of courses impact my graduation plan?",
+    "in what way does selecting certain courses affect my graduation timeline?",
+    "how can the courses I select influence my graduation schedule?"
+  ],
+"ReasonsGraduation": [
+  "what are the requirements for graduation?"
 ],
-"CourseQueryTask": [
-  "what is comp 102",
-  "what subject does comp 102 cover",
-  "what module is being taught this semester"
-],
+  "PreventDelays": [
+    "are there any courses i need to take now to prevent delaying my graduation?",
+    "what courses should i prioritize now to avoid postponing my graduation?"
+
+  ],
+  "UnderstandRules": [
+    "what is the add/drop period for courses?",
+   "when is the add/drop period for course registration?",
+    "how long is the add/drop period for courses?"
+  ],
+  "ScheduleTask": [
+    "is it possible to change my schedule after registration?",
+ "can i modify my schedule once I've registered for my courses?"
+  ],
+  "GPARequirements": [
+     "what GPA is required to enter specific departments?",
+ "what is the minimum GPA needed for admission to certain departments?"
+  ],
+  "Training": [
+    "is there any training available that can help us improve our skills?",
+    "what training opportunities are available to develop our skills?"
+  ],
+  "AdjustCreditLoad": [
+   "can I register for more or fewer credit hours than the allowed limit?",
+ "is it possible to register for more or less than the allowed number of credit hours?"
+  ],
+  "OptimizeStudyPlan": [
+    "what is the best strategy to complete my degree requirements on time?",
+ "how can i ensure that i finish my degree requirements within the expected time frame?"
+  ],
+  "LabAttendance": [
+"are attendance grades in the lab considered important?",
+    "is lab attendance graded, and does it impact my final grade?"
+  ],
+  "GoodGPA": [
+"what are the best strategies for maintaining a good GPA?",
+ "how can I achieve a high GPA?"
+  ],
+  "SelectDepartment": [
+ "how should i choose the right department for me?",
+ "what factors should i consider when selecting a department?",
+ "what’s the best way to decide which department suits me?"
+  ],
+    "EnhanceCareerReadiness": [
+"what steps should I take to get ready for the job market?",
+ "how can I prepare myself to be job-ready after graduation?"
+  ],
+  "TransferBetweenDepartments": [
+     "what are the requirements for switching from one major to another?",
+ "are there any conditions i need to meet to change my major?",
+ "how can i transfer to a different major, and what are the criteria?"
+  ],
 "ExamSystem": [
   "how do the exam system work",
   "what is the structure of the exam",
   "how will the exam be designed"
 ],
-"PrerequisitesTask": [
-  "what is the prerequisites for comp 102 ",
-  "which courses must i complete before ",
-  "is there any requirements before enrolling in this subject",
-  "what prerequisites do i need for the next course"
-],
 "CourseSystem": [
-  "can this course benefit my academic performance",
+  "can <CourseName>benefit my academic performance?",
   "which course is most suitable for me",
   "should i enroll in the database course to improve my knowledge?"
 
 ],"MultiCourseRecommendationTask": [
 "Can you help me choose 3 subjects from Java, OS, Parallel, Software Engineering, and AI?"
 ],
-  "CourseHours": [
-    "how many hours for comp 102?",
-    "how many degrees for comp 102?"
+  "ExamCourse": [
+    "what is the format of the exam for <CourseName>?",
+    "how will the exam for the <CourseName> be structured?",
+    "what is the exam system for <CourseName>?"
+  ],
+  "ExamDoc": [
+    "what are the details of the exam with doctor <Name>?",
+    "what is the exam system with doctor <Name>",
+    "what is the exam system with professor <Name>",
+    "what is the format of the exam for doctor <Name>?",
+    "what is the format of the exam for professor <Name>?"
+  ],
+  "PersonRoleQueryTask": [
+    "who is dr <Name>?",
+    "who is doctor <Name>?",
+    "who is professor <Name>?",
+    "who is the manger of department of cs?",
+    "who is the manger of department of computer science?",
+    "who is the professor of course <CourseName>?",
+    "who is the doctor of course <CourseName>?"
+  ],
+  "CourseRoleQueryTask": [
+    "what is comp 102",
+    "what is course database?",
+    "what subject does comp 102 cover",
+    "what module is being taught this semester",
+    "what is the prerequisites for comp 102 ",
+    "which courses must i complete before ",
+    "is there any requirements before enrolling in <CourseName>?",
+    "what prerequisites do i need for course <CourseName>?",
+     "how many hours for <CourseName>?",
+     "how many degrees for <CourseName>?",
+     "what are the courses of professor <Name>?",
+     "what are the courses of doctor <Name>?",
+     "what is the program of course <CourseName>?"
   ]
 }
 
