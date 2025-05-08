@@ -1,19 +1,11 @@
-from Database.session import SessionLocal
-from Database.DatabaseTabels.course import Course
+from Database.FetchDataCourses.findCourse import FindCourse
 
 class CoursePrerequisites:
     def __init__(self):
-        self.session = SessionLocal()
-
+        self.find=FindCourse()
 
     def get_course_prerequisite(self, course_name,language: str = "en"):
-        course = self.session.query(Course).filter(
-            Course.name.ilike(f"%{course_name}%") |
-            Course.short_name.ilike(f"%{course_name}%") |
-            Course.short_name_arabic.ilike(f"%{course_name}%") |
-            Course.code.ilike(f"%{course_name}%") |
-            Course.name_arabic.ilike(f"%{course_name}%")
-        ).first()
+        course =self.find._find_course(course_name)
 
         if course:
             if language == "ar":
@@ -29,4 +21,4 @@ class CoursePrerequisites:
                 elif course.short_name and course_name in course.short_name:
                     return [p.short_name for p in course.prerequisites]
         else:
-            return [p.code for p in course.prerequisites]
+            return None

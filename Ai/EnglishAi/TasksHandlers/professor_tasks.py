@@ -40,12 +40,12 @@ def handle_professor_tasks(task, D: DatabaseStorage):
             found = False
             if description_of_prof:
                 found = True
-                responses.append((ChatTask.ProfessorQueryTask, person_name, description_of_prof))
+                responses.append((ChatTask.ProfessorQueryTask, description_of_prof))
             else:
                 description_of_ass = D.assistant.get_tasks_of_assistant(person_name)
                 if description_of_ass:
                     found = True
-                    responses.append((ChatTask.AssistantTask, person_name, description_of_ass))
+                    responses.append((ChatTask.AssistantTask, description_of_ass))
             if not found:
                 responses.append((ChatTask.UnknownTask, person_name, "there are no information about this person."))
 
@@ -54,10 +54,12 @@ def handle_professor_tasks(task, D: DatabaseStorage):
             responses.append((ChatTask.HeadOfDepartment, dep_name, head_name))
 
         elif role == "course":
-            professors = D.courseProfessor.get_professors_of_course(course_name)
-            assistants = D.courseAssistant.get_assistants_of_course(course_name)
+
+            professors = D.professorOfCourse.get_professors_of_course(course_name)
+            assistants = D.assistantOfCourse.get_assistants_of_course(course_name)
             if professors or assistants:
-                responses.append((ChatTask.ProfessorOfCourse, course_name,professors,assistants))
+                responses.append((ChatTask.ProfessorOfCourse,professors,assistants))
+
             else:
                 responses.append((ChatTask.UnknownTask, "", "there are no information"))
     else:

@@ -56,7 +56,7 @@ class match:
         temp_tokens = tokens[:]
 
 
-        question_pos = self.getPOS(["DET", "NOUN", "PART", "CCONJ", "ADJ", "AUX","INTJ"], temp_position)
+        question_pos = self.getPOS(["ADP","DET", "NOUN", "PART", "CCONJ", "ADJ", "AUX","INTJ"], temp_position)
 
         question = temp_tokens[question_pos] if question_pos != -1 else None
         question_found = False
@@ -68,11 +68,12 @@ class match:
             temp_position.pop(question_pos)
 
         if question_found:
-            verb_pos = self.getPOS(["VERB", "AUX","PRON"], temp_position)
+            verb_pos = self.getPOS(["PRON","VERB", "AUX"], temp_position)
+
             if verb_pos != -1:
                 verb = temp_tokens[verb_pos]
                 if self.match_for_pos(task, "فعل", verb):
-                    max_matches += 2
+                    max_matches += 1
                     temp_tokens.pop(verb_pos)
                     temp_position.pop(verb_pos)
 
@@ -81,7 +82,7 @@ class match:
         if prp_pos != -1:
             prp = temp_tokens[prp_pos]
             if self.match_for_pos(task, "فاعل", prp):
-                max_matches += 1
+                max_matches += 2
                 temp_tokens.pop(prp_pos)
                 temp_position.pop(prp_pos)
 

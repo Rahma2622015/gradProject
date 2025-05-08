@@ -1,22 +1,18 @@
 from Database.session import SessionLocal
-from Database.DatabaseTabels.course import Course
+from Database.FetchDataCourses.findCourse import FindCourse
 
 class CourseDescription:
     def __init__(self):
-        self.session = SessionLocal()
+        self.finder = FindCourse()
 
-    def get_course_description(self, course_name,language: str = "en") :
-        course = self.session.query(Course).filter(
-            Course.name_arabic.ilike(f"%{course_name}%")|
-            Course.name.ilike(f"%{course_name}%")|
-            Course.short_name.ilike(f"%{course_name}%") |
-            Course.short_name_arabic.ilike(f"%{course_name}%") |
-            Course.code.ilike(f"%{course_name}%")
-        ).first()
+    def get_course_description(self, course_name, language: str = "en"):
+        course = self.finder._find_course(course_name)
 
-        if course :
-            if language=="ar":
-                return course.description_arabic if course else "المادة ليست موجودة في الداتابيز!"
+        if not course:
+            return "لم يتم العثور على المادة" if language == "ar" else "Course not found"
 
-            return course.description
-        return None
+        name = course.name_arabic if language == "ar" else course.name
+        description = course.description_arabic if language == "ar" else course.description
+        prefix = "مادة" if language == "ar" else "Course"
+
+        return f"{prefix} {name}: {description if description else ('لا يوجد وصف' if language == 'ar' else 'No description')}"

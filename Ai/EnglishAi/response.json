@@ -127,16 +127,10 @@
   "TransferBetweenDepartments": ["It is allowed within the narrowest limits, and it is preferable to ask the guide."],
 
 
-  "ProfessorQueryTask": [
-    "Dr.{x} is a {y}.",
-    "Professor {x} is a {y} ",
-    "Dr. {x} is a {y}."
-],
-  "CourseQueryTask": [
-    "{x} is a course about {y}.",
-    "The subject {x} covers {y}.",
-    "{x} focuses on {y} topics."
-],
+
+"ProfessorQueryTask": ["{x}"],
+"CourseQueryTask": ["{x}"],
+"AssistantTask": ["{x}"],
 
   "PrerequisitesTask": [
   "{x} a prerequisite for {y}.",
@@ -173,35 +167,13 @@
   "Doctor {x} is currently headed by {y}"
 
 ],
-  "ProfessorOfCourse": [
-  "The professors and assistants responsible for course {x} are: {y}.",
-  "Course {x} is handled by the following staff members: {y}.",
-  "Those in charge of course {x} include: {y}."
-],
-
+  "ProfessorOfCourse": ["{x} , {y}"],
   "DepartmentOfCourse": [
   "This course belongs to the {y} department.",
   "The responsible department for this course is {y}."
 ],
-
-  "CourseOfProfessor": [
-  "Dr. {x} teaches the course {y}.",
-  "Among the courses taught by Dr. {x} is {y}."
-],
-
-  "CourseOfAssistant": [
-  "The teaching assistant {x} assists in the course {y}.",
-  "Among the courses assisted by {x} teaches {y}."
-],
-
-  "AssistantOfCourse": [
-  "The assistant of this course{x} is {y}.",
-  "{y} is the teaching assistant for {x}."
-],
-  "AssistantTask": [
-  "The assistant {x} is {y} ",
-  "The teaching assistant {x} is {y} "
-]
+  "CourseOfProfessor": ["{x}"],
+  "CourseOfAssistant": ["{x} ."]
 
 
 }

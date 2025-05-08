@@ -1,20 +1,18 @@
-from Database.session import SessionLocal
-from Database.DatabaseTabels.course import Course
+from Database.FetchDataCourses.findCourse import FindCourse
 
 class CourseDegree:
     def __init__(self):
-        self.session = SessionLocal()
+        self.find = FindCourse()
 
     def get_course_degree(self, course_name):
-        course = self.session.query(Course).filter(
-            Course.name.ilike(f"%{course_name}%") |
-            Course.short_name.ilike(f"%{course_name}%") |
-            Course.code.ilike(f"%{course_name}%") |
-            Course.name_arabic.ilike(f"%{course_name}%")|
-            Course.short_name_arabic.ilike(f"%{course_name}%")
-        ).first()
-
+        course =self.find._find_course(course_name)
         if course:
             return course.course_degree
         else:
             return None
+
+
+
+
+
+

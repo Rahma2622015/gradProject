@@ -1,6 +1,6 @@
 from Database.session import SessionLocal
 from Database.DatabaseTabels.department import Department
-from Levenshtein import distance
+from Database.utils import get_closest_match
 
 
 class HeadDepartment:
@@ -20,8 +20,23 @@ class HeadDepartment:
                         closest_match = dept
                         min_dist = dist
 
-        if closest_match:
-            return closest_match.head_name_arabic if language == "ar" else closest_match.head_name
+        if department:
+            return department.head_name_arabic if language == "ar" else department.head_name
+
+        departments = self.session.query(Department).all()
+        names = [a.name for a in departments if a.name] + [a.name_arabic for a in departments if a.name_arabic]
+
+        matched_name = get_closest_match(department_name, names)
+        if not matched_name:
+            return None
+
+        department = self.session.query(Department).filter(
+            Department.name == matched_name or
+            Department.name_arabic == matched_name
+        ).first()
+
+        if department:
+            return department.head_name_arabic if language == "ar" else department.head_name
 
         return None
 

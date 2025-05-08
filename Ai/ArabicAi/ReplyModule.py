@@ -22,17 +22,20 @@ class replyModule:
     def generate_response(self, reply: list[tuple[ChatTask, ...]]) -> str:
         s = ""
         for r in reply:
+
             if r[0] in [ChatTask.GreetingTask, ChatTask.UnderstandingTask, ChatTask.askNameTask,
                         ChatTask.ContradactionTask, ChatTask.CheckWellbeingTask, ChatTask.ThanksTask,
                         ChatTask.askHelpingTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask]:
                 s += "\n" + handle_basic_reply(r, self.data)
-
-            elif r[0] in [ChatTask.CourseQueryTask, ChatTask.PrerequisiteQueryTask, ChatTask.CourseHours,ChatTask.CourseDegrees,
-                          ChatTask.CourseOfAssistant,ChatTask.CourseOfProfessor,ChatTask.DepartmentOfCourse]:
+                
+            elif r[0] in [ChatTask.CourseQueryTask,ChatTask.CourseOfProfessor,ChatTask.CourseHours,
+                          ChatTask.CourseDegrees,ChatTask.PrerequisiteQueryTask,
+                          ChatTask.CourseOfAssistant,ChatTask.DepartmentOfCourse] :
                 s += "\n" + handle_course_reply(r, self.data)
 
-            elif r[0] in [ChatTask.ProfessorQueryTask,ChatTask.AssistantTask,
-                          ChatTask.AssistantOfCourse,ChatTask.ProfessorOfCourse,ChatTask.HeadOfDepartment]:
+            elif r[0] in [ChatTask.ProfessorQueryTask,ChatTask.AssistantTask,ChatTask.HeadOfDepartment,
+                          ChatTask.ProfessorOfCourse]:
+
                 s += "\n" + handle_professor_reply(r, self.data)
 
             else:

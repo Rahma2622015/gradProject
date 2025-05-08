@@ -29,25 +29,26 @@ def handle_professor_tasks(task, D: DatabaseStorage):
                     person_name = " ".join(next_words)
                     role = "دكتور"
                 break
-            elif w in ["مادة","موضوع"]:
-                course_name = " ".join(task_words[i + 1:])
-                role = "مادة"
-                break
+
+
+
+    print("rr",role ," cname",course_name," pname ",person_name)
 
 
     # التعامل مع كل حالة بناءً على الدور المستخرج
     if task[0] == ChatTask.PersonRoleQueryTask:
         if role == "دكتور":
             description_of_prof = D.professors.get_professor_info(person_name,"ar")
-            description_of_ass = D.assistant.get_tasks_of_assistant(person_name,"ar")
             found = False
-
             if  description_of_prof:
                 found = True
-                responses.append((ChatTask.ProfessorQueryTask, person_name, description_of_prof))
-            if description_of_ass:
-                found = True
-                responses.append((ChatTask.AssistantTask, person_name, description_of_ass))
+                responses.append((ChatTask.ProfessorQueryTask, description_of_prof))
+            else:
+                description_of_ass = D.assistant.get_tasks_of_assistant(person_name, "ar")
+                if description_of_ass:
+                    found = True
+                    responses.append((ChatTask.AssistantTask, description_of_ass))
+
             if not found:
                 responses.append(
                     (ChatTask.UnknownTask, person_name, "لا يوجد معلومات عن هذا الشخص لا كدكتور ولا كمعيد."))
@@ -58,14 +59,12 @@ def handle_professor_tasks(task, D: DatabaseStorage):
             responses.append((ChatTask.HeadOfDepartment, dep_name, head_name))
 
         elif role == "مادة":
-            professors = D.courseProfessor.get_professors_of_course(course_name,"ar")
-            if professors:
-                responses.append((ChatTask.ProfessorOfCourse, course_name, professors))
+            professors = D.professorOfCourse.get_professors_of_course(course_name,"ar")
+            assistants = D.assistantOfCourse.get_assistants_of_course(course_name,"ar")
+            if professors or assistants:
+                responses.append((ChatTask.ProfessorOfCourse,professors,assistants))
+
             else:
-                assistants = D.courseAssistant.get_assistants_of_course(course_name, "ar")
-                if assistants:
-                    responses.append((ChatTask.AssistantOfCourse, course_name, assistants))
-                else:
                     responses.append((ChatTask.UnknownTask, "", "لم يتم التعرف على المطلوب."))
         else:
             responses.append((ChatTask.UnknownTask, "", ""))

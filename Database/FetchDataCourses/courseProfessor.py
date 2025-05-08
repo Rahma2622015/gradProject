@@ -1,42 +1,24 @@
-from Database.session import SessionLocal
-from Database.DatabaseTabels.course import Course
-from Database.DatabaseTabels.professor import Professor
+from Database.FetchDataProfessors.findProfessor import FindProfessor
 
 class CourseProfessor:
     def __init__(self):
-        self.session = SessionLocal()
+        self.finder = FindProfessor()
+    def get_courses_of_professor(self, prof_name, language: str = "en"):
+        professors = self.finder._find_professor(prof_name)
 
-    def get_professors_of_course(self, course_name, language="en"):
-        course = self.session.query(Course).filter(
-            Course.name.ilike(f"%{course_name}%") |
-            Course.short_name.ilike(f"%{course_name}%") |
-            Course.short_name_arabic.ilike(f"%{course_name}%") |
-            Course.code.ilike(f"%{course_name}%") |
-            Course.name_arabic.ilike(f"%{course_name}%")
-        ).first()
+        if not professors:
+            return None
 
-        if course:
+        results = []
+        for prof in professors:
             if language == "ar":
-                professors = [prof.name_arabic for prof in course.professors if prof.name_arabic]
-                assistants = [assistant.name_arabic for assistant in course.assistants if assistant.name_arabic]
+                courses = [course.name_arabic for course in prof.courses if course.name_arabic]
+                results.append(f"الدكتور {prof.name_arabic} : يُدرِّس {', '.join(courses) if courses else 'لا توجد مواد'}")
             else:
-                professors = [prof.name for prof in course.professors if prof.name]
-                assistants = [assistant.name for assistant in course.assistants if assistant.name]
+                courses = [course.code for course in prof.courses if course.code]
+                results.append(f"Professor {prof.name}  teach : {', '.join(courses) if courses else 'No courses found'}")
 
-            return {
-                "professors": professors,
-                "assistants": assistants
-            }
-        return {"professors": [], "assistants": []}
-
-    def get_courses_of_professor(self, prof_name, language="en"):
-        professor = self.session.query(Professor).filter(
-            Professor.name.ilike(f"%{prof_name}%") |
-            Professor.name_arabic.ilike(f"%{prof_name}%")
-        ).first()
-        if professor:
-            if language == "ar":
-                return [course.name_arabic for course in professor.courses if course.name_arabic]
-            else:
-                return [course.code for course in professor.courses]
-        return []
+        if len(results) == 1:
+            return results[0]
+        else:
+            return "\n".join(results)

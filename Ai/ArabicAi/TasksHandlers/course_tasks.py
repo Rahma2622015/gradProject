@@ -7,8 +7,9 @@ def handle_course_tasks(task, D: DatabaseStorage):
     degree = D.courseDegree
     prerequisite = D.coursePre
     dep_of_course = D.courseDepartment
-    ass_of_course = D.courseAssistant
-    pro_of_course = D.courseProfessor
+    course_of_ass = D.courseAssistant
+    course_of_prof = D.courseProfessor
+
 
     responses = []
     person_name = None
@@ -92,12 +93,17 @@ def handle_course_tasks(task, D: DatabaseStorage):
                 course_name = " ".join(next_words)
                 role = "مادة"
             break
-    print("rr",role ," cname",course_name)
+
+
+    print("rr",role ," cname",course_name," pname ",person_name)
+
+
     if task[0] == ChatTask.CourseRoleQueryTask:
         try:
             if role == "درجة" and course_name:
                 val = degree.get_course_degree(course_name)
                 responses.append((ChatTask.CourseDegrees, course_name, val))
+
 
             elif role == "ساعة" and course_name:
                 val = hour.get_course_hours(course_name)
@@ -105,18 +111,23 @@ def handle_course_tasks(task, D: DatabaseStorage):
 
             elif role == "متطلبات" and course_name:
                 val = prerequisite.get_course_prerequisite(course_name,"ar")
-                responses.append((ChatTask.PrerequisiteQueryTask, course_name, val))
+                if val:
+                    responses.append((ChatTask.PrerequisiteQueryTask, course_name, val))
+                else:
+                    responses.append((ChatTask.PrerequisiteQueryTask,course_name,"لا يوجد متطلبات لهذه المادة"))
 
             elif role == "دكتور" and person_name:
-                val_prof = pro_of_course.get_courses_of_professor(person_name,"ar")
-                val_ass = ass_of_course.get_courses_of_assistant(person_name,"ar")
+                val_prof = course_of_prof.get_courses_of_professor(person_name,"ar")
                 found = False
                 if val_prof:
                     found = True
-                    responses.append((ChatTask.CourseOfProfessor, person_name, val_prof))
-                if val_ass:
-                    found = True
-                    responses.append((ChatTask.CourseOfAssistant, person_name, val_ass))
+                    responses.append((ChatTask.CourseOfProfessor, val_prof))
+                else:
+                    val_ass = course_of_ass.get_courses_of_assistant(person_name)
+                    if val_ass:
+                        found = True
+                        responses.append((ChatTask.CourseOfAssistant, val_ass))
+
                 if not found:
                     responses.append((ChatTask.UnknownTask, person_name, "لا يوجد معلومات كافية"))
 
@@ -126,7 +137,8 @@ def handle_course_tasks(task, D: DatabaseStorage):
 
             elif role == "مادة" and course_name:
                 val = description.get_course_description(course_name,"ar")
-                responses.append((ChatTask.CourseQueryTask, course_name, val))
+
+                responses.append((ChatTask.CourseQueryTask, val))
 
             else:
                 responses.append(
