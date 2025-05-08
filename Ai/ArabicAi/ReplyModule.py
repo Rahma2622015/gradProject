@@ -28,10 +28,10 @@ class replyModule:
                 s += "\n" + handle_basic_reply(r, self.data)
 
             elif r[0] in [ChatTask.CourseQueryTask, ChatTask.PrerequisiteQueryTask, ChatTask.CourseHours,ChatTask.CourseDegrees,
-                          ChatTask.AssistantOfCourse,ChatTask.ProfessorOfCourse,ChatTask.DepartmentOfCourse]:
+                          ChatTask.CourseOfAssistant,ChatTask.CourseOfProfessor,ChatTask.DepartmentOfCourse]:
                 s += "\n" + handle_course_reply(r, self.data)
 
-            elif r[0] in [ChatTask.ProfessorQueryTask,ChatTask.AssistantTask,ChatTask.CourseOfAssistant,ChatTask.CourseOfProfessor,
+            elif r[0] in [ChatTask.ProfessorQueryTask,ChatTask.AssistantTask,
                           ChatTask.AssistantOfCourse,ChatTask.ProfessorOfCourse,ChatTask.HeadOfDepartment]:
                 s += "\n" + handle_professor_reply(r, self.data)
 

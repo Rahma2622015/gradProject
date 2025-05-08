@@ -271,11 +271,11 @@ import variables from "../../../variables.json";
                   <td key={col}>
                     {editingRow === index ? (
                       <input
-                        value={row[col] || ""}
+                        value={typeof row[col] === "object" ? JSON.stringify(row[col]) : row[col] || ""}
                         onChange={(e) => handleRowChange(e, col, index)}
                       />
                     ) : (
-                      row[col]
+                      typeof row[col] === "object" ? JSON.stringify(row[col]) : row[col]
                     )}
                   </td>
                 ))}

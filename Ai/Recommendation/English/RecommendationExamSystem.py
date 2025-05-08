@@ -38,7 +38,10 @@ class Recommendation:
             if not self.prev_data.get("department") or self.prev_data["department"].strip() == "":
                 return "what is your department?", ["cs", "cs & math", "cs & stat", "cs & phy"]
 
-            return "What is your academic year?", ["freshman", "sophomore", "junior", "senior"]
+            return "What is your academic year?", ["freshman (level one)",
+                                                   "sophomore (level two)",
+                                                   "Junior (level three)",
+                                                   "senior (level four)"]
 
         if "year" not in self.prev_data:
             self.prev_data["year"] = user_input.strip().lower()
@@ -63,24 +66,24 @@ class Recommendation:
 
     def get_subject_options(self):
         subjects = {
-            ("freshman","one"):["saftey","human rights","calculus & integration",
+            ("freshman (level one)","one"):["saftey","human rights","calculus & integration",
                                 "physics","chemistry","statistics"],
-            ("freshman","two"):["calculus & integration 2",
+            ("freshman (level one)","two"):["calculus & integration 2",
                                 "Basic concepts in mathematics","html & css","c++"
                                 ,"logic design","english"],
-            ("sophomore", "one"): ["algorithm", "computability",
+            ("sophomore (level two)", "one"): ["algorithm", "computability",
                                    "oop", "database", "linear algebra", "english"],
-            ("sophomore", "two"): ["data structure", "network", "web programming",
+            ("sophomore (level two)", "two"): ["data structure", "network", "web programming",
                                    "automata", "graph", "ordinary differential equation"],
-            ("junior", "one"): ["java", "syntax", "complexity", "operating system",
+            ("Junior (level three)", "one"): ["java", "syntax", "complexity", "operating system",
                                 "abstract algebra", "multimedia", "scientific thinking"],
-            ("junior", "two"): ["scientific research ethics", "combinatorics",
+            ("Junior (level three)", "two"): ["scientific research ethics", "combinatorics",
                                 "compiler", "graphics", "android", "advanced data base"
                                 , "crypto"],
-            ("senior", "one"): ["skills", "artificial intelligence", "parallel",
+            ("senior (level four)", "one"): ["skills", "artificial intelligence", "parallel",
                                 "project", "image processing", "cyber security"
                                 , "computational geometry"],
-            ("senior", "two"): ["bioinformatics", "software engineering",
+            ("senior (level four)", "two"): ["bioinformatics", "software engineering",
                                 "advanced artificial intelligence", "data mining"]
         }
         return subjects.get((self.prev_data.get("year"), self.prev_data.get("semester")), [])
@@ -161,6 +164,7 @@ class Recommendation:
                 exam_system_response="No professor data available for this subject."
 
         if exam_system_response and exam_format_message:
+            self.prev_data.clear()
             return f"{exam_format_message}\n\n, {exam_system_response}", []
-        self.prev_data.clear()
+
         return "No matching exam data or professor information.", []

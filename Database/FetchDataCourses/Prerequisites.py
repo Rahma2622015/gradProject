@@ -10,6 +10,7 @@ class CoursePrerequisites:
         course = self.session.query(Course).filter(
             Course.name.ilike(f"%{course_name}%") |
             Course.short_name.ilike(f"%{course_name}%") |
+            Course.short_name_arabic.ilike(f"%{course_name}%") |
             Course.code.ilike(f"%{course_name}%") |
             Course.name_arabic.ilike(f"%{course_name}%")
         ).first()

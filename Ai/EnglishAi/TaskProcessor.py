@@ -3,7 +3,7 @@ from Ai.EnglishAi.TasksHandlers.basic_tasks import handle_basic_tasks
 from Ai.EnglishAi.TasksHandlers.course_tasks import handle_course_tasks
 from Ai.EnglishAi.TasksHandlers.professor_tasks import handle_professor_tasks
 from Ai.EnglishAi.TasksHandlers.general_tasks import handle_general_tasks
-from Ai.EnglishAi.TasksHandlers.advisor_tasks import handle_advisor_tasks  # أضيفيه لو عندك
+from Ai.EnglishAi.TasksHandlers.advisor_tasks import handle_advisor_tasks
 from Modules import DataStorage
 from Database.Datastorage_DB import DatabaseStorage
 
@@ -38,7 +38,6 @@ class TaskProcessor:
                 ChatTask.ExternalCoursesTask, ChatTask.HighGpaTask, ChatTask.MaterialsTypeTask,
 
                 ChatTask.GraduationTask, ChatTask.EnrollmentTask, ChatTask.AssessGraduation,
-
                 ChatTask.ReasonsGraduation, ChatTask.PreventDelays, ChatTask.UnderstandRules,
 
                 ChatTask.ScheduleTask, ChatTask.ExamSystem, ChatTask.GPARequirements, ChatTask.Training,
@@ -50,7 +49,6 @@ class TaskProcessor:
 
                 ChatTask.ExamCourse, ChatTask.ExamDoc, ChatTask.CreditHoursTask, ChatTask.CourseSystem,
                 ChatTask.EnhanceCareerReadiness,
-
             ]:
                 responses.extend(handle_general_tasks(task))
 

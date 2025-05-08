@@ -48,7 +48,8 @@ class TaskProcessor:
                     ChatTask.UnderstandRules, ChatTask.ScheduleTask, ChatTask.GPARequirements, ChatTask.Training,
                     ChatTask.AdjustCreditLoad, ChatTask.MultiCourseRecommendationTask, ChatTask.OptimizeStudyPlan,
                     ChatTask.LabAttendance, ChatTask.GoodGPA, ChatTask.SelectDepartment,
-                    ChatTask.EnhanceCareerReadiness, ChatTask.TransferBetweenDepartments
+                    ChatTask.EnhanceCareerReadiness, ChatTask.TransferBetweenDepartments,
+                    ChatTask.ExamCourse,ChatTask.ExamDoc
                     ]:
                     responses.extend(handle_general_tasks(task))
 

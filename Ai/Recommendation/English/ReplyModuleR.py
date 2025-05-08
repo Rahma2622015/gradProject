@@ -8,12 +8,16 @@ from Database.Datastorage_DB import DatabaseStorage
 from Modules import DataStorage
 from Ai.Recommendation.English.recommultiCourses import MultiCourseRecommendationSystem
 from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
-from Ai.Recommendation.English.examCourseSyatem import SingleShotRecommendationSystem
+from Ai.Recommendation.English.examCourseSystem import SingleShotRecommendationSystem
+from Database.FetchDataCourses.coureExamSystem import CourseAssistant
+from Database.FetchDataProfessors.professorExamSystem import CourseAssistantPr
 import variables
 
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
+dbcour=CourseAssistant()
+dbpro=CourseAssistantPr()
 
 class ReplyModuleRe:
     def __init__(self, json_path=variables.ResponseDataLocationRE):
@@ -25,7 +29,7 @@ class ReplyModuleRe:
         self.course_selection_recommender = MultiCourseRecommendationSystem(
             data_storage, memory, RecommendationSystem(data_storage, memory,dbs)
         )
-        self.CourseExam=SingleShotRecommendationSystem(data_storage, memory,dbs)
+        self.CourseExam=SingleShotRecommendationSystem(data_storage, memory,dbcour,dbpro)
 
     def load_responses(self, json_path):
         try:

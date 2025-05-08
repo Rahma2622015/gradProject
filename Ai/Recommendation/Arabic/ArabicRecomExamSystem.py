@@ -122,15 +122,23 @@ class ArRecommendation:
         exam_system_response = ""
         exam_format_message = ""
 
+        def join_items(items):
+            if not items:
+                return ""
+            if len(items) == 1:
+                return items[0]
+            return ', '.join(items[:-1]) + ' and ' + items[-1]
+
         if not exam_system_response:
             for doctor in self.doct:
                 if self.prev_data["instructor"].lower() in [d.lower() for d in doctor['instructo']]:
                     professor_name = ', '.join(doctor['instructo']) if isinstance(doctor['instructo'], list) else \
                     doctor['instructo']
                     exam_sys = doctor["exam_system"]
-                    exam_system_text = ', '.join(exam_sys)
-                    exam_system_response = f"نظام الامتحان ل{professor_name}: \n{exam_system_text}"
+                    exam_system_text = join_items(exam_sys)
+                    exam_system_response = f"نظام الامتحان مع الدكتور {professor_name}: {exam_system_text}"
                     break
+
         if not exam_format_message:
             for exam in self.responses:
                 if (self.prev_data["department"].lower() in [di.lower() for di in exam["department"]] and
@@ -139,17 +147,14 @@ class ArRecommendation:
                         self.prev_data["subject"].lower() in [sub.lower() for sub in exam["subject"]]):
                     exam_format = exam['topics']
                     subject_name = ', '.join(exam['subject']) if isinstance(exam['subject'], list) else exam['subject']
-
-                    exam_format_text = ', '.join(exam_format)
-                    exam_format_message = f"شكل الامتحان لمادة  {subject_name}:\n{exam_format_text}"
+                    exam_format_text = join_items(exam_format)
+                    exam_format_message = f"شكل امتحان مادة {subject_name}: {exam_format_text}"
                     break
 
         if not exam_format_message:
-            exam_format_message = "لا يوجد معلومات لهذه المادة."
+            exam_format_message = "لا يوجد معلومات عن شكل الامتحان لهذه المادة."
         if not exam_system_response:
-            exam_system_response = "لا يوجد دكتور متاح لهذه المادة."
+            exam_system_response = "لا يوجد معلومات عن نظام الامتحان مع الدكتور."
 
-        if exam_system_response and exam_format_message:
-            return f"{exam_format_message}\n\n, {exam_system_response}", []
         self.prev_data.clear()
-        return "لا يوجد نظام امتحانات متاح لهذه المعلومات.", []
+        return f"{exam_format_message}\n{exam_system_response}", []
