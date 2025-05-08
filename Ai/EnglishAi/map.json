@@ -2,7 +2,7 @@
   "PersonRoleQueryTask": {
   "QuestionKeywords": ["who"],
   "VerbKeywords": ["be","teach"],
-  "SubjectKeywords": ["professor", "doctor", "assistant", "helper", "dr.", "dr","manager"],
+  "SubjectKeywords": ["professor", "doctor","assistant", "helper", "dr.", "dr","manager"],
   "ObjectKeywords": []
 },
 "CourseRoleQueryTask": {
@@ -10,7 +10,7 @@
     "what", "which", "how many","how"
   ],
   "VerbKeywords": [
-    "be", "relate", "concern", "teach", "explain", "instruct", "belong", "associate","require"
+    "be", "relate", "concern","program", "teach", "explain", "instruct", "belong", "associate","require"
   ],
   "SubjectKeywords": [
     "course", "subject","department","lesson", "module", "number", "requirement", "requirements", "hour", "hours", "grade", "grades","requirement"
@@ -40,8 +40,8 @@
         "QuestionKeywords": ["what", "which"],
         "VerbKeywords": ["be", "exist","have"],
         "SubjectKeywords": ["we"],
-        "ObjectKeywords": ["program", "available", "department",
-                               "math", "mathematics", "branches","collage"]
+        "ObjectKeywords": [ "available",
+                               "math", "branches","collage"]
     },
     "ExternalCoursesTask": {
         "QuestionKeywords": ["when","which","what"],
@@ -73,13 +73,13 @@
                 "VerbKeywords": ["be", "achieve", "get", "earn", "receive","have"],
                 "SubjectKeywords": ["i", "me", "student", "it"],
                 "ObjectKeywords": ["GPA", "high", "gpa", "strong", "computer",
-                                   "science", "program", "cs","degree","record"]
+                                   "science", "cs","degree","record"]
     },
     "ChooseDepartmentTask": {
       "QuestionKeywords": ["how", "do", "what"],
                 "VerbKeywords": ["can", "have", "know", "be", "should"],
                 "SubjectKeywords": ["i", "we", "factor", "criteria"],
-                "ObjectKeywords": ["determine", "best", "program", "join", "among",
+                "ObjectKeywords": ["determine", "best", "join", "among",
                                    "six", "between", "choose", "way", "decide", "most",
                                    "suitable", "consider", "select", "which", "pick",
                                    "make", "informed", "decision"]
@@ -106,7 +106,7 @@
       "ObjectKeywords": ["finish", "single", "special", "cs", "program"
                     , "curriculum", "entirely", "computer", "science", "alone"
                     , "complete", "graduate", "degree", "take", "complete"
-                    , "focus", "computers", "require", "typically", "duration"
+                    , "focus", "computers", "typically", "duration"
                     , "need", "number", "timeframe","minimum"]
     },
     "EnrollmentTask": {
@@ -259,24 +259,6 @@
 
   },
 
-"PersonRoleQueryTask": {
-  "QuestionKeywords": ["who"],
-  "VerbKeywords": ["be","teach"],
-  "SubjectKeywords": ["professor", "doctor", "assistant", "helper", "dr.", "dr","manager"],
-  "ObjectKeywords": []
-},
-"CourseRoleQueryTask": {
-  "QuestionKeywords": [
-    "what", "which", "how many","how"
-  ],
-  "VerbKeywords": [
-    "be", "relate", "concern", "teach", "explain", "instruct", "belong", "associate","require"
-  ],
-  "SubjectKeywords": [
-    "course", "subject", "lesson", "module", "number", "requirement", "requirements", "hour", "hours", "grade", "grades","requirement"
-  ],
-  "ObjectKeywords": []
-},
  "ExamCourse": {
     "QuestionKeywords": ["What", "How", "Can"],
     "VerbKeywords": ["is", "will", "be", "tell"],

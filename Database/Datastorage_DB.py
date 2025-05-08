@@ -9,6 +9,11 @@ from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnsw
 from Database.FetchDataProfessors.Assistants import Assistant
 from Database.FetchDataProfessors.headOfDepartment import HeadDepartment
 from Database.FetchDataProfessors.professorDescription import ProfessorDescription
+from Database.FetchDataProfessors.assistantsCourse import AssistantCourse
+from Database.FetchDataProfessors.professorCourse import ProfessorCourse
+from Database.FetchDataCourses.coureExamSystem import CourseSystem
+from Database.FetchDataProfessors.professorExamSystem import ProfessorSystem
+
 
 class DatabaseStorage:
     def __init__(self):
@@ -23,4 +28,8 @@ class DatabaseStorage:
         self.professors = ProfessorDescription()
         self.assistant = Assistant()
         self.head_department = HeadDepartment()
+        self.assistantOfCourse=AssistantCourse()
+        self.professorOfCourse=ProfessorCourse()
+        self.systemProfessor=ProfessorSystem()
+        self.systemCourse=CourseSystem()
 

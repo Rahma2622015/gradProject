@@ -1,30 +1,23 @@
-from Database.session import SessionLocal
-from Database.DatabaseTabels.assistant import TeachingAssistant
-from Database.DatabaseTabels.course import Course
+from Database.FetchDataProfessors.findAssistant import FindAssistant
 
 class CourseAssistant:
     def __init__(self):
-        self.session = SessionLocal()
+        self.finder = FindAssistant()
 
-    def get_courses_of_assistant(self, assistant_name, language: str = "en"):
-        assistant = (self.session.query(TeachingAssistant).filter(
-            (TeachingAssistant.name.ilike(f"%{assistant_name}%")) |
-            (TeachingAssistant.name_arabic.ilike(f"%{assistant_name}%"))
-        ).first())
+    def get_courses_of_assistant(self, assistant_name):
+        assistant, language = self.finder._find_assistant(assistant_name)
 
-        if assistant:
-            if language == "ar":
-                return [course.name_arabic for course in assistant.courses]
-            else:
-                return [course.code for course in assistant.courses]
-        return []
+        if not assistant:
+            return "No assistant found" if language == "en" else "لم يتم العثور على المعيد"
 
-    def get_assistants_of_course(self, course_code, language: str = "en"):
-        course = self.session.query(Course).filter(Course.code == course_code).first()
-        if course:
-            if language == "ar":
-                return [assistant.name_arabic for assistant in course.assistants]
-            else:
-                return [assistant.name for assistant in course.assistants]
-        return []
+        name = assistant.name_arabic if language == "ar" else assistant.name
+        prefix = "المعيد" if language == "ar" else "Assistant"
 
+        if language == "ar":
+            courses = [c.name_arabic for c in assistant.courses]
+            no_courses = "لا توجد مواد"
+        else:
+            courses = [c.code for c in assistant.courses]
+            no_courses = "No courses assigned"
+
+        return f"{prefix} {name}: {', '.join(courses) if courses else no_courses}"
