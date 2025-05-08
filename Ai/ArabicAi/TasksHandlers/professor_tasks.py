@@ -31,7 +31,9 @@ def handle_professor_tasks(task, D: DatabaseStorage):
                 break
 
 
+
     print("rr",role ," cname",course_name," pname ",person_name)
+
 
     # التعامل مع كل حالة بناءً على الدور المستخرج
     if task[0] == ChatTask.PersonRoleQueryTask:
@@ -46,6 +48,7 @@ def handle_professor_tasks(task, D: DatabaseStorage):
                 if description_of_ass:
                     found = True
                     responses.append((ChatTask.AssistantTask, description_of_ass))
+
             if not found:
                 responses.append(
                     (ChatTask.UnknownTask, person_name, "لا يوجد معلومات عن هذا الشخص لا كدكتور ولا كمعيد."))
@@ -60,6 +63,7 @@ def handle_professor_tasks(task, D: DatabaseStorage):
             assistants = D.assistantOfCourse.get_assistants_of_course(course_name,"ar")
             if professors or assistants:
                 responses.append((ChatTask.ProfessorOfCourse,professors,assistants))
+
             else:
                     responses.append((ChatTask.UnknownTask, "", "لم يتم التعرف على المطلوب."))
         else:

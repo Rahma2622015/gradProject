@@ -2,9 +2,10 @@ import stanza
 from Ai.ArabicAi.ArabicTokenizer import ArabicTokenizers
 from Ai.ArabicAi.ArabicNormalizer import ArabicNormalize
 import variables
+import string
 
 A=ArabicNormalize()
-import string
+t=ArabicTokenizers()
 
 class ArabicPreprocessor:
     def __init__(self):
@@ -19,14 +20,12 @@ class ArabicPreprocessor:
         with open(variables.arabic_word, "r", encoding="utf-8") as f:
             self.word = set(f.read().splitlines())
 
-
     def lemmatization(self, sentences: list[list[str]]) -> list[list[str]]:
         lemmatized_sentences = []
 
         for sentence in sentences:
             sentence_text = " ".join(sentence)
             s = self.nlp(sentence_text)
-
             lemmas = []
             for sent in s.sentences:
                 for word in sent.words:
@@ -43,11 +42,46 @@ class ArabicPreprocessor:
     def preprocess(self, sentences: list[list[str]]) -> list[list[str]]:
         return self.lemmatization(sentences)
 
-
     def is_course(self, word):
         word = word.lower()
         word_no_space = word.replace(" ", "")
         return word in self.course_name or word_no_space in self.course_name
+
+    def is_person(self, word):
+        word = word.lower()
+        word_no_space = word.replace(" ", "")
+        return word in self.name or word_no_space in self.name
+
+    def extract_person_name_from_tags(self, text: str) -> str | None:
+        tokenized = t.tokenize(text)
+        pos_tags = t.pos_tag(tokenized)
+        name_parts = []
+        for sent_tokens, sent_tags in zip(tokenized, pos_tags):
+            for token, tag in zip(sent_tokens, sent_tags):
+                if tag == "<NAME>":
+                    name_parts.append(token)
+        if name_parts:
+            return ' '.join(name_parts)
+        return None
+
+    def extract_course_name_from_tags(self, text: str) -> str | None:
+        tokenized = t.tokenize(text)
+        pos_tags = t.pos_tag(tokenized)
+        course_name_parts = []
+        for sent_tokens, sent_tags in zip(tokenized, pos_tags):
+            temp = []
+            for token, tag in zip(sent_tokens, sent_tags):
+                if tag == "<CourseName>":
+                    temp.append(token)
+                elif temp:
+                    course_name_parts.append(" ".join(temp))
+                    temp = []
+            if temp:
+                course_name_parts.append(" ".join(temp))
+
+        if course_name_parts:
+            return course_name_parts[0]
+        return None
 
     def extract_course_name(self, tokens: list[list[str]]) -> str | None:
         words = [token for sublist in tokens for token in sublist]
@@ -63,7 +97,6 @@ class ArabicPreprocessor:
                 potential_course_name = []
         if potential_course_name:
             return " ".join(potential_course_name)
-
         return None
 
     def extract_all_course_names(self, text: str) -> list[str]:
@@ -110,6 +143,3 @@ class ArabicPreprocessor:
         words = [token for sublist in tokens for token in sublist]  # Flatten
         preprocessed_text = " ".join(words)
         return preprocessed_text
-
-
-

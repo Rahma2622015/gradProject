@@ -1,5 +1,4 @@
 from flask import jsonify, request
-
 from Modules.helper_functions import get_uploaded_session
 from Database.DatabaseTabels.question import Answers
 
@@ -15,7 +14,10 @@ def get_answers():
                 "score": answer.score,
                 "question_id": answer.question_id,
                 "answer_arabic": answer.answer_arabic,
-                "question": answer.question
+                "question": {
+                    "question": answer.question.question,
+                    "question_arabic": answer.question.question_arabic
+                } if answer.question else None
             }
             for answer in answer_list
         ])
@@ -32,8 +34,7 @@ def create_answer():
             answer=data['answer'],
             score=data['score'],
             question_id=data.get('question_id'),
-            answer_arabic=data.get('answer_arabic'),
-            question=data.get('question')
+            answer_arabic=data.get('answer_arabic')
         )
         session.add(new_answer)
         session.commit()
@@ -56,7 +57,6 @@ def update_answer(answer_id):
         answer_obj.score = data.get('score', answer_obj.score)
         answer_obj.question_id = data.get('question_id', answer_obj.question_id)
         answer_obj.answer_arabic = data.get('answer_arabic', answer_obj.answer_arabic)
-        answer_obj.question = data.get('question', answer_obj.question)
         session.commit()
         return jsonify({"message": "Answer updated successfully"})
     except Exception as e:

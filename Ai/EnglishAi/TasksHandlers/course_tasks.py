@@ -22,6 +22,7 @@ def handle_course_tasks(task, D: DatabaseStorage):
         if tag == "<CourseName>":
             course_name = task_words[i]
             role = "course"
+
             break
 
     # Extract person name from POS tags
@@ -30,6 +31,7 @@ def handle_course_tasks(task, D: DatabaseStorage):
             person_name = task_words[i]
             role = "professor"
             break
+
 
     lowered_words = [w.lower().strip() for w in task_words]
     for i, word in enumerate(lowered_words):
@@ -48,6 +50,7 @@ def handle_course_tasks(task, D: DatabaseStorage):
         elif word in ["department", "faculty", "college", "program"]:
             role = "program"
             break
+
         elif word in ["course", "subject", "lesson"]:
             next_words = task_words[i + 1:]  # قائمة من الكلمات بعد "مادة"
             found_doctor = False
@@ -62,6 +65,7 @@ def handle_course_tasks(task, D: DatabaseStorage):
                 role = "course"
             break
     print("role ",role," course_name ",course_name," person_name ",person_name)
+
     if task[0] == ChatTask.CourseRoleQueryTask:
         try:
             if role == "degree" and course_name:
@@ -90,6 +94,7 @@ def handle_course_tasks(task, D: DatabaseStorage):
                     if val_ass:
                         found = True
                         responses.append((ChatTask.CourseOfAssistant, val_ass))
+
                 if not found:
                     responses.append((ChatTask.UnknownTask, person_name, "There is no information."))
 

@@ -3,12 +3,12 @@ import json
 from Ai.ArabicAi.Mapping import fun
 from Ai.ArabicAi.chattask import ChatTask
 from Ai.ArabicAi.ArSementicModuel import SentenceSimilarity
+from endPoints.ai_config_endpoints import load_ai_config
 import variables
 
 class SemanticTaskMapperArabic:
     def __init__(self, json_path=variables.MapData2LocationAr):
         self.similarity = SentenceSimilarity()
-        self.threshold = 0.5
         self.task_definitions = self.load_definitions(json_path)
 
     def load_definitions(self, json_path: str) -> dict:
@@ -24,6 +24,14 @@ class SemanticTaskMapperArabic:
     def convert_to_enum(self, task_name: str) -> ChatTask:
         return ChatTask[task_name] if task_name in ChatTask.__members__ else ChatTask.UnknownTask
 
+    @property
+    def config(self):
+        return load_ai_config()
+
+    @property
+    def threshold(self):
+        return self.config.get("threshold", 0.5)
+
     def mapToken(self, tokens: list[list[str]], pos: list[list[str]]) -> list[tuple[ChatTask,]]:
         res = list()
         if not tokens or not pos or len(tokens) != len(pos):
@@ -31,44 +39,25 @@ class SemanticTaskMapperArabic:
 
         for i, sentence in enumerate(tokens):
             if any(fun.isGreetingTool(word) for word in sentence):
-                name_value = ""
-                for j, word in enumerate(sentence):
-                    if word == "اسم":
-                        if j + 1 < len(sentence):
-                            name_value = sentence[j + 1]
-                        break
-                    elif word in ["أنا", "انا"]:
-                        if j + 1 < len(sentence) and sentence[j + 1] != "اسم":
-                            name_value = sentence[j + 1]
-                        elif j + 2 < len(sentence) and sentence[j + 1] == "اسم":
-                            name_value = sentence[j + 2]
-                        break
-
-                res.append((ChatTask.GreetingTask, name_value))
-                if name_value:
-                    res.append((ChatTask.StoreTask, "اسم", name_value))
+                res.append((ChatTask.GreetingTask, ""))
                 continue
             elif any(fun.isThanksTool(word) for word in sentence):
                 res.append((ChatTask.ThanksTask, ""))
                 continue
-
             elif any(fun.isGoodbyeTool(word) for word in sentence):
                 res.append((ChatTask.GoodbyeTask, ""))
                 continue
-
             elif any(fun.isConfusionTool(word) for word in sentence):
                 res.append((ChatTask.ConfusionTask, ""))
                 continue
-
-
 
             sentence_text = " ".join(sentence)
             best_task = None
             best_score = 0.0
 
-            for task, examples in self.task_definitions.items():
-                for example in examples:
-                    score_tuple = self.similarity.get_similarity(sentence_text, example)
+            for task, task_examples in self.task_definitions.items():
+                for task_example in task_examples:
+                    score_tuple = self.similarity.get_similarity(sentence_text, task_example)
                     score = score_tuple[0]
 
                     if score > best_score:

@@ -16,7 +16,9 @@ from Ai.EnglishAi.GrammerChecker import EnglishGrammarChecker
 from Ai.EnglishAi.functionsForMapping import functions
 from endPoints.ai_config_endpoints import load_ai_config
 from Database.FetchDataCourses.QuestionsAndAnswers import CourseQuestionsAndAnswers
-from Ai.Recommendation.English.examCourseSyatem import SingleShotRecommendationSystem
+from Ai.Recommendation.English.examCourseSystem import SingleShotRecommendationSystem
+from Database.FetchDataCourses.coureExamSystem import CourseAssistant
+from Database.FetchDataProfessors.professorExamSystem import CourseAssistantPr
 import variables
 
 f=functions()
@@ -30,14 +32,14 @@ t = Tokenizers()
 p = Preprocessors()
 a = AutoCorrector()
 recom_reply = ReplyModuleRe()
-bigram_model = BigramModel(variables.Bigrams,variables.NamesinCorrectEnglish)
+bigram_model = BigramModel()
 data_storage = DatabaseStorage()
 memory = DataStorage()
 dbs=CourseQuestionsAndAnswers()
+dbcour=CourseAssistant()
+dbpro=CourseAssistantPr()
 course_recommender = RecommendationSystem(data_storage, memory,dbs)
-excourse=SingleShotRecommendationSystem(data_storage, memory,dbs)
-use_semantic_mapper = True
-show_grammar_feedback=True
+excourse=SingleShotRecommendationSystem(data_storage, memory,dbcour,dbpro)
 
 def is_trivial_task(tokens, f) -> bool:
     for sentence in tokens:
@@ -121,7 +123,7 @@ def langEnglish(message, storage):
                 print(f"[INFO] Detected course names: {course_names}")
                 if course_names:
                     response, options = recom_reply.course_selection_recommender.startswith({
-                        "message": message,
+                        "message": message_lower,
                         "courses": course_names
                     })
                     s = response if isinstance(response, str) else "Error processing multi-course recommendation."
@@ -182,16 +184,7 @@ def langEnglish(message, storage):
                     else:
                         s = "Please mention a valid course name so I can recommend suitable subjects."
                     return s, options, True
-                if any(task[0] == ChatTask.ExamDoc for task in tasks):
-                    print("[DEBUG] Handling Course Recommendation Task")
-                    storage.set_current_task("CourseSystem")
-                    course_name = t.extract_course_name(corrected_message)
-                    print("===> " + course_name)
-                    if course_name:
-                        s, options = course_recommender.start_recommendation(course_name)
-                    else:
-                        s = "Please mention a valid course name so I can recommend suitable subjects."
-                    return s, options, True
+
                 if any(task[0] == ChatTask.MultiCourseRecommendationTask for task in tasks):
                     print("[DEBUG] Handling Multi-Course Recommendation Task")
                     storage.set_current_task("MultiCourseSystem")
@@ -204,14 +197,26 @@ def langEnglish(message, storage):
                     else:
                         s = "Sorry, I couldn't detect the course names from your question."
                     return s, options, True
+
+                if any(task[0] == ChatTask.ExamDoc for task in tasks):
+                    print("[DEBUG] Handling exam Doctor Recommendation Task")
+                    storage.set_current_task("CourseExSystem")
+                    if isinstance(s, str):
+                        s, options = excourse.handle_user_message(corrected_message)
+                    else:
+                        s = "Please mention a valid course name so I can recommend suitable subjects."
+                    storage.set_current_task(None)
+                    return s, options, False
+
                 if any(task[0] == ChatTask.ExamCourse for task in tasks):
-                    print("[DEBUG] Handling Course Recommendation Task")
+                    print("[DEBUG] Handling  exam course Recommendation Task")
                     storage.set_current_task("ExamDoc")
                     if isinstance(s,str):
                         s, options = excourse.handle_user_message(corrected_message)
                     else:
-                        s = "Please mention a valid course name so I can recommend suitable subjects."
-                    return s, options, True
+                        s = "Please mention a valid doctor name so I can recommend suitable subjects."
+                    storage.set_current_task(None)
+                    return s, options, False
 
             processed_tasks = proces.process(tasks, storage)
             print(f"[DEBUG] Processed tasks output: {processed_tasks}, type: {type(processed_tasks)}")
@@ -238,4 +243,5 @@ def langEnglish(message, storage):
         return s, options, False
 
     except Exception as e:
-        return f"Error in English processing: {str(e)}", [], False
+        return (f"Error in English proces"
+                f"+sing: {str(e)}"), [], False

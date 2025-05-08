@@ -103,6 +103,18 @@ class Tokenizers:
 
         return None
 
+    def extract_person_name_from_tags(self, text: str) -> str | None:
+        tokenized = self.tokenize(text)
+        pos_tags = self.pos_tag(tokenized)
+        name_parts = []
+        for sent_tokens, sent_tags in zip(tokenized, pos_tags):
+            for token, tag in zip(sent_tokens, sent_tags):
+                if tag == "<Name>":
+                    name_parts.append(token)
+        if name_parts:
+            return ' '.join(name_parts)
+        return None
+
     def extract_all_course_names(self, text: str) -> list[str]:
         preprocessed_text = self.preprocess_text(text)
         words = preprocessed_text.split()

@@ -235,3 +235,8 @@ image
 software
 cyber
 geometry
+computer
+oop
+object
+oriented
+programming

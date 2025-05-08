@@ -110,7 +110,19 @@ export default function AIConfigPage() {
           {config.show_grammar_feedback ? 'Disabled' : 'Enabled'}
         </button>
       </div>
-
+       <div className={styles.field}>
+        <label className={styles.label}>use_smoothing</label>
+        <button
+          className={`${styles.button} ${
+            config.use_smoothing ? styles.disabled : styles.enabled
+          }`}
+          onClick={() =>
+            handleChange('use_smoothing', !config.use_smoothing)
+          }
+        >
+          {config.use_smoothing ? 'Disabled' : 'Enabled'}
+        </button>
+      </div>
       <button
         onClick={handleSave}
         disabled={isLoading}

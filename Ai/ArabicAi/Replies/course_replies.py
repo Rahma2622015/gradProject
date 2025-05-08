@@ -12,6 +12,7 @@ def handle_course_reply(r, data):
         return choice(data.get("CourseOfAssistant", [])).format(x=r[1])
     elif r[0] == ChatTask.CourseOfProfessor:
         return choice(data.get("CourseOfProfessor", [])).format(x=r[1])
+
     elif r[0] == ChatTask.DepartmentOfCourse:
         return choice(data.get("DepartmentOfCourse", [])).format(x=r[1], y=r[2])
     elif r[0] == ChatTask.PrerequisiteQueryTask:

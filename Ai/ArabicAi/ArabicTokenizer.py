@@ -12,6 +12,9 @@ class ArabicTokenizers:
             self.known_names = set(f.read().splitlines())
         with open(variables.CourseNameArabic, "r", encoding="utf-8") as f:
             self.course_names = sorted(f.read().splitlines(), key=len, reverse=True)
+            # تحميل الكلمات الممنوعة من التقسيم (من ملف arabic_words.txt)
+        with open(variables.arabic_word, "r", encoding="utf-8") as f:
+            self.no_split_words = set(f.read().splitlines())
 
     def SentenceTokenize(self, text: str) -> list[str]:
         old_sentences = re.split(r"(?<=[.؟!])\s*", text)
@@ -25,7 +28,11 @@ class ArabicTokenizers:
             words = []
             for sentence in doc.sentences:
                 for word in sentence.words:
-                    words.append(word.text)
+                    # إذا كانت الكلمة في قائمة الكلمات الممنوعة من التقسيم
+                    if word.text in self.no_split_words:
+                        words.append(word.text)
+                    else:
+                        words.append(word.text)
             tokenized_words.append(words)
 
         return tokenized_words

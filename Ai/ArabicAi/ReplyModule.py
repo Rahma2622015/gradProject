@@ -27,7 +27,7 @@ class replyModule:
                         ChatTask.ContradactionTask, ChatTask.CheckWellbeingTask, ChatTask.ThanksTask,
                         ChatTask.askHelpingTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask]:
                 s += "\n" + handle_basic_reply(r, self.data)
-
+                
             elif r[0] in [ChatTask.CourseQueryTask,ChatTask.CourseOfProfessor,ChatTask.CourseHours,
                           ChatTask.CourseDegrees,ChatTask.PrerequisiteQueryTask,
                           ChatTask.CourseOfAssistant,ChatTask.DepartmentOfCourse] :
@@ -35,6 +35,7 @@ class replyModule:
 
             elif r[0] in [ChatTask.ProfessorQueryTask,ChatTask.AssistantTask,ChatTask.HeadOfDepartment,
                           ChatTask.ProfessorOfCourse]:
+
                 s += "\n" + handle_professor_reply(r, self.data)
 
             else:

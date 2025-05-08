@@ -3,7 +3,6 @@ from Database.FetchDataProfessors.findProfessor import FindProfessor
 class CourseProfessor:
     def __init__(self):
         self.finder = FindProfessor()
-
     def get_courses_of_professor(self, prof_name, language: str = "en"):
         professors = self.finder._find_professor(prof_name)
 

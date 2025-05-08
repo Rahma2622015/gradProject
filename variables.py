@@ -1,4 +1,4 @@
-ip="https://192.168.1.5:3000"
+ip="https://192.168.1.3:3000"
 
 base_ssl=r"E:\gradProject"
 
@@ -16,13 +16,13 @@ MapData2LocationAr=fr"{base_arabic_ai}\NewMapData.json"
 arabic_word = fr"{base_arabic_ai}\arabic_words.txt"
 ResponseDataLocationAr = fr"{base_arabic_ai}\response.json"
 NamesInCorrectArabic = fr"{base_arabic_ai}\arabic_names.txt"
-subjectNameLocation = fr"{base_arabic_ai}\subject_names.txt"
-CourseNameArabic = fr"{base_arabic_ai}\اسماء المواد.txt"
+CourseNameArabic = fr"{base_arabic_ai}\ArcoursesName.txt"
 
 
 MapDataLocationEn = fr"{base_english_ai}\map.json"
 ResponseDataLocationEn = fr"{base_english_ai}\response.json"
 Bigrams = fr"{base_english_ai}\\bigram.txt"
+ArBigrams=fr"{base_arabic_ai}\\Ar-bigram.txt"
 NamesinCorrectEnglish = fr"{base_english_ai}\Names.txt"
 courseLocation = fr"{base_english_ai}\courses.txt"
 MapData2LocationEn = fr"{base_english_ai}\Newmap.json"

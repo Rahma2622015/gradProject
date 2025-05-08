@@ -10,6 +10,7 @@ def handle_course_tasks(task, D: DatabaseStorage):
     course_of_ass = D.courseAssistant
     course_of_prof = D.courseProfessor
 
+
     responses = []
     person_name = None
     course_name = None
@@ -96,11 +97,13 @@ def handle_course_tasks(task, D: DatabaseStorage):
 
     print("rr",role ," cname",course_name," pname ",person_name)
 
+
     if task[0] == ChatTask.CourseRoleQueryTask:
         try:
             if role == "درجة" and course_name:
                 val = degree.get_course_degree(course_name)
                 responses.append((ChatTask.CourseDegrees, course_name, val))
+
 
             elif role == "ساعة" and course_name:
                 val = hour.get_course_hours(course_name)
@@ -124,6 +127,7 @@ def handle_course_tasks(task, D: DatabaseStorage):
                     if val_ass:
                         found = True
                         responses.append((ChatTask.CourseOfAssistant, val_ass))
+
                 if not found:
                     responses.append((ChatTask.UnknownTask, person_name, "لا يوجد معلومات كافية"))
 
@@ -133,7 +137,9 @@ def handle_course_tasks(task, D: DatabaseStorage):
 
             elif role == "مادة" and course_name:
                 val = description.get_course_description(course_name,"ar")
+
                 responses.append((ChatTask.CourseQueryTask, val))
+
             else:
                 responses.append(
                     (ChatTask.UnknownTask, course_name or person_name, "هذا السؤال لا استطيع فهمه"))

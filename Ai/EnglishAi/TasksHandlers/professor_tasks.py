@@ -54,10 +54,12 @@ def handle_professor_tasks(task, D: DatabaseStorage):
             responses.append((ChatTask.HeadOfDepartment, dep_name, head_name))
 
         elif role == "course":
+
             professors = D.professorOfCourse.get_professors_of_course(course_name)
             assistants = D.assistantOfCourse.get_assistants_of_course(course_name)
             if professors or assistants:
                 responses.append((ChatTask.ProfessorOfCourse,professors,assistants))
+
             else:
                 responses.append((ChatTask.UnknownTask, "", "there are no information"))
     else:
