@@ -22,13 +22,13 @@ class ArSingleShotRecommendationSystem:
             exam_data = self.get_exam_system_for_course(course_name)
             if not exam_data:
                 return f"عذرًا، لم أتمكن من العثور على نظام الامتحان للمقرر {course_name}", []
-            return f"هذا هو نظام الامتحان الخاص بالمقرر {course_name}\n{exam_data}", []
+            return f" فى البداية حابة اقولك ان المادة بسيطة خالص ولا تقلق من نظام الامتحان ابدا اما بالنسبة لنظام الامتحان الخاص بالمقرر{course_name}\n{exam_data}", []
 
         elif professor_name:
             exam_data = self.get_exam_system_for_professor(professor_name)
             if not exam_data:
                 return f"عذرًا، لم أتمكن من العثور على نظام الامتحان للدكتور {professor_name}", []
-            return f"هذا هو نظام الامتحان الخاص بالدكتور {professor_name}\n{exam_data}", []
+            return f" فى البداية حابة اقولك متقلقش خالص هذا الدكتور اسلوبه سهل وامتحانه غير مستحيل النجاح فيه اما بالنسبة لنظام الامتحان الخاص بالدكتور {professor_name}\n{exam_data}", []
 
         else:
             return "عذرًا، لم أتمكن من التعرف على اسم المقرر أو اسم الدكتور من رسالتك", []

@@ -22,13 +22,15 @@ class SingleShotRecommendationSystem:
             exam_data = self.get_exam_system_for_course(course_name)
             if not exam_data:
                 return f"Sorry, I couldn't find an exam system for the course {course_name}.", []
-            return f"Here is the exam system for the course {course_name}: {exam_data}", []
+            return (f"First of all, I would like to tell you that the subject is very simple and do not worry about the exam system at all. "
+                    f"As for the exam system for the course {course_name}: {exam_data}"), []
 
         elif professor_name:
             exam_data = self.get_exam_system_for_professor(professor_name)
             if not exam_data:
                 return f"Sorry, I couldn't find an exam system for Dr. {professor_name}.", []
-            return f"Here is the exam system for Dr. {professor_name}: {exam_data}", []
+            return (f"First of all, I would like to tell you not to worry at all. This doctor has an easy method and "
+                    f"his exam is not impossible to pass. As for the doctor’s exam system{professor_name}: {exam_data}"), []
 
         else:
             return "Sorry, I couldn't identify the course or professor name from your message.", []
