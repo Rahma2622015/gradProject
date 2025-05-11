@@ -68,7 +68,7 @@ class match:
             temp_position.pop(question_pos)
 
         if question_found:
-            verb_pos = self.getPOS(["PRON","VERB", "AUX"], temp_position)
+            verb_pos = self.getPOS(["NOUN","PRON","VERB", "AUX"], temp_position)
 
             if verb_pos != -1:
                 verb = temp_tokens[verb_pos]
@@ -78,7 +78,7 @@ class match:
                     temp_position.pop(verb_pos)
 
 
-        prp_pos = self.getPOS(["PRON", "NOUN"], temp_position)
+        prp_pos = self.getPOS(["PRON", "NOUN","ADJ","DET"], temp_position)
         if prp_pos != -1:
             prp = temp_tokens[prp_pos]
             if self.match_for_pos(task, "فاعل", prp):
