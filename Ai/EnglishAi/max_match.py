@@ -47,6 +47,10 @@ class match:
             question_pos = fun.getPOS("WDT", temp_position)
         if question_pos == -1:
             question_pos = fun.getPOS("V", temp_position)
+        if question_pos == -1:
+            question_pos = fun.getPOS("IN", temp_position)
+        if question_pos == -1:
+                question_pos = fun.getPOS("VBP", temp_position)
         question = temp_tokens[question_pos] if question_pos != -1 else None
         question_found = False
         if question and self.match_for_pos(task, "QuestionKeywords", question):
@@ -56,9 +60,14 @@ class match:
             temp_position.pop(question_pos)
         if question_found:
             verb_pos = fun.getPOS("V", temp_position)
+            if verb_pos == -1:
+                verb_pos = fun.getPOS("NNS", temp_position)
+            if verb_pos == -1:
+                verb_pos = fun.getPOS("EX", temp_position)
+
             verb = temp_tokens[verb_pos] if verb_pos != -1 else None
             if verb and self.match_for_pos(task, "VerbKeywords", verb):
-                max_matches += 2
+                max_matches += 1
                 temp_tokens.pop(verb_pos)
                 temp_position.pop(verb_pos)
         prp_pos = fun.getPOS("PRP", temp_position)
@@ -68,7 +77,7 @@ class match:
             prp_pos = fun.getPOS("NN", temp_position)
         prp = temp_tokens[prp_pos] if prp_pos != -1 else None
         if prp and self.match_for_pos(task, "SubjectKeywords", prp):
-            max_matches += 1
+            max_matches += 2
             temp_tokens.pop(prp_pos)
             temp_position.pop(prp_pos)
         for token in temp_tokens:

@@ -53,16 +53,20 @@ def is_recommendation_complete(s: str) -> bool:
     s = s.strip().lower()
     return (
             s == "no matching exam data or professor information." or
-            s.startswith("exam format for the subject") or
+            s.startswith("First of all, I would like to tell you that the subject is") or
             s == "sorry the answer not matched with my data " or
             s == "sorry, i couldn't find any questions for this course." or
             s == "error retrieving question data." or
-            s.startswith("your score is") or
-            s == "sorry, i couldn't detect any valid course names from your message." or
+            s == "Sorry, I couldn't find an exam system for the course" or
             s == "no current course data found." or
             s.startswith("based on your answers") or
             s == "no exam data available for this subject." or
-            s == "no professor data available for this subject."
+            s == "no professor data available for this subject." or
+            s.startswith("Sorry, I couldn't find an exam system for Dr.") or
+            s == "Sorry, I couldn't identify the course or professor name from your message." or
+            s.startswith("First of all, I am proud that you have reached") or
+            s.startswith("firstly I would like to tell you not to worry")
+
     )
 
 

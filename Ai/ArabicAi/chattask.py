@@ -10,6 +10,7 @@ class ChatTask(Enum):
     StoreTask = 6
     LoadTask = 7
     QuestionTask = 8
+
     MathTask = 9
     ConfusionTask = 10
     TypesOfProgramsTask = 11
@@ -27,12 +28,12 @@ class ChatTask(Enum):
     UnderstandingTask = 23
     ContradactionTask = 24
     ExamRecom=28
+
     AssessGraduation=29
     ReasonsGraduation=30
     PreventDelays=31
     UnderstandRules=32
     ScheduleTask=33
-
     Training=36
     AdjustCreditLoad=37
     OptimizeStudyPlan=38
