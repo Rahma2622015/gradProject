@@ -39,7 +39,7 @@ class TaskProcessor:
                 responses.extend(handle_professor_tasks(task,D))
 
             elif task_type in [
-                  ChatTask.HelpTask  ,ChatTask.ThanksTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask, ChatTask.DifficultyTask,
+                 ChatTask.ThanksTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask, ChatTask.DifficultyTask,
                     ChatTask.AcademicAdvisorTask, ChatTask.ChooseDepartmentTask, ChatTask.CheckWellbeingTask,
                     ChatTask.MathTask, ChatTask.QuestionTask, ChatTask.TypesOfProgramsTask, ChatTask.ExternalCoursesTask,
                     ChatTask.HighGpaTask, ChatTask.MaterialsTypeTask, ChatTask.ClassificationTask,
@@ -49,7 +49,7 @@ class TaskProcessor:
                     ChatTask.AdjustCreditLoad, ChatTask.MultiCourseRecommendationTask, ChatTask.OptimizeStudyPlan,
                     ChatTask.LabAttendance, ChatTask.GoodGPA, ChatTask.SelectDepartment,
                     ChatTask.EnhanceCareerReadiness, ChatTask.TransferBetweenDepartments,
-                    ChatTask.ExamCourse,ChatTask.ExamDoc
+                    ChatTask.ExamCourse,ChatTask.ExamDoc, ChatTask.HelpTask
                     ]:
                     responses.extend(handle_general_tasks(task))
 

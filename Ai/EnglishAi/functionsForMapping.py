@@ -5,8 +5,8 @@ class functions:
         return token.lower() in exclamations
 
     def isLikeOrLove(self, token: str) -> bool:
-        like_love_words = {"like", "love", "adore", "enjoy", "appreciate"}
-        return token.lower() in like_love_words
+        like_words = {"like", "love", "adore", "enjoy", "appreciate"}
+        return token.lower() in like_words
 
     def isNegative(self, token: str) -> bool:
         negative_words = {
