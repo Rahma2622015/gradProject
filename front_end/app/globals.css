@@ -19,6 +19,9 @@
 .rce-mbox-right-notch{
      fill: var(--background-color) !important;
 }
+.chatstyle_dropdownList__fc5o6{
+    background-color: var(--background-color) !important;
+}
 .rce-mbox-title{
     color:black !important;
 }

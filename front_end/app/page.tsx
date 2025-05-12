@@ -185,7 +185,7 @@ export default function Home() {
               <ul style={{ listStyle: "disc", paddingLeft: "1.5rem" }}>
                 <li><span className={styles.bold}>Hagar Mohamed Kamel</span></li>
                 <li><span className={styles.bold}>Heba Gamal Ahmed</span></li>
-                <li><span className={styles.bold}>Hagar Basiony Attia</span></li>
+                <li><span className={styles.bold}>Hagar Basuony Attia</span></li>
                 <li><span className={styles.bold}>Rahma Mohamed Sayed</span></li>
               </ul>
 

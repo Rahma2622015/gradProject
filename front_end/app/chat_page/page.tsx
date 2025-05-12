@@ -140,7 +140,7 @@ function ChatPage() {
     }, [isClient, router]);
     const handleSend = async (message: string =selectedQuestion || inputValue) => {
      const finalMessage =stripHtmlTags(message) || inputValue;
-     if (typeof finalMessage !== "string" || !removeEmojis(finalMessage).trim()) {
+     if (typeof finalMessage !== "string" || !removeEmojis(finalMessage)) {
           toast.warn("Message is empty, please enter some text!");
           return;
      }
