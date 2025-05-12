@@ -196,9 +196,13 @@ def langArabic(message, storage):
             response = ARreply.generate_response(ARpre)
             print(f"[DEBUG] Response received: {response}, Type: {type(response)}")
             if isinstance(response, tuple):
+                print("1 -> ",response)
                 s, options = response if len(response) == 2 else (response[0], [])
+                print("2 -> ",s)
             else:
+                print("3 -> ",response)
                 s, options = response, []
+                print("4 -> ",s)
         if not s:
             s = "انا اسف لا استطيع تنفيذ طلبك."
         if not options:
@@ -211,7 +215,7 @@ def langArabic(message, storage):
                         grammar_feedback = "لاحظت شوية أخطاء بسيطة في الكتابة:\n- " + "\n- ".join(flat_errors)
                         s = f"{grammar_feedback}\n\nأعتقد إنك تقصد كده 😊:\n\n{s}"
 
-            return s, options, False
+        return s, options, False
 
 
     except Exception as e:

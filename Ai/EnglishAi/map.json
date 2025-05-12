@@ -6,14 +6,11 @@
   "ObjectKeywords": []
 },
 "CourseRoleQueryTask": {
-  "QuestionKeywords": [
-    "what", "which", "how many","how"
-  ],
-  "VerbKeywords": [
-    "be", "relate", "concern","program", "teach", "explain", "instruct", "belong", "associate","require"
-  ],
-  "SubjectKeywords": [
-    "course", "subject","department","lesson", "module","program", "number", "requirement", "requirements", "hour", "hours", "grade", "grades","requirement"
+  "QuestionKeywords": ["what", "which","how"],
+  "VerbKeywords": ["be", "relate", "concern","program", "teach", "explain",
+    "instruct", "belong", "associate","require"],
+  "SubjectKeywords": ["course", "subject","lesson","program",
+    "number", "requirement", "hour", "grade"
   ],
   "ObjectKeywords": []
 },
@@ -26,99 +23,115 @@
     "AskNameTask": {
         "QuestionKeywords": ["what", "do"],
         "VerbKeywords": ["be", "know"],
-        "SubjectKeywords": ["you", "my"],
-        "ObjectKeywords": ["name"]
+        "SubjectKeywords": ["name"],
+        "ObjectKeywords": ["my","you"]
     },
     "MathTask": {
-        "QuestionKeywords": ["do", "how", "be", "will"],
+        "QuestionKeywords": ["if","should","do", "how", "be", "will"],
         "VerbKeywords": ["affect","be","should","need","could","have","require","might"],
-        "SubjectKeywords": ["i", "we", "me", "it","significant"],
-        "ObjectKeywords": ["weak", "good", "strong", "background","math","if","mathematics"
-        ,"weakness","high","school","me","impact","foundation","influence","hinder"]
+        "SubjectKeywords": [ "me","significant"],
+        "ObjectKeywords": ["weak", "good", "strong", "background","math","if","mathematics",
+        "i", "we","weakness","high","school","me","impact","foundation","influence","hinder"]
     },
     "TypesOfProgramsTask": {
-        "QuestionKeywords": ["what", "which"],
-        "VerbKeywords": ["be", "exist","have"],
-        "SubjectKeywords": ["we"],
-        "ObjectKeywords": [ "available",
+        "QuestionKeywords": ["what", "which","how"],
+        "VerbKeywords": ["be", "exist","have","many","much"],
+        "SubjectKeywords": ["department","program"],
+        "ObjectKeywords": [ "available","we",
                                "math", "branches","collage"]
     },
     "ExternalCoursesTask": {
         "QuestionKeywords": ["when","which","what"],
-                "VerbKeywords": ["be","suppose","advise","take","should","prefer"
-                                 ,"would","recommend","focus","suggest","do"],
-                "SubjectKeywords": ["you","i","we"],
-                "ObjectKeywords": ["there", "external","courses","recommend"
-                                   ,"specific","year","certain","focus","skill"
-                                   ,"dedicate"]
+      "VerbKeywords": ["be","suppose","advise","take","should","prefer"
+                      ,"would","recommend","focus","suggest","do"],
+      "SubjectKeywords": ["external","course","recommend"],
+      "ObjectKeywords": ["year","certain","focus","skill","dedicate"]
     },
+  "CreditHoursTask":
+{
+  "QuestionKeywords": ["what", "can","how"],
+  "VerbKeywords": ["be","require","many","study","include","tell","you","long"],
+  "SubjectKeywords": ["credit","program","hour","total","workload"],
+  "ObjectKeywords": ["computer","science","duration","consist","term"]
+},
     "DifficultyTask": {
         "QuestionKeywords": ["be", "do","how","would"],
-                 "VerbKeywords": ["study","think","be", "find","say",
-                                  "seem", "perceive"],
-                 "SubjectKeywords": ["you","student", "people", "we", "they"],
-                 "ObjectKeywords": ["subject","more","cs","tougher","harder",
-                                    "computer","science","difficult", "field",
-                                    "major","program","mathematics","disciplines"]
+      "VerbKeywords": ["study","think","be", "find","say", "seem", "perceive"],
+      "SubjectKeywords": ["student", "people", "we", "they"],
+      "ObjectKeywords": ["subject","more","cs","tougher","harder",
+        "computer","science","difficult", "field",
+        "major","program","mathematics","disciplines"]
     },
     "MaterialsTypeTask": {
        "QuestionKeywords": ["what", "which"],
-             "VerbKeywords": ["be", "use", "consist","have","will","study"],
-            "SubjectKeywords": ["it", "sources", "professor","we"],
-            "ObjectKeywords": ["material", "sources", "type", "content","study",
+             "VerbKeywords": ["be", "use", "consist","have","will","study","kind"],
+            "SubjectKeywords": ["it", "source", "professor","we","material","content"],
+            "ObjectKeywords": ["reference","type","study",
                                "primary","resources","professors","knowledge"]
     },
     "HighGpaTask": {
-       "QuestionKeywords": ["what", "be", "can", "how"],
-                "VerbKeywords": ["be", "achieve", "get", "earn", "receive","have"],
-                "SubjectKeywords": ["i", "me", "student", "it"],
-                "ObjectKeywords": ["GPA", "high", "gpa", "strong", "computer",
-                                   "science", "cs","degree","record"]
+       "QuestionKeywords": ["what" ,"be", "can", "how"],
+      "VerbKeywords": ["be", "achieve", "get", "select","earn", "receive","have","should"],
+      "SubjectKeywords": ["ideal","difficult"],
+      "ObjectKeywords": ["GPA", "high","good" ,"gpa", "strong", "computer","six",
+        "science", "cs","degree","record","appropriate","student"]
+    },
+"EnrollmentTask": {
+       "QuestionKeywords": ["how", "what", "do"],
+      "VerbKeywords": ["take", "make","be","will", "decide","take","do","can", "should",
+                       "choose","must", "many", "use","may","determine","apply","consider"
+                      ],
+      "SubjectKeywords": [ "time", "criteria","register","enroll","subject","criterion","factor","pick"],
+      "ObjectKeywords": ["special", "cs","year", "content", "best", "department","choice",
+                          "term", "standard", "course", "base", "which", "select","subject",
+                         "semester", "way", "suitable","register"]
+    },
+  "ReasonsGraduation":{
+      "QuestionKeywords":["what"],
+    "VerbKeywords": ["be","can","must","take"],
+    "SubjectKeywords": ["condition","factor","criterion","criteria","met","step","requirement"],
+    "ObjectKeywords": ["graduate","graduation","complete","determine"]
     },
     "ChooseDepartmentTask": {
       "QuestionKeywords": ["how", "do", "what"],
-                "VerbKeywords": ["can", "have", "know", "be", "should"],
-                "SubjectKeywords": ["i", "we", "factor", "criteria"],
-                "ObjectKeywords": ["determine", "best", "join", "among",
-                                   "six", "between", "choose", "way", "decide", "most",
-                                   "suitable", "consider", "select", "which", "pick",
-                                   "make", "informed", "decision"]
+      "VerbKeywords": ["can", "have", "know", "be", "should","do"],
+      "SubjectKeywords": ["factor", "criteria"],
+      "ObjectKeywords": ["join", "among","i","we","make", "informed",
+        "six", "between","program", "choose", "way", "decide", "most",
+        "suitable", "consider", "select", "which", "pick", "decision"]
     },
-
+"AcademicAdvisorTask":
+{
+  "QuestionKeywords": ["who", "can", "could"],
+  "VerbKeywords": ["be","assign","act","provide","tell","take"],
+  "SubjectKeywords": ["academic", "advisor","charge"],
+  "ObjectKeywords": ["role","responsible"]
+},
     "ClassificationTask": {
     "QuestionKeywords": ["what", "be", "can", "do", "when"],
-                "VerbKeywords": ["exist", "possible", "provide", "offer","be"],
-                "SubjectKeywords": ["college", "students", "year", "any"],
-                "ObjectKeywords": ["possible", "students", "focus", "one", "field"
+      "VerbKeywords": ["exist", "possible", "provide", "offer","be","introduce"],
+      "SubjectKeywords": ["college","specialization","specific", "student", "year","field" ,"any","classification"],
+      "ObjectKeywords": ["possible","focus", "one"
                     , "feasible", "topic", "artificial", "only",
-                                   "intelligence", "cybersecurity", "area",
-                                   "particular","special", "major",
-                                   "classification", "ai", "specialization",
-                                   "start", "year", "introduce", "available",
-                                   "college", "certain"
-                    , "options", "stage"]
+                  "intelligence", "cybersecurity", "area",
+                  "particular","special", "major", "ai",
+                  "start", "year", "introduce", "available", "certain", "options", "stage"]
     },
-
+"PreventDelays":{
+  "QuestionKeywords":["what","which","be"],
+    "VerbKeywords": ["need","should","must","take","there","course"],
+    "SubjectKeywords": ["stay","prevent","prioritize"],
+    "ObjectKeywords": ["track","graduation","course","stage","graduate","now","avoid","delay"]
+  },
     "GraduationTask": {
     "QuestionKeywords": ["how", "what", "do", "be"],
-      "VerbKeywords": ["will", "take", "can", "complete", "many","be"],
+      "VerbKeywords": ["will", "take", "can", "complete", "many","be","long","do","finish"],
       "SubjectKeywords": ["year", "time"],
-      "ObjectKeywords": ["finish", "single", "special", "cs", "program"
-                    , "curriculum", "entirely", "computer", "science", "alone"
+      "ObjectKeywords": ["finish", "single", "special", "cs", "program",
+                     "curriculum", "entirely", "computer", "science", "alone"
                     , "complete", "graduate", "degree", "take", "complete"
                     , "focus", "computers", "typically", "duration"
                     , "need", "number", "timeframe","minimum"]
-    },
-    "EnrollmentTask": {
-       "QuestionKeywords": ["how", "what", "do"],
-                "VerbKeywords": ["be","will", "take", "can", "should",
-                                 "must", "many", "may"],
-                "SubjectKeywords": ["years", "time", "i", "criteria"],
-                "ObjectKeywords": ["determine", "subjects", "special", "cs", "program"
-                    , "content", "best", "department", "register", "apply"
-                    , "term", "enroll", "standards", "courses", "enroll"
-                    , "choose", "based", "which", "select", "semester", "way", "take"
-                    , "use", "decide", "make", "choices", "suitable"]
     },
 
   "ExamSystem": {
@@ -129,25 +142,14 @@
       "vary", "very", "difficulty", "same", "come", "challenging", "equally",
       "differ", "function", "test", "tough", "follow", "categories","cs"]
   },
-
   "AssessGraduation": {
-    "QuestionKeywords":["what","haw","in"],
-    "VerbKeywords": ["be","does","play","can"],
-    "SubjectKeywords": ["selection","influence","my","way"],
-    "ObjectKeywords": ["graduation","role","plan","timeline","schedule","process"]
+    "QuestionKeywords":["what","how","in"],
+    "VerbKeywords": ["be","does","play","can","do","effect","impact","select"],
+    "SubjectKeywords": ["selection","influence","way"],
+    "ObjectKeywords": ["graduation","role","plan","timeline","schedule","process","choice","course",
+      "selection"]
   },
-    "ReasonsGraduation":{
-      "QuestionKeywords":["what"],
-    "VerbKeywords": ["be","can","must","take"],
-    "SubjectKeywords": ["condition","factor","criteria","met","step"],
-    "ObjectKeywords": ["requirements","graduate"]
-    },
-  "PreventDelays":{
-        "QuestionKeywords":["what","which","be"],
-    "VerbKeywords": ["need","should","must","take"],
-    "SubjectKeywords": ["delay","stay","stage","prevent"],
-    "ObjectKeywords": ["track","graduation","course"]
-  },
+
   "UnderstandRules":{
     "QuestionKeywords":["what","when","how","can"],
     "VerbKeywords": ["be","you","tell"],
@@ -169,7 +171,7 @@
       "benefit", "fit", "consider", "choose", "improve", "enroll", "find"
     ],
     "SubjectKeywords": [
-      "i", "course", "algorithm",
+       "course", "algorithm",
       "computability", "oop", "database", "linear", "algebra", "english",
       "data", "structure", "network", "web", "programming", "automata",
       "graph", "ordinary", "differential", "equation", "java", "syntax",
@@ -185,10 +187,11 @@
   },
  "MultiCourseRecommendationTask": {
   "QuestionKeywords": ["can", "would", "help", "recommend", "please"],
-  "VerbKeywords": ["choose", "select", "pick", "register", "take", "enroll", "recommend", "need", "want", "thinking"],
-  "SubjectKeywords": ["i", "me", "student", "subject", "material", "module", "course"],
+  "VerbKeywords": ["choose", "select", "pick", "register", "take", "enroll",
+                   "recommend", "need", "want", "thinking"],
+  "SubjectKeywords": ["subject", "material", "module", "course"],
   "ObjectKeywords": [
-    "algorithm", "computability", "oop", "database", "linear",
+    "algorithm", "computability", "oop", "database", "linear","i","we",
     "algebra", "english", "data", "structure", "network", "web", "programming",
     "automata", "graph", "ordinary", "differential", "equation", "java",
     "syntax", "complexity", "os", "abstract", "algebra", "multimedia", "combinatorics",
@@ -196,7 +199,7 @@
     "image", "processing", "cyber", "security", "geometry", "bioinformatics",
     "software", "engineering", "mining", "recommended", "best", "appropriate", "suitable",
     "gpa", "grade", "performance", "score", "track", "term", "semester",
-    "only", "just", "among", "from", "out of", "list", "options", "these", "those"
+    "only", "just", "among", "out of", "list", "options", "these", "those"
   ]
 },
 

@@ -1,7 +1,7 @@
 {
   "threshold": 0.5,
-  "use_semantic_mapper": true,
-  "use_semantic_armapper": true,
-  "show_grammar_feedback": true,
-  "use_smoothing": false
+  "use_semantic_mapper": false,
+  "use_semantic_armapper": false,
+  "show_grammar_feedback": false,
+  "use_smoothing": true
 }
