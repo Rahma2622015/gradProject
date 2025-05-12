@@ -165,6 +165,8 @@ class Recommendation:
 
         if exam_system_response and exam_format_message:
             self.prev_data.clear()
-            return f"{exam_format_message}\n\n, {exam_system_response}", []
+            return (f"firstly I would like to tell you not to worry,"
+                    f" always be reassured that the exams will be good and you will pass."
+                    f" As for{exam_format_message}\n\n, {exam_system_response}"), []
 
         return "No matching exam data or professor information.", []

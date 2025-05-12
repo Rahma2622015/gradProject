@@ -157,4 +157,6 @@ class ArRecommendation:
             exam_system_response = "لا يوجد معلومات عن نظام الامتحان مع الدكتور."
 
         self.prev_data.clear()
-        return f"{exam_format_message}\n{exam_system_response}", []
+        return (f"حابة اقولك ان لا تقلق دائما خليك متطمن "
+                f"ان الامتحانات هتكون كويسة وهتعدى"
+                f" على خير ان شاء الله بالنسبة ل{exam_format_message}\n{exam_system_response}"), []
