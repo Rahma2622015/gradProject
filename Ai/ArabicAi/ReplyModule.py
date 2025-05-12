@@ -25,7 +25,7 @@ class replyModule:
 
             if r[0] in [ChatTask.GreetingTask, ChatTask.UnderstandingTask, ChatTask.askNameTask,
                         ChatTask.ContradactionTask, ChatTask.CheckWellbeingTask, ChatTask.ThanksTask,
-                        ChatTask.askHelpingTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask]:
+                        ChatTask.askHelpingTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask,ChatTask.HelpTask]:
                 s += "\n" + handle_basic_reply(r, self.data)
                 
             elif r[0] in [ChatTask.CourseQueryTask,ChatTask.CourseOfProfessor,ChatTask.CourseHours,

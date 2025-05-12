@@ -20,5 +20,8 @@ def handle_basic_reply(r, data):
         return choice(data.get("Goodbye", []))
     elif r[0] == ChatTask.ConfusionTask:
         return choice(data.get("ConfusionReplies", []))
+    #new
+    elif r[0] == ChatTask.HelpTask:
+        return choice(data.get("help_reply", []))
 
     return None

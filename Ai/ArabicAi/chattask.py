@@ -62,3 +62,5 @@ class ChatTask(Enum):
     PersonRoleQueryTask=54
     ExamCourse = 56
     ExamDoc = 57
+    #new
+    HelpTask=58

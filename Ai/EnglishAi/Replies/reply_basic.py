@@ -20,4 +20,13 @@ def handle_basic_tasks(r, data):
         return choice(data.get("Goodbye", []))
     elif r[0] == ChatTask.ConfusionTask:
         return choice(data.get("ConfusionReplies", []))
+        # New tasks added for expressions
+    elif r[0] == ChatTask.ExclamationTask:
+        return choice(data.get("ExclamationReplies", []))
+    elif r[0] == ChatTask.NegativeTask:
+        return choice(data.get("NegativeReplies", []))
+    elif r[0] == ChatTask.AffirmationTask:
+        return choice(data.get("AffirmationReplies", []))
+    elif r[0] == ChatTask.LikeOrLoveTask:
+        return choice(data.get("LikeOrLoveReplies", []))
     return None

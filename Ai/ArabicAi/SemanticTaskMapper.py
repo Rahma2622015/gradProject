@@ -2,7 +2,7 @@ import json
 
 from Ai.ArabicAi.Mapping import fun
 from Ai.ArabicAi.chattask import ChatTask
-from Ai.ArabicAi.ArSementicModuel import SentenceSimilarity
+from Ai.ArabicAi.SentenceSimilarity import SentenceSimilarity
 from endPoints.ai_config_endpoints import load_ai_config
 import variables
 
@@ -49,6 +49,10 @@ class SemanticTaskMapperArabic:
                 continue
             elif any(fun.isConfusionTool(word) for word in sentence):
                 res.append((ChatTask.ConfusionTask, ""))
+                continue
+                #جديد
+            elif any(fun.isHelpTool(word) for word in sentence):
+                res.append((ChatTask.HelpTask, ""))
                 continue
 
             sentence_text = " ".join(sentence)

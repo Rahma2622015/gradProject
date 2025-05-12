@@ -28,3 +28,8 @@ class func:
     def isGoodbyeTool(self, token: str) -> bool:
         keywords = ["وداع", "سلام"]
         return any(g in token for g in keywords)
+
+    #جديد
+    def isHelpTool(self, token: str) -> bool:
+        help_words = ["ساعد", "مساعدة", "محتاج", "عايز", "أحتاج", "احتاج"]
+        return any(help_word in token for help_word in help_words)

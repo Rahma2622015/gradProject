@@ -74,8 +74,8 @@ def langArabic(message, storage):
         print("tokens: ", ARtokens)
         ARpos = ARt.pos_tag(ARtokens)
         print("pos: ",ARpos)
-        #if not use_semantic_armapper:
-        ARtokens = ARp.preprocess(ARtokens)
+        if not use_semantic_armapperfun():
+         ARtokens = ARp.preprocess(ARtokens)
         print("artokens: ",ARtokens)
         prev_data = storage.get_prev_data()
 
@@ -140,7 +140,7 @@ def langArabic(message, storage):
 
             if all(task[0] == ChatTask.UnknownTask for task in ARtasks):
                 print("[DEBUG] No valid recommendation task found, skipping recommendation.")
-                return "انا لست متاكد من الاجابة على ذلك.", [], False
+                return "أوه! السؤال ده لخبطني شوية 😅 ممكن تعيده بطريقة تانية؟ أنا متحمس أجاوبك! 🎯", [], False
             else:
                 if any(task[0] == ChatTask.ExamRecom for task in ARtasks):
                     print("[DEBUG] Handling Exam Recommendation Task")
@@ -213,9 +213,9 @@ def langArabic(message, storage):
                     flat_errors = [error for sublist in g2 for error in sublist]
                     if flat_errors and show_grammar_feedback_enabled():
                         grammar_feedback = "لاحظت شوية أخطاء بسيطة في الكتابة:\n- " + "\n- ".join(flat_errors)
-                        s = f"{grammar_feedback}\n\nأعتقد إنك تقصد كده 😊:\n\n{s}"
+                        s = f"{grammar_feedback}\n\nأعتقد إنك كنت تقصد كده 😊، شغلك ممتاز وواصل على كده!\n\n{s}"
+            return s, options, False
 
-        return s, options, False
 
 
     except Exception as e:
