@@ -49,6 +49,9 @@ class TaskProcessor:
 
                 ChatTask.ExamCourse, ChatTask.ExamDoc, ChatTask.CreditHoursTask, ChatTask.CourseSystem,
                 ChatTask.EnhanceCareerReadiness,
+                #new
+                ChatTask.ExclamationTask, ChatTask.NegativeTask, ChatTask.AffirmationTask, ChatTask.LikeOrLoveTask
+
             ]:
                 responses.extend(handle_general_tasks(task))
 

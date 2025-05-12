@@ -13,7 +13,7 @@ class SentenceSimilarity:
 
 
         min_len = min(len(sentence1.split()), len(sentence2.split()))
-        if min_len < 2 and score >= 0.5:
+        if min_len <= 2 and score >= 0.5:
             score -= 0.5
 
         is_similar = score >= self.threshold

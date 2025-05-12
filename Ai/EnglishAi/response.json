@@ -79,7 +79,7 @@
     "There are 6 programs: CS, CS & Mathematics, CS & Statistics, Pure Statistics, Pure & Applied Mathematics, and Pure Mathematics & Statistics."
   ],
   "ExternalCourses": [
-    "It's best to start external courses while in college. That way, you'll have time for more important things after graduation. Ideally, start in your second year."
+    "Some people say it’s better to start after graduation, but it\nis actually better to begin while you're in college. This way when\nyou graduate, you'll have time for more important things.in\nfact, it might be better to start at the beginning of your second\nyear."
   ],
   "Difficulty": [
     "Nothing is inherently more difficult than others. It depends on personal interest. Some prefer programming, others enjoy Mathematics or Statistics."
@@ -110,11 +110,11 @@
        "An academic advisor helps with course selection and career guidance. They have your academic record and assist in making study-related decisions."
     ],
 
-  "AssessGraduation": ["If your GPA is below 2.0, you will not be able to register for morethan12credithours per semester. If your GPA continues to decline and remains below2.0forfour semesters,you may be dismissed from the college. Each semesterwithaGPA below 2.0 will be considered a probationary period, whichmayimpactyourlength of college studies."],
-  "ReasonsGraduation":["You are permitted to register for a course outside its regular semester and have it countedasa graduation course,  but subject to specific conditions:There must be an open semester for other courses in addition to this course. This course must be the only one registered under the graduation course. Registration for graduation courses is not permitted during the summer semester."],
-  "PreventDelays":["Based on your ability, it is preferable to register for the number of hours specified inthe studenthandbook for each semester."],
-  "UnderstandRules":["Simply put, to register for courses at the beginning of the semester, you need to followthedatessetby the college and consult your academic advisor to make sure you're registering for the right courses.If you're late by more than a week, your registration won’t be final until you get approval fromthedepartment. If there are any disagreements between departments, you can still register until thesecond week, but you will have to pay a late fee. Also, during the first two weeks, you can add or drop any course, as long as your academicadvisorapproves and there are available spots on the course. After that, your schedule is finalized. After the two-week period, no more course additions or drops are allowed.”"],
-  "ScheduleTask": ["The schedule cannot be modified after course registration. The schedule is determinedcentrallyaccording to criteria set by the college."],
+  "AssessGraduation": ["If your GPA is below 2.0, you will not be able to register for more than 12 credit hours per semester. If your GPA continues to decline and remains below 2.0 for four semesters,you may be dismissed from the college. Each semester with a GPA below 2.0 will be considered a probationary period, which may impact your length of college studies."],
+  "ReasonsGraduation":["You are permitted to register for a course outside its regular semester and have it counted as a graduation course,  but subject to specific conditions:There must be an open semester for other courses in addition to this course. This course must be the only one registered under the graduation course. Registration for graduation courses is not permitted during the summer semester."],
+  "PreventDelays":["Based on your ability, it is preferable to register for the number of hours specified in the student handbook for each semester."],
+  "UnderstandRules":["Simply put, to register for courses at the beginning of the semester, you need to follow the dates set by the college and consult your academic advisor to make sure you're registering for the right courses.If you're late by more than a week, your registration won’t be final until you get approval from the department. If there are any disagreements between departments, you can still register until the second week, but you will have to pay a late fee. Also, during the first two weeks, you can add or drop any course, as long as your academic advisor approves and there are available spots on the course. After that, your schedule is finalized. After the two-week period, no more course additions or drops are allowed."],
+  "ScheduleTask": ["The schedule cannot be modified after course registration. The schedule is determined centrally according to criteria set by the college."],
   "GPARequirements": ["To specialize in computer science, students are admitted first into the\n mathematics department. Students are ranked based on their first-semester grades\n (35%), while for the single-semester computer science major, 60% of their\n second-semester grades are taken into account. The percentages may change\n from year to year."],
   "Training": ["During the third year of leave, internships are offered at companies or within the college. If you have\n an internship opportunity at a particular company, you can apply for that opportunity as well. It is\n essential that you have completed the internship before graduation, as completing the internship is\n required for graduation."],
   "AdjustCreditLoad": ["“Based on your GPA, if it is above 3.0 in your final semester, you may submit a request, which must\n be approved by your academic advisor and college. This is called \"graduation reasons.\" You may\n register for your regular semester courses or choose to register for fewer courses\n"],
@@ -173,7 +173,36 @@
   "The responsible department for this course is {y}."
 ],
   "CourseOfProfessor": ["{x}"],
-  "CourseOfAssistant": ["{x} ."]
+  "CourseOfAssistant": ["{x} ."],
+
+  "ExclamationReplies": [
+    "Wow, that's amazing! 😮",
+    "Oh my, that's awesome! 😲",
+    "Incredible! 😯",
+    "That’s fantastic! 😍",
+    "I’m blown away! 😱"
+  ],
+  "NegativeReplies": [
+    "Oh no, I’m really sorry to hear that! But remember, things will get better soon! 😊",
+    "That’s unfortunate. I believe better days are ahead for you! 💪",
+    "I really hope things improve soon. Keep your head up! 🌟",
+    "Sorry to hear that! If there’s anything I can do to help, just let me know. You’ve got this! 🙌",
+    "That sounds tough, but you’re not alone. I’m here if you need anything! 🌈"
+],
+  "AffirmationReplies": [
+    "Yes, exactly! 👍",
+    "You got it! 🙌",
+    "Absolutely! ✅",
+    "That’s right! ✔️",
+    "I agree! 👍"
+  ],
+  "LikeOrLoveReplies": [
+    "I absolutely love that! 😍 You're amazing!",
+    "That’s fantastic! I really like it, you have great taste! 😊",
+    "Totally love it! You're killing it! 😁",
+    "It’s awesome! Keep up the great work! 😃",
+    "I’m a huge fan of that! You’re doing great! 🙌"
+]
 
 
 }

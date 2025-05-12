@@ -1,5 +1,28 @@
 from Ai.EnglishAi.chattask import ChatTask
 class functions:
+    def isExclamation(self, token: str) -> bool:
+        exclamations = {"wow", "amazing", "incredible", "unbelievable", "awesome", "fantastic"}
+        return token.lower() in exclamations
+
+    def isLikeOrLove(self, token: str) -> bool:
+        like_love_words = {"like", "love", "adore", "enjoy", "appreciate"}
+        return token.lower() in like_love_words
+
+    def isNegative(self, token: str) -> bool:
+        negative_words = {
+            "sad", "angry", "upset", "depressed",
+            "frustrated", "anxious", "hopeless",
+            "miserable", "lonely", "hurt", "regret",
+            "angry", "annoyed", "disappointed",
+            "guilty", "hopeless", "terrible", "worse",
+            "down", "helpless",
+            "stressed", "sick", "confused", "tired"
+        }
+        return token.lower() in negative_words
+
+    def isAffirmation(self, token: str) -> bool:
+        affirmations = {"yes", "definitely", "sure", "absolutely", "certainly","okay"}
+        return token.lower() in affirmations
 
     def isGreetingTool(self, token: str) -> bool:
         greetings = {"hi", "hola", "hello", "hey", "morning", "evening", "afternoon", "greetings", "howdy"}

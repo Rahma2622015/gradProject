@@ -15,7 +15,7 @@ class AutoCorrector:
     def correct_text(self, message: str) -> str:
         words = message.split()
         corrected_words = [
-            word if word.lower() in self.names  or word.lower() in self.course_names
+            word if word.lower() in self.names or word.lower() in self.course_names
             else self.spell(word)
             for word in words
         ]

@@ -14,7 +14,8 @@ def handle_general_tasks(task):
         ChatTask.MultiCourseRecommendationTask, ChatTask.OptimizeStudyPlan,
         ChatTask.LabAttendance, ChatTask.GoodGPA, ChatTask.SelectDepartment,
         ChatTask.EnhanceCareerReadiness, ChatTask.TransferBetweenDepartments,ChatTask.CourseSystem,
-        ChatTask.ExamCourse, ChatTask.ExamDoc
+        ChatTask.ExamCourse, ChatTask.ExamDoc,
+        ChatTask.ExclamationTask,ChatTask.NegativeTask,ChatTask.AffirmationTask,ChatTask.LikeOrLoveTask
     ]
     if task[0] in general_tasks:
         return [(task[0], "")]

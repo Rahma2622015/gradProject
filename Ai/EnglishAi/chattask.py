@@ -63,3 +63,8 @@ class ChatTask(Enum):
 
     ExamCourse=57
     ExamDoc=58
+# New tasks added for expressions
+    ExclamationTask = 59
+    NegativeTask = 60
+    AffirmationTask = 61
+    LikeOrLoveTask = 62

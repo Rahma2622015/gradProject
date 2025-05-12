@@ -44,8 +44,8 @@ excourse=SingleShotRecommendationSystem(data_storage, memory,dbcour,dbpro)
 def is_trivial_task(tokens, f) -> bool:
     for sentence in tokens:
         for token in sentence:
-            if (f.isGreetingTool(token) or f.isGoodbyeTool(token) or
-                f.isThanksTool(token) or f.isConfusionTool(token)):
+            if ((f.isGreetingTool(token) or f.isGoodbyeTool(token) or
+                f.isThanksTool(token) or f.isConfusionTool(token)) or f.isNegative(token)or f.isLikeOrLove(token) or f.isAffirmation(token) or f.isExclamation(token)):
                 return True
     return False
 
@@ -153,6 +153,7 @@ def langEnglish(message, storage):
                     g2 = grammer.get_errors(tokens)
                     print(" Mapping using SemanticTaskMapper")
                     tasks = m.mapToken(tokens, pos)
+                    print(tokens)
                 else:
                     bigram_results = bigram_model.sentence_probability(tokens)
                     if any(result[0] == "UnknownTask" for result in bigram_results):
@@ -238,8 +239,10 @@ def langEnglish(message, storage):
             if any(g == False for g in g1):
                     flat_errors = [error for sublist in g2 for error in sublist]
                     if flat_errors and show_grammar_feedback_enabled():
-                        grammar_feedback = "However, I noticed some grammar issues:\n- " + "\n- ".join(flat_errors)
-                        s = f"{grammar_feedback + "i guess this what you mean 😊"}\n\n{s}"
+                        grammar_feedback = "Here are a few grammar notes I spotted:\n- " + "\n- ".join(flat_errors)
+                        comment = "I hope this helps clarify things 😊 Let me know if you meant something else!"
+                        s = f"{grammar_feedback}\n\n{comment}\n\n\n\n\n\n\n\n\n{s}"
+
         return s, options, False
 
     except Exception as e:

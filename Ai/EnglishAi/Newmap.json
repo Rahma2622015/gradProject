@@ -54,7 +54,8 @@
 ],
 "CreditHoursTask": [
   "how  many credit hours are required for computer science program?",
-  "what is the total number of credit hours for cs program?"
+  "what is the total number of credit hours for computer science program?",
+  "How long is computer science program in terms of hours?"
 ],
 "GraduationTask": [
   "how long will it take to complete the computer science program?",
@@ -91,14 +92,17 @@
   ],
   "GPARequirements": [
      "what GPA is required to enter specific departments?",
- "what is the minimum GPA needed for admission to certain departments?"
+     "what is the minimum GPA needed for admission to certain departments?",
+    "how can i enter computer science program?",
+    "what gpa needed to enter computer science program",
+    "what are the requirements to join the computer science program?"
   ],
   "Training": [
     "is there any training available that can help us improve our skills?",
     "what training opportunities are available to develop our skills?"
   ],
   "AdjustCreditLoad": [
-   "can I register for more or fewer credit hours than the allowed limit?",
+   "can i register for more or fewer credit hours than the allowed limit?",
  "is it possible to register for more or less than the allowed number of credit hours?"
   ],
   "OptimizeStudyPlan": [
@@ -110,8 +114,9 @@
     "is lab attendance graded, and does it impact my final grade?"
   ],
   "GoodGPA": [
-"what are the best strategies for maintaining a good GPA?",
- "how can I achieve a high GPA?"
+ "what are the best strategies for maintaining a good GPA?",
+  "how can i achieve a high GPA?",
+    "gpa i have is not good what can i do?"
   ],
   "SelectDepartment": [
  "how should i choose the right department for me?",
@@ -128,27 +133,33 @@
  "how can i transfer to a different major, and what are the criteria?"
   ],
 "ExamSystem": [
-  "how do the exam system work",
-  "what is the structure of the exam",
-  "how will the exam be designed"
+  "how do the exam system work?",
+  "what is the structure of the exam?",
+  "how will the exam be designed",
+  "what is the exam format?",
+  "what is the exam system?"
 ],
 "CourseSystem": [
-  "can <CourseName>benefit my academic performance?",
-  "which course is most suitable for me",
-  "should i enroll in the database course to improve my knowledge?"
+  "can <CourseName> benefit my academic performance?",
+  "is the <CourseName> course the right choice for me?",
+  "should i enroll in the <CourseName> course to improve my knowledge?",
+  "should i take the <CourseName> course? "
 
 ],"MultiCourseRecommendationTask": [
-"Can you help me choose 3 subjects from Java, OS, Parallel, Software Engineering, and AI?"
+"can you help me choose 3 subjects from java, os, parallel, software engineering, and ai?",
+  "i want to register for 3 courses: java, os, parallel, software",
+  ""
 ],
   "ExamCourse": [
     "what is the format of the exam for <CourseName>?",
-    "how will the exam for the <CourseName> be structured?",
-    "what is the exam system for <CourseName>?"
+    "what is the exam structure for the course <CourseName>?",
+    "what is the exam system for?",
+    "what is the type of the exam for the course <CourseName>?"
   ],
   "ExamDoc": [
     "what are the details of the exam with doctor <Name>?",
     "what is the exam system with doctor <Name>",
-    "what is the exam system with professor <Name>",
+    "what is the exam structure with professor <Name>",
     "what is the format of the exam for doctor <Name>?",
     "what is the format of the exam for professor <Name>?"
   ],
@@ -166,7 +177,7 @@
     "what is course database?",
     "what subject does comp 102 cover",
     "what module is being taught this semester",
-    "what is the prerequisites for comp 102 ",
+    "what is the prerequisites for <CourseName>?",
     "which courses must i complete before ",
     "is there any requirements before enrolling in <CourseName>?",
     "what prerequisites do i need for course <CourseName>?",
@@ -174,6 +185,8 @@
      "how many degrees for <CourseName>?",
      "what are the courses of professor <Name>?",
      "what are the courses of doctor <Name>?",
-     "what is the program of course <CourseName>?"
+     "what is the program of course <CourseName>?",
+    "do i need to take any specific courses before registering for <CourseName>?",
+    "are there any required courses that must be taken before course <CourseName>?"
   ]
 }
