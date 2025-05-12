@@ -36,14 +36,14 @@ class MappingTrivial:
                 res.append((ChatTask.GoodbyeTask, ""))
             elif any(f.isConfusionTool(word) for word in sentence):
                 res.append((ChatTask.ConfusionTask, ""))
-            elif any(f.isNegative(word)for word in sentence):
-                res.append((ChatTask.NegativeTask, ""))
+            elif any(f.isExclamation(word)for word in sentence):
+                res.append((ChatTask.ExclamationTask, ""))
             elif any(f.isLikeOrLove(word)for word in sentence):
                 res.append((ChatTask.LikeOrLoveTask, ""))
             elif any(f.isNegative(word) for word in sentence):
                 res.append((ChatTask.NegativeTask, ""))
-            elif any(f.isNegative(word) for word in sentence):
-                res.append((ChatTask.NegativeTask, ""))
+            elif any(f.isAffirmation(word) for word in sentence):
+                res.append((ChatTask.AffirmationTask, ""))
 
             else:
                 verbIndex = f.getPOS("VB", pos[i])

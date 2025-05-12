@@ -39,7 +39,7 @@ class TaskProcessor:
                 responses.extend(handle_professor_tasks(task,D))
 
             elif task_type in [
-                    ChatTask.ThanksTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask, ChatTask.DifficultyTask,
+                  ChatTask.HelpTask  ,ChatTask.ThanksTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask, ChatTask.DifficultyTask,
                     ChatTask.AcademicAdvisorTask, ChatTask.ChooseDepartmentTask, ChatTask.CheckWellbeingTask,
                     ChatTask.MathTask, ChatTask.QuestionTask, ChatTask.TypesOfProgramsTask, ChatTask.ExternalCoursesTask,
                     ChatTask.HighGpaTask, ChatTask.MaterialsTypeTask, ChatTask.ClassificationTask,

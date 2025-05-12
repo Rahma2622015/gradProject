@@ -23,7 +23,7 @@ class replyModule:
         s = ""
         for r in reply:
 
-            if r[0] in [ChatTask.GreetingTask, ChatTask.UnderstandingTask, ChatTask.askNameTask,
+            if r[0] in [ChatTask.HelpTask,ChatTask.GreetingTask, ChatTask.UnderstandingTask, ChatTask.askNameTask,
                         ChatTask.ContradactionTask, ChatTask.CheckWellbeingTask, ChatTask.ThanksTask,
                         ChatTask.askHelpingTask, ChatTask.GoodbyeTask, ChatTask.ConfusionTask]:
                 s += "\n" + handle_basic_reply(r, self.data)
