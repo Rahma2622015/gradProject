@@ -40,8 +40,8 @@ class TaskMapper:
 
         if len(res) == 0:
             res.append((ChatTask.UnknownTask,))
-            print("mappingTask:", res)
+           # print("mappingTask:", res)
             return res
         else:
-            print("mappingTask:", res)
+           # print("mappingTask:", res)
             return res
