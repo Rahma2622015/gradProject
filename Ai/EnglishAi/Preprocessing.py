@@ -37,7 +37,6 @@ class Preprocessors:
 
     def lemmatization(self, data: list[list[str]], pos: list[list[str]]) -> list[list[str]]:
         res = []
-        print(pos)
         for i, x in enumerate(data):
             t = []
             for j, word in enumerate(x):

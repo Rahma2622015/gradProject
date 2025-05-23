@@ -49,7 +49,7 @@ class TaskProcessor:
                     ChatTask.AdjustCreditLoad, ChatTask.MultiCourseRecommendationTask, ChatTask.OptimizeStudyPlan,
                     ChatTask.LabAttendance, ChatTask.GoodGPA, ChatTask.SelectDepartment,
                     ChatTask.EnhanceCareerReadiness, ChatTask.TransferBetweenDepartments,
-                    ChatTask.ExamCourse,ChatTask.ExamDoc, ChatTask.HelpTask
+                    ChatTask.ExamCourse,ChatTask.ExamDoc, ChatTask.HelpTask,ChatTask.askHelpingTask
                     ]:
                     responses.extend(handle_general_tasks(task))
 
