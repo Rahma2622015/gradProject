@@ -214,8 +214,7 @@ def langArabic(message, storage):
                     if flat_errors and show_grammar_feedback_enabled():
                         grammar_feedback = "لاحظت شوية أخطاء بسيطة في الكتابة:\n- " + "\n- ".join(flat_errors)
                         s = f"{grammar_feedback}\n\nأعتقد إنك كنت تقصد كده 😊، شغلك ممتاز وواصل على كده!\n\n{s}"
-            return s, options, False
-
+        return s, options, False
 
 
     except Exception as e:
