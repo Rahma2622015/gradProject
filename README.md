@@ -2,7 +2,7 @@
 
 ###  Purpose
 
-This project is an intelligent chatbot designed to assist female students in the **Computer Science Department**. It uses **Natural Language Processing (NLP)** to understand and respond to queries in both **Arabic** and **English**. The chatbot also features customizable interface themes and allows users to **edit their messages** after sending.
+This project is an intelligent chatbot designed to assist students in the **Computer Science Department**. It uses **Natural Language Processing (NLP)** to understand and respond to queries in both **Arabic** and **English**. The chatbot also features customizable interface themes and allows users to **edit their messages** after sending.
 
 ---
 
