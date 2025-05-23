@@ -147,8 +147,7 @@
 
 ],"MultiCourseRecommendationTask": [
 "can you help me choose 3 subjects from java, os, parallel, software engineering, and ai?",
-  "i want to register for 3 courses: java, os, parallel, software",
-  ""
+  "i want to register for 3 courses: java, os, parallel, software"
 ],
   "ExamCourse": [
     "what is the format of the exam for <CourseName>?",
