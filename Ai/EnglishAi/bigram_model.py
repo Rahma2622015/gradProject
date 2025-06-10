@@ -79,7 +79,7 @@ class BigramModel:
         bigram_freq = self.bigrams[w1].get(w2, 0)
         unigram_freq = self.unigrams.get(w1, 0)
         if use_smoothing_enabled():
-         print("i am using smoothing ...")
+         #print("i am using smoothing ...")
          return (bigram_freq + 1) / (unigram_freq + len(self.unigrams)) if unigram_freq > 0 else 0
         else:
             return  bigram_freq  / unigram_freq  if unigram_freq > 0 else 0

@@ -21,7 +21,7 @@ class functions:
         return token.lower() in negative_words
 
     def isAffirmation(self, token: str) -> bool:
-        affirmations = {"yes", "definitely", "sure", "absolutely", "certainly","okay"}
+        affirmations = {"yes", "definitely", "sure", "absolutely", "certainly"}
         return token.lower() in affirmations
 
     def isGreetingTool(self, token: str) -> bool:

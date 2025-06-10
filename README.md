@@ -2,7 +2,7 @@
 
 ###  Purpose
 
-This project is an intelligent chatbot designed to assist female students in the **Computer Science Department**. It uses **Natural Language Processing (NLP)** to understand and respond to queries in both **Arabic** and **English**. The chatbot also features customizable interface themes and allows users to **edit their messages** after sending.
+This project is an intelligent chatbot designed to assist students in the **Computer Science Department**. It uses **Natural Language Processing (NLP)** to understand and respond to queries in both **Arabic** and **English**. The chatbot also features customizable interface themes and allows users to **edit their messages** after sending.
 
 ---
 
@@ -16,34 +16,27 @@ This project is an intelligent chatbot designed to assist female students in the
 
 ###  How to Run the Project
 
+### Prerequisites
+- Python 3.8 or higher
+- Node.js v16 or higher
+- npm v8 or higher
+- Git installed
 1. **Clone the repository**
 
 ```bash
 git clone https://github.com/Rahma2622015/gradProject.git
 ```
-
-2. **Install Backend Dependencies**
-
-```bash
-# Flask server and backend utilities
-pip install flask
-pip install flask-cors
-pip install gevent
-pip install sqlalchemy
-pip install requests
-pip install rapidfuzz
-
-# NLP libraries
-pip install nltk
-pip install stanza
-pip install language_tool_python
-pip install flair
-pip install sentence-transform
-pip install autocorrect
-pip install pyspellchecker
-```
-
-3. **Install Frontend Dependencies (React)**
+2. **Navigate to project directory:**
+    - cd gradProject
+3. **Create virtual environment (Windows):**
+   - python -m venv venv
+   - venv\Scripts\activate
+3.1.**Or on macOS/Linux:**
+   - python3 -m venv venv
+   - source venv/bin/activate
+4. **Install Backend & Ai Dependencies**
+    - pip install -r requirements.txt
+5. **Install Frontend Dependencies (React)**
 
 ```bash
 npm install
@@ -52,6 +45,21 @@ npm install emoji-picker-react        # For emoji support
 npm install framer-motion             # For animations
 npm install --save react-toastify     # For user notifications
 ```
+6.**Run the backend:**
+  - python mainApp.py
+  
+### Frontend Setup (React)
+1. Navigate to front_end:
+  cd front_end
+2. Install packages:
+  npm install
+3. Start React app:
+  npm start
+
+### Troubleshooting
+- Flask not starting? Make sure port 5000 is not in use.
+- CORS issues? Ensure frontend and backend are on correct ports.
+- Missing packages? Try `npm cache clean --force` and re-run `npm install`.
 
 ---
 

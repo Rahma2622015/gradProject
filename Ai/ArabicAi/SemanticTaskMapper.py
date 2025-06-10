@@ -51,9 +51,9 @@ class SemanticTaskMapperArabic:
                 res.append((ChatTask.ConfusionTask, ""))
                 continue
                 #جديد
-            elif any(fun.isHelpTool(word) for word in sentence):
-                res.append((ChatTask.HelpTask, ""))
-                continue
+            #elif any(fun.isHelpTool(word) for word in sentence):
+                #res.append((ChatTask.HelpTask, ""))
+                #continue
 
             sentence_text = " ".join(sentence)
             best_task = None
