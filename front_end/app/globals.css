@@ -1,3 +1,6 @@
+.rce-mlist{
+    white-space: pre-wrap !important;
+}
 .rce-container-input {
     min-width: 90% !important;
 }
