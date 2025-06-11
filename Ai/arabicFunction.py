@@ -48,6 +48,8 @@ def is_ar_recommendation_complete(s: str) -> bool:
     s = s.strip()
     return (
         s == "لا يوجد معلومات عن نظام الامتحان مع الدكتور." or
+        s=="نوع الإدخال غير صحيح. من فضلك أدخل قائمة أو جملة تحتوي على أسماء المقررات." or
+        s=="عذرًا، لم أتمكن من استخراج أسماء مقررات صالحة من رسالتك." or
         s.startswith("حابة اقولك ان لا تقلق دائما خليك متطمن") or
         s == "اسف لا يوجد اسئلة متاحة لهذا الكورس" or
         s == "لا توجد بيانات حالية عن المقرر." or
@@ -58,7 +60,6 @@ def is_ar_recommendation_complete(s: str) -> bool:
         s.startswith("بناءً على إجاباتك") or
         s == "حدث خطأ أثناء جلب بيانات السؤال." or
         s== "نوع الإدخال غير صحيح. من فضلك أدخل قائمة أو جملة تحتوي على أسماء المقررات." or
-        s=="عذرًا، لم أتمكن من استخراج أسماء مقررات صالحة من رسالتك." or
         s.startswith("فى البداية حابة اقولك ان المادة بسيطة") or
         s.startswith("فى البداية حابة اقولك متقلقش خالص هذا الدكتور اسلوبه سهل") or
         s == "عذرًا، لم أتمكن من التعرف على اسم المقرر أو اسم الدكتور من رسالتك" or
@@ -113,10 +114,13 @@ def langArabic(message, storage):
                 course_names = ARp.extract_all_course_names(message)
                 #print(f"[INFO] Detected course names: {course_names}")
                 if course_names:
-                    response, options = recom_replyAr.course_selection_recommender.startswith(course_names)
+                    response, options = recom_replyAr.course_selection_recommender.start({
+                        "message": corrected_message,
+                        "courses": course_names
+                    })
                     s = response if isinstance(response, str) else "Error processing multi-course recommendation."
                 else:
-                    s = "Sorry, I couldn't detect the course names from your question."
+                    s ="عذرًا، لم أتمكن من استخراج أسماء مقررات صالحة من رسالتك."
             else:
                 s, options = recom_replyAr.course_selection_recommender.handle_answer(message)
             if is_ar_recommendation_complete(s):
@@ -167,10 +171,13 @@ def langArabic(message, storage):
                     storage.save_data("all_courses", course_names)
                     #print(f"[INFO] Detected course names: {course_names}")
                     if course_names:
-                        response, options = recom_replyAr.course_selection_recommender.start(course_names)
+                        response, options = recom_replyAr.course_selection_recommender.start({
+                            "message": corrected_message,
+                            "courses": course_names
+                        })
                         s = response if isinstance(response, str) else "Error processing multi-course recommendation."
                     else:
-                        s = "اسف انا لا استطيع تحديد اسماء المواد من رسالتك."
+                        s = "عذرًا، لم أتمكن من العثور على أي اسماء مواد من هذه الرسالة."
                     return s, options, True
                 if any(task[0] == ChatTask.ExamDoc for task in ARtasks):
                     #print("[DEBUG] Handling exam Doctor Recommendation Task")

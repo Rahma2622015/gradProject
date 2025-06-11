@@ -15,17 +15,20 @@ class ArMultiCourseRecommendationSystem:
         self.user_data = {}
 
     def start(self, user_input):
-        if isinstance(user_input, str):
+        if isinstance(user_input, dict) and "message" in user_input and "courses" in user_input:
+            self.user_data["initial_message"] = user_input["message"]
+            course_names = user_input["courses"]
+        elif isinstance(user_input, str):
             course_names = pre.extract_all_course_names(user_input)
             self.user_data["initial_message"] = user_input
         elif isinstance(user_input, list):
             course_names = user_input
+            self.user_data["initial_message"] = None
         else:
             return "نوع الإدخال غير صحيح. من فضلك أدخل قائمة أو جملة تحتوي على أسماء المقررات.", []
 
         if not course_names:
             return "عذرًا، لم أتمكن من استخراج أسماء مقررات صالحة من رسالتك.", []
-
         self.user_data["all_courses"] = course_names
         self.user_data["course_scores"] = {}
         self.user_data["current_course_index"] = 0
