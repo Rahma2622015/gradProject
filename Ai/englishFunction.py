@@ -126,7 +126,7 @@ def langEnglish(message, storage):
                 course_names = t.extract_all_course_names(message)
                 #print(f"[INFO] Detected course names: {course_names}")
                 if course_names:
-                    response, options = recom_reply.course_selection_recommender.startswith({
+                    response, options = recom_reply.course_selection_recommender.start({
                         "message": message_lower,
                         "courses": course_names
                     })
@@ -197,7 +197,10 @@ def langEnglish(message, storage):
                     storage.save_data("all_courses", course_names)
                     #print(f"[INFO] Detected course names: {course_names}")
                     if course_names:
-                        response, options = recom_reply.course_selection_recommender.start(course_names)
+                        response, options = recom_reply.course_selection_recommender.start({
+                            "message": corrected_message,
+                            "courses": course_names
+                        })
                         s = response if isinstance(response, str) else "Error processing multi-course recommendation."
                     else:
                         s = "Sorry, I couldn't detect the course names from your question."

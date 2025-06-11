@@ -1,4 +1,4 @@
-ip="https://192.168.1.3:3000"
+ip="https://192.168.1.5:3000"
 
 base_ssl=r"E:\gradProject"
 

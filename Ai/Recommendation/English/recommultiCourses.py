@@ -17,16 +17,13 @@ class MultiCourseRecommendationSystem:
     def start(self, user_input):
         if isinstance(user_input, dict) and "message" in user_input and "courses" in user_input:
             self.user_data["initial_message"] = user_input["message"]
-            print("Original Message:", self.user_data["initial_message"])  # ✅ هنا
             course_names = user_input["courses"]
         elif isinstance(user_input, str):
             course_names = tokenizer.extract_all_course_names(user_input)
             self.user_data["initial_message"] = user_input
-            print("Original Message:", self.user_data["initial_message"])  # ✅ وهنا برضو
         elif isinstance(user_input, list):
             course_names = user_input
             self.user_data["initial_message"] = None
-            print("Original Message:", self.user_data["initial_message"])  # ✅ لو حابة تطبعيه في حالة الليست
         else:
             return "Invalid input type. Please provide a list, a sentence, or a structured input.", []
 
@@ -87,8 +84,9 @@ class MultiCourseRecommendationSystem:
         initial_message = self.user_data.get("initial_message")
 
         if initial_message:
-            top_n = pre.extract_first_number(initial_message)
-            print(top_n)
+            tokens = tokenizer.tokenize(initial_message)
+            pos_tags = tokenizer.pos_tag(tokens)
+            top_n = pre.extract_first_number(tokens, pos_tags)
         else:
             top_n = None
 
