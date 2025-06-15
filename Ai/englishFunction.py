@@ -96,11 +96,10 @@ def langEnglish(message, storage):
             #print("[DEBUG] Continuing Exam Recommendation Flow")
             s, options = recom_reply.recommender.handle_exam_recommendation(message)
             if is_recommendation_complete(s):
-                storage.clear_data()
-                storage.set_current_task(None)
-                return s, options, False
-            if not options:
-                storage.clear_data()
+                if not options:
+                    storage.clear_data()
+                    storage.set_current_task(None)
+                    return s, options, False
             return s, options, True
 
         # ---------------------- Course Recommendation System ----------------------
