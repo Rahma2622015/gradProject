@@ -6,7 +6,8 @@
   ],
   "AskHelpingTask": [
   "help me",
-  "could you assist me with this task?"
+  "could you assist me with this task?",
+    "can you help me?"
 ],
 
   "MathTask": [
