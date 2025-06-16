@@ -60,9 +60,16 @@ npm install --save react-toastify     # For user notifications
 - Flask not starting? Make sure port 5000 is not in use.
 - CORS issues? Ensure frontend and backend are on correct ports.
 - Missing packages? Try `npm cache clean --force` and re-run `npm install`.
+- **NOTE  for Stanza Library** If you get the following error when running the code: ResourcesFileNotFoundError: Resources file not found at: stanza_resources/resources.json Try to download the model againResourcesFileNotFoundError: Resources file not found at: stanza_resources/resources.json Try to download the model again
 
----
+  **what you do?** Before using the stanza pipeline, make sure to download the Arabic model by adding this line in your code (just once):
+import stanza
+stanza.download("ar")
 
+  **or through our project** from Folder Ai-> ArabicAi-> ArabicPreprocessor.py and Folder Ai-> ArabicAi-> ArabicTokenizer.py
+  edit in <<nlp = stanza.Pipeline(lang="ar", processors="tokenize,pos,lemma", download_method=None)>> replace it with nlp = stanza.Pipeline(lang="ar", processors="tokenize,pos,lemma")
+
+  
 ###  Project Structure
 
 gradProject/
