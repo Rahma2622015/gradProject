@@ -155,7 +155,7 @@ def langEnglish(message, storage):
                         return "Oh dear, I think I missed something there! Would you mind explaining it differently? I'd love to get this right for you.💕.", [], False
                     g1, g2 = [True], []
                     tasks = mapper.mapToken(tokens, pos)
-
+                    print(tasks)
             if all(task[0] == ChatTask.UnknownTask for task in tasks):
                 return "I might need a bit more info to get it right 🤓 Could you tell me a bit more?", [], False
 

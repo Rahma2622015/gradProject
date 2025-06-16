@@ -78,7 +78,7 @@ class MultiCourseRecommendationSystem:
             response = result
             options = []
 
-        return f"For the course {course_name}, the first question is:\n{response}", options
+        return f"For the course {course_name},\nThe first question is:\n{response}", options
 
     def _finalize_recommendations(self):
         initial_message = self.user_data.get("initial_message")
@@ -101,6 +101,6 @@ class MultiCourseRecommendationSystem:
 
         result_text = "Based on your answers, the top recommended courses for you are:\n"
         for i, (course, score) in enumerate(top_courses, start=1):
-            result_text += f"{i}. {course} ({score:.2f}%)\n"
+            result_text += f"{i}. {course}\n"
 
         return result_text.strip(), []

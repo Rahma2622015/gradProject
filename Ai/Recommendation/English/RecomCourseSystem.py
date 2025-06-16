@@ -113,20 +113,20 @@ class RecommendationSystem:
         if percentage >= 70:
             result_text = (f"First of all, I am proud that you have reached "
                            f"this point and answered these questions. It is"
-                           f" clear that you are very smart. As for the subject, "
+                           f" clear that you are very smart.\n\n As for the subject, "
                            f"it is very suitable for you to registe"
                            f"r based on your answers.")
         elif percentage >= 50:
             result_text = (f"First of all, I am proud that you have reached"
                            f" this point and answered these questions. It is clear"
-                           f" that you are very smart. As for the subject, it is "
+                           f" that you are very smart.\n\n As for the subject, it is "
                            f"appropriate for you to register for it now,but you will "
                            f"need to put in some effort to excel in it based on your "
                            f"answers.")
         else:
             result_text = (f"First of all, I am proud that you have"
                            f" reached this point and answered these questions."
-                           f" It is clear that you are very clever. As for the subject,"
+                           f" It is clear that you are very clever.\n\n As for the subject,"
                            f" unfortunately, it is not currently suitable for you to"
                            f" register for it now based on your answers, but do not"
                            f" worry at all about that. You will work on improving "
